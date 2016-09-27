@@ -4,8 +4,8 @@ void set_pin_modes() {
   pinMode(STRIP_PIN_W1, OUTPUT);
   pinMode(STRIP_PIN_W2, OUTPUT);
   pinMode(STRIP_PIN_W3, OUTPUT);
-  pinMode(STRIP_PIN_D1, OUTPUT);
-  pinMode(STRIP_PIN_D2, OUTPUT);
+  pinMode(STRIP_PIN_DT, OUTPUT);
+  pinMode(STRIP_PIN_DB, OUTPUT);
 }
 
 void init_strips() {
