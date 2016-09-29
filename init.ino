@@ -9,6 +9,10 @@ void set_pin_modes() {
 }
 
 void init_strips() {
+  // testing
+  strand.begin();
+  strand.show();
+  /*
   // Window Strips
   window1.begin();
   window1.show();
@@ -24,6 +28,6 @@ void init_strips() {
   desk1.show();
   
   desk2.begin();
-  desk2.show();
+  desk2.show();*/
 }
 
