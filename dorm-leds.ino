@@ -17,11 +17,12 @@
 #define STRIP_TYPE NEO_GRB + NEO_KHZ800
 
 // RGB LED strips
-Adafruit_NeoPixel window1 = Adafruit_NeoPixel(60, STRIP_PIN_W1, STRIP_TYPE);
-Adafruit_NeoPixel window2 = Adafruit_NeoPixel(60, STRIP_PIN_W2, STRIP_TYPE);
-Adafruit_NeoPixel window3 = Adafruit_NeoPixel(60, STRIP_PIN_W3, STRIP_TYPE);
-Adafruit_NeoPixel desk1   = Adafruit_NeoPixel(30, STRIP_PIN_DT, STRIP_TYPE);
-Adafruit_NeoPixel desk2   = Adafruit_NeoPixel(30, STRIP_PIN_DB, STRIP_TYPE);
+Adafruit_NeoPixel strand  = Adafruit_NeoPixel(150, STRIP_PIN_W1, STRIP_TYPE);
+//Adafruit_NeoPixel window1 = Adafruit_NeoPixel(60, STRIP_PIN_W1, STRIP_TYPE);
+//Adafruit_NeoPixel window2 = Adafruit_NeoPixel(60, STRIP_PIN_W2, STRIP_TYPE);
+//Adafruit_NeoPixel window3 = Adafruit_NeoPixel(60, STRIP_PIN_W3, STRIP_TYPE);
+//Adafruit_NeoPixel desk1   = Adafruit_NeoPixel(30, STRIP_PIN_DT, STRIP_TYPE);
+//Adafruit_NeoPixel desk2   = Adafruit_NeoPixel(30, STRIP_PIN_DB, STRIP_TYPE);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -35,10 +36,13 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   // test LEDs
+  test(strand);
+  
+  /*
   test(window1);
   test(window2);
   test(window3);
   test(desk1);
-  test(desk2);
+  test(desk2);*/
 }
 
