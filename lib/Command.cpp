@@ -3,10 +3,10 @@
 String name;
 Strip* strips;
 std::vector<var> stack;
-void (*cmd) (std::vector<var>);
+std::vector<var> (*cmd) (std::vector<var>);
 
 // <<constructor>>
-Command::Command(String name, Strip* strips, void (*cmd)(std::vector<var>), std::vector<var> var_stack){
+Command::Command(String name, Strip* strips, std::vector<var> (*cmd)(std::vector<var>), std::vector<var> var_stack){
 	this->name = name;
 	this->strips = strips;
 	this->stack = var_stack;

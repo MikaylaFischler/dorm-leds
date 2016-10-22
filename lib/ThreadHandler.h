@@ -1,27 +1,28 @@
 #ifndef ThreadHandler_H
 #define ThreadHandler_H
 
-#include <Arduino.h>
+#include <StandardCplusplus.h>
 #include <vector>
+#include <Arduino.h>
 #include "Strip.h"
+#include "Command.h"
+
+// thread structure
+struct Thread {
+	unsigned int id;
+	Command cmd;
+};
 
 class ThreadHandler {
-	// thread structure
-	struct Thread {
-		unsigned int id;
-		Command cmd;
-	};
-
-	// variables
 	std::vector<Thread> threads;
-	short int strip_status**;
+	short int** strip_status;
 	unsigned int elapsed_time;
 	unsigned int next_id;
 public:
 	ThreadHandler();
 	~ThreadHandler();
-	Thread* listThreads();
-	void queueThread(Command);
+	std::vector<Thread> listThreads();
+	void queueThread(Command cmd, std::vector<int> data);
 	void executeTick();
 private:
 	bool conflicts(Strip*, Strip*);

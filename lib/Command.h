@@ -1,24 +1,26 @@
 #ifndef Command_H
 #define Command_H
 
+#include <StandardCplusplus.h>
+#include <vector>
 #include <Arduino.h>
 #include "Strip.h"
 
-class Command {
-	struct var {
-		String name;
-		int value;
-	};
+struct var {
+	String name;
+	int value;
+};
 
+class Command {
 	String name;
 	Strip* strips;
 	std::vector<var> stack;
-	void (*cmd) (std::vector<var>);
+	std::vector<var> (*cmd) (std::vector<var>);
 public:
-	Command(String, Strip*, void (*cmd)(std::vector<var>), std::vector<var>);
+	Command(String name, Strip* strips, std::vector<var> (*cmd)(std::vector<var>), std::vector<var> var_stack);
 	~Command();
 	String getName();
-	void execute(std::vector<var>);
+	void execute();
 	Strip* getDependencies();
 };
 
