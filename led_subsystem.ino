@@ -6,10 +6,6 @@
   9/30/2016 @ WPI
 */
 
-#include "lib/Strip.h"
-#include "lib/Command.cpp"
-#include "lib/ThreadHandler.cpp"
-
 void led_main_loop(){
   
 }
