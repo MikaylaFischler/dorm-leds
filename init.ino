@@ -30,3 +30,7 @@ void init_strips() {
   desk2.show();
 }
 
+void init_timing() {
+  prev_time = millis();
+}
+

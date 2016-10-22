@@ -11,6 +11,8 @@
 struct Thread {
 	unsigned int id;
 	Command cmd;
+	unsigned long int updateRate;
+	unsigned long int timeSum;
 };
 
 class ThreadHandler {
@@ -22,7 +24,8 @@ public:
 	ThreadHandler();
 	~ThreadHandler();
 	std::vector<Thread> listThreads();
-	void queueThread(Command cmd, std::vector<int> data);
+	void queueThread(Command cmd, unsigned long int dU);
+	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 private:
 	bool conflicts(Strip*, Strip*);

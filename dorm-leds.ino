@@ -39,6 +39,10 @@ Adafruit_NeoPixel window3         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W
 Adafruit_NeoPixel desk1           = Adafruit_NeoPixel(DESK1_LENGTH,  STRIP_PIN_DT, STRIP_TYPE);
 Adafruit_NeoPixel desk2           = Adafruit_NeoPixel(DESK2_LENGTH,  STRIP_PIN_DB, STRIP_TYPE);
 
+// Timing
+unsigned long int prev_time = millis();
+unsigned long int cur_time = millis();
+
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize pins
@@ -46,31 +50,17 @@ void setup() {
 
   // initialize LED strips and set them to off
   init_strips();
+
+  // initialize timing
+  init_timing();
 }
   
 // the loop function runs over and over again forever
 void loop() {
-  for(int i = 0; i < DESK1_LENGTH; i++){
-    if(i%3 == 0){
-      desk1.setPixelColor(i, desk1.Color(0,0,0));
-    }else{
-      desk1.setPixelColor(i, desk1.Color(0,0,0));
-    }
-    //delay(20);
-    desk1.show();
-  }
+  // Run multithreaded system code
+  led_main_loop();
 
-  for(int i = 0; i < DESK2_LENGTH; i++){
-    if(i%3 == 0){
-      //desk2.setPixelColor(i, desk2.Color(75,45,25));
-      desk2.setPixelColor(i, desk2.Color(0,0,0));
-    }else{
-      desk2.setPixelColor(i, desk2.Color(0,0,0));
-    }
-    //delay(20);
-    desk2.show();
-  }
-  /*
+  /* WPI SPIRIT CODE
   uint8_t red = window_generic.Color(172, 43, 55);
   uint8_t white = window_generic.Color(169, 176, 183);
   
@@ -93,8 +83,9 @@ void loop() {
     delay(10);
   }
   window2.show();
+  */
   
-  /*
+  /* SET EACH WINDOW CODE
   for(int i = 0; i < WINDOW_LENGTH; i++){
     window1.setPixelColor(i, window_generic.Color(0, 0, 0));
     window2.setPixelColor(i, window_generic.Color(0, 0, 0));
@@ -103,6 +94,7 @@ void loop() {
     delay(2);
   }
   */
+  
   /*
   for(int i = 0; i < WINDOW_LENGTH; i++){
     window1.setPixelColor(i, window_generic.Color(169, 176, 183));
@@ -125,16 +117,8 @@ void loop() {
   }
   window2.show();
   */
-  /*
-  for(int i = 0; i < WINDOW_LENGTH; i++){
-    window1.setPixelColor(i, window_generic.Color(0, 0, 0));
-    window2.setPixelColor(i, window_generic.Color(0, 0, 0));
-    window3.setPixelColor(i, window_generic.Color(0, 0, 0));
-    showAllWindowStrips();
-    delay(2);
-  }
-  */
-  /*
+  
+  /* PURPLE FADE
   for(int i = 0; i <= 150; i++){
     for(int x = 0; x < WINDOW_LENGTH; x++){
       setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
@@ -175,22 +159,27 @@ void loop() {
     showAllWindowStrips();
   }
   */
-  /*
+  
+  /* SOMETHING?
   for(int i = 150; i >= 0; i--){
     for(int x = 0; x < WINDOW_LENGTH; x++){
-      setAllWindowPixelColor(x, window_generic.Color((int)(((float)i /
+      setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
       window2.setPixelColor(x, window_generic.Color(0, 0, 255-i));
       window3.setPixelColor(x, window_generic.Color(0, 0, i));
-    }
-    delay(2); 150.0) * 100), 0, i));
+      delay(2);
     }
     delay(10);
     showAllWindowStrips();
   }*/
-  /*
+  
+  /* SINGLE COLOR FADE
   for(int i = 0; i <= 255; i+=1){
     for(int x = 0; x < WINDOW_LENGTH; x++){
       window1.setPixelColor(x, window_generic.Color(0, 0, i));
+      window2.setPixelColor(x, window_generic.Color(0, 0, 255-i));
+      window3.setPixelColor(x, window_generic.Color(0, 0, i));
+    }
+    delay(2);
     showAllWindowStrips();
   }
 
@@ -206,8 +195,6 @@ void loop() {
   */
   
   fulltest();
-
-  //led_main_loop();
   //ctrl_main_loop();
 }
 
