@@ -2,7 +2,10 @@
 #include <StandardCplusplus.h>
 #include <system_configuration.h>
 #include <utility.h>
-#include <vector>
+
+#include "lib/Strip.h"
+#include "lib/Command.cpp"
+#include "lib/ThreadHandler.cpp"
 
 #include <Adafruit_NeoPixel.h>
 
