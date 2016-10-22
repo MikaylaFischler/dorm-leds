@@ -1,11 +1,11 @@
 #include "ThreadHandler.h"
 
 // set up all strips as not in use
-short int strip_status[5][2] = { { window1, false },
-										      	     { window2, false },
-											           { window3, false },
-											           { desk1, false },
-											           { desk2, false }
+short int strip_status[5][2] = { { WINDOW1, false },
+										      	     { WINDOW2, false },
+											           { WINDOW3, false },
+											           { DESK1, false },
+											           { DESK2, false }
 											         };
 
 // data
@@ -28,16 +28,14 @@ std::vector<Thread> ThreadHandler::listThreads(){
 // queue a thread
 void ThreadHandler::queueThread(Command cmd, std::vector<int> data){
 	for(int i = 0; i < threads.size(); i++){
-		if(conflicts(cmd->getDependencies(), threads.at(i).cmd->getDependencies())){
+		if(conflicts(cmd.getDependencies(), threads.at(i).cmd.getDependencies())){
 			// de-queue any conflicting commands
 			threads.erase(i);
 		}
 	}
 
 	// queue this command as a new thread
-	thread t;
-	t.id = next_id;
-	t.cmd = cmd;
+	Thread t = {next_id, cmd};
 
 	next_id++;
 
@@ -48,7 +46,7 @@ void ThreadHandler::queueThread(Command cmd, std::vector<int> data){
 void ThreadHandler::executeTick(){
 	// iterate through each queued thread
 	for(std::vector<Thread>::iterator i = threads.begin(); i != threads.end(); ++i){
-		threads.at(i).cmd->execute();
+		threads.at(i).cmd.execute();
 	}
 }
 
