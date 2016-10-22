@@ -10,3 +10,7 @@
 #include "lib/Command.cpp"
 #include "lib/ThreadHandler.cpp"
 
+void led_main_loop(){
+  
+}
+

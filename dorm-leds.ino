@@ -8,6 +8,7 @@
 
 /*
   Dorm LED Project: main.ino
+  Main file for the LED project.
 
   Created by: Michael Fischler
   9/20/2016 @ WPI
@@ -46,9 +47,6 @@ void setup() {
   
 // the loop function runs over and over again forever
 void loop() {
-  // test LEDs
-  //test(strand);
-
   for(int i = 0; i < DESK1_LENGTH; i++){
     if(i%3 == 0){
       desk1.setPixelColor(i, desk1.Color(0,0,0));

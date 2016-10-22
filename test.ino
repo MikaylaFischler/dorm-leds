@@ -1,4 +1,10 @@
-/* Test Code for the Dorm LED System */
+/*
+  Dorm LED Project: test.ino
+  This file contains the test code for the dorm LED system.
+
+  Created by: Michael Fischler
+  9/30/2016 @ WPI
+*/
 
 // Test LEDs using the code from strandtest.ino
 void test(Adafruit_NeoPixel strip) {
@@ -57,6 +63,7 @@ void allColorWipe(uint32_t c, uint8_t wait) {
   }
 }
 
+// Rainbow animation
 void allRainbow(uint8_t wait) {
   uint16_t i, j;
 
