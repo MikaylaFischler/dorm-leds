@@ -50,11 +50,19 @@ Command deskBothDimAmbient = Command("Desk[all]: Dim Ambient",
                                       empty);
 
 // Every third LED stays nice reddish white while the others fade in and out a calm purple
-int tpf[] = {0,1};
-std::vector<int> thirdpurplefade (tpf, tpf + sizeof(tpf) / sizeof(int));
-Command deskBothThirdPurpleFade = Command("Desk[all]: White with Purple Fade",
-                                      alldesk,
-                                      desk_both_wpp_fade,
-                                      thirdpurplefade);
+int _d_wppf[] = {0,1};
+std::vector<int> d_wppf (_d_wppf, _d_wppf + sizeof(_d_wppf) / sizeof(int));
+Command deskBothWhitePurplePurpleFade = Command("Desk[all]: White with Purple Fade",
+                                                alldesk,
+                                                desk_both_wpp_fade,
+                                                d_wppf);
 
 /* ~~~~~~ Window Commands ~~~~~~ */
+
+// Every LED fades in and out a with calm purple
+int _w_pf[] = {0,1};
+std::vector<int> w_pf (_w_pf, _w_pf + sizeof(_w_pf) / sizeof(int));
+Command winAllPurpleFade = Command("Window[all]: Purple Fade",
+                                    allwin,
+                                    win_all_wpp_fade,
+                                    w_pf);

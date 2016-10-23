@@ -1,5 +1,5 @@
 /*
-  Dorm LED Project: led_util.ino
+  Dorm LED Project: led_util.c
   This file contains utility functions for dorm LEDs.
 
   Created by: Michael Fischler
@@ -19,4 +19,3 @@ void showAllWindowStrips(){
     window2.show();
     window3.show();
 }
-

@@ -140,7 +140,7 @@ std::vector<int> desk_both_dim_ambient(std::vector<int> var_stack){
 
 /* ~~~~~~ Animated Commands ~~~~~~ */
 
-// &&& Functions for Static Commands &&&
+// &&& Functions for Animated Commands &&&
 
 void _desk_both_wpp_fade(int i){
   for(int y = 0; y < DESK1_LENGTH; y++){
@@ -166,7 +166,7 @@ void _desk_both_wpp_fade(int i){
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every third LED stays nice reddish white while the others fade in and out a calm purple
-// Initial input var_stack : std::vector<int> stack [empty]
+// Initial input var_stack : std::vector<int> stack {0,1}
 std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
   // set variables
   int i = var_stack.at(0);
@@ -193,7 +193,6 @@ std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
 
   // update variables
   var_stack.at(0) = i;
-  Serial.println(i);
   var_stack.at(1) = increasing;
 
   return var_stack;
