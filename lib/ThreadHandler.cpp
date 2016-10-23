@@ -25,17 +25,20 @@ std::vector<Thread> ThreadHandler::listThreads(){
 	return threads;
 }
 
-// queue a thread
-void ThreadHandler::queueThread(Command cmd, unsigned long int dU){
-	for(int i = 0; i < threads.size(); i++){
-		if(conflicts(cmd.getDependencies(), threads.at(i).cmd.getDependencies())){
+// queue a command
+void ThreadHandler::queue(Command cmd, unsigned long int dU){
+	int i = 0;
+	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++, i++){
+		Thread this_thread = *it;
+
+		if(conflicts(cmd.getDependencies(), this_thread.cmd.getDependencies())){
 			// de-queue any conflicting commands
 			threads.erase(i);
 		}
 	}
 
-	// queue this command as a new thread
-	Thread t = {next_id, cmd, dU, 0};
+	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
+	Thread t = {next_id, cmd, dU, dU};
 
 	next_id++;
 
@@ -45,8 +48,8 @@ void ThreadHandler::queueThread(Command cmd, unsigned long int dU){
 // update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 	// iterate through each queued thread
-	for(std::vector<Thread>::iterator i = threads.begin(); i != threads.end(); ++i){
-		Thread this_thread = threads.at(i);
+	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
+		Thread this_thread = *it;
 		this_thread.timeSum += dT;
 	}
 }
@@ -54,13 +57,14 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 // execute a tick of the handler
 void ThreadHandler::executeTick(){
 	// iterate through each queued thread
-	for(std::vector<Thread>::iterator i = threads.begin(); i != threads.end(); ++i){
-		Thread this_thread = threads.at(i);
+	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
+		Thread this_thread = *it;
 		unsigned long int updateRate = this_thread.updateRate;
 		unsigned long int timeSum = this_thread.timeSum;
 
 		if(timeSum >= updateRate){
 			this_thread.cmd.execute();
+			this_thread.timeSum = 0;
 		}
 	}
 }

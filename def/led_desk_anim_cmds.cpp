@@ -30,6 +30,26 @@
 
 /* ~~~~~~ Off Commands ~~~~~~ */
 
+// &&& Functions for Off Commands &&&
+
+void _desk1_off(){
+  for(int i = 0; i < DESK1_LENGTH; i++){
+    desk1.setPixelColor(i, desk1.Color(0,0,0));
+  }
+
+  desk1.show();
+}
+
+void _desk2_off(){
+  for(int i = 0; i < DESK2_LENGTH; i++){
+    desk2.setPixelColor(i, desk2.Color(0,0,0));
+  }
+
+  desk2.show();
+}
+
+// &&& Command Ready Functions for Off Commands &&&
+
 // Every LED for Desk 1 set to {0,0,0}
 // Initial input var_stack : std::vector<var> stack [empty]
 std::vector<var> desk1_off(std::vector<var> var_stack){
@@ -76,40 +96,7 @@ std::vector<var> desks_off(std::vector<var> var_stack){
   return var_stack;
 }
 
-// &&& Functions for Off Commands &&&
-
-void _desk1_off(){
-  for(int i = 0; i < DESK1_LENGTH; i++){
-    desk1.setPixelColor(i, desk1.Color(0,0,0));
-  }
-
-  desk1.show();
-}
-
-void _desk2_off(){
-  for(int i = 0; i < DESK2_LENGTH; i++){
-    desk2.setPixelColor(i, desk2.Color(0,0,0));
-  }
-
-  desk2.show();
-}
-
 /* ~~~~~~ Static Commands ~~~~~~ */
-
-// Every third LED gets a red tinted white
-// Initial input var_stack : std::vector<var> stack [empty]
-std::vector<var> desk_both_dim_ambient(std::vector<var> var_stack){
-  // set variables
-  // n/a
-
-  // run command code
-  _desk_both_dim_ambient();
-
-  // update variables
-  // n/a
-
-  return var_stack;
-}
 
 // &&& Functions for Static Commands &&&
 
@@ -132,6 +119,23 @@ void _desk_both_dim_ambient(){
 
   desk1.show();
   desk2.show();
+}
+
+// &&& Command Ready Functions for Static Commands &&&
+
+// Every third LED gets a red tinted white
+// Initial input var_stack : std::vector<var> stack [empty]
+std::vector<var> desk_both_dim_ambient(std::vector<var> var_stack){
+  // set variables
+  // n/a
+
+  // run command code
+  _desk_both_dim_ambient();
+
+  // update variables
+  // n/a
+
+  return var_stack;
 }
 
 /* Animated Commands */
