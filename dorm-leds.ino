@@ -25,6 +25,9 @@
 #include "conf/config.h"
 #include "conf/strips.h"
 
+// Utility Files
+#include "util/led.c"
+
 // Commands
 #include "def/led_desk_anim_cmds.cpp"
 #include "def/led_window_anim_cmds.cpp"
@@ -38,7 +41,7 @@ unsigned long int cur_time = millis();
 void setup() {
   Serial.begin(38400);
   Serial.println("init");
-  
+
   // initialize pins
   set_pin_modes();
 
@@ -51,7 +54,7 @@ void setup() {
   // manual queue
   led_man_queue();
 }
-  
+
 // the loop function runs over and over again forever
 void loop() {
   // Run multithreaded system code
@@ -60,7 +63,7 @@ void loop() {
   /* WPI SPIRIT CODE
   uint8_t red = window_generic.Color(172, 43, 55);
   uint8_t white = window_generic.Color(169, 176, 183);
-  
+
   for(int i = 0; i < WINDOW_LENGTH; i++){
     window1.setPixelColor(i, window_generic.Color(255, 21, 27));
     if(i%2 == 0){
@@ -68,7 +71,7 @@ void loop() {
     }else{
       window2.setPixelColor(i, window_generic.Color(255, 21, 27));
     }
-    
+
     int modified = WINDOW_LENGTH + 9 - 1 - i;
     if(modified >= WINDOW_LENGTH){
       modified -= WINDOW_LENGTH;
@@ -81,7 +84,7 @@ void loop() {
   }
   window2.show();
   */
-  
+
   /* SET EACH WINDOW CODE
   for(int i = 0; i < WINDOW_LENGTH; i++){
     window1.setPixelColor(i, window_generic.Color(0, 0, 0));
@@ -91,7 +94,7 @@ void loop() {
     delay(2);
   }
   */
-  
+
   /*
   for(int i = 0; i < WINDOW_LENGTH; i++){
     window1.setPixelColor(i, window_generic.Color(169, 176, 183));
@@ -114,61 +117,7 @@ void loop() {
   }
   window2.show();
   */
-  
-  /* PURPLE FADE
-  for(int i = 0; i <= 150; i++){
-    for(int x = 0; x < WINDOW_LENGTH; x++){
-      setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
-    }
-    for(int y = 0; y < DESK1_LENGTH; y++){
-      if(y%3 != 0){
-        desk1.setPixelColor(y, desk1.Color((int)(((float)i / 150.0) * 100), 0, i));
-      }
-    }
-    for(int z = 0; z < DESK2_LENGTH; z++){
-      if(z%3 != 0){
-        desk2.setPixelColor(z, desk2.Color((int)(((float)i / 150.0) * 100), 0, i));
-      }
-    }
-    delay(10);
-    desk1.show();
-    desk2.show();
-    showAllWindowStrips();
-  }
-  
-  for(int i = 150; i >= 0; i--){
-    for(int x = 0; x < WINDOW_LENGTH; x++){
-      setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
-    }
-    for(int y = 0; y < DESK1_LENGTH; y++){
-      if(y%3 != 0){
-        desk1.setPixelColor(y, desk1.Color((int)(((float)i / 150.0) * 100), 0, i));
-      }
-    }
-    for(int z = 0; z < DESK2_LENGTH; z++){
-      if(z%3 != 0){
-        desk2.setPixelColor(z, desk2.Color((int)(((float)i / 150.0) * 100), 0, i));
-      }
-    }
-    delay(10);
-    desk1.show();
-    desk2.show();
-    showAllWindowStrips();
-  }
-  */
-  
-  /* SOMETHING?
-  for(int i = 150; i >= 0; i--){
-    for(int x = 0; x < WINDOW_LENGTH; x++){
-      setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
-      window2.setPixelColor(x, window_generic.Color(0, 0, 255-i));
-      window3.setPixelColor(x, window_generic.Color(0, 0, i));
-      delay(2);
-    }
-    delay(10);
-    showAllWindowStrips();
-  }*/
-  
+
   /* SINGLE COLOR FADE
   for(int i = 0; i <= 255; i+=1){
     for(int x = 0; x < WINDOW_LENGTH; x++){
@@ -190,8 +139,7 @@ void loop() {
     showAllWindowStrips();
   }
   */
-  
+
   //fulltest();
   //ctrl_main_loop();
 }
-
