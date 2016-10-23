@@ -142,16 +142,20 @@ std::vector<int> desk_both_dim_ambient(std::vector<int> var_stack){
 
 // &&& Functions for Static Commands &&&
 
-void _desk_both_third_purple_fade(int i){
+void _desk_both_wpp_fade(int i){
   for(int y = 0; y < DESK1_LENGTH; y++){
     if(y%3 != 0){
       desk1.setPixelColor(y, desk1.Color((int)(((float)i / 150.0) * 100), 0, i));
+    }else{
+      desk1.setPixelColor(y, desk1.Color(75,45,25));
     }
   }
 
   for(int z = 0; z < DESK2_LENGTH; z++){
     if(z%3 != 0){
       desk2.setPixelColor(z, desk2.Color((int)(((float)i / 150.0) * 100), 0, i));
+    }else{
+      desk2.setPixelColor(z, desk2.Color(75,45,25));
     }
   }
 
@@ -161,15 +165,15 @@ void _desk_both_third_purple_fade(int i){
 
 // &&& Command Ready Functions for Animated Commands &&&
 
-// Every third LED fades in and out purple
+// Every third LED stays nice reddish white while the others fade in and out a calm purple
 // Initial input var_stack : std::vector<int> stack [empty]
-std::vector<int> desk_both_third_purple_fade(std::vector<int> var_stack){
+std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
   // set variables
   int i = var_stack.at(0);
   int increasing = var_stack.at(1);
 
   // run command code
-  _desk_both_third_purple_fade(i);
+  _desk_both_wpp_fade(i);
 
   if(increasing == 1){
     if(i == 150){
