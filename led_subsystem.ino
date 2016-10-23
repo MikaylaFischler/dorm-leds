@@ -10,16 +10,18 @@ unsigned long int dT = 0;
 
 ThreadHandler led_thread_handler;
 
-void led_man_queue(){
-  led_thread_handler.queue(deskBothDimAmbient, 1000);
+void led_man_queue() {
+  led_thread_handler.queue(&deskBothThirdPurpleFade, 10);
   Serial.println("queued");
 
   Serial.print("Queue: ");
-  Serial.println(led_thread_handler.listThreads().at(0).cmd.getName());
+  Command* cmd = led_thread_handler.listThreads().at(0).getCMD();
+  Command c = *cmd;
+  Serial.println(c.getName());
   Serial.println("----------------------");
 }
 
-void led_main_loop(){
+void led_main_loop() {
   Serial.println("> in main loop");
   // set change in time
   cur_time = millis();
@@ -29,8 +31,10 @@ void led_main_loop(){
   Serial.println(dT);
 
   Serial.print("Queue: ");
-  Serial.println(led_thread_handler.listThreads().at(0).cmd.getName());
-
+  Command* cmd = led_thread_handler.listThreads().at(0).getCMD();
+  Command c = *cmd;
+  Serial.println(c.getName());
+  
   // tell each thread the time change
   led_thread_handler.updateTimeAccumulated(dT);
 

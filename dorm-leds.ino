@@ -15,6 +15,7 @@
 // Threading System
 #include "lib/Strip.h"
 #include "lib/Command.cpp"
+#include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
 // LED Library
