@@ -48,42 +48,17 @@ void setup() {
   // initialize LED strips and set them to off
   init_strips();
 
-  // initialize timing
-  init_timing();
-
   // manual queue
   led_man_queue();
+
+  // initialize timing
+  init_timing();
 }
 
 // the loop function runs over and over again forever
 void loop() {
   // Run multithreaded system code
   led_main_loop();
-
-  /* WPI SPIRIT CODE
-  uint8_t red = window_generic.Color(172, 43, 55);
-  uint8_t white = window_generic.Color(169, 176, 183);
-
-  for(int i = 0; i < WINDOW_LENGTH; i++){
-    window1.setPixelColor(i, window_generic.Color(255, 21, 27));
-    if(i%2 == 0){
-      window2.setPixelColor(i, window_generic.Color(169, 176, 183));
-    }else{
-      window2.setPixelColor(i, window_generic.Color(255, 21, 27));
-    }
-
-    int modified = WINDOW_LENGTH + 9 - 1 - i;
-    if(modified >= WINDOW_LENGTH){
-      modified -= WINDOW_LENGTH;
-    }
-    window3.setPixelColor(modified, window_generic.Color(255, 21, 27));
-    //setAllWindowPixelColor(i, window_generic.Color(100, 20, 0));
-    window1.show();
-    window3.show();
-    delay(10);
-  }
-  window2.show();
-  */
 
   /* SET EACH WINDOW CODE
   for(int i = 0; i < WINDOW_LENGTH; i++){
@@ -93,29 +68,6 @@ void loop() {
     showAllWindowStrips();
     delay(2);
   }
-  */
-
-  /*
-  for(int i = 0; i < WINDOW_LENGTH; i++){
-    window1.setPixelColor(i, window_generic.Color(169, 176, 183));
-    for(int j = 0; j < WINDOW_LENGTH; j++){
-      if(i%2 != 0){
-        window2.setPixelColor(i, window_generic.Color(169, 176, 183));
-      }else{
-        window2.setPixelColor(i, window_generic.Color(255, 21, 27));
-      }
-    }
-    int modified = WINDOW_LENGTH + 9 - 1 - i;
-    if(modified >= WINDOW_LENGTH){
-      modified -= WINDOW_LENGTH;
-    }
-    window3.setPixelColor(modified, window_generic.Color(169, 176, 183));
-    //setAllWindowPixelColor(i, window_generic.Color(100, 20, 0));
-    window1.show();
-    window3.show();
-    delay(10);
-  }
-  window2.show();
   */
 
   /* SINGLE COLOR FADE

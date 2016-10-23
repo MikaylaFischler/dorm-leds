@@ -15,6 +15,10 @@ void led_man_queue() {
   Serial.println("queued");
   led_thread_handler.queue(&winAllPurpleFade, 10);
   Serial.println("queued");
+  led_thread_handler.queue(&winAllWPISpirit, 2);
+  Serial.println("queued");
+  led_thread_handler.queue(&winAllPurpleFade, 10);
+  Serial.println("queued");
 
   Serial.println("Queue: ");
   Command* cmd = led_thread_handler.listThreads().at(0).getCMD();
