@@ -1,6 +1,9 @@
-#ifndef STRIP_ENUM_H
-#define STRIP_ENUM_H
+// constants for strip management
+#define WINDOW1 1
+#define WINDOW2 2
+#define WINDOW3 3
+#define DESK1 4
+#define DESK2 5
 
-enum Strip {WINDOW1, WINDOW2, WINDOW3, DESK1, DESK2};
-
-#endif
+#define STRIP_OFF 0
+#define STRIP_ON 1

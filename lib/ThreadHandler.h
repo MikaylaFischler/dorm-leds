@@ -9,8 +9,13 @@
 #include "Thread.h"
 
 class ThreadHandler {
+	int strip_status[5][2] = { { WINDOW1, STRIP_OFF },
+													 	 { WINDOW2, STRIP_OFF },
+													 	 { WINDOW3, STRIP_OFF },
+													   { DESK1, STRIP_OFF },
+													   { DESK2, STRIP_OFF }
+												   };
 	std::vector<Thread> threads;
-	short int** strip_status;
 	unsigned int elapsed_time;
 	unsigned int next_id;
 public:
@@ -21,7 +26,10 @@ public:
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 private:
-	bool conflicts(Strip*, Strip*);
+	void setStripsInUse(std::vector<int> str);
+	void dequeueConflicts(Command*& cmd);
+	bool conflicts(std::vector<int> str);
+	bool conflictsWith(std::vector<int> str1, std::vector<int> str2);
 };
 
 #endif
