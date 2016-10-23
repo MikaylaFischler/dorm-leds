@@ -24,7 +24,7 @@ public:
 	ThreadHandler();
 	~ThreadHandler();
 	std::vector<Thread> listThreads();
-	void queueThread(Command cmd, unsigned long int dU);
+	void queue(Command cmd, unsigned long int dU);
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 private:

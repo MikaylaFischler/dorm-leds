@@ -1,14 +1,3 @@
-#include <unwind-cxx.h>
-#include <StandardCplusplus.h>
-#include <system_configuration.h>
-#include <utility.h>
-
-#include "lib/Strip.h"
-#include "lib/Command.cpp"
-#include "lib/ThreadHandler.cpp"
-
-#include <Adafruit_NeoPixel.h>
-
 /*
   Dorm LED Project: main.ino
   Main file for the LED project.
@@ -17,27 +6,28 @@
   9/20/2016 @ WPI
 */
 
-// configuration (avoid pins 0 and 1)
-#define STRIP_PIN_W1 8
-#define STRIP_PIN_W2 9
-#define STRIP_PIN_W3 10
-#define STRIP_PIN_DT 11
-#define STRIP_PIN_DB 12
-#define STRIP_PIN_XX 14
+// Standard C++ Library
+#include <unwind-cxx.h>
+#include <StandardCplusplus.h>
+#include <system_configuration.h>
+#include <utility.h>
 
-#define WINDOW_LENGTH 81
-#define DESK1_LENGTH 28
-#define DESK2_LENGTH 29
+// Threading System
+#include "lib/Strip.h"
+#include "lib/Command.cpp"
+#include "lib/ThreadHandler.cpp"
 
-#define STRIP_TYPE NEO_GRB + NEO_KHZ800
+// LED Library
+#include <Adafruit_NeoPixel.h>
 
-// RGB LED strips
-Adafruit_NeoPixel window_generic  = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_XX, STRIP_TYPE);
-Adafruit_NeoPixel window1         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W1, STRIP_TYPE);
-Adafruit_NeoPixel window2         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W2, STRIP_TYPE);
-Adafruit_NeoPixel window3         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W3, STRIP_TYPE);
-Adafruit_NeoPixel desk1           = Adafruit_NeoPixel(DESK1_LENGTH,  STRIP_PIN_DT, STRIP_TYPE);
-Adafruit_NeoPixel desk2           = Adafruit_NeoPixel(DESK2_LENGTH,  STRIP_PIN_DB, STRIP_TYPE);
+// Configuration
+#include "conf/config.h"
+#include "conf/strips.h"
+
+// Commands
+#include "def/led_desk_anim_cmds.cpp"
+#include "def/led_window_anim_cmds.cpp"
+#include "def/led_commands.cpp"
 
 // Timing
 unsigned long int prev_time = millis();
@@ -45,6 +35,9 @@ unsigned long int cur_time = millis();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+  Serial.begin(38400);
+  Serial.println("init");
+  
   // initialize pins
   set_pin_modes();
 
@@ -53,6 +46,9 @@ void setup() {
 
   // initialize timing
   init_timing();
+
+  // manual queue
+  led_man_queue();
 }
   
 // the loop function runs over and over again forever
@@ -194,7 +190,7 @@ void loop() {
   }
   */
   
-  fulltest();
+  //fulltest();
   //ctrl_main_loop();
 }
 
