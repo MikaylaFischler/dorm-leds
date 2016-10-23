@@ -26,19 +26,19 @@ std::vector<Thread> ThreadHandler::listThreads(){
 }
 
 // queue a command
-void ThreadHandler::queue(Command cmd, unsigned long int dU){
+void ThreadHandler::queue(Command* cmd, unsigned long int dU){
 	int i = 0;
 	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++, i++){
 		Thread this_thread = *it;
 
-		if(conflicts(cmd.getDependencies(), this_thread.cmd.getDependencies())){
+		if(conflicts(cmd->getDependencies(), this_thread.getCMD()->getDependencies())){
 			// de-queue any conflicting commands
-			threads.erase(i);
+			threads.erase(threads.begin() + i);
 		}
 	}
 
 	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
-	Thread t = {next_id, cmd, dU, dU};
+	Thread t = Thread(next_id, cmd, dU);
 
 	next_id++;
 
@@ -50,7 +50,7 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 	// iterate through each queued thread
 	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
 		Thread this_thread = *it;
-		this_thread.timeSum += dT;
+		this_thread.addTimeSum(dT);
 	}
 }
 
@@ -59,12 +59,12 @@ void ThreadHandler::executeTick(){
 	// iterate through each queued thread
 	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
 		Thread this_thread = *it;
-		unsigned long int updateRate = this_thread.updateRate;
-		unsigned long int timeSum = this_thread.timeSum;
+		unsigned long int updateRate = this_thread.getUpdateRate();
+		unsigned long int timeSum = this_thread.getTimeSum();
 
 		if(timeSum >= updateRate){
-			this_thread.cmd.execute();
-			this_thread.timeSum = 0;
+			this_thread.getCMD()->execute();
+			this_thread.zeroTimeSum();
 		}
 	}
 }

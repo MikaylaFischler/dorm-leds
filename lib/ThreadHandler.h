@@ -6,14 +6,7 @@
 #include <Arduino.h>
 #include "Strip.h"
 #include "Command.h"
-
-// thread structure
-struct Thread {
-	unsigned int id;
-	Command cmd;
-	unsigned long int updateRate;
-	unsigned long int timeSum;
-};
+#include "Thread.h"
 
 class ThreadHandler {
 	std::vector<Thread> threads;
@@ -24,7 +17,7 @@ public:
 	ThreadHandler();
 	~ThreadHandler();
 	std::vector<Thread> listThreads();
-	void queue(Command cmd, unsigned long int dU);
+	void queue(Command* cmd, unsigned long int dU);
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 private:

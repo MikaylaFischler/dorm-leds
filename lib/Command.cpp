@@ -2,11 +2,11 @@
 
 String name;
 Strip* strips;
-std::vector<var> stack;
-std::vector<var> (*cmd) (std::vector<var>);
+std::vector<int> stack;
+std::vector<int> (*cmd) (std::vector<int>);
 
 // <<constructor>>
-Command::Command(String name, Strip* strips, std::vector<var> (*cmd)(std::vector<var>), std::vector<var> var_stack){
+Command::Command(String name, Strip* strips, std::vector<int> (*cmd)(std::vector<int>), std::vector<int> var_stack){
 	this->name = name;
 	this->strips = strips;
 	this->stack = var_stack;
@@ -23,7 +23,7 @@ String Command::getName(){
 
 // execute the command
 void Command::execute(){
-	this->stack = cmd(this->stack);
+  this->stack = cmd(this->stack);
 }
 
 // get the strips that are going to be used

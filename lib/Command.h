@@ -6,18 +6,13 @@
 #include <Arduino.h>
 #include "Strip.h"
 
-struct var {
-	String name;
-	int value;
-};
-
 class Command {
 	String name;
 	Strip* strips;
-	std::vector<var> stack;
-	std::vector<var> (*cmd) (std::vector<var>);
+	std::vector<int> stack;
+	std::vector<int> (*cmd) (std::vector<int>);
 public:
-	Command(String name, Strip* strips, std::vector<var> (*cmd)(std::vector<var>), std::vector<var> var_stack);
+	Command(String name, Strip* strips, std::vector<int> (*cmd)(std::vector<int>), std::vector<int> var_stack);
 	~Command();
 	String getName();
 	void execute();
