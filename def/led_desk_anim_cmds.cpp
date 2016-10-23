@@ -1,5 +1,5 @@
 /*
-  Dorm LED Project: led_desk_anim_cmds.ino
+  Dorm LED Project: led_desk_anim_cmds.cpp
   This file contains the desk LED animation commands.
 
   These are meant to be executed using the multithreaded system.
@@ -11,19 +11,19 @@
 /*
   Template for a Command
   std::vector<var> (*cmd)(std::vector<var>)
-  
+
   std::vector<var> cmd(std::vector<var> var_stack){
     // set variables
     int i = var_stack.at(0).value;
     int t = var_stack.at(1).value;
-  
+
     // run command code
     ...
-  
+
     // update variables
     var_stack.at(0).value = i;
     var_stack.at(1).value = t;
-  
+
     return var_stack;
   }
 */
@@ -83,14 +83,14 @@ void _desk1_off(){
     desk1.setPixelColor(i, desk1.Color(0,0,0));
   }
 
-  desk1.show();  
+  desk1.show();
 }
 
 void _desk2_off(){
   for(int i = 0; i < DESK2_LENGTH; i++){
     desk2.setPixelColor(i, desk2.Color(0,0,0));
   }
-  
+
   desk2.show();
 }
 
@@ -135,4 +135,3 @@ void _desk_both_dim_ambient(){
 }
 
 /* Animated Commands */
-
