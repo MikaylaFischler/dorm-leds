@@ -15,13 +15,13 @@ class ThreadHandler {
 													   { DESK1, STRIP_OFF },
 													   { DESK2, STRIP_OFF }
 												   };
-	std::vector<Thread> threads;
+	std::vector<Thread*> threads;
 	unsigned int elapsed_time;
 	unsigned int next_id;
 public:
 	ThreadHandler();
 	~ThreadHandler();
-	std::vector<Thread> listThreads();
+	std::vector<Thread*> listThreads();
 	void queue(Command* cmd, unsigned long int dU);
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();

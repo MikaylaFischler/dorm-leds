@@ -1,7 +1,7 @@
 #include "ThreadHandler.h"
 
 // data
-std::vector<Thread> threads;
+std::vector<Thread*> threads;
 
 unsigned int elapsed_time = 0;
 unsigned int next_id = 1;
@@ -13,7 +13,7 @@ ThreadHandler::ThreadHandler(){}
 ThreadHandler::~ThreadHandler(){}
 
 // get the list of queued threads
-std::vector<Thread> ThreadHandler::listThreads(){
+std::vector<Thread*> ThreadHandler::listThreads(){
 	return threads;
 }
 
@@ -22,7 +22,7 @@ void ThreadHandler::queue(Command* cmd, unsigned long int dU){
 	dequeueConflicts(cmd);
 
 	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
-	Thread t = Thread(next_id, cmd, dU);
+	Thread* t = new Thread(next_id, cmd, dU);
 
 	next_id++;
 
@@ -35,28 +35,38 @@ void ThreadHandler::queue(Command* cmd, unsigned long int dU){
 // update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 	// iterate through each queued thread
-	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
-		Thread this_thread = *it;
-		this_thread.addTimeSum(dT);
+	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++){
+		Thread* this_thread = *it;
+		this_thread->addTimeSum(dT);
+		Serial.print("ThreadHandler.cpp:41>> Time Accumulation at: ");
+		Serial.println(this_thread->getTimeSum());
 	}
 
-	Serial.println("ThreadHandler.cpp:43>> Finished Time Accumulation");
+	Serial.println("ThreadHandler.cpp:45>> Finished Time Accumulation");
 }
 
 // execute a tick of the handler
 void ThreadHandler::executeTick(){
 	// iterate through each queued thread
-	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++){
-		Thread this_thread = *it;
-		unsigned long int updateRate = this_thread.getUpdateRate();
-		unsigned long int timeSum = this_thread.getTimeSum();
+	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++){
+		Thread* this_thread = *it;
+		unsigned long int updateRate = this_thread->getUpdateRate();
+		unsigned long int timeSum = this_thread->getTimeSum();
+
+		Serial.print("Time Sum at ");
+		Serial.println(timeSum);
+
+		Serial.print("Update Rate is ");
+		Serial.println(updateRate);
 
 		if(timeSum >= updateRate){
-			Serial.println("ThreadHandler.cpp:55>> Thread Ready to Execute");
-			this_thread.getCMD()->execute();
-				Serial.println("ThreadHandler.cpp:57>> Thread Executed");
-			this_thread.zeroTimeSum();
-				Serial.println("ThreadHandler.cpp:59>> Thread Time Zeroed");
+			Serial.println("ThreadHandler.cpp:63>> Thread Ready to Execute");
+			this_thread->getCMD()->execute();
+			Serial.println("ThreadHandler.cpp:65>> Thread Executed");
+			this_thread->zeroTimeSum();
+			Serial.println("ThreadHandler.cpp:67>> Thread Time Zeroed");
+			Serial.print("ThreadHandler.cpp:68>> Time Accumulation at: ");
+			Serial.println(this_thread->getTimeSum());
 		}
 	}
 }
@@ -76,12 +86,12 @@ void ThreadHandler::setStripsInUse(std::vector<int> str){
 // dequeue any conflicts (recursive)
 void ThreadHandler::dequeueConflicts(Command*& cmd){
 	int i = 0;
-	for(std::vector<Thread>::iterator it = threads.begin(); it != threads.end(); it++, i++){
-		Thread this_thread = *it;
+	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++, i++){
+		Thread* this_thread = *it;
 
-		if(conflictsWith(cmd->getDependencies(), this_thread.getCMD()->getDependencies())){
+		if(conflictsWith(cmd->getDependencies(), this_thread->getCMD()->getDependencies())){
 			threads.erase(threads.begin() + i);
-			Serial.println("ThreadHandler.cpp:84>> Conflicting Function De-Queued");
+			Serial.println("ThreadHandler.cpp:94>> Conflicting Function De-Queued");
 			dequeueConflicts(cmd);
 			break;
 		}
