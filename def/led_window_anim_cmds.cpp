@@ -202,6 +202,10 @@ std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
   if(i == WINDOW_LENGTH){
     color_mode++;
     i = 0;
+
+    if(color_mode == 16){
+      color_mode = 0;
+    }
   }
 
   // update variables
@@ -246,6 +250,10 @@ std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
   if(i == WINDOW_LENGTH){
     color_mode++;
     i = 0;
+
+    if(color_mode == 16){
+      color_mode = 0;
+    }
   }
 
   // update variables
@@ -290,6 +298,10 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
   if(i == WINDOW_LENGTH){
     color_mode++;
     i = 0;
+
+    if(color_mode == 16){
+      color_mode = 0;
+    }
   }
 
   // update variables
