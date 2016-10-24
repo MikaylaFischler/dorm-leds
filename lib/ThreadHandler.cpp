@@ -38,11 +38,7 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++){
 		Thread* this_thread = *it;
 		this_thread->addTimeSum(dT);
-		Serial.print("ThreadHandler.cpp:41>> Time Accumulation at: ");
-		Serial.println(this_thread->getTimeSum());
 	}
-
-	Serial.println("ThreadHandler.cpp:45>> Finished Time Accumulation");
 }
 
 // execute a tick of the handler
@@ -53,20 +49,10 @@ void ThreadHandler::executeTick(){
 		unsigned long int updateRate = this_thread->getUpdateRate();
 		unsigned long int timeSum = this_thread->getTimeSum();
 
-		Serial.print("Time Sum at ");
-		Serial.println(timeSum);
-
-		Serial.print("Update Rate is ");
-		Serial.println(updateRate);
-
 		if(timeSum >= updateRate){
-			Serial.println("ThreadHandler.cpp:63>> Thread Ready to Execute");
 			this_thread->getCMD()->execute();
-			Serial.println("ThreadHandler.cpp:65>> Thread Executed");
+  		digitalWrite(13, HIGH);
 			this_thread->zeroTimeSum();
-			Serial.println("ThreadHandler.cpp:67>> Thread Time Zeroed");
-			Serial.print("ThreadHandler.cpp:68>> Time Accumulation at: ");
-			Serial.println(this_thread->getTimeSum());
 		}
 	}
 }
