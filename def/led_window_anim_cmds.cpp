@@ -165,3 +165,136 @@ std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
 
   return var_stack;
 }
+
+// Rainbow Color Wipe for first window
+// Initial input var_stack : std::vector<int> stack {0,0}
+std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
+
+  // set variables
+  int i = var_stack.at(0);
+  int color_mode = var_stack.at(1);
+
+  // run command code
+  if(color_mode % 2 != 0){
+    window1.setPixelColor(i, window_generic.Color(0, 0, 0)); // Off
+  }else if(color_mode == 0){
+    window1.setPixelColor(i, window_generic.Color(255, 0, 0)); // Red
+  }else if(color_mode == 2){
+    window1.setPixelColor(i, window_generic.Color(255, 50, 0)); // Orange
+  }else if(color_mode == 4){
+    window1.setPixelColor(i, window_generic.Color(255, 150, 0)); // Yellow
+  }else if(color_mode == 6){
+    window1.setPixelColor(i, window_generic.Color(0, 255, 0)); // Green
+  }else if(color_mode == 8){
+    window1.setPixelColor(i, window_generic.Color(0, 255, 200)); // Sea Green
+  }else if(color_mode == 10){
+    window1.setPixelColor(i, window_generic.Color(0, 0, 255)); // Blue
+  }else if(color_mode == 12){
+    window1.setPixelColor(i, window_generic.Color(100, 0, 255)); // Indigo
+  }else if(color_mode == 14){
+    window1.setPixelColor(i, window_generic.Color(255, 0, 255)); // Violet
+  }
+
+  window1.show();
+
+  i++;
+
+  if(i == WINDOW_LENGTH){
+    color_mode++;
+    i = 0;
+  }
+
+  // update variables
+  var_stack.at(0) = i;
+  var_stack.at(1) = color_mode;
+
+  return var_stack;
+}
+
+// Rainbow Color Wipe for second window
+// Initial input var_stack : std::vector<int> stack {0,0}
+std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
+  // set variables
+  int i = var_stack.at(0);
+  int color_mode = var_stack.at(1);
+
+  // run command code
+  if(color_mode % 2 != 0){
+    window2.setPixelColor(i, window_generic.Color(0, 0, 0)); // Off
+  }else if(color_mode == 0){
+    window2.setPixelColor(i, window_generic.Color(255, 0, 0)); // Red
+  }else if(color_mode == 2){
+    window2.setPixelColor(i, window_generic.Color(255, 50, 0)); // Orange
+  }else if(color_mode == 4){
+    window2.setPixelColor(i, window_generic.Color(255, 150, 0)); // Yellow
+  }else if(color_mode == 6){
+    window2.setPixelColor(i, window_generic.Color(0, 255, 0)); // Green
+  }else if(color_mode == 8){
+    window2.setPixelColor(i, window_generic.Color(0, 255, 200)); // Sea Green
+  }else if(color_mode == 10){
+    window2.setPixelColor(i, window_generic.Color(0, 0, 255)); // Blue
+  }else if(color_mode == 12){
+    window2.setPixelColor(i, window_generic.Color(100, 0, 255)); // Indigo
+  }else if(color_mode == 14){
+    window2.setPixelColor(i, window_generic.Color(255, 0, 255)); // Violet
+  }
+
+  window2.show();
+
+  i++;
+
+  if(i == WINDOW_LENGTH){
+    color_mode++;
+    i = 0;
+  }
+
+  // update variables
+  var_stack.at(0) = i;
+  var_stack.at(1) = color_mode;
+
+  return var_stack;
+}
+
+// Rainbow Color Wipe for third window
+// Initial input var_stack : std::vector<int> stack {0,0}
+std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
+  // set variables
+  int i = var_stack.at(0);
+  int color_mode = var_stack.at(1);
+
+  // run command code
+  if(color_mode % 2 != 0){
+    window3.setPixelColor(i, window_generic.Color(0, 0, 0)); // Off
+  }else if(color_mode == 0){
+    window3.setPixelColor(i, window_generic.Color(255, 0, 0)); // Red
+  }else if(color_mode == 2){
+    window3.setPixelColor(i, window_generic.Color(255, 50, 0)); // Orange
+  }else if(color_mode == 4){
+    window3.setPixelColor(i, window_generic.Color(255, 150, 0)); // Yellow
+  }else if(color_mode == 6){
+    window3.setPixelColor(i, window_generic.Color(0, 255, 0)); // Green
+  }else if(color_mode == 8){
+    window3.setPixelColor(i, window_generic.Color(0, 255, 200)); // Sea Green
+  }else if(color_mode == 10){
+    window3.setPixelColor(i, window_generic.Color(0, 0, 255)); // Blue
+  }else if(color_mode == 12){
+    window3.setPixelColor(i, window_generic.Color(100, 0, 255)); // Indigo
+  }else if(color_mode == 14){
+    window3.setPixelColor(i, window_generic.Color(255, 0, 255)); // Violet
+  }
+
+  window3.show();
+
+  i++;
+
+  if(i == WINDOW_LENGTH){
+    color_mode++;
+    i = 0;
+  }
+
+  // update variables
+  var_stack.at(0) = i;
+  var_stack.at(1) = color_mode;
+
+  return var_stack;
+}

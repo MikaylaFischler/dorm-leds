@@ -81,3 +81,29 @@ Command winAllWPISpirit = Command("Window[all]: WPI Spirit",
                                     3,
                                     win_all_WPI_spirit,
                                     w_wpi);
+// Rainbow Color Wipe for first window
+int _w1_rw[] = {0,0};
+std::vector<int> w1_rw (_w1_rw, _w1_rw + sizeof(_w1_rw) / sizeof(int));
+Command win1RainbowWipe = Command("Window[1]: Rainbow Color Wipe",
+                                    win1,
+                                    1,
+                                    win_1_rainbow_wipe,
+                                    w1_rw);
+
+// Rainbow Color Wipe for second window
+int _w2_rw[] = {0,0};
+std::vector<int> w2_rw (_w2_rw, _w2_rw + sizeof(_w2_rw) / sizeof(int));
+Command win2RainbowWipe = Command("Window[2]: Rainbow Color Wipe",
+                                    win2,
+                                    1,
+                                    win_2_rainbow_wipe,
+                                    w2_rw);
+
+// Rainbow Color Wipe for third window
+int _w3_rw[] = {0,0};
+std::vector<int> w3_rw (_w3_rw, _w3_rw + sizeof(_w3_rw) / sizeof(int));
+Command win3RainbowWipe = Command("Window[3]: Rainbow Color Wipe",
+                                    win3,
+                                    1,
+                                    win_3_rainbow_wipe,
+                                    w3_rw);
