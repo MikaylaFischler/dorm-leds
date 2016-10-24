@@ -9,6 +9,7 @@
 
 void set_pin_modes() {
  //set pin modes here
+ pinMode(13, OUTPUT);
 }
 
 void init_strips() {

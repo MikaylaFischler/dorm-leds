@@ -39,7 +39,7 @@ unsigned long int cur_time = millis();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  Serial.begin(57600);
+  Serial.begin(115200);
   Serial.println("init");
 
   // initialize pins
