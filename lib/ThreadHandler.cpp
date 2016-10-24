@@ -29,11 +29,7 @@ void ThreadHandler::queue(Command* cmd, unsigned long int dU){
 	threads.push_back(t);
 	setStripsInUse(cmd->getDependencies());
 
-	Serial.println(strip_status[0][1]);
-	Serial.println(strip_status[1][1]);
-	Serial.println(strip_status[2][1]);
-	Serial.println(strip_status[3][1]);
-	Serial.println(strip_status[4][1]);
+	Serial.println("ThreadHandler.cpp:32>> New Thread Queued");
 }
 
 // update the time sums for each thread
@@ -43,6 +39,8 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT){
 		Thread this_thread = *it;
 		this_thread.addTimeSum(dT);
 	}
+
+	Serial.println("ThreadHandler.cpp:43>> Finished Time Accumulation");
 }
 
 // execute a tick of the handler
@@ -54,8 +52,11 @@ void ThreadHandler::executeTick(){
 		unsigned long int timeSum = this_thread.getTimeSum();
 
 		if(timeSum >= updateRate){
+			Serial.println("ThreadHandler.cpp:55>> Thread Ready to Execute");
 			this_thread.getCMD()->execute();
+				Serial.println("ThreadHandler.cpp:57>> Thread Executed");
 			this_thread.zeroTimeSum();
+				Serial.println("ThreadHandler.cpp:59>> Thread Time Zeroed");
 		}
 	}
 }
@@ -79,14 +80,8 @@ void ThreadHandler::dequeueConflicts(Command*& cmd){
 		Thread this_thread = *it;
 
 		if(conflictsWith(cmd->getDependencies(), this_thread.getCMD()->getDependencies())){
-			Serial.print("####FOUND CONFLICT#### : ");
-			Serial.println(this_thread.getCMD()->getName());
-
 			threads.erase(threads.begin() + i);
-
-			Serial.print("####DE-QUEUED CONFLICT#### : ");
-			Serial.println(this_thread.getCMD()->getName());
-
+			Serial.println("ThreadHandler.cpp:84>> Conflicting Function De-Queued");
 			dequeueConflicts(cmd);
 			break;
 		}
