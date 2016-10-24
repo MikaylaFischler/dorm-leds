@@ -12,13 +12,13 @@ ThreadHandler led_thread_handler;
 
 void led_man_queue() {
   //led_thread_handler.queue(&deskBothWhitePurplePurpleFade, 10);
-  led_thread_handler.queue(&win1RainbowWipe, 20);
+  led_thread_handler.queue(&win1RainbowWipe, 50);
   
   Serial.println("Queue: ");
   
-  std::vector<Thread> t = led_thread_handler.listThreads();
+  std::vector<Thread*> t = led_thread_handler.listThreads();
   for(int a = 0; a < t.size(); a++){
-    Command* cmd = t.at(a).getCMD();
+    Command* cmd = t.at(a)->getCMD();
     Command c = *cmd;
     Serial.println(c.getName());
   }
@@ -38,9 +38,9 @@ void led_main_loop() {
 
   Serial.println("Queue: ");
   
-  std::vector<Thread> t = led_thread_handler.listThreads();
+  std::vector<Thread*> t = led_thread_handler.listThreads();
   for(int a = 0; a < t.size(); a++){
-    Command* cmd = t.at(a).getCMD();
+    Command* cmd = t.at(a)->getCMD();
     Command c = *cmd;
     Serial.println(c.getName());
   }
