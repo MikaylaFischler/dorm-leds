@@ -13,6 +13,8 @@ ThreadHandler led_thread_handler;
 void led_man_queue() {
   led_thread_handler.queue(&deskBothWhitePurplePurpleFade, 10);
   led_thread_handler.queue(&win1RainbowWipe, 50);
+  led_thread_handler.queue(&win2RainbowWipe, 50);
+  led_thread_handler.queue(&win3RainbowWipe, 50);
   
   Serial.println("Queue: ");
   
@@ -27,15 +29,9 @@ void led_man_queue() {
 }
 
 void led_main_loop() {
-  digitalWrite(13, LOW);
-  Serial.println(">>>>> in main loop");
-  
   // set change in time
   cur_time = millis();
   dT = cur_time - prev_time;
-
-  Serial.print("dT: ");
-  Serial.println(dT);
   
   // tell each thread the time change
   led_thread_handler.updateTimeAccumulated(dT);
@@ -45,5 +41,7 @@ void led_main_loop() {
   
   // save this time as previous time
   prev_time = millis();
+
+  delay(1);
 }
 
