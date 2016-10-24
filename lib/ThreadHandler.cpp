@@ -51,7 +51,6 @@ void ThreadHandler::executeTick(){
 
 		if(timeSum >= updateRate){
 			this_thread->getCMD()->execute();
-  		digitalWrite(13, HIGH);
 			this_thread->zeroTimeSum();
 		}
 	}
