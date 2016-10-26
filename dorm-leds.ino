@@ -60,38 +60,6 @@ void loop() {
   // Run multithreaded system code
   led_main_loop();
 
-  /* SET EACH WINDOW CODE
-  for(int i = 0; i < WINDOW_LENGTH; i++){
-    window1.setPixelColor(i, window_generic.Color(0, 0, 0));
-    window2.setPixelColor(i, window_generic.Color(0, 0, 0));
-    window3.setPixelColor(i, window_generic.Color(0, 0, 0));
-    showAllWindowStrips();
-    delay(2);
-  }
-  */
-
-  /* SINGLE COLOR FADE
-  for(int i = 0; i <= 255; i+=1){
-    for(int x = 0; x < WINDOW_LENGTH; x++){
-      window1.setPixelColor(x, window_generic.Color(0, 0, i));
-      window2.setPixelColor(x, window_generic.Color(0, 0, 255-i));
-      window3.setPixelColor(x, window_generic.Color(0, 0, i));
-    }
-    delay(2);
-    showAllWindowStrips();
-  }
-
-  for(int i = 255; i >= 0; i-=1){
-    for(int x = 0; x < WINDOW_LENGTH; x++){
-      window1.setPixelColor(x, window_generic.Color(0, 0, i));
-      window2.setPixelColor(x, window_generic.Color(0, 0, 255-i));
-      window3.setPixelColor(x, window_generic.Color(0, 0, i));
-    }
-    delay(2);
-    showAllWindowStrips();
-  }
-  */
-
   //fulltest();
   //ctrl_main_loop();
 }
