@@ -42,6 +42,7 @@ void led_main_loop() {
   // save this time as previous time
   prev_time = millis();
 
+  // prevent ticks less than a millisecond
   delay(1);
 }
 
