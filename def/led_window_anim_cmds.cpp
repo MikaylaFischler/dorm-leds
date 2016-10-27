@@ -96,6 +96,16 @@ void _win_all_WPI_spirit(int i, short int mode){
   window3.show();
 }
 
+void _win_all_halloween_fade(int i){
+    for(int x = 0; x < WINDOW_LENGTH; x++){
+        window1.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window2.setPixelColor(i, window_generic.Color((int)(((float)i / 255.0) * 100), 0, i));
+        window3.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+    }
+
+    showAllWindowStrips();
+}
+
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every LED fades in and out a with calm purple
@@ -309,4 +319,37 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
   var_stack.at(1) = color_mode;
 
   return var_stack;
+}
+
+// Have a fade in and out of orange on window 1, purple on window 2, and orange on window 3
+// Initial input var_stack : std::vector<int> stack {0,1}
+std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
+    // set variables
+    int i = var_stack.at(0);
+    int increasing = var_stack.at(1);
+
+    // run command code
+    _win_all_halloween_fade(i);
+
+    if(increasing == 1){
+        if(i == 255){
+            i--;
+            increasing = 0;
+        }else{
+            i++;
+        }
+    }else{
+        if(i == 0){
+            i++;
+            increasing = 1;
+        }else{
+            i--;
+        }
+    }
+
+    // update variables
+    var_stack.at(0) = i;
+    var_stack.at(1) = increasing;
+
+    return var_stack;
 }
