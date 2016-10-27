@@ -1,6 +1,11 @@
-/* Basic Animation Functions for Dorm LED Code */
+/*
+  Dorm LED Project: led_anim_basic.ino
+  This file contains the basic LED animations.
+  Base source from strandtest.ino from the AdafruitNeopixel examples.
 
-// Provided Code from strandtest.ino
+  Created by: Michael Fischler
+  9/30/2016 @ WPI
+*/
 
 // Fill the dots one after the other with a color
 void colorWipe(Adafruit_NeoPixel strip, uint32_t c, uint8_t wait) {
@@ -11,6 +16,7 @@ void colorWipe(Adafruit_NeoPixel strip, uint32_t c, uint8_t wait) {
   }
 }
 
+// Rainbow animation
 void rainbow(Adafruit_NeoPixel strip, uint8_t wait) {
   uint16_t i, j;
 

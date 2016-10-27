@@ -1,15 +1,18 @@
-/* Initialization Code for the Dorm LED System */
+/*
+  Dorm LED Project: led_anim_basic.ino
+  This file contains the initialization code for the dorm LED system.
+  Base source from strandtest.ino from the AdafruitNeopixel examples.
+
+  Created by: Michael Fischler
+  9/30/2016 @ WPI
+*/
 
 void set_pin_modes() {
  //set pin modes here
+
 }
 
 void init_strips() {
-  // testing
-  //strand.begin();
-  //strand.show();
-  
-  
   // Window Strips
   window1.begin();
   window1.show();
@@ -26,5 +29,9 @@ void init_strips() {
   
   desk2.begin();
   desk2.show();
+}
+
+void init_timing() {
+  prev_time = millis();
 }
 
