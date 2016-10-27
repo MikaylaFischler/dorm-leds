@@ -1,4 +1,10 @@
-/* Test Code for the Dorm LED System */
+/*
+  Dorm LED Project: test.ino
+  This file contains the test code for the dorm LED system.
+
+  Created by: Michael Fischler
+  9/30/2016 @ WPI
+*/
 
 // Test LEDs using the code from strandtest.ino
 void test(Adafruit_NeoPixel strip) {
@@ -21,8 +27,21 @@ void test(Adafruit_NeoPixel strip) {
 void fulltest() {
   // Some example procedures showing how to display to the pixels:
   allColorWipe(window_generic.Color(255, 0, 0), 50); // Red
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
+  allColorWipe(window_generic.Color(255, 50, 0), 50); // Orange
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
+  allColorWipe(window_generic.Color(255, 150, 0), 50); // Yellow
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
   allColorWipe(window_generic.Color(0, 255, 0), 50); // Green
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
+  allColorWipe(window_generic.Color(0, 255, 200), 50); // Sea Green
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
   allColorWipe(window_generic.Color(0, 0, 255), 50); // Blue
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
+  allColorWipe(window_generic.Color(100, 0, 255), 50); // Indigo
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
+  allColorWipe(window_generic.Color(255, 0, 255), 50); // Violet
+  allColorWipe(window_generic.Color(0, 0, 0), 50); // Off
   
   // Send a theater pixel chase in...
   allTheaterChase(window_generic.Color(127, 127, 127), 50); // White
@@ -36,7 +55,7 @@ void fulltest() {
 
 // Fill the dots one after the other with a color
 void allColorWipe(uint32_t c, uint8_t wait) {
-  for(uint16_t i = 0; i < window_generic.numPixels(); i++) {
+  for(uint16_t i = 0; i < WINDOW_LENGTH; i++) {
     setAllWindowPixelColor(i, c);
     showAllWindowStrips();
     
@@ -44,6 +63,7 @@ void allColorWipe(uint32_t c, uint8_t wait) {
   }
 }
 
+// Rainbow animation
 void allRainbow(uint8_t wait) {
   uint16_t i, j;
 
@@ -62,8 +82,8 @@ void allRainbowCycle(uint8_t wait) {
   uint16_t i, j;
 
   for(j = 0; j < 256 * 5; j++) { // 5 cycles of all colors on wheel
-    for(i = 0; i < window_generic.numPixels(); i++) {
-      setAllWindowPixelColor(i, Wheel(window_generic, ((i * 256 / window_generic.numPixels()) + j) & 255));
+    for(i = 0; i < WINDOW_LENGTH; i++) {
+      setAllWindowPixelColor(i, Wheel(window_generic, ((i * 256 / WINDOW_LENGTH) + j) & 255));
     }
     
     showAllWindowStrips();
@@ -75,7 +95,7 @@ void allRainbowCycle(uint8_t wait) {
 void allTheaterChase(uint32_t c, uint8_t wait) {
   for (int j = 0; j < 10; j++) {  // do 10 cycles of chasing
     for (int q = 0; q < 3; q++) {
-      for (uint16_t i = 0; i < window_generic.numPixels(); i = i + 3) {
+      for (uint16_t i = 0; i < WINDOW_LENGTH; i = i + 3) {
         setAllWindowPixelColor(i + q, c); // turn every third pixel on
       }
       
@@ -83,7 +103,7 @@ void allTheaterChase(uint32_t c, uint8_t wait) {
 
       delay(wait);
 
-      for (uint16_t i = 0; i < window_generic.numPixels(); i = i + 3) {
+      for (uint16_t i = 0; i < WINDOW_LENGTH; i = i + 3) {
         setAllWindowPixelColor(i + q, 0); // turn every third pixel off
       }
     }
@@ -94,7 +114,7 @@ void allTheaterChase(uint32_t c, uint8_t wait) {
 void allTheaterChaseRainbow(uint8_t wait) {
   for (int j = 0; j < 256; j++) { // cycle all 256 colors in the wheel
     for (int q = 0; q < 3; q++) {
-      for (uint16_t i = 0; i < window_generic.numPixels(); i = i + 3) {
+      for (uint16_t i = 0; i < WINDOW_LENGTH; i = i + 3) {
         setAllWindowPixelColor(i + q, Wheel(window_generic, (i + j) % 255)); // turn every third pixel on
       }
       
@@ -102,7 +122,7 @@ void allTheaterChaseRainbow(uint8_t wait) {
 
       delay(wait);
 
-      for (uint16_t i = 0; i < window_generic.numPixels(); i = i + 3) {
+      for (uint16_t i = 0; i < WINDOW_LENGTH; i = i + 3) {
         setAllWindowPixelColor(i + q, 0); // turn every third pixel off
       }
     }
