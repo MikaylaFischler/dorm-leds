@@ -115,3 +115,10 @@ Command win3RainbowWipe = Command("Window[3]: Rainbow Color Wipe",
 // Halloween
 
 // Basic Orange/Purple Fade
+int _w_hallo_f[] = {0,1};
+std::vector<int> w_hallo_f (_w_hallo_f, _w_hallo_f + sizeof(_w_hallo_f) / sizeof(int));
+Command winAllHalloweenFade = Command("Window[all]: Halloween Fade",
+                                        allwin,
+                                        3,
+                                        win_all_halloween_fade,
+                                        w_hallo_f);

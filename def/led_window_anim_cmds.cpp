@@ -98,9 +98,9 @@ void _win_all_WPI_spirit(int i, short int mode){
 
 void _win_all_halloween_fade(int i){
     for(int x = 0; x < WINDOW_LENGTH; x++){
-        window1.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
-        window2.setPixelColor(i, window_generic.Color((int)(((float)i / 255.0) * 100), 0, i));
-        window3.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window1.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window2.setPixelColor(x, window_generic.Color((int)(((float)i / 255.0) * 150), 0, i));
+        window3.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
     }
 
     showAllWindowStrips();
