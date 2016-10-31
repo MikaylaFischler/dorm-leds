@@ -8,7 +8,7 @@
   10/23/2016 @ WPI
 */
 
-std::vector<int> empty;
+std::vector<int> empty (1);
 
 const int bottomdesk[1] = {DESK1};
 const int topdesk[1]    = {DESK2};
