@@ -3,6 +3,7 @@
   This file contains the window LED animation commands.
 
   These are meant to be executed using the multithreaded system.
+  Note: First element in the var stack is to store number of complete executions (resetable).
 
   Created by: Michael Fischler
   10/22/2016 @ WPI
@@ -98,9 +99,9 @@ void _win_all_WPI_spirit(int i, short int mode){
 
 void _win_all_halloween_fade(int i){
     for(int x = 0; x < WINDOW_LENGTH; x++){
-        window1.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
-        window2.setPixelColor(x, window_generic.Color((int)(((float)i / 255.0) * 150), 0, i));
-        window3.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window1.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window2.setPixelColor(i, window_generic.Color((int)(((float)i / 255.0) * 100), 0, i));
+        window3.setPixelColor(i, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
     }
 
     showAllWindowStrips();
@@ -112,8 +113,9 @@ void _win_all_halloween_fade(int i){
 // Initial input var_stack : std::vector<int> stack{0,1}
 std::vector<int> win_all_wpp_fade(std::vector<int> var_stack){
   // set variables
-  int i = var_stack.at(0);
-  short int increasing = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  short int increasing = var_stack.at(2);
 
   // run command code
   _win_all_wpp_fade(i);
@@ -135,8 +137,9 @@ std::vector<int> win_all_wpp_fade(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = increasing;
+  var_stack.at(0) = fec++;
+  var_stack.at(1) = i;
+  var_stack.at(2) = increasing;
 
   return var_stack;
 }
@@ -145,8 +148,9 @@ std::vector<int> win_all_wpp_fade(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack{0,0}
 std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
   // set variables
-  int i = var_stack.at(0);
-  short int mode = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  short int mode = var_stack.at(2);
 
   // run command code
   _win_all_WPI_spirit(i, mode);
@@ -170,8 +174,9 @@ std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = mode;
+  var_stack.at(0) = fec++;
+  var_stack.at(1) = i;
+  var_stack.at(2) = mode;
 
   return var_stack;
 }
@@ -179,10 +184,10 @@ std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
 // Rainbow Color Wipe for first window
 // Initial input var_stack : std::vector<int> stack {0,0}
 std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
-
   // set variables
-  int i = var_stack.at(0);
-  int color_mode = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int color_mode = var_stack.at(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -219,8 +224,9 @@ std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = color_mode;
+  var_stack.at(0) = fec++;
+  var_stack.at(1) = i;
+  var_stack.at(2) = color_mode;
 
   return var_stack;
 }
@@ -229,8 +235,9 @@ std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack {0,0}
 std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
   // set variables
-  int i = var_stack.at(0);
-  int color_mode = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int color_mode = var_stack.at(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -267,8 +274,9 @@ std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = color_mode;
+  var_stack.at(0) = fec++;
+  var_stack.at(1) = i;
+  var_stack.at(2) = color_mode;
 
   return var_stack;
 }
@@ -277,8 +285,9 @@ std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack {0,0}
 std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
   // set variables
-  int i = var_stack.at(0);
-  int color_mode = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int color_mode = var_stack.at(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -315,8 +324,9 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = color_mode;
+  var_stack.at(0) = fec++;
+  var_stack.at(1) = i;
+  var_stack.at(2) = color_mode;
 
   return var_stack;
 }
@@ -325,8 +335,9 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack {0,1}
 std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
     // set variables
-    int i = var_stack.at(0);
-    int increasing = var_stack.at(1);
+    int fec = var_stack.at(0);
+    int i = var_stack.at(1);
+    int increasing = var_stack.at(2);
 
     // run command code
     _win_all_halloween_fade(i);
@@ -348,8 +359,9 @@ std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
     }
 
     // update variables
-    var_stack.at(0) = i;
-    var_stack.at(1) = increasing;
+    var_stack.at(0) = fec++;
+    var_stack.at(1) = i;
+    var_stack.at(2) = increasing;
 
     return var_stack;
 }
