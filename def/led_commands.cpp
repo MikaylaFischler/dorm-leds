@@ -64,6 +64,8 @@ Command deskBothWhitePurplePurpleFade = Command("Desk[all]: White with Purple Fa
 
 /* ~~~~~~ Window Commands ~~~~~~ */
 
+/* Animations */
+
 // Every LED fades in and out a with calm purple
 int _w_pf[] = {0,1};
 std::vector<int> w_pf (_w_pf, _w_pf + sizeof(_w_pf) / sizeof(int));
@@ -107,3 +109,16 @@ Command win3RainbowWipe = Command("Window[3]: Rainbow Color Wipe",
                                     1,
                                     win_3_rainbow_wipe,
                                     w3_rw);
+
+/* Seasonal Animations */
+
+// Halloween
+
+// Basic Orange/Purple Fade
+int _w_hallo_f[] = {0,1};
+std::vector<int> w_hallo_f (_w_hallo_f, _w_hallo_f + sizeof(_w_hallo_f) / sizeof(int));
+Command winAllHalloweenFade = Command("Window[all]: Halloween Fade",
+                                        allwin,
+                                        3,
+                                        win_all_halloween_fade,
+                                        w_hallo_f);
