@@ -131,13 +131,14 @@ std::vector<int> win_all_wpp_fade(std::vector<int> var_stack){
     if(i == 0){
       i++;
       increasing = 1;
+      fec++;
     }else{
       i--;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec++;
+  var_stack.at(0) = fec;
   var_stack.at(1) = i;
   var_stack.at(2) = increasing;
 
@@ -168,13 +169,14 @@ std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
       i = 0;
       mode = 0;
       window2.show();
+      fec++;
     }else{
       i++;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec++;
+  var_stack.at(0) = fec;
   var_stack.at(1) = i;
   var_stack.at(2) = mode;
 
@@ -220,11 +222,12 @@ std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
 
     if(color_mode == 16){
       color_mode = 0;
+      fec++;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec++;
+  var_stack.at(0) = fec;
   var_stack.at(1) = i;
   var_stack.at(2) = color_mode;
 
@@ -270,11 +273,12 @@ std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
 
     if(color_mode == 16){
       color_mode = 0;
+      fec++;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec++;
+  var_stack.at(0) = fec;
   var_stack.at(1) = i;
   var_stack.at(2) = color_mode;
 
@@ -320,11 +324,12 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
 
     if(color_mode == 16){
       color_mode = 0;
+      fec++;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec++;
+  var_stack.at(0) = fec;
   var_stack.at(1) = i;
   var_stack.at(2) = color_mode;
 
@@ -353,13 +358,14 @@ std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
         if(i == 0){
             i++;
             increasing = 1;
+            fec++;
         }else{
             i--;
         }
     }
 
     // update variables
-    var_stack.at(0) = fec++;
+    var_stack.at(0) = fec;
     var_stack.at(1) = i;
     var_stack.at(2) = increasing;
 

@@ -40,8 +40,6 @@ CommandGroup::CommandGroup(String name, std::vector<Command*> cmds, std::vector<
 				str.push_back(d.at(k))
 			}
 		}
-
-
 	}
 
 	this->strips = str;
