@@ -17,6 +17,8 @@ public:
 	String getName();
 	void execute();
 	std::vector<int> getDependencies();
+	int getFEC();
+	void resetFEC();
 };
 
 #endif
