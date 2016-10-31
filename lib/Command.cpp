@@ -38,11 +38,11 @@ std::vector<int> Command::getDependencies(){
 }
 
 // get count of full executions
-int getFEC(){
+int Command::getFEC(){
 	return this->stack.at(0);
 }
 
 // reset count of full executions
-void resetFEC(){
+void Command::resetFEC(){
 	this->stack.at(0) = 0;
 }
