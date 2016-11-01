@@ -27,6 +27,7 @@
 
 // Utility Files
 #include "util/led.c"
+#include "util/helper.cpp"
 
 // Commands
 #include "def/led_desk_anim_cmds.cpp"
@@ -41,6 +42,9 @@ unsigned long int cur_time = millis();
 void setup() {
   Serial.begin(115200);
   Serial.println("init");
+
+  // random seed
+  randomSeed(analogRead(0));
 
   // initialize pins
   set_pin_modes();
