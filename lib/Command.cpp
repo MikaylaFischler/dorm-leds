@@ -36,3 +36,13 @@ void Command::execute(){
 std::vector<int> Command::getDependencies(){
 	return this->strips;
 }
+
+// get count of full executions
+int Command::getFEC(){
+	return this->stack.at(0);
+}
+
+// reset count of full executions
+void Command::resetFEC(){
+	this->stack.at(0) = 0;
+}

@@ -16,6 +16,7 @@ void led_man_queue() {
   led_thread_handler.queue(&win2RainbowWipe, 50);
   led_thread_handler.queue(&win3RainbowWipe, 50);
   led_thread_handler.queue(&winAllHalloweenFade, 5);
+  //led_thread_handler.queue(&winAllHalloweenSparkle, 10);
   
   Serial.println("Queue: ");
   
