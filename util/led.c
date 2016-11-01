@@ -19,3 +19,18 @@ void showAllWindowStrips(){
     window2.show();
     window3.show();
 }
+
+// returns the Red component of a 32-bit color
+uint8_t redFromColor(uint32_t color){
+    return (color >> 16) & 0xFF;
+}
+
+// returns the Green component of a 32-bit color
+uint8_t greenFromColor(uint32_t color){
+    return (color >> 8) & 0xFF;
+}
+
+// returns the Blue component of a 32-bit color
+uint8_t blueFromColor(uint32_t color){
+    return color & 0xFF;
+}
