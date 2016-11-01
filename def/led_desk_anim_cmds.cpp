@@ -3,6 +3,7 @@
   This file contains the desk LED animation commands.
 
   These are meant to be executed using the multithreaded system.
+  Note: First element in the var stack is to store number of complete executions (resetable).
 
   Created by: Michael Fischler
   10/22/2016 @ WPI
@@ -54,13 +55,13 @@ void _desk2_off(){
 // Initial input var_stack : std::vector<int> stack [empty]
 std::vector<int> desk1_off(std::vector<int> var_stack){
   // set variables
-  // n/a
+  int fec = var_stack.at(0);
 
   // run command code
   _desk1_off();
 
   // update variables
-  // n/a
+  var_stack.at(0) = fec++;
 
   return var_stack;
 }
@@ -69,13 +70,13 @@ std::vector<int> desk1_off(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack [empty]
 std::vector<int> desk2_off(std::vector<int> var_stack){
   // set variables
-  // n/a
+  int fec = var_stack.at(0);
 
   // run command code
   _desk2_off();
 
   // update variables
-  // n/a
+  var_stack.at(0) = fec++;
 
   return var_stack;
 }
@@ -84,14 +85,14 @@ std::vector<int> desk2_off(std::vector<int> var_stack){
 // Initial input var_stack : std::vector<int> stack [empty]
 std::vector<int> desks_off(std::vector<int> var_stack){
   // set variables
-  // n/a
+  int fec = var_stack.at(0);
 
   // run command code
   _desk1_off();
   _desk2_off();
 
   // update variables
-  // n/a
+  var_stack.at(0) = fec++;
 
   return var_stack;
 }
@@ -127,13 +128,13 @@ void _desk_both_dim_ambient(){
 // Initial input var_stack : std::vector<int> stack [empty]
 std::vector<int> desk_both_dim_ambient(std::vector<int> var_stack){
   // set variables
-  // n/a
+  int fec = var_stack.at(0);
 
   // run command code
   _desk_both_dim_ambient();
 
   // update variables
-  // n/a
+  var_stack.at(0) = fec++;
 
   return var_stack;
 }
@@ -166,11 +167,12 @@ void _desk_both_wpp_fade(int i){
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every third LED stays nice reddish white while the others fade in and out a calm purple
-// Initial input var_stack : std::vector<int> stack {0,1}
+// Initial input var_stack : std::vector<int> stack {0,0,1}
 std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
   // set variables
-  int i = var_stack.at(0);
-  int increasing = var_stack.at(1);
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int increasing = var_stack.at(2);
 
   // run command code
   _desk_both_wpp_fade(i);
@@ -186,14 +188,16 @@ std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
     if(i == 0){
       i++;
       increasing = 1;
+      fec++;
     }else{
       i--;
     }
   }
 
   // update variables
-  var_stack.at(0) = i;
-  var_stack.at(1) = increasing;
+  var_stack.at(0) = fec;
+  var_stack.at(1) = i;
+  var_stack.at(2) = increasing;
 
   return var_stack;
 }
