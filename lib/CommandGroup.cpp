@@ -1,13 +1,5 @@
 #include "Command.h"
 
-String name;
-std::vector<int> strips;
-std::vector<Command*> cmds;
-
-int current_command = 0;
-std::vector<int> exec_counts;
-std::vector<int> exec_desired;
-
 // <<constructor>>
 CommandGroup::CommandGroup(String name, std::vector<Command*> cmds, std::vector<int> execution_counts){
 	this->name = name;

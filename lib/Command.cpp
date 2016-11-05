@@ -1,10 +1,5 @@
 #include "Command.h"
 
-String name;
-std::vector<int> strips;
-LocalStack* stack;
-LocalStack* (*cmd)(LocalStack*);
-
 // <<constructor>>
 Command::Command(String name, int strips[], int num_strips, LocalStack* (*cmd)(LocalStack*), LocalStack* var_stack){
 	this->name = name;

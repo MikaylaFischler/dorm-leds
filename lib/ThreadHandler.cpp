@@ -1,11 +1,5 @@
 #include "ThreadHandler.h"
 
-// data
-std::vector<Thread*> threads;
-
-unsigned int elapsed_time = 0;
-unsigned int next_id = 1;
-
 //<<constructor>>
 ThreadHandler::ThreadHandler(){}
 
