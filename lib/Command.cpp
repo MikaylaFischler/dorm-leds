@@ -2,17 +2,19 @@
 
 String name;
 std::vector<int> strips;
-std::vector<int> stack;
-std::vector<int> (*cmd) (std::vector<int>);
+LocalStack* stack;
+LocalStack* (*cmd)(LocalStack*);
 
 // <<constructor>>
-Command::Command(String name, int strips[], int num_strips, std::vector<int> (*cmd)(std::vector<int>), std::vector<int> var_stack){
+Command::Command(String name, int strips[], int num_strips, LocalStack* (*cmd)(LocalStack*), LocalStack* var_stack){
 	this->name = name;
 
 	std::vector<int> str;
+
 	for(int i = 0; i < num_strips; i++){
 		str.push_back(strips[i]);
 	}
+
 	this->strips = str;
 
 	this->stack = var_stack;
@@ -39,10 +41,10 @@ std::vector<int> Command::getDependencies(){
 
 // get count of full executions
 int Command::getFEC(){
-	return this->stack.at(0);
+	return this->stack->get(0);
 }
 
 // reset count of full executions
 void Command::resetFEC(){
-	this->stack.at(0) = 0;
+	this->stack->update(0, 0);
 }
