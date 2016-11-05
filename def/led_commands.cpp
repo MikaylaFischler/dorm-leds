@@ -83,6 +83,7 @@ Command winAllWPISpirit = Command("Window[all]: WPI Spirit",
                                     3,
                                     win_all_WPI_spirit,
                                     w_wpi);
+
 // Rainbow Color Wipe for first window
 int _w1_rw[] = {0,0,0};
 std::vector<int> w1_rw (_w1_rw, _w1_rw + sizeof(_w1_rw) / sizeof(int));
@@ -122,6 +123,7 @@ Command winAllHalloweenFade = Command("Window[all]: Halloween Fade",
                                         3,
                                         win_all_halloween_fade,
                                         w_hallo_f);
+                                        
 // Sparkling Randomized Fade
 int _w_hallo_srf[] = {0,0,0};
 std::vector<int> w_hallo_srf (_w_hallo_srf, _w_hallo_srf + sizeof(_w_hallo_srf) / sizeof(int));
