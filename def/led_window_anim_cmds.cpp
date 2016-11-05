@@ -149,7 +149,13 @@ void _win_all_halloween_sparkle_randomize(){
   showAllWindowStrips();
 }
 
-void _win_all_halloween_sparkle_fade(int i){
+// configuration for _win_all_halloween_sparkle_fade
+const float ORANGE_R_SLOPE = 1.0;
+const float ORANGE_G_SLOPE = 0.196078;
+const float PURPLE_R_SLOPE = 0.588235;
+const float PURPLE_B_SLOPE = 1.0;
+
+void _win_all_halloween_sparkle_fade(float i){
   // fade with absolute value since so many different values
 
   for(int x = 0; x < WINDOW_LENGTH; x++){
@@ -182,7 +188,7 @@ void _win_all_halloween_sparkle_fade(int i){
     }else if(blue == 0){
       // was orange
       window1.setPixelColor(x, window_generic.Color(
-        abs(red + i - 255),
+        abs(red - (i * ORANGE_R_SLOPE)),
         abs(green + (int)(((float)i / 255.0) * 50) - 50),
         0));
     }
@@ -543,7 +549,7 @@ std::vector<int> win_all_halloween_sparkle(std::vector<int> var_stack){
     mode = 1;
   }else if(mode == 1){
     // fade for a bit
-    _win_all_halloween_sparkle_fade(i);
+    _win_all_halloween_sparkle_fade((float) i);
 
     i++;
 
