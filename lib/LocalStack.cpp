@@ -3,6 +3,10 @@
 // <<constructors>>
 LocalStack::LocalStack(){}
 
+LocalStack::LocalStack(void* datum){
+  this->stack.push_back(datum);
+}
+
 LocalStack::LocalStack(void* stack[], int numElements){
   for(int i = 0; i < numElements; i++){
     this->stack.push_back(stack[i]);
@@ -19,6 +23,10 @@ void LocalStack::push(void* datum){
 
 void* LocalStack::get(unsigned int i){
   return this->stack.at(i);
+}
+
+void LocalStack::update(unsigned int i, void* val){
+  this->stack.at(i) = val;
 }
 
 void LocalStack::drop(unsigned int i){

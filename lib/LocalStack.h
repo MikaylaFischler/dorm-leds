@@ -10,12 +10,14 @@ private:
   std::vector<void*> stack;
 public:
   LocalStack();
+  LocalStack(void* datum);
   LocalStack(void* init[], int numElements);
   ~LocalStack();
 
   // untyped element manipulation
   void push(void* element);
   void* get(unsigned int i);
+  void update(unsigned int i, void* val);
   void drop(unsigned int i);
 
   // get raw stack
