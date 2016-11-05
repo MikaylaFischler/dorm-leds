@@ -14,6 +14,7 @@
 
 // Threading System
 #include "lib/Strip.h"
+#include "lib/LocalStack.cpp"
 #include "lib/Command.cpp"
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
@@ -27,7 +28,6 @@
 
 // Utility Files
 #include "util/led.c"
-#include "util/helper.cpp"
 
 // Commands
 #include "def/led_desk_anim_cmds.cpp"
