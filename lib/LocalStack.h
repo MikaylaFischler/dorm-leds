@@ -31,7 +31,7 @@ public:
   int getInt(unsigned int i);
   short int getShortInt(unsigned int i);
   long int getLongInt(unsigned int i);
-  unsigned int getUInt(unsigned int i);
+  unsigned int getUnsignInt(unsigned int i);
   unsigned short int getUnsignShortInt(unsigned int i);
   unsigned long int getUnsignLongInt(unsigned int i);
 

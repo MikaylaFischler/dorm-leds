@@ -9,21 +9,23 @@
   10/22/2016 @ WPI
 */
 
+#include <Adafruit_NeoPixel.h>
+
 /*
   Template for a Command
-  std::vector<int> (*cmd)(std::vector<int>)
+  LocakStack* cmd(LocalStack* var_stack)
 
-  std::vector<int> cmd(std::vector<int> var_stack){
+  LocakStack* cmd(LocalStack* var_stack){
     // set variables
-    int i = var_stack.at(0);
-    int t = var_stack.at(1);
+    int i = var_stack->getInt(0);
+    char t = var_stack->getChar(1);
 
     // run command code
     ...
 
     // update variables
-    var_stack.at(0) = i;
-    var_stack.at(1) = t;
+    var_stack->update(0, &i);
+    var_stack->update(1, &t);
 
     return var_stack;
   }
@@ -52,47 +54,50 @@ void _desk2_off(){
 // &&& Command Ready Functions for Off Commands &&&
 
 // Every LED for Desk 1 set to {0,0,0}
-// Initial input var_stack : std::vector<int> stack [empty]
-std::vector<int> desk1_off(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack [empty]
+LocalStack* desk1_off(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
+  int fec = var_stack->getInt(0);
 
   // run command code
   _desk1_off();
 
   // update variables
-  var_stack.at(0) = fec++;
+  fec++;
+  var_stack->update(0, &fec);
 
   return var_stack;
 }
 
 // Every LED for Desk 2 set to {0,0,0}
-// Initial input var_stack : std::vector<int> stack [empty]
-std::vector<int> desk2_off(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack [empty]
+LocalStack* desk2_off(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
+  int fec = var_stack->getInt(0);
 
   // run command code
   _desk2_off();
 
   // update variables
-  var_stack.at(0) = fec++;
+  fec++;
+  var_stack->update(0, &fec);
 
   return var_stack;
 }
 
 // Every LED set to {0,0,0}
-// Initial input var_stack : std::vector<int> stack [empty]
-std::vector<int> desks_off(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack [empty]
+LocalStack* desks_off(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
+  int fec = var_stack->getInt(0);
 
   // run command code
   _desk1_off();
   _desk2_off();
 
   // update variables
-  var_stack.at(0) = fec++;
+  fec++;
+  var_stack->update(0, &fec);
 
   return var_stack;
 }
@@ -125,16 +130,17 @@ void _desk_both_dim_ambient(){
 // &&& Command Ready Functions for Static Commands &&&
 
 // Every third LED gets a red tinted white
-// Initial input var_stack : std::vector<int> stack [empty]
-std::vector<int> desk_both_dim_ambient(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack [empty]
+LocalStack* desk_both_dim_ambient(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
+  int fec = var_stack->getInt(0);
 
   // run command code
   _desk_both_dim_ambient();
 
   // update variables
-  var_stack.at(0) = fec++;
+  fec++;
+  var_stack->update(0, &fec);
 
   return var_stack;
 }
@@ -167,27 +173,27 @@ void _desk_both_wpp_fade(int i){
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every third LED stays nice reddish white while the others fade in and out a calm purple
-// Initial input var_stack : std::vector<int> stack {0,0,1}
-std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,true}
+LocalStack* desk_both_wpp_fade(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  int increasing = var_stack.at(2);
-
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  bool increasing = var_stack->getBool(2);
+  
   // run command code
   _desk_both_wpp_fade(i);
 
-  if(increasing == 1){
+  if(increasing){
     if(i == 150){
       i--;
-      increasing = 0;
+      increasing = false;
     }else{
       i++;
     }
   }else{
     if(i == 0){
       i++;
-      increasing = 1;
+      increasing = true;
       fec++;
     }else{
       i--;
@@ -195,9 +201,9 @@ std::vector<int> desk_both_wpp_fade(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = increasing;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &increasing);
 
   return var_stack;
 }

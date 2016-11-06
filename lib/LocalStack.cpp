@@ -60,7 +60,7 @@ long int LocalStack::getLongInt(unsigned int i){
   return *ptr;
 }
 
-unsigned int LocalStack::getUInt(unsigned int i){
+unsigned int LocalStack::getUnsignInt(unsigned int i){
   void* stack_ptr = this->get(i);
   unsigned int* ptr = (unsigned int*) stack_ptr;
   return *ptr;

@@ -9,21 +9,23 @@
   10/22/2016 @ WPI
 */
 
+#include <Adafruit_NeoPixel.h>
+
 /*
   Template for a Command
-  std::vector<int> (*cmd)(std::vector<int>)
+  LocakStack* cmd(LocalStack* var_stack)
 
-  std::vector<int> cmd(std::vector<int> var_stack){
+  LocakStack* cmd(LocalStack* var_stack){
     // set variables
-    int i = var_stack.at(0);
-    int t = var_stack.at(1);
+    int i = var_stack->getInt(0);
+    char t = var_stack->getChar(1);
 
     // run command code
     ...
 
     // update variables
-    var_stack.at(0) = i;
-    var_stack.at(1) = t;
+    var_stack->update(0, &i);
+    var_stack->update(1, &t);
 
     return var_stack;
   }
@@ -155,144 +157,96 @@ const float ORANGE_G_SLOPE = 0.196078;
 const float PURPLE_R_SLOPE = 0.588235;
 const float PURPLE_B_SLOPE = 1.0;
 
-void _win_all_halloween_sparkle_fade(float i){
+bool* _win_all_halloween_sparkle_fade(float i, bool inc[]){
   // fade with absolute value since so many different values
+  for(int x = 0; x < WINDOW_LENGTH * 3; x++){
+    Adafruit_NeoPixel win;
+    int pixel = 0;
 
-  for(int x = 0; x < WINDOW_LENGTH; x++){
-    unsigned long int color = window1.getPixelColor(x);
+    if(x < WINDOW_LENGTH){
+      win = window1;
+      pixel = x;
+    }else if(x < WINDOW_LENGTH * 2){
+      win = window2;
+      pixel = x - WINDOW_LENGTH;
+    }else{
+      win = window3;
+      pixel = x - WINDOW_LENGTH * 2;
+    }
+
+    unsigned long int color = win.getPixelColor(pixel);
 
     unsigned int red = redFromColor(color);
     unsigned int green = greenFromColor(color);
     unsigned int blue = blueFromColor(color);
 
-    if(red == 0){
+    bool increasing = inc[x];
+
+    if(red <= 0){
       // is off, randomly pick a color
-      long int r = random(0,2);
-      if(r == 0){
-        window1.setPixelColor(x, window_generic.Color(
-          1,
-          0,
-          2));
+      int r = random(0,2);
+
+      if(increasing){
+        increasing = false;
       }else{
-        window1.setPixelColor(x, window_generic.Color(
-          5,
-          1,
-          0));
+        increasing = true;
+      }
+
+      if(r == 0){
+        // purple
+        win.setPixelColor(pixel, window_generic.Color(1,0,2));
+      }else{
+        // orange
+        win.setPixelColor(pixel, window_generic.Color(5,1,0));
       }
     }else if(green == 0){
       // was purple
-      window1.setPixelColor(x, window_generic.Color(
-        abs(red + (int)(((float)i / 255.0) * 150) - 150),
-        0,
-        abs(blue + i - 255)));
-    }else if(blue == 0){
-      // was orange
-      window1.setPixelColor(x, window_generic.Color(
-        abs(red - (i * ORANGE_R_SLOPE)),
-        abs(green + (int)(((float)i / 255.0) * 50) - 50),
-        0));
-    }
-  }
-
-  for(int x = 0; x < WINDOW_LENGTH; x++){
-    unsigned long int color = window2.getPixelColor(x);
-
-    unsigned int red = redFromColor(color);
-    unsigned int green = greenFromColor(color);
-    unsigned int blue = blueFromColor(color);
-
-    if(red == 0){
-      // is off, randomly pick a color
-      long int r = random(0,2);
-      if(r == 0){
-        window2.setPixelColor(x, window_generic.Color(
-          1,
-          0,
-          2));
+      if(increasing){
+        win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red + PURPLE_R_SLOPE), 0, (unsigned int)((float)blue + PURPLE_B_SLOPE)));
       }else{
-        window2.setPixelColor(x, window_generic.Color(
-          5,
-          1,
-          0));
+        win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red - PURPLE_R_SLOPE), 0, (unsigned int)((float)blue - PURPLE_B_SLOPE)));
       }
-    }else if(green == 0){
-      // was purple
-      window2.setPixelColor(x, window_generic.Color(
-        abs(red - (int)(((float)i / 255.0) * 150)),
-        0,
-        abs(blue - i)));
     }else if(blue == 0){
       // was orange
-      window2.setPixelColor(x, window_generic.Color(
-        abs(red - i),
-        abs(green - (int)(((float)i / 255.0) * 50)),
-        0));
-    }
-  }
-
-  for(int x = 0; x < WINDOW_LENGTH; x++){
-    unsigned long int color = window3.getPixelColor(x);
-
-    unsigned int red = redFromColor(color);
-    unsigned int green = greenFromColor(color);
-    unsigned int blue = blueFromColor(color);
-
-    if(red == 0){
-      // is off, randomly pick a color
-      long int r = random(0,2);
-      if(r == 0){
-        window3.setPixelColor(x, window_generic.Color(
-          1,
-          0,
-          2));
+      if(increasing){
+        win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red + ORANGE_R_SLOPE), (unsigned int)((float)green + ORANGE_G_SLOPE), 0));
       }else{
-        window3.setPixelColor(x, window_generic.Color(
-          5,
-          1,
-          0));
+        win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red - ORANGE_R_SLOPE), (unsigned int)((float)green - ORANGE_G_SLOPE), 0));
       }
-    }else if(green == 0){
-      // was purple
-      window3.setPixelColor(x, window_generic.Color(
-        abs(((float)red/150.0)*255.0 - (float)i),
-        0,
-        abs(blue - i)));
-    }else if(blue == 0){
-      // was orange
-      window3.setPixelColor(x, window_generic.Color(
-        abs(red - i),
-        abs(green - (int)(((float)i / 255.0) * 50)),
-        0));
     }
+
+    inc[x] = increasing;
   }
 
   showAllWindowStrips();
+
+  return inc;
 }
 
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every LED fades in and out a with calm purple
-// Initial input var_stack : std::vector<int> stack{0,0,1}
-std::vector<int> win_all_purple_fade(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack{0,0,true}
+LocalStack* win_all_purple_fade(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  short int increasing = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  bool increasing = var_stack->getBool(2);
 
   // run command code
   _win_all_purple_fade(i);
 
-  if(increasing == 1){
+  if(increasing){
     if(i == 150){
       i--;
-      increasing = 0;
+      increasing = false;
     }else{
       i++;
     }
   }else{
     if(i == 0){
       i++;
-      increasing = 1;
+      increasing = true;
       fec++;
     }else{
       i--;
@@ -300,58 +254,58 @@ std::vector<int> win_all_purple_fade(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = increasing;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &increasing);
 
   return var_stack;
 }
 
 // A spirited display for my college, WPI
-// Initial input var_stack : std::vector<int> stack{0,0,0}
-std::vector<int> win_all_WPI_spirit(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack{0,0,false}
+LocalStack* win_all_WPI_spirit(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  short int mode = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  bool mode = var_stack->getBool(2);
 
   // run command code
   _win_all_WPI_spirit(i, mode);
 
-  if(mode == 0){
+  if(mode){
     if(i + 1 == WINDOW_LENGTH){
       i = 0;
-      mode = 1;
+      mode = false;
       window2.show();
+      fec++;
     }else{
       i++;
     }
-  }else if(mode == 1){
+  }else{
     if(i + 1 == WINDOW_LENGTH){
       i = 0;
-      mode = 0;
+      mode = true;
       window2.show();
-      fec++;
     }else{
       i++;
     }
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = mode;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &mode);
 
   return var_stack;
 }
 
 // Rainbow Color Wipe for first window
-// Initial input var_stack : std::vector<int> stack {0,0,0}
-std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,0}
+LocalStack* win_1_rainbow_wipe(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  int color_mode = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  int color_mode = var_stack->getInt(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -389,20 +343,20 @@ std::vector<int> win_1_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = color_mode;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &color_mode);
 
   return var_stack;
 }
 
 // Rainbow Color Wipe for second window
-// Initial input var_stack : std::vector<int> stack {0,0,0}
-std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,0}
+LocalStack* win_2_rainbow_wipe(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  int color_mode = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  int color_mode = var_stack->getInt(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -440,20 +394,20 @@ std::vector<int> win_2_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = color_mode;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &color_mode);
 
   return var_stack;
 }
 
 // Rainbow Color Wipe for third window
-// Initial input var_stack : std::vector<int> stack {0,0,0}
-std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,0}
+LocalStack* win_3_rainbow_wipe(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  int color_mode = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  int color_mode = var_stack->getInt(2);
 
   // run command code
   if(color_mode % 2 != 0){
@@ -491,35 +445,35 @@ std::vector<int> win_3_rainbow_wipe(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = color_mode;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &color_mode);
 
   return var_stack;
 }
 
 // Have a fade in and out of orange on window 1, purple on window 2, and orange on window 3
-// Initial input var_stack : std::vector<int> stack {0,0,1}
-std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,true}
+LocalStack* win_all_halloween_fade(LocalStack* var_stack){
     // set variables
-    int fec = var_stack.at(0);
-    int i = var_stack.at(1);
-    int increasing = var_stack.at(2);
+    int fec = var_stack->getInt(0);
+    unsigned int i = var_stack->getUnsignInt(1);
+    bool increasing = var_stack->getBool(2);
 
     // run command code
     _win_all_halloween_fade(i);
 
-    if(increasing == 1){
+    if(increasing){
         if(i == 255){
             i--;
-            increasing = 0;
+            increasing = false;
         }else{
             i++;
         }
     }else{
         if(i == 0){
             i++;
-            increasing = 1;
+            increasing = true;
             fec++;
         }else{
             i--;
@@ -527,20 +481,21 @@ std::vector<int> win_all_halloween_fade(std::vector<int> var_stack){
     }
 
     // update variables
-    var_stack.at(0) = fec;
-    var_stack.at(1) = i;
-    var_stack.at(2) = increasing;
+    var_stack->update(0, &fec);
+    var_stack->update(1, &i);
+    var_stack->update(2, &increasing);
 
     return var_stack;
 }
 
 // Have a randomized sparkle effect of halloween colors on all windows.
-// Initial input var_stack : std::vector<int> stack {0,0,0}
-std::vector<int> win_all_halloween_sparkle(std::vector<int> var_stack){
+// Initial input var_stack : LocalStack* stack {0,0,0,{false,false...xWINDOW_LENGTH*3}}
+LocalStack* win_all_halloween_sparkle(LocalStack* var_stack){
   // set variables
-  int fec = var_stack.at(0);
-  int i = var_stack.at(1);
-  int mode = var_stack.at(2);
+  int fec = var_stack->getInt(0);
+  unsigned int i = var_stack->getUnsignInt(1);
+  short int mode = var_stack->getShortInt(2);
+  bool* inc = var_stack->getBoolArray(3);
 
   // run command code
   if(mode == 0){
@@ -549,7 +504,7 @@ std::vector<int> win_all_halloween_sparkle(std::vector<int> var_stack){
     mode = 1;
   }else if(mode == 1){
     // fade for a bit
-    _win_all_halloween_sparkle_fade((float) i);
+    inc = _win_all_halloween_sparkle_fade((float) i, inc);
 
     i++;
 
@@ -561,9 +516,10 @@ std::vector<int> win_all_halloween_sparkle(std::vector<int> var_stack){
   }
 
   // update variables
-  var_stack.at(0) = fec;
-  var_stack.at(1) = i;
-  var_stack.at(2) = mode;
+  var_stack->update(0, &fec);
+  var_stack->update(1, &i);
+  var_stack->update(2, &mode);
+  var_stack->update(3, &inc);
 
   return var_stack;
 }
