@@ -6,11 +6,16 @@
   9/20/2016 @ WPI
 */
 
-// Standard C++ Library
+// Arduino Standard C++ Library
 #include <unwind-cxx.h>
 #include <StandardCplusplus.h>
 #include <system_configuration.h>
 #include <utility.h>
+
+// Arduinio Boost Library
+#include <boost_1_51_0.h>
+#include <boost/smart_ptr/shared_ptr.hpp>
+#include <boost/any.hpp>
 
 // Threading System
 #include "lib/Strip.h"
