@@ -7,6 +7,8 @@
 
 class LocalStack {
 private:
+  boost::shared_ptr<void*> ptr;
+  std::vector<boost::shared_ptr<boost::any>> list;
   std::vector<void*> stack;
 public:
   LocalStack();
