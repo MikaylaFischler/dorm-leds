@@ -12,11 +12,6 @@
 #include <system_configuration.h>
 #include <utility.h>
 
-// Arduinio Boost Library
-#include <boost_1_51_0.h>
-#include <boost/smart_ptr/shared_ptr.hpp>
-#include <boost/any.hpp>
-
 // Threading System
 #include "lib/Strip.h"
 #include "lib/LocalStack.cpp"
