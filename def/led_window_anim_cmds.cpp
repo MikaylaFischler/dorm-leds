@@ -263,6 +263,117 @@ void _win_all_halloween_sparkle_fade(int i){
   showAllWindowStrips();
 }
 
+void _win_1_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(100,100,100);
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (1000 - i) % right_spacing) {
+      window1.setPixelColor(x, on);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window1.setPixelColor(x, on);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  window1.show();
+}
+
+void _win_2_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(100,100,100);
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (1000 - i) % right_spacing) {
+      window2.setPixelColor(x, on);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window2.setPixelColor(x, on);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  window2.show();
+}
+
+void _win_3_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(100,100,100);
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (1000 - i) % right_spacing) {
+      window3.setPixelColor(x, on);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window3.setPixelColor(x, on);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  window3.show();
+}
+
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every LED fades in and out a with calm purple
@@ -560,4 +671,58 @@ std::vector<int> win_all_halloween_sparkle(std::vector<int> var_stack){
   var_stack.at(2) = mode;
 
   return var_stack;
+}
+
+std::vector<int> win_snow(std::vector<int> var_stack){
+  // set variables
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int left_1 = var_stack.at(2);
+  int right_1 = var_stack.at(3);
+  int left_2 = var_stack.at(4);
+  int right_2 = var_stack.at(5);
+  int left_3 = var_stack.at(6);
+  int right_3 = var_stack.at(7);
+  int mode = var_stack.at(8);
+
+  // run command code
+  if(mode == 0){
+    // randomize
+    left_1 = random(3,8);
+    right_1 = random(3,8);
+    left_2 = random(3,8);
+    right_2 = random(3,8);
+    left_3 = random(3,8);
+    right_3 = random(3,8);
+
+    mode = 1;
+  }else if(mode == 1){
+
+    i++;
+
+    if(i == 1001){
+      i = 0;
+      mode = 0;
+      fec++;
+    }
+  }
+
+  // snow fall
+  _win_1_snow(i, left_1, right_1);
+  _win_2_snow(i, left_2, right_2);
+  _win_3_snow(i, left_3, right_3);
+
+  // update variables
+  var_stack.at(0) = fec;
+  var_stack.at(1) = i;
+  var_stack.at(2) = left_1;
+  var_stack.at(3) = right_1;
+  var_stack.at(4) = left_2;
+  var_stack.at(5) = right_2;
+  var_stack.at(6) = left_3;
+  var_stack.at(7) = right_3;
+  var_stack.at(8) = mode;
+
+  return var_stack;
+
 }
