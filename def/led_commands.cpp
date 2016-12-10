@@ -131,7 +131,7 @@ Command winAllHalloweenSparkle = Command("Window[all]: Halloween Sparkle Fade",
                                           win_all_halloween_sparkle,
                                           w_hallo_srf);
 // Snow
-int _w_snow[] = {0,0,0,0,0,0,0,0,0};
+int _w_snow[] = {0,0,0,0,0,0,0,0,0,0};
 std::vector<int> w_snow (_w_snow, _w_snow + sizeof(_w_snow) / sizeof(int));
 Command win1Snow = Command("Window[1]: Snow",
                                           win1,
