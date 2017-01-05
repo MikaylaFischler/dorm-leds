@@ -135,4 +135,26 @@ Command* winAllHalloweenSparkle = new Command("Window[all]: Halloween Sparkle Fa
                                           3,
                                           win_all_halloween_sparkle,
                                           w_hallo_srf);
+
 */
+
+// Snow
+int _w_snow[] = {0,0,0,0,0,0,0,0,0,0};
+std::vector<int> w_snow (_w_snow, _w_snow + sizeof(_w_snow) / sizeof(int));
+Command win1Snow = Command("Window[1]: Snow",
+                                          win1,
+                                          1,
+                                          win_snow,
+                                          w_snow);
+std::vector<int> w_snow2 (_w_snow, _w_snow + sizeof(_w_snow) / sizeof(int));
+Command win2Snow = Command("Window[2]: Snow",
+                                          win2,
+                                          1,
+                                          win_snow,
+                                          w_snow2);
+std::vector<int> w_snow3 (_w_snow, _w_snow + sizeof(_w_snow) / sizeof(int));
+Command win3Snow = Command("Window[3]: Snow",
+                                          win3,
+                                          1,
+                                          win_snow,
+                                          w_snow3);
