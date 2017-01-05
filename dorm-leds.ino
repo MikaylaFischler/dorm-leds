@@ -6,11 +6,13 @@
   9/20/2016 @ WPI
 */
 
-// Arduino Standard C++ Library
+// Standard C++ Library
 #include <unwind-cxx.h>
 #include <StandardCplusplus.h>
 #include <system_configuration.h>
 #include <utility.h>
+
+#include "def/Animation.cpp"
 
 // Threading System
 #include "lib/Strip.h"
