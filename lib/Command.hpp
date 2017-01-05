@@ -7,7 +7,7 @@
 #include "Strip.h"
 #include "LocalStack.hpp"
 
-class Command : public Executable {
+class Command {
 	String name;
 	std::vector<int> strips;
     int exec_count;
