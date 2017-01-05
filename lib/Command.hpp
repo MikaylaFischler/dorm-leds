@@ -3,23 +3,26 @@
 
 #include <StandardCplusplus.h>
 #include <vector>
-#include <Arduino.h>
-#include "Strip.h"
-#include "LocalStack.h"
 
-class Command {
+#include "Strip.h"
+#include "LocalStack.hpp"
+
+class Command : public Executable {
 	String name;
 	std::vector<int> strips;
+    int exec_count;
+
 	LocalStack* stack;
 	LocalStack* (*cmd)(LocalStack*);
 public:
-	Command(String name, int strips[], int num_strips, LocalStack* (*cmd)(LocalStack*), LocalStack* var_stack);
-	~Command();
-	String getName();
-	void execute();
-	std::vector<int> getDependencies();
-	int getFEC();
-	void resetFEC();
+	Command (String name, int strips[], int num_strips, LocalStack* (*cmd)(LocalStack*), LocalStack* var_stack);
+	~Command ();
+
+    void execute ();
+
+    String getName ();
+    std::vector<int> getDependencies ();
+    void getExecCount ();
 };
 
 #endif
