@@ -1,5 +1,5 @@
 /*
-  Dorm LED Project: led_util.c
+  Dorm LED Project: led.c
   This file contains utility functions for dorm LEDs.
 
   Created by: Michael Fischler
@@ -11,6 +11,13 @@ void setAllWindowPixelColor(uint16_t index, uint32_t color){
     window1.setPixelColor(index, color);
     window2.setPixelColor(index, color);
     window3.setPixelColor(index, color);
+}
+
+// shut off all window LEDs
+void clearAllWindowLEDs(){
+  for (int i = 0; i < WINDOW_LENGTH; i++) {
+    setAllWindowPixelColor(i, window_generic.Color(0, 0, 0));
+  }
 }
 
 // show all window strips

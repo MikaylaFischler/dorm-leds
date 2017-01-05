@@ -16,6 +16,9 @@ void led_man_queue() {
   //led_thread_handler.queue(&win1RainbowWipe, 50);
   //led_thread_handler.queue(&win2RainbowWipe, 50);
   //led_thread_handler.queue(&win3RainbowWipe, 50);
+  led_thread_handler.queue(&win1Snow, 50);
+  //led_thread_handler.queue(&win2Snow, 50);
+  //led_thread_handler.queue(&win3Snow, 50);
   //led_thread_handler.queue(&winAllHalloweenFade, 5);
   //led_thread_handler.queue(&winAllHalloweenSparkle, 10);
 

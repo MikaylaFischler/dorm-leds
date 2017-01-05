@@ -223,6 +223,303 @@ bool* _win_all_halloween_sparkle_fade(float i, bool inc[]){
   return inc;
 }
 
+void _win_1_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  // 39 pixels
+  int leftFullLength = 41;
+  // 40 pixels
+  int rightFullLength = 41;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(150,150,150);
+  unsigned long int left = window_generic.Color(150,0,0);
+  unsigned long int right = window_generic.Color(0,150,0);
+
+  int a = 40 - abs(40 - i % 80);
+
+  // handle top and bottom for christmas
+  // left top
+  for (int x = leftTop - 4; x < leftTop; x++) {
+    int rel_index = x - leftTop + 4;
+
+    if (rel_index < a % leftFullLength) {
+      window1.setPixelColor(x, left);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  // right top
+  for (int x = rightTop + 1; x <= rightTop + 5; x++) {
+    int rel_index = x - 6;
+
+    if (rel_index < a % rightFullLength) {
+      window1.setPixelColor(x, right);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  // left bottom
+  for (int x = 4; x >= 0; x--) {
+    int rel_index = x + 35;
+
+    if (rel_index < a % rightFullLength) {
+      window1.setPixelColor(x, left);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  // right bottom
+  for (int x = 5; x < rightBottom; x++) {
+    int rel_index = x - 5;
+
+    if (rel_index < a % rightFullLength) {
+      window1.setPixelColor(x, right);
+    } else {
+      window1.setPixelColor(x, off);
+    }
+  }
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (800 - i) % right_spacing) {
+      window1.setPixelColor(x, on);
+    } else {
+      if (x - 4 < a % rightFullLength) {
+        window1.setPixelColor(x, right);
+      } else {
+        window1.setPixelColor(x, off);
+      }
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window1.setPixelColor(x, on);
+    } else {
+      if (rel_index + 4 < a % leftFullLength) {
+        window1.setPixelColor(x, left);
+      } else {
+        window1.setPixelColor(x, off);
+      }
+    }
+  }
+
+  window1.show();
+}
+
+void _win_2_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  // 39 pixels
+  int leftFullLength = 41;
+  // 40 pixels
+  int rightFullLength = 41;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(150,150,150);
+  unsigned long int left = window_generic.Color(0,0,150);
+  unsigned long int right = window_generic.Color(0,0,150);
+
+  int a = 40 - abs(40 - i % 80);
+
+  // handle top and bottom for christmas
+  // left top
+  for (int x = leftTop - 4; x < leftTop; x++) {
+    int rel_index = x - leftTop + 4;
+
+    if (rel_index < a % leftFullLength) {
+      window2.setPixelColor(x, left);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  // right top
+  for (int x = rightTop + 1; x <= rightTop + 5; x++) {
+    int rel_index = x - 6;
+
+    if (rel_index < a % rightFullLength) {
+      window2.setPixelColor(x, right);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  // left bottom
+  for (int x = 4; x >= 0; x--) {
+    int rel_index = x + 35;
+
+    if (rel_index < a % rightFullLength) {
+      window2.setPixelColor(x, left);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  // right bottom
+  for (int x = 5; x < rightBottom; x++) {
+    int rel_index = x - 5;
+
+    if (rel_index < a % rightFullLength) {
+      window2.setPixelColor(x, right);
+    } else {
+      window2.setPixelColor(x, off);
+    }
+  }
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (800 - i) % right_spacing) {
+      window2.setPixelColor(x, on);
+    } else {
+      if (x - 4 < a % rightFullLength) {
+        window2.setPixelColor(x, right);
+      } else {
+        window2.setPixelColor(x, off);
+      }
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window2.setPixelColor(x, on);
+    } else {
+      if (rel_index + 4 < a % leftFullLength) {
+        window2.setPixelColor(x, left);
+      } else {
+        window2.setPixelColor(x, off);
+      }
+    }
+  }
+
+  window2.show();
+}
+
+void _win_3_snow(int i, int left_spacing, int right_spacing){
+  // let it snooww
+  // let it snowwwww
+  // let it snowwwwwwwwww
+  int rightBottom = 9;
+  int rightTop = 40;
+  int leftTop = 50;
+  int leftBottom = 80;
+
+  // 39 pixels
+  int leftFullLength = 41;
+  // 40 pixels
+  int rightFullLength = 41;
+
+  unsigned long int off = window_generic.Color(0,0,0);
+  unsigned long int on  = window_generic.Color(150,150,150);
+  unsigned long int left = window_generic.Color(0,150,0);
+  unsigned long int right = window_generic.Color(150,0,0);
+
+  int a = 40 - abs(40 - i % 80);
+
+  // handle top and bottom for christmas
+  // left top
+  for (int x = leftTop - 4; x < leftTop; x++) {
+    int rel_index = x - leftTop + 4;
+
+    if (rel_index < a % leftFullLength) {
+      window3.setPixelColor(x, left);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  // right top
+  for (int x = rightTop + 1; x <= rightTop + 5; x++) {
+    int rel_index = x - 6;
+
+    if (rel_index < a % rightFullLength) {
+      window3.setPixelColor(x, right);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  // left bottom
+  for (int x = 4; x >= 0; x--) {
+    int rel_index = x + 35;
+
+    if (rel_index < a % rightFullLength) {
+      window3.setPixelColor(x, left);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  // right bottom
+  for (int x = 5; x < rightBottom; x++) {
+    int rel_index = x - 5;
+
+    if (rel_index < a % rightFullLength) {
+      window3.setPixelColor(x, right);
+    } else {
+      window3.setPixelColor(x, off);
+    }
+  }
+
+  // set each right pixel
+  for (int x = rightBottom; x <= rightTop; x++) {
+    int rel_index = x - rightBottom;
+
+    if (rel_index % right_spacing == (800 - i) % right_spacing) {
+      window3.setPixelColor(x, on);
+    } else {
+      if (x - 4 < a % rightFullLength) {
+        window3.setPixelColor(x, right);
+      } else {
+        window3.setPixelColor(x, off);
+      }
+    }
+  }
+
+  // set each left pixel
+  for (int x = leftTop; x <= leftBottom; x++){
+    int rel_index = x - leftTop;
+
+    if (rel_index % left_spacing == i % left_spacing) {
+      window3.setPixelColor(x, on);
+    } else {
+      if (rel_index + 4 < a % leftFullLength) {
+        window3.setPixelColor(x, left);
+      } else {
+        window3.setPixelColor(x, off);
+      }
+    }
+  }
+
+  window3.show();
+}
+
 // &&& Command Ready Functions for Animated Commands &&&
 
 // Every LED fades in and out a with calm purple
@@ -522,4 +819,62 @@ LocalStack* win_all_halloween_sparkle(LocalStack* var_stack){
   var_stack->update(3, &inc);
 
   return var_stack;
+}
+
+std::vector<int> win_snow(std::vector<int> var_stack){
+  // set variables
+  int fec = var_stack.at(0);
+  int i = var_stack.at(1);
+  int left_1 = var_stack.at(2);
+  int right_1 = var_stack.at(3);
+  int left_2 = var_stack.at(4);
+  int right_2 = var_stack.at(5);
+  int left_3 = var_stack.at(6);
+  int right_3 = var_stack.at(7);
+  int mode = var_stack.at(8);
+
+  // run command code
+  if(mode == 0){
+    // randomize
+    left_1 = random(3,8);
+    right_1 = random(3,8);
+    left_2 = random(3,8);
+    right_2 = random(3,8);
+    left_3 = random(3,8);
+    right_3 = random(3,8);
+
+    // snow fall
+    _win_1_snow(i, left_1, right_1);
+    _win_2_snow(i, left_2, right_2);
+    _win_3_snow(i, left_3, right_3);
+
+    mode = 1;
+  }else if(mode == 1){
+    // snow fall
+    _win_1_snow(i, left_1, right_1);
+    _win_2_snow(i, left_2, right_2);
+    _win_3_snow(i, left_3, right_3);
+
+    i++;
+    // 40 for a loop one direction, 80 for a full forwards and backwards
+    if(i == 800){
+      i = 0;
+      mode = 0;
+      fec++;
+    }
+  }
+
+  // update variables
+  var_stack.at(0) = fec;
+  var_stack.at(1) = i;
+  var_stack.at(2) = left_1;
+  var_stack.at(3) = right_1;
+  var_stack.at(4) = left_2;
+  var_stack.at(5) = right_2;
+  var_stack.at(6) = left_3;
+  var_stack.at(7) = right_3;
+  var_stack.at(8) = mode;
+
+  return var_stack;
+
 }
