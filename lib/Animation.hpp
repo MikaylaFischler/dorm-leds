@@ -1,11 +1,13 @@
 #ifndef Animation_H
 #define Animation_H
 
+#include <Adafruit_NeoPixel.h>
 #include <StandardCplusplus.h>
 #include <vector>
 
-#include "../conf/strip_ownership.h"
-#include "../lib/Command.hpp"
+#include "strip_ownership.h"
+#include "led_color.h"
+#include "Command.hpp"
 
 class Animation {
 protected:
