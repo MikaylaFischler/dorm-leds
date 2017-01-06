@@ -20,20 +20,20 @@ protected:
     int max_exec;
     int current_exec;
 
-    Animation ();
-    ~Animation ();
+    Animation();
+    ~Animation();
 
-    virtual void main () = 0;
-    virtual void init ();
+    virtual void main() = 0;
+    virtual void init();
 public:
     virtual void clean() = 0;
 
-    String getName ();
-    int getNumStrips ();
-    std::vector<int> getDependencies ();
-    int getUpdateRate ();
+    String getName();
+    int getNumStrips();
+    std::vector<int> getDependencies();
+    int getUpdateRate();
 
-    virtual Command& getCommand ();
+    virtual Command& getCommand();
 };
 
 #endif
