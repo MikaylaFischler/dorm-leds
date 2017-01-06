@@ -12,10 +12,10 @@
 #include <system_configuration.h>
 #include <utility.h>
 
-#include "def/Animation.cpp"
-
 // Threading System
-#include "lib/Strip.h"
+#include "lib/strip_id.h"
+#include "lib/strip_ownership.h"
+
 #include "lib/LocalStack.cpp"
 #include "lib/Command.cpp"
 #include "lib/Thread.cpp"
@@ -24,12 +24,15 @@
 // LED Library
 #include <Adafruit_NeoPixel.h>
 
-// Configuration
-#include "conf/config.h"
-#include "conf/strips.h"
+// Animation System
+#include "def/Animation.cpp"
 
 // Utility Files
 #include "util/led.c"
+
+// Configuration
+#include "conf/config.h"
+#include "conf/strips.h"
 
 // Commands
 #include "def/led_desk_anim_cmds.cpp"
@@ -69,4 +72,3 @@ void loop() {
   //fulltest();
   //ctrl_main_loop();
 }
-

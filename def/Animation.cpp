@@ -1,10 +1,10 @@
 #include "Animation.hpp"
 
 // <<constructor>>
-Animation::Animation () { init(); }
+Animation::Animation() { init(); }
 
 // <<destructor>>
-Animation::~Animation () {}
+Animation::~Animation() {}
 
 // basic initialization
 void Animation::init() {
@@ -18,16 +18,16 @@ void Animation::init() {
 }
 
 // get name
-String Animation::getName () { return this->name; }
+String Animation::getName() { return this->name; }
 
 // get number of strips
-int Animation::getNumStrips () { return this->num_strips; }
+int Animation::getNumStrips() { return this->num_strips; }
 
 // get specific strip dependencies
-std::vector<int> Animation::getDependencies () { return this->strips; }
+std::vector<int> Animation::getDependencies() { return this->strips; }
 
 // default get command code (may vary)
-Command& Animation::getCommand () { return this->command;}
+Command& Animation::getCommand() { return this->command;}
 
 // get update rate
-int Animation::getUpdateRate () { return this->updateRate; }
+int Animation::getUpdateRate() { return this->updateRate; }

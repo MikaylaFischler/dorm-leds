@@ -1,7 +1,7 @@
 #include "Command.hpp"
 
 // <<constructor>>
-Command::Command (String name, int strips[], int num_strips, void (*cmd)()) {
+Command::Command(String name, int strips[], int num_strips, void (*cmd)()) {
 	this->name = name;
 
 	std::vector<int> str;
@@ -17,7 +17,7 @@ Command::Command (String name, int strips[], int num_strips, void (*cmd)()) {
 }
 
 // <<constructor>>
-Command::Command (String name, int strips[], int num_strips, LocalStack& (*cmd)(LocalStack&), LocalStack& var_stack) {
+Command::Command(String name, int strips[], int num_strips, LocalStack& (*cmd)(LocalStack&), LocalStack& var_stack) {
 	this->name = name;
 
 	std::vector<int> str;
@@ -34,10 +34,10 @@ Command::Command (String name, int strips[], int num_strips, LocalStack& (*cmd)(
 }
 
 // <<destructor>>
-Command::~Command () {}
+Command::~Command() {}
 
 // execute the command
-void Command::execute () {
+void Command::execute() {
 	if (no_stack) {
 		cmd_nostack();
 	} else {
@@ -48,7 +48,7 @@ void Command::execute () {
 }
 
 // get the strips that are going to be used
-std::vector<int> Command::getDependencies () { return this->strips; }
+std::vector<int> Command::getDependencies() { return this->strips; }
 
 // get execution count
-int Command::getExecCount () { return this->exec_count; }
+int Command::getExecCount() { return this->exec_count; }
