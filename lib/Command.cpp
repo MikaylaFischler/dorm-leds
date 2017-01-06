@@ -1,7 +1,23 @@
 #include "Command.hpp"
 
 // <<constructor>>
-Command::Command(String name, int strips[], int num_strips, LocalStack* (*cmd)(LocalStack*), LocalStack* var_stack){
+Command::Command (String name, int strips[], int num_strips, void (*cmd)()) {
+	this->name = name;
+
+	std::vector<int> str;
+
+	for(int i = 0; i < num_strips; i++){
+		str.push_back(strips[i]);
+	}
+
+	this->strips = str;
+
+	this->cmd_nostack = cmd;
+	this->no_stack = true;
+}
+
+// <<constructor>>
+Command::Command (String name, int strips[], int num_strips, LocalStack& (*cmd)(LocalStack&), LocalStack& var_stack) {
 	this->name = name;
 
 	std::vector<int> str;
@@ -14,14 +30,20 @@ Command::Command(String name, int strips[], int num_strips, LocalStack* (*cmd)(L
 
 	this->stack = var_stack;
 	this->cmd = cmd;
+	this->no_stack = false;
 }
 
 // <<destructor>>
-Command::~Command(){}
+Command::~Command () {}
 
 // execute the command
 void Command::execute () {
-	this->stack = cmd(this->stack);
+	if (no_stack) {
+		cmd_nostack();
+	} else {
+		this->stack = cmd(this->stack);
+	}
+
 	this->exec_count++;
 }
 
