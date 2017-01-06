@@ -4,33 +4,36 @@
 #include <StandardCplusplus.h>
 #include <vector>
 
-#include "../conf/command_conf.h"
+#include "../conf/strip_ownership.h"
 #include "../lib/Command.hpp"
 
 class Animation {
 protected:
     String name;
     int num_strips;
+    std::vector<int> strips;
 
-	std::vector<int> strips;
-    Command* command;
+    Command& command;
+    LocalStack& stack;
 
     int updateRate;
     int max_exec;
     int current_exec;
-public:
+
     Animation ();
     ~Animation ();
 
     virtual void main () = 0;
-    virtual void init () = 0;
+    virtual void init ();
+public:
+    virtual void clean() = 0;
 
-    virtual getName ();
-    virtual getNumStrips ();
-	virtual std::vector<int> getDependencies ();
-    virtual getUpdateRate ();
+    String getName ();
+    int getNumStrips ();
+    std::vector<int> getDependencies ();
+    int getUpdateRate ();
 
-    virtual Command* getCommand ();
+    virtual Command& getCommand ();
 };
 
 #endif
