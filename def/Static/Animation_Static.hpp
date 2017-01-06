@@ -11,13 +11,13 @@ protected:
     void init();
 };
 
-class Animation_Static_Desk1 : public Animation_Static {
+class Animation_Static_DeskDimAmbient : public Animation_Static {
 protected:
     void main();
     void init();
 public:
-    Animation_Disable_Desk1() {}
-    ~Animation_Disable_Desk1() {}
+    Animation_Static_DeskDimAmbient() {}
+    ~Animation_Static_DeskDimAmbient() {}
 };
 
 
