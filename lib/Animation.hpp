@@ -15,7 +15,6 @@ protected:
     int num_strips;
     std::vector<int> strips;
 
-    Command& command;
     LocalStack& stack;
 
     int updateRate;
@@ -25,8 +24,8 @@ protected:
     Animation();
     ~Animation();
 
-    virtual void main() = 0;
     virtual void init();
+    virtual void step() = 0;
 public:
     virtual void clean() = 0;
 

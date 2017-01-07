@@ -5,19 +5,19 @@
 
 class Animation_Static : public Animation {
 protected:
-    Animation_Disable() {}
-    ~Animation_Disable() {}
+    Animation_Static() {}
+    ~Animation_Static() {}
 
     void init();
 };
 
 class Animation_Static_DeskDimAmbient : public Animation_Static {
 protected:
-    void main();
-    void init();
+	void init();
 public:
     Animation_Static_DeskDimAmbient() {}
     ~Animation_Static_DeskDimAmbient() {}
+    void step();
 };
 
 
