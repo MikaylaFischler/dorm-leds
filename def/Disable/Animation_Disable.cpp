@@ -10,12 +10,6 @@ void Animation_Disable::init() {
     this->max_exec = 1;
 }
 
-// get the command created by the animation
-Command& Animation_Disable::getCommand() {
-    this->command = Command(this->name, this->strips, this->num_strips, main);
-    return this->command;
-}
-
 /* ~~~ Animation Disable: Desk 1 ~~~ */
 
 void Animation_Disable_Desk1::init() {
@@ -24,7 +18,7 @@ void Animation_Disable_Desk1::init() {
     this->strips = BOTTOM_DESK;
 }
 
-void Animation_Disable_Desk1::main() {
+void Animation_Disable_Desk1::step() {
     for (int i = 0; i < DESK1_LENGTH; i++) {
         desk1.setPixelColor(i, COLOR_OFF);
     }
@@ -40,7 +34,7 @@ void Animation_Disable_Desk2::init() {
     this->strips = TOP_DESK;
 }
 
-void Animation_Disable_Desk2::main() {
+void Animation_Disable_Desk2::step() {
     for (int i = 0; i < DESK2_LENGTH; i++) {
         desk1.setPixelColor(i, COLOR_OFF);
     }
@@ -56,7 +50,7 @@ void Animation_Disable_Window1::init() {
     this->strips = WINDOW_1;
 }
 
-void Animation_Disable_Window1::main() {
+void Animation_Disable_Window1::step() {
     for (int i = 0; i < WINDOW_LENGTH; i++) {
         window1.setPixelColor(i, COLOR_OFF);
     }
@@ -72,7 +66,7 @@ void Animation_Disable_Window2::init() {
     this->strips = WINDOW_2;
 }
 
-void Animation_Disable_Window2::main() {
+void Animation_Disable_Window2::step() {
     for (int i = 0; i < WINDOW_LENGTH; i++) {
         window2.setPixelColor(i, COLOR_OFF);
     }
@@ -88,7 +82,7 @@ void Animation_Disable_Window3::init() {
     this->strips = WINDOW_3;
 }
 
-void Animation_Disable_Window3::main() {
+void Animation_Disable_Window3::step() {
     for (int i = 0; i < WINDOW_LENGTH; i++) {
         window3.setPixelColor(i, COLOR_OFF);
     }

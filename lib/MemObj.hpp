@@ -9,7 +9,7 @@ public:
     ~MemObj();
 
     template <typename mem_type> mem_type& get();
-    template <typename mem_type> void set(mem_type* new_var);
+    //template <typename mem_type> void set(mem_type* new_var);
     template <typename mem_type> void destroy();
 };
 

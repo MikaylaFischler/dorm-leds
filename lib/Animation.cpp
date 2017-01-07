@@ -7,15 +7,7 @@ Animation::Animation() { init(); }
 Animation::~Animation() {}
 
 // basic initialization
-void Animation::init() {
-    // start at 0
-    this->current_exec = 0;
-
-    // create generic command
-    this->command = Command(this->name, this->strips, this->num_strips, main, this->stack);
-
-    // leave allocating memory to subclasses
-}
+void Animation::init() { this->current_exec = 0; }
 
 // get name
 String Animation::getName() { return this->name; }
@@ -25,9 +17,6 @@ int Animation::getNumStrips() { return this->num_strips; }
 
 // get specific strip dependencies
 std::vector<int> Animation::getDependencies() { return this->strips; }
-
-// default get command code (may vary)
-Command& Animation::getCommand() { return this->command;}
 
 // get update rate
 int Animation::getUpdateRate() { return this->updateRate; }
