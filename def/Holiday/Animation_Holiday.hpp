@@ -23,7 +23,7 @@ public:
 class Animation_Holiday_Halloween_WinAllSparkleFade : public Animation_Holiday {
 private:
 	unsigned long int rand_halloween_color();
-	bool* sparkle_fade(float i, bool inc[]);
+	void sparkle_fade(float i, bool inc[]);
 protected:
 	void init();
 public:

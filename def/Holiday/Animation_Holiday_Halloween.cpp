@@ -52,7 +52,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 	this->stack = LocalStack();
 	this->stack.push(MemObj(new unsigned int(0)));
 	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new bool*(true)));
+	this->stack.push(MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
