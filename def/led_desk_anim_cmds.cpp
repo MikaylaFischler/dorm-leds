@@ -179,7 +179,7 @@ LocalStack* desk_both_wpp_fade(LocalStack* var_stack){
   int fec = var_stack->getInt(0);
   unsigned int i = var_stack->getUnsignInt(1);
   bool increasing = var_stack->getBool(2);
-  
+
   // run command code
   _desk_both_wpp_fade(i);
 
