@@ -11,14 +11,31 @@ protected:
     void init();
 };
 
-class Animation_Simple_WhitePurpleFade : public Animation_Simple {
+class Animation_Simple_DeskWhitePurpleFade : public Animation_Simple {
 protected:
     void init();
 public:
-    Animation_Simple_WhitePurpleFade() {}
-    ~Animation_Simple_WhitePurpleFade() {}
+    Animation_Simple_DeskWhitePurpleFade() {}
+    ~Animation_Simple_DeskWhitePurpleFade() {}
     void step();
 };
 
+class Animation_Simple_WinAllPurpleFade : public Animation_Simple {
+protected:
+	void init();
+public:
+	Animation_Simple_WinAllPurpleFade() {}
+	~Animation_Simple_WinAllPurpleFade() {}
+	void step();
+};
+
+class Animation_Simple_WPISpirit : public Animation_Simple {
+protected:
+	void init();
+public:
+	Animation_Simple_WPISpirit() {}
+	~Animation_Simple_WPISpirit() {}
+	void step();
+};
 
 #endif
