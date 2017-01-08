@@ -19,4 +19,4 @@ int Animation::getNumStrips() { return this->num_strips; }
 int* Animation::getDependencies() { return this->strips; }
 
 // get update rate
-int Animation::getUpdateRate() { return this->updateRate; }
+unsigned long int Animation::getUpdateRate() { return this->updateRate; }
