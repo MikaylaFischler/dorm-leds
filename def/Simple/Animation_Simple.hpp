@@ -11,6 +11,14 @@ protected:
     void init();
 };
 
+class Animation_Simple_WinColorWipe : public Animation_Simple {
+protected:
+    Animation_Simple_WinColorWipe() {}
+    ~Animation_Simple_WinColorWipe() {}
+
+	void rainbow_color_wipe(Adafruit_NeoPixel& strip, unsigned short int i, unsigned short int color_mode);
+};
+
 class Animation_Simple_DeskWhitePurpleFade : public Animation_Simple {
 protected:
     void init();
@@ -35,6 +43,33 @@ protected:
 public:
 	Animation_Simple_WPISpirit() {}
 	~Animation_Simple_WPISpirit() {}
+	void step();
+};
+
+class Animation_Simple_Win1RainbowWipe : public Animation_Simple_WinColorWipe {
+protected:
+	void init();
+public:
+	Animation_Simple_Win1RainbowWipe() {}
+	~Animation_Simple_Win1RainbowWipe() {}
+	void step();
+};
+
+class Animation_Simple_Win2RainbowWipe : public Animation_Simple_WinColorWipe {
+protected:
+	void init();
+public:
+	Animation_Simple_Win2RainbowWipe() {}
+	~Animation_Simple_Win2RainbowWipe() {}
+	void step();
+};
+
+class Animation_Simple_Win3RainbowWipe : public Animation_Simple_WinColorWipe {
+protected:
+	void init();
+public:
+	Animation_Simple_Win3RainbowWipe() {}
+	~Animation_Simple_Win3RainbowWipe() {}
 	void step();
 };
 
