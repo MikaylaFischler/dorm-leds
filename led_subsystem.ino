@@ -11,14 +11,14 @@ unsigned long int dT = 0;
 ThreadHandler led_thread_handler = ThreadHandler();
 
 void led_man_queue() {
-	led_thread_handler.queue(deskBothWhitePurplePurpleFade);
-	led_thread_handler.queue(win1Snow);
+	//led_thread_handler.queue();
+	//led_thread_handler.queue();
 
 	Serial.println("----------------------");
 	Serial.println("Manual Queue:");
 
 	std::vector<Thread&> t = led_thread_handler.listThreads();
-	for (int a = 0; a < t.size(); a++) {
+	for (unsigned int a = 0; a < t.size(); a++) {
 		Animation anim = t.at(a).getAnimation();
 		String name = anim.getName();
 		Serial.println(name);

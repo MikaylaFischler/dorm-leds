@@ -1,4 +1,4 @@
-#include "ThreadHandler.h"
+#include "ThreadHandler.hpp"
 
 //<<constructor>>
 ThreadHandler::ThreadHandler() {}
@@ -20,7 +20,8 @@ void ThreadHandler::queue(Animation& anim) {
 
 	threads.push_back(t);
 
-	Serial.println(F("ThreadHandler.cpp:> New Thread Queued: " + anim.getName());
+	Serial.print(F("ThreadHandler.cpp:> New Thread Queued: "));
+	Serial.println(anim.getName());
 }
 
 // update the time sums for each thread
@@ -35,7 +36,7 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 // execute a tick of the handler
 void ThreadHandler::executeTick() {
 	// iterate through each queued thread
-	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++) {
+	for (std::vector<Thread&>::iterator it = threads.begin(); it != threads.end(); it++) {
 		Thread& this_thread = *it;
 		unsigned long int updateRate = this_thread.getUpdateRate();
 		unsigned long int timeSum = this_thread.getTimeSum();
@@ -67,11 +68,13 @@ void ThreadHandler::dequeueConflicts(Animation& anim) {
 	int i = 0;
 
 	for (std::vector<Thread&>::iterator it = threads.begin(); it != threads.end(); it++, i++) {
-		Thread& this_thread = *it;
+		Thread& this_thread = it;
 
 		if (conflictsWith(anim.getDependencies(), anim.getNumStrips(), this_thread.getAnimation().getDependencies(), this_thread.getAnimation().getNumStrips()) {
 			threads.erase(threads.begin() + i);
-			Serial.println("ThreadHandler.cpp:> Conflicting Function De-Queued: " + this_thread.getAnimation().getName());
+
+			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued"));
+			Serial.println(this_thread.getAnimation().getName());
 
 			dequeueConflicts(anim);
 			break;
