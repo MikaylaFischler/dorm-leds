@@ -25,8 +25,8 @@ protected:
     ~Animation();
 
     virtual void init();
-public:
     virtual void clean() = 0;
+public:
     virtual void step() = 0;
 
     String getName();

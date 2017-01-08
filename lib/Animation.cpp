@@ -4,7 +4,7 @@
 Animation::Animation() { init(); }
 
 // <<destructor>>
-Animation::~Animation() {}
+Animation::~Animation() { clean(); }
 
 // basic initialization
 void Animation::init() { this->current_exec = 0; }
