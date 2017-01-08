@@ -17,7 +17,7 @@ protected:
 
     LocalStack& stack;
 
-    int updateRate;
+    unsigned long int updateRate;
     int max_exec;
     int current_exec;
 
