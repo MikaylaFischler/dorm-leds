@@ -13,6 +13,7 @@ void Animation_Simple::init() {
 void Animation_Simple_DeskWhitePurpleFade::init() {
  	Animation_Simple::init();
  	this->name = F("Desk[all]: Off White with Purple Fade");
+	this->num_strips = 2;
  	this->strips = FULL_DESK;
 
 	this->stack = LocalStack();
@@ -71,6 +72,7 @@ void Animation_Simple_Win1RainbowWipe::clean() {
 void Animation_Simple_WinAllPurpleFade::init() {
 	Animation_Simple::init();
 	this->name = F("Window[all]: Purple Fade");
+	this->num_strips = 3;
 	this->strips = WINDOW_ALL;
 
 	this->stack = LocalStack();
@@ -116,6 +118,7 @@ void Animation_Simple_Win1RainbowWipe::clean() {
 void Animation_Simple_WPISpirit::init() {
 	Animation_Simple::init();
 	this->name = F("Window[all]: WPI Spirit");
+	this->num_strips = 3;
 	this->strips = WINDOW_ALL;
 
 	this->stack = LocalStack();

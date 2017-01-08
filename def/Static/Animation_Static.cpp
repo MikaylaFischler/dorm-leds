@@ -14,6 +14,7 @@ void Animation_Static::init() {
 void Animation_Static_DeskDimAmbient::init() {
     Animation_Static::init();
     this->name = F("Desk[all]: Dim Ambient");
+	this->num_strips = 2;
     this->strips = FULL_DESK;
 }
 

@@ -5,6 +5,7 @@
 void Animation_Holiday_Hanukkah_Win2Snow::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[2]: Hanukkah with Snow");
+	this->num_strips = 1;
  	this->strips = WINDOW_2;
 
 	this->stack = LocalStack();
