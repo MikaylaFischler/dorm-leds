@@ -1,8 +1,8 @@
 // color definitions
-#define COLOR_OFF 0; // (0, 0, 0)
+#define COLOR_OFF 0; 			// (0, 0, 0)
 
-#define COLOR_BLACK 0; // (0, 0, 0)
-#define COLOR_WHITE 16777215; // (255, 255, 255)
+#define COLOR_BLACK 0; 			// (0, 0, 0)
+#define COLOR_WHITE 16777215; 	// (255, 255, 255)
 
 #define COLOR_DIM_OFF_WHITE 4926745; // (75, 45, 25)
 
