@@ -14,24 +14,25 @@ protected:
     int num_strips;
     int* strips;
 
-    LocalStack& stack;
+    LocalStack* stack;
 
     unsigned long int updateRate;
     int max_exec;
     int current_exec;
 
-    virtual void init();
-    virtual void clean() {};
-public:
 	Animation();
-	~Animation();
+
+    virtual void init();
+public:
+	virtual ~Animation();
 
 	virtual void step() {};
+    virtual void clean() {};
 
     String getName();
     int getNumStrips();
     int* getDependencies();
-    int getUpdateRate();
+    unsigned long int getUpdateRate();
 };
 
 #endif

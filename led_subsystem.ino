@@ -17,9 +17,9 @@ void led_man_queue() {
 	Serial.println("----------------------");
 	Serial.println("Manual Queue:");
 
-	std::vector<Thread&> t = led_thread_handler.listThreads();
+	std::vector<Thread*> t = led_thread_handler.listThreads();
 	for (unsigned int a = 0; a < t.size(); a++) {
-		Animation anim = t.at(a).getAnimation();
+		Animation anim = t.at(a)->getAnimation();
 		String name = anim.getName();
 		Serial.println(name);
 	}

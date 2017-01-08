@@ -7,7 +7,7 @@ ThreadHandler::ThreadHandler() {}
 ThreadHandler::~ThreadHandler() {}
 
 // get the list of queued threads
-std::vector<Thread&> ThreadHandler::listThreads() { return threads; }
+std::vector<Thread*> ThreadHandler::listThreads() { return threads; }
 
 // queue an animation
 void ThreadHandler::queue(Animation& anim) {
@@ -15,7 +15,7 @@ void ThreadHandler::queue(Animation& anim) {
 	setStripsInUse(anim);
 
 	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
-	Thread& t = Thread(next_id, anim, anim.getUpdateRate());
+	Thread* t = new Thread(next_id, anim);
 	next_id++;
 
 	threads.push_back(t);
@@ -27,8 +27,8 @@ void ThreadHandler::queue(Animation& anim) {
 // update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 	// iterate through each queued thread
-	for(std::vector<Thread&>::iterator it = threads.begin(); it != threads.end(); it++){
-		Thread& this_thread = *it;
+	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++){
+		Thread& this_thread = **it;
 		this_thread.addTimeSum(dT);
 	}
 }
@@ -36,8 +36,8 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 // execute a tick of the handler
 void ThreadHandler::executeTick() {
 	// iterate through each queued thread
-	for (std::vector<Thread&>::iterator it = threads.begin(); it != threads.end(); it++) {
-		Thread& this_thread = *it;
+	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++) {
+		Thread& this_thread = **it;
 		unsigned long int updateRate = this_thread.getUpdateRate();
 		unsigned long int timeSum = this_thread.getTimeSum();
 
@@ -67,10 +67,11 @@ void ThreadHandler::setStripsInUse(Animation& anim) {
 void ThreadHandler::dequeueConflicts(Animation& anim) {
 	int i = 0;
 
-	for (std::vector<Thread&>::iterator it = threads.begin(); it != threads.end(); it++, i++) {
-		Thread& this_thread = it;
+	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++, i++) {
+		Thread& this_thread = **it;
 
-		if (conflictsWith(anim.getDependencies(), anim.getNumStrips(), this_thread.getAnimation().getDependencies(), this_thread.getAnimation().getNumStrips()) {
+		if (conflictsWith(anim.getDependencies(), anim.getNumStrips(), this_thread.getAnimation().getDependencies(), this_thread.getAnimation().getNumStrips())) {
+			delete it;
 			threads.erase(threads.begin() + i);
 
 			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued"));
