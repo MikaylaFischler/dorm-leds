@@ -36,4 +36,26 @@ public:
 	void clean();
 };
 
+class Animation_Holiday_Christmas_Win13Snow : public Animation_Holiday {
+protected:
+	void init();
+public:
+	Animation_Holiday_Christmas_Win13Snow() {}
+	~Animation_Holiday_Christmas_Win13Snow() {}
+
+	void step();
+	void clean();
+};
+
+class Animation_Holiday_Hanukkah_Win2Snow : public Animation_Holiday {
+protected:
+	void init();
+public:
+	Animation_Holiday_Hanukkah_Win2Snow() {}
+	~Animation_Holiday_Hanukkah_Win2Snow() {}
+
+	void step();
+	void clean();
+};
+
 #endif
