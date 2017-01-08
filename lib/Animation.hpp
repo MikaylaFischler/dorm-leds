@@ -25,16 +25,14 @@ protected:
     ~Animation();
 
     virtual void init();
-    virtual void step() = 0;
 public:
     virtual void clean() = 0;
+    virtual void step() = 0;
 
     String getName();
     int getNumStrips();
     std::vector<int> getDependencies();
     int getUpdateRate();
-
-    virtual Command& getCommand();
 };
 
 #endif
