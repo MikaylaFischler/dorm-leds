@@ -1,3 +1,6 @@
+#ifndef LED_COLOR_H
+#define LED_COLOR_H
+
 // color definitions
 #define COLOR_OFF 0; 			// (0, 0, 0)
 
@@ -17,3 +20,5 @@
 #define COLOR_BLUE 255; 		// (0, 0, 255)
 #define COLOR_INDIGO 6553855;	// (100, 0, 255)
 #define COLOR_VIOLET 16711935; 	// (255, 0, 255)
+
+#endif

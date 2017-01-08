@@ -1,3 +1,6 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
 // pin configuration (avoid pins 0 and 1)
 #define STRIP_PIN_W1 8
 #define STRIP_PIN_W2 9
@@ -13,3 +16,5 @@
 
 // strip type
 #define STRIP_TYPE NEO_GRB + NEO_KHZ800
+
+#endif
