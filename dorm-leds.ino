@@ -23,6 +23,7 @@
 #include "lib/strip_id.h"
 #include "lib/strip_ownership.h"
 
+#include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
 #include "lib/Animation.cpp"
 #include "lib/Thread.cpp"

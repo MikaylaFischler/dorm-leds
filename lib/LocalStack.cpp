@@ -19,15 +19,15 @@ LocalStack::LocalStack(MemObj stack[], int numElements) {
 LocalStack::~LocalStack() {}
 
 // untyped methods and manipulations
-void LocalStack::push(void* datum) {
+void LocalStack::push(MemObj datum) {
     this->stack.push_back(datum);
 }
 
-void* LocalStack::get(unsigned int i) {
+MemObj LocalStack::get(unsigned int i) {
     return this->stack.at(i);
 }
 
-void LocalStack::update(unsigned int i, void* val) {
+void LocalStack::update(unsigned int i, MemObj val) {
     this->stack.at(i) = val;
 }
 
