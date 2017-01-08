@@ -9,7 +9,7 @@
 class Thread {
 private:
 	unsigned int id;
-	Animation& animation;
+	Animation* animation;
 	unsigned long int updateRate;
 	unsigned long int timeSum;
 public:

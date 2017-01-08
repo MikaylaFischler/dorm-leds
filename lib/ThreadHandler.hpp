@@ -15,7 +15,7 @@ private:
 							 	{ WINDOW3, STRIP_OFF },
 							    { DESK1, STRIP_OFF },
 							    { DESK2, STRIP_OFF } };
-	std::vector<Thread&> threads;
+	std::vector<Thread*> threads;
 	unsigned int elapsed_time;
 	unsigned int next_id;
 
@@ -25,7 +25,7 @@ private:
 public:
 	ThreadHandler();
 	~ThreadHandler();
-	std::vector<Thread&> listThreads();
+	std::vector<Thread*> listThreads();
 	void queue(Animation& anim);
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();

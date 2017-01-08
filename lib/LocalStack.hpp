@@ -8,7 +8,7 @@
 
 class LocalStack {
     private:
-        std::vector<MemObj> stack;
+        std::vector<MemObj*> stack;
     public:
         LocalStack();
         //LocalStack(MemObj mem);
@@ -16,13 +16,13 @@ class LocalStack {
         ~LocalStack();
 
         // untyped element manipulation
-        void push(MemObj element);
-        MemObj get(unsigned int i);
-        void update(unsigned int i, MemObj val);
+        void push(MemObj& element);
+        MemObj& get(unsigned int i);
+        void update(unsigned int i, MemObj& val);
         /* DEPRECATED void drop(unsigned int i); */
 
         // get raw stack
-        std::vector<MemObj> getStack();
+        std::vector<MemObj*> getStack();
 };
 
 #endif
