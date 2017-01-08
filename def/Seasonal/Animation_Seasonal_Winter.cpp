@@ -5,8 +5,39 @@
 void Animation_Seasonal_Winter_Snow::init() {
 	this->stack = LocalStack();
 	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack.push(MemObj(new bool(true));
 	this->stack.push(MemObj(new unsigned short int(0)));
 	this->stack.push(MemObj(new unsigned short int(0)));
+}
+
+void Animation_Seasonal_Winter_Snow::snow_step(Adafruit_NeoPixel& strip) {
+	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
+	bool& mode = this->stack.get(1).get<bool>();
+	unsigned short int& left = this->stack.get(2).get<unsigned short int>();
+	unsigned short int& right = this->stack.get(3).get<unsigned short int>();
+
+	if (mode == 0) {
+		// randomize
+		left = random(3,8);
+		right = random(3,8);
+
+		// snow fall
+		this->snow(strip, i, left, right);
+
+		mode = 1;
+	} else if (mode == 1) {
+		// snow fall
+		this->snow(strip, i, left, right);
+
+		i++;
+
+		// 40 for a loop one direction, 80 for a full forwards and backwards
+		if (i == 800) {
+			i = 0;
+			mode = 0;
+			this->execution_count++;
+		}
+	}
 }
 
 void Animation_Seasonal_Winter_Snow::snow(Adafruit_NeoPixel& strip, unsigned int i, unsigned short int left_spacing, unsigned short int right_spacing) {
@@ -45,39 +76,11 @@ void Animation_Seasonal_Winter_Snow::snow(Adafruit_NeoPixel& strip, unsigned int
 	strip.show();
 }
 
-void Animation_Seasonal_Winter_Snow::snow_step(Adafruit_NeoPixel& strip) {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	unsigned short int& left = this->stack.get(1).get<unsigned short int>();
-	unsigned short int& right = this->stack.get(2).get<unsigned short int>();
-
-	if (mode == 0) {
-		// randomize
-		left = random(3,8);
-		right = random(3,8);
-
-		// snow fall
-		this->snow(strip, i, left, right);
-
-		mode = 1;
-	} else if (mode == 1) {
-		// snow fall
-		this->snow(strip, i, left, right);
-
-		i++;
-
-		// 40 for a loop one direction, 80 for a full forwards and backwards
-		if (i == 800) {
-			i = 0;
-			mode = 0;
-			this->execution_count++;
-		}
-	}
-}
-
 void Animation_Seasonal_Winter_Snow::clean() {
 	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
 	this->stack.get(2).destroy<unsigned short int>();
+	this->stack.get(3).destroy<unsigned short int>();
 }
 
 /* ~~~ Animation Seasonal Winter: Window 1 Randomized Snow Animation ~~~ */
