@@ -1,6 +1,9 @@
 #ifndef Thread_H
 #define Thread_H
 
+#include <StandardCplusplus.h>
+#include <vector>
+
 #include "Animation.hpp"
 
 class Thread {
