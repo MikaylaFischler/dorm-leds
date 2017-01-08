@@ -37,6 +37,8 @@ public:
 };
 
 class Animation_Holiday_Christmas_Win13Snow : public Animation_Holiday {
+private:
+	void christmas_snow(int i, int left_spacing, int right_spacing);
 protected:
 	void init();
 public:
@@ -49,7 +51,7 @@ public:
 
 class Animation_Holiday_Hanukkah_Win2Snow : public Animation_Holiday {
 private:
-	void christmas_snow(int i, int left_spacing, int right_spacing);
+	void hanukkah_snow(int i, int left_spacing, int right_spacing);
 protected:
 	void init();
 public:
