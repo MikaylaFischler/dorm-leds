@@ -30,6 +30,7 @@ void Animation_Simple_WinColorWipe::rainbow_color_wipe(Adafruit_NeoPixel& strip,
 void Animation_Simple_Win1RainbowWipe::init() {
  	Animation_Simple::init();
  	this->name = F("Window[1]: Rainbow Color Wipe");
+	this->num_strips = 1;
  	this->strips = WINDOW_1;
 
 	this->stack = LocalStack();
@@ -68,6 +69,7 @@ void Animation_Simple_Win1RainbowWipe::clean() {
 void Animation_Simple_Win2RainbowWipe::init() {
  	Animation_Simple::init();
  	this->name = F("Window[2]: Rainbow Color Wipe");
+	this->num_strips = 1;
  	this->strips = WINDOW_2;
 
 	this->stack = LocalStack();
@@ -106,6 +108,7 @@ void Animation_Simple_Win2RainbowWipe::clean() {
 void Animation_Simple_Win3RainbowWipe::init() {
  	Animation_Simple::init();
  	this->name = F("Window[3]: Rainbow Color Wipe");
+	this->num_strips = 1;
  	this->strips = WINDOW_3;
 
 	this->stack = LocalStack();

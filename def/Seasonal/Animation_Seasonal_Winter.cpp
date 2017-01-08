@@ -88,6 +88,7 @@ void Animation_Seasonal_Winter_Snow::clean() {
 void Animation_Seasonal_Winter_Snow_Win1::init() {
  	Animation_Seasonal_Winter_Snow::init();
  	this->name = F("Window[1]: Randomized Snow");
+	this->num_strips = 1;
  	this->strips = WINDOW_1;
 }
 
@@ -100,6 +101,7 @@ void Animation_Seasonal_Winter_Snow_Win1::step() {
 void Animation_Seasonal_Winter_Snow_Win2::init() {
  	Animation_Seasonal_Winter_Snow::init();
  	this->name = F("Window[2]: Randomized Snow");
+	this->num_strips = 1;
  	this->strips = WINDOW_2;
 }
 
@@ -112,6 +114,7 @@ void Animation_Seasonal_Winter_Snow_Win2::step() {
 void Animation_Seasonal_Winter_Snow_Win3::init() {
  	Animation_Seasonal_Winter_Snow::init();
  	this->name = F("Window[3]: Randomized Snow");
+	this->num_strips = 1;
  	this->strips = WINDOW_3;
 }
 

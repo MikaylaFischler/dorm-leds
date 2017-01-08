@@ -5,6 +5,7 @@
 void Animation_Holiday_Halloween_WinAllFade::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Basic Halloween Fade");
+	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
 	this->stack = LocalStack();
@@ -52,6 +53,7 @@ void Animation_Holiday_Halloween_WinAllFade::clean() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
+	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
 	this->stack = LocalStack();
