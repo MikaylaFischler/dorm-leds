@@ -13,7 +13,7 @@ class Animation {
 protected:
     String name;
     int num_strips;
-    std::vector<int> strips;
+    int* strips;
 
     LocalStack& stack;
 
@@ -31,7 +31,7 @@ public:
 
     String getName();
     int getNumStrips();
-    std::vector<int> getDependencies();
+    int* getDependencies();
     int getUpdateRate();
 };
 

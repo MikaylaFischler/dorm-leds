@@ -16,7 +16,7 @@ String Animation::getName() { return this->name; }
 int Animation::getNumStrips() { return this->num_strips; }
 
 // get specific strip dependencies
-std::vector<int> Animation::getDependencies() { return this->strips; }
+int* Animation::getDependencies() { return this->strips; }
 
 // get update rate
 int Animation::getUpdateRate() { return this->updateRate; }
