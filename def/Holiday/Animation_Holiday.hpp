@@ -17,7 +17,9 @@ protected:
 public:
     Animation_Holiday_Halloween_WinAllFade() {}
     ~Animation_Holiday_Halloween_WinAllFade() {}
+
     void step();
+	void clean();
 };
 
 class Animation_Holiday_Halloween_WinAllSparkleFade : public Animation_Holiday {
@@ -29,7 +31,9 @@ protected:
 public:
 	Animation_Holiday_Halloween_WinAllSparkleFade() {}
 	~Animation_Holiday_Halloween_WinAllSparkleFade() {}
+
 	void step();
+	void clean();
 };
 
 #endif

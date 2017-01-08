@@ -61,6 +61,11 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
   	}
 }
 
+void Animation_Simple_Win1RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
+}
+
 /* ~~~ Animation Simple: Window All Purple Fade ~~~ */
 
 void Animation_Simple_WinAllPurpleFade::init() {
@@ -99,6 +104,11 @@ void Animation_Simple_WinAllPurpleFade::step() {
       		i--;
     	}
   	}
+}
+
+void Animation_Simple_Win1RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
 }
 
 /* ~~~ Animation Simple: Window All WPI Spirit ~~~ */
@@ -174,4 +184,9 @@ void Animation_Simple_WPISpirit::step() {
 			i++;
 		}
 	}
+}
+
+void Animation_Simple_Win1RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
 }

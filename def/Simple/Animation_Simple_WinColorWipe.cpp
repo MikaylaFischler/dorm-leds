@@ -58,6 +58,11 @@ void Animation_Simple_Win1RainbowWipe::step() {
 	}
 }
 
+void Animation_Simple_Win1RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<unsigned short int>();
+}
+
 /* ~~~ Animation Simple: Window 2 Rainbow Color Wipe ~~~ */
 
 void Animation_Simple_Win2RainbowWipe::init() {
@@ -91,6 +96,11 @@ void Animation_Simple_Win2RainbowWipe::step() {
 	}
 }
 
+void Animation_Simple_Win2RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<unsigned short int>();
+}
+
 /* ~~~ Animation Simple: Window 3 Rainbow Color Wipe ~~~ */
 
 void Animation_Simple_Win3RainbowWipe::init() {
@@ -122,4 +132,9 @@ void Animation_Simple_Win3RainbowWipe::step() {
 			this->execution_count++;
 		}
 	}
+}
+
+void Animation_Simple_Win3RainbowWipe::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<unsigned short int>();
 }

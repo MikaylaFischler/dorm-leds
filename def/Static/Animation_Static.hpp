@@ -17,6 +17,7 @@ protected:
 public:
     Animation_Static_DeskDimAmbient() {}
     ~Animation_Static_DeskDimAmbient() {}
+	
     void step();
 };
 
