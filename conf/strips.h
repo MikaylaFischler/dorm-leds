@@ -1,6 +1,8 @@
 #ifndef STRIPS_H
 #define STRIPS_H
 
+#include "config.h"
+
 // RGB LED strips
 Adafruit_NeoPixel& window_generic  = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_XX, STRIP_TYPE);
 Adafruit_NeoPixel& window1         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W1, STRIP_TYPE);

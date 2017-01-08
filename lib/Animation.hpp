@@ -7,7 +7,6 @@
 
 #include "strip_ownership.h"
 #include "led_color.h"
-#include "Command.hpp"
 
 class Animation {
 protected:
