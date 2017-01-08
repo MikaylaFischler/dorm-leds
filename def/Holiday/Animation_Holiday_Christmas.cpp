@@ -9,15 +9,42 @@ void Animation_Holiday_Christmas_Win13Snow::init() {
 
 	this->stack = LocalStack();
 	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack.push(MemObj(new bool(true));
 	this->stack.push(MemObj(new unsigned short int(0)));
 	this->stack.push(MemObj(new unsigned short int(0)));
 }
 
 void Animation_Holiday_Christmas_Win13Snow::step() {
 	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	unsigned short int& left = this->stack.get(1).get<unsigned short int>();
-	unsigned short int& right = this->stack.get(2).get<unsigned short int>();
+	bool& mode = this->stack.get(1).get<bool>();
+	unsigned short int& left = this->stack.get(2).get<unsigned short int>();
+	unsigned short int& right = this->stack.get(3).get<unsigned short int>();
 
+	if (mode == 0) {
+		// randomize
+		left = random(3,8);
+		right = random(3,8);
+
+		// snow fall
+		this->christmas_snow(i, left, right);
+
+		mode = 1;
+	} else if (mode == 1) {
+		// snow fall
+		this->christmas_snow(i, left, right);
+
+		i++;
+
+		// 40 for a loop one direction, 80 for a full forwards and backwards
+		if (i == 800) {
+			i = 0;
+			mode = 0;
+			this->execution_count++;
+		}
+	}
+}
+
+void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spacing, int right_spacing) {
 	int rightBottom = 9;
 	int rightTop = 40;
 	int leftTop = 50;
@@ -39,7 +66,7 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 
 		if (rel_index < a % leftFullLength) {
 			window1.setPixelColor(x, red);
-	    	window3.setPixelColor(x, green);
+			window3.setPixelColor(x, green);
 		} else {
 			window1.setPixelColor(x, COLOR_OFF);
 			window3.setPixelColor(x, COLOR_OFF);
@@ -52,7 +79,7 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 
 		if (rel_index < a % rightFullLength) {
 			window1.setPixelColor(x, green);
-	    	window3.setPixelColor(x, red);
+			window3.setPixelColor(x, red);
 		} else {
 			window1.setPixelColor(x, COLOR_OFF);
 			window3.setPixelColor(x, COLOR_OFF);
@@ -127,6 +154,7 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 
 void Animation_Holiday_Christmas_Win13Snow::clean() {
 	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
 	this->stack.get(2).destroy<unsigned short int>();
+	this->stack.get(3).destroy<unsigned short int>();
 }
