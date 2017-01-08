@@ -21,7 +21,7 @@ private:
 
 	void dequeueConflicts(Animation& anim);
 	void setStripsInUse(Animation& anim);
-	bool conflictsWith(int* str1, int* str2);
+	bool conflictsWith(int* str1, int length1, int* str2, int length2);
 public:
 	ThreadHandler();
 	~ThreadHandler();

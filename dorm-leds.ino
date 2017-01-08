@@ -29,7 +29,7 @@
 #include "lib/ThreadHandler.cpp"
 
 // Animations
-#include "def/Animations.hpp"
+//#include "def/Animations.hpp"
 
 // Utility Files
 #include "util/led.c"

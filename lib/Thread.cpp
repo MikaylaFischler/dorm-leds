@@ -1,7 +1,7 @@
 #include "Thread.hpp"
 
 //<<constructor>>
-Thread::Thread (unsigned int id, Animation* anim) {
+Thread::Thread (unsigned int id, Animation& anim) {
 	this->id = id;
 	this->animation = anim;
 	this->updateRate = anim->getUpdateRate();
@@ -27,4 +27,4 @@ void Thread::addTimeSum(unsigned int dT) { this->timeSum += dT; }
 void Thread::zeroTimeSum() { this->timeSum = 0; }
 
 // get the command that this thread contains
-Animation* Thread::getAnimation() { return this->animation; }
+Animation& Thread::getAnimation() { return this->animation; }

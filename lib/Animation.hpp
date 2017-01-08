@@ -20,13 +20,13 @@ protected:
     int max_exec;
     int current_exec;
 
-    Animation();
-    ~Animation();
-
     virtual void init();
-    virtual void clean() = 0;
+    virtual void clean() {};
 public:
-    virtual void step() = 0;
+	Animation();
+	~Animation();
+
+	virtual void step() {};
 
     String getName();
     int getNumStrips();
