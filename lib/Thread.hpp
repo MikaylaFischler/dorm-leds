@@ -10,7 +10,7 @@ private:
 	unsigned long int updateRate;
 	unsigned long int timeSum;
 public:
-	Thread(unsigned int id, Animation* anim, unsigned long int t);
+	Thread(unsigned int id, Animation* anim);
 	~Thread();
 
 	unsigned int getID();
