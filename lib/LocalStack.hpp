@@ -4,6 +4,8 @@
 #include <StandardCplusplus.h>
 #include <vector>
 
+#include "MemObj.hpp"
+
 class LocalStack {
     private:
         std::vector<MemObj> stack;

@@ -1,3 +1,6 @@
+#ifndef STRIP_OWNERSHIP_H
+#define STRIP_OWNERSHIP_H
+
 // command strip ownership
 #include "strip_id.h"
 
@@ -12,3 +15,5 @@ const short WINDOW_1_3[2]  = {WINDOW1, WINDOW3};
 const short WINDOW_1_2[2]  = {WINDOW1, WINDOW2};
 const short WINDOW_2_3[2]  = {WINDOW2, WINDOW3};
 const short WINDOW_ALL[3]  = {WINDOW1, WINDOW2, WINDOW3};
+
+#endif
