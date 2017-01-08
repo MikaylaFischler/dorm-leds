@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Thread.hpp"
 
 //<<constructor>>
 Thread::Thread (unsigned int id, Animation* anim) {
