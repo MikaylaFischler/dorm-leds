@@ -42,6 +42,11 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
     }
 }
 
+void Animation_Holiday_Halloween_WinAllFade::clean() {
+	this->stack.get(0).destroy<unsigned short int>();
+	this->stack.get(1).destroy<bool>();
+}
+
 /* ~~~ Animation Holiday Halloween: Randomized Sparkle Effect (All Windows) ~~~ */
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
@@ -88,6 +93,12 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	}
 
 	showAllWindowStrips();
+}
+
+void Animation_Holiday_Halloween_WinAllFade::clean() {
+	this->stack.get(0).destroy<unsigned int>();
+	this->stack.get(1).destroy<unsigned short int>();
+	this->stack.get(2).destroy<bool*>();
 }
 
 unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_halloween_color() {

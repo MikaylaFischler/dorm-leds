@@ -17,6 +17,7 @@ protected:
 public:
     Animation_Disable_Desk1() {}
     ~Animation_Disable_Desk1() {}
+
     void step();
 };
 
@@ -26,6 +27,7 @@ protected:
 public:
     Animation_Disable_Desk2() {}
     ~Animation_Disable_Desk2() {}
+
     void step();
 };
 
@@ -35,6 +37,7 @@ protected:
 public:
 	Animation_Disable_Window1() {}
 	~Animation_Disable_Window1() {}
+
     void step();
 };
 
@@ -44,6 +47,7 @@ protected:
 public:
     Animation_Disable_Window2() {}
     ~Animation_Disable_Window2() {}
+
     void step();
 };
 
@@ -53,6 +57,7 @@ protected:
 public:
     Animation_Disable_Window3() {}
     ~Animation_Disable_Window3() {}
+	
     void step();
 };
 

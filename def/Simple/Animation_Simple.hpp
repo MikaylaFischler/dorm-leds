@@ -25,7 +25,9 @@ protected:
 public:
     Animation_Simple_DeskWhitePurpleFade() {}
     ~Animation_Simple_DeskWhitePurpleFade() {}
-    void step();
+
+	void step();
+	void clean();
 };
 
 class Animation_Simple_WinAllPurpleFade : public Animation_Simple {
@@ -34,7 +36,9 @@ protected:
 public:
 	Animation_Simple_WinAllPurpleFade() {}
 	~Animation_Simple_WinAllPurpleFade() {}
+
 	void step();
+	void clean();
 };
 
 class Animation_Simple_WPISpirit : public Animation_Simple {
@@ -43,7 +47,9 @@ protected:
 public:
 	Animation_Simple_WPISpirit() {}
 	~Animation_Simple_WPISpirit() {}
+
 	void step();
+	void clean();
 };
 
 class Animation_Simple_Win1RainbowWipe : public Animation_Simple_WinColorWipe {
@@ -52,7 +58,9 @@ protected:
 public:
 	Animation_Simple_Win1RainbowWipe() {}
 	~Animation_Simple_Win1RainbowWipe() {}
+
 	void step();
+	void clean();
 };
 
 class Animation_Simple_Win2RainbowWipe : public Animation_Simple_WinColorWipe {
@@ -61,7 +69,9 @@ protected:
 public:
 	Animation_Simple_Win2RainbowWipe() {}
 	~Animation_Simple_Win2RainbowWipe() {}
+
 	void step();
+	void clean();
 };
 
 class Animation_Simple_Win3RainbowWipe : public Animation_Simple_WinColorWipe {
@@ -70,7 +80,9 @@ protected:
 public:
 	Animation_Simple_Win3RainbowWipe() {}
 	~Animation_Simple_Win3RainbowWipe() {}
+
 	void step();
+	void clean();
 };
 
 #endif
