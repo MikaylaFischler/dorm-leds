@@ -1,4 +1,4 @@
-#include "Animation_Holiday.cpp"
+#include "Animation_Holiday.hpp"
 
 /* ~~~ Animation Holiday Hanukkah: Window 2 Hanukkah with Snow ~~~ */
 
@@ -9,17 +9,17 @@ void Animation_Holiday_Hanukkah_Win2Snow::init() {
  	this->strips = WINDOW_2;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true));
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
 }
 
 void Animation_Holiday_Hanukkah_Win2Snow::step() {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& mode = this->stack->get(1).get<bool>();
-	unsigned short int& left = this->stack->get(2).get<unsigned short int>();
-	unsigned short int& right = this->stack->get(3).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& mode = this->stack->get(1)->get<bool>();
+	unsigned short int& left = this->stack->get(2)->get<unsigned short int>();
+	unsigned short int& right = this->stack->get(3)->get<unsigned short int>();
 
 	if (mode == 0) {
 		// randomize
@@ -138,10 +138,10 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 }
 
 void Animation_Holiday_Hanukkah_Win2Snow::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
-	this->stack->get(2).destroy<unsigned short int>();
-	this->stack->get(3).destroy<unsigned short int>();
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
+	this->stack->get(2)->destroy<unsigned short int>();
+	this->stack->get(3)->destroy<unsigned short int>();
 
 	delete this->stack;
 }

@@ -20,11 +20,14 @@ protected:
 class Animation_Seasonal_Winter_Snow : public Animation_Seasonal_Winter {
 protected:
     void init();
+	
 	void snow(Adafruit_NeoPixel& strip, unsigned int i, unsigned short int left_spacing, unsigned short int right_spacing);
 	void snow_step(Adafruit_NeoPixel& strip);
 public:
     Animation_Seasonal_Winter_Snow() {}
     ~Animation_Seasonal_Winter_Snow() {}
+
+	void clean();
 };
 
 class Animation_Seasonal_Winter_Snow_Win1 : public Animation_Seasonal_Winter_Snow {

@@ -22,15 +22,15 @@ public:
 	void clean();
 };
 
-class Animation_Holiday_Halloween_WinAllSparkleFade : public Animation_Holiday {
+class Animation_Holiday_Halloween_WinAllHalloweenSparkle : public Animation_Holiday {
 private:
 	unsigned long int rand_halloween_color();
 	void sparkle_fade(float i, bool inc[]);
 protected:
 	void init();
 public:
-	Animation_Holiday_Halloween_WinAllSparkleFade() {}
-	~Animation_Holiday_Halloween_WinAllSparkleFade() {}
+	Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
+	~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
 
 	void step();
 	void clean();

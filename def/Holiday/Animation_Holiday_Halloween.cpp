@@ -1,4 +1,4 @@
-#include "Animation_Holiday.cpp"
+#include "Animation_Holiday.hpp"
 
 /* ~~~ Animation Holiday Halloween: Basic Orange/Purple Fade (All Windows) ~~~ */
 
@@ -9,13 +9,13 @@ void Animation_Holiday_Halloween_WinAllFade::init() {
  	this->strips = WINDOW_ALL;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
 }
 
 void Animation_Holiday_Halloween_WinAllFade::step() {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& increasing = this->stack->get(1).get<bool>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& increasing = this->stack->get(1)->get<bool>();
 
     for (int x = 0; x < WINDOW_LENGTH; x++) {
     	window1.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
@@ -44,8 +44,8 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
 }
 
 void Animation_Holiday_Halloween_WinAllFade::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
 
 	delete this->stack;
 }
@@ -59,20 +59,15 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	this->strips = WINDOW_ALL;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned int(0)));
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
+	this->stack->push(new MemObj(new unsigned int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
-	const float ORANGE_R_SLOPE = 1.0;
-	const float ORANGE_G_SLOPE = 0.196078;
-	const float PURPLE_R_SLOPE = 0.588235;
-	const float PURPLE_B_SLOPE = 1.0;
-
-	unsigned int& i = this->stack->get(0).get<unsigned int>();
-	unsigned short int mode = this->stack->get(1).get<unsigned short int>();
-	bool*& increasing = this->stack->get(2).get<bool*>();
+	unsigned int& i = this->stack->get(0)->get<unsigned int>();
+	unsigned short int mode = this->stack->get(1)->get<unsigned short int>();
+	bool*& increasing = this->stack->get(2)->get<bool*>();
 
 	if (mode == 0) {
 		// randomize
@@ -85,7 +80,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 		mode = 1;
 	} else if (mode == 1) {
 		// fade for a bit
-		inc = this->sparkle_fade((float&) i, inc);
+		this->sparkle_fade((float&) i, increasing);
 
 		i++;
 
@@ -99,10 +94,10 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	showAllWindowStrips();
 }
 
-void Animation_Holiday_Halloween_WinAllFade::clean() {
-	this->stack.get(0)->destroy<unsigned int>();
-	this->stack.get(1)->destroy<unsigned short int>();
-	this->stack.get(2)->destroy<bool*>();
+void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
+	this->stack->get(0)->destroy<unsigned int>();
+	this->stack->get(1)->destroy<unsigned short int>();
+	this->stack->get(2)->destroy<bool*>();
 
 	delete this->stack;
 }
@@ -136,20 +131,24 @@ unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_hallo
 	}
 }
 
-void sparkle_fade(float& i, bool& inc[]) {
+void sparkle_fade(float& i, bool*& inc) {
+	const float ORANGE_R_SLOPE = 1.0;
+	const float ORANGE_G_SLOPE = 0.196078;
+	const float PURPLE_R_SLOPE = 0.588235;
+	const float PURPLE_B_SLOPE = 1.0;
+
 	// fade with absolute value since so many different values
 	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
-		Adafruit_NeoPixel& win;
 		int pixel = 0;
 
 		if (x < WINDOW_LENGTH) {
-			win = window1;
+			Adafruit_NeoPixel& win = window1;
 			pixel = x;
 		} else if (x < WINDOW_LENGTH * 2) {
-			win = window2;
+			Adafruit_NeoPixel& win = window2;
 			pixel = x - WINDOW_LENGTH;
 		} else {
-			win = window3;
+			Adafruit_NeoPixel& win = window3;
 			pixel = x - WINDOW_LENGTH * 2;
 		}
 
