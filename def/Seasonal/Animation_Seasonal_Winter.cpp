@@ -1,20 +1,20 @@
-#include "Animation_Seasonal.cpp"
+#include "Animation_Seasonal.hpp"
 
 /* ~~~ Animation Seasonal Winter: Generic Functions */
 
 void Animation_Seasonal_Winter_Snow::init() {
 	this->stack = new LocalStack();
-	this->stack->ush(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true));
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
 }
 
 void Animation_Seasonal_Winter_Snow::snow_step(Adafruit_NeoPixel& strip) {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& mode = this->stack->get(1).get<bool>();
-	unsigned short int& left = this->stack->get(2).get<unsigned short int>();
-	unsigned short int& right = this->stack->get(3).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& mode = this->stack->get(1)->get<bool>();
+	unsigned short int& left = this->stack->get(2)->get<unsigned short int>();
+	unsigned short int& right = this->stack->get(3)->get<unsigned short int>();
 
 	if (mode == 0) {
 		// randomize
@@ -77,10 +77,10 @@ void Animation_Seasonal_Winter_Snow::snow(Adafruit_NeoPixel& strip, unsigned int
 }
 
 void Animation_Seasonal_Winter_Snow::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
-	this->stack->get(2).destroy<unsigned short int>();
-	this->stack->get(3).destroy<unsigned short int>();
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
+	this->stack->get(2)->destroy<unsigned short int>();
+	this->stack->get(3)->destroy<unsigned short int>();
 
 	delete this->stack;
 }

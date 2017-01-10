@@ -16,9 +16,9 @@ class LocalStack {
         ~LocalStack();
 
         // untyped element manipulation
-        void push(MemObj& element);
-        MemObj& get(unsigned int i);
-        void update(unsigned int i, MemObj& val);
+        void push(MemObj* element);
+        MemObj* get(unsigned int i);
+        void update(unsigned int i, MemObj* val);
         /* DEPRECATED void drop(unsigned int i); */
 
         // get raw stack

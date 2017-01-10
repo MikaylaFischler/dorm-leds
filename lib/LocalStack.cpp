@@ -16,19 +16,24 @@ LocalStack::LocalStack(MemObj stack[], int numElements) {
 */
 
 // <<destructor>>
-LocalStack::~LocalStack() {}
+LocalStack::~LocalStack() {
+	// delete all the mem objects
+	for (unsigned int i = 0; i < this->stack.size(); i++) {
+		delete this->stack.at(i);
+	}
+}
 
 // untyped methods and manipulations
-void LocalStack::push(MemObj& datum) {
-    this->stack.push_back(&datum);
+void LocalStack::push(MemObj* datum) {
+    this->stack.push_back(datum);
 }
 
-MemObj& LocalStack::get(unsigned int i) {
-    return *(this->stack.at(i));
+MemObj* LocalStack::get(unsigned int i) {
+    return this->stack.at(i);
 }
 
-void LocalStack::update(unsigned int i, MemObj& val) {
-    this->stack.at(i) = &val;
+void LocalStack::update(unsigned int i, MemObj* val) {
+    this->stack.at(i) = val;
 }
 
 /**

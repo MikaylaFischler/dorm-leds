@@ -17,13 +17,13 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
  	this->strips = FULL_DESK;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
 }
 
 void Animation_Simple_DeskWhitePurpleFade::step() {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& increasing = this->stack->get(1).get<bool>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& increasing = this->stack->get(1)->get<bool>();
 
 	for (int y = 0; y < DESK1_LENGTH; y++) {
 		if (y%3 != 0) {
@@ -62,9 +62,9 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
   	}
 }
 
-void Animation_Simple_Win1RainbowWipe::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
+void Animation_Simple_DeskWhitePurpleFade::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
 
 	delete this->stack;
 }
@@ -78,13 +78,13 @@ void Animation_Simple_WinAllPurpleFade::init() {
 	this->strips = WINDOW_ALL;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
 }
 
 void Animation_Simple_WinAllPurpleFade::step() {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& increasing = this->stack->get(1).get<bool>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& increasing = this->stack->get(1)->get<bool>();
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
@@ -110,9 +110,9 @@ void Animation_Simple_WinAllPurpleFade::step() {
   	}
 }
 
-void Animation_Simple_Win1RainbowWipe::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
+void Animation_Simple_WinAllPurpleFade::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
 
 	delete this->stack;
 }
@@ -126,13 +126,13 @@ void Animation_Simple_WPISpirit::init() {
 	this->strips = WINDOW_ALL;
 
 	this->stack = new LocalStack();
-	this->stack->push(MemObj(new unsigned short int(0)));
-	this->stack->push(MemObj(new bool(true)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
 }
 
 void Animation_Simple_WPISpirit::step() {
-	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
-	bool& mode = this->stack->get(1).get<bool>();
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& mode = this->stack->get(1)->get<bool>();
 
 	if (mode == 0) {
 		window1.setPixelColor(i, COLOR_MAROON);
@@ -193,9 +193,9 @@ void Animation_Simple_WPISpirit::step() {
 	}
 }
 
-void Animation_Simple_Win1RainbowWipe::clean() {
-	this->stack->get(0).destroy<unsigned short int>();
-	this->stack->get(1).destroy<bool>();
+void Animation_Simple_WPISpirit::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
 
 	delete this->stack;
 }

@@ -1,3 +1,6 @@
+#ifndef LED_C
+#define LED_C
+
 /*
   Dorm LED Project: led.c
   This file contains utility functions for dorm LEDs.
@@ -41,3 +44,5 @@ uint8_t greenFromColor(uint32_t color){
 uint8_t blueFromColor(uint32_t color){
     return color & 0xFF;
 }
+
+#endif

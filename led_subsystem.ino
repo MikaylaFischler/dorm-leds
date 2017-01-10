@@ -11,7 +11,7 @@ unsigned long int dT = 0;
 ThreadHandler led_thread_handler = ThreadHandler();
 
 void led_man_queue() {
-	//led_thread_handler.queue();
+	 led_thread_handler.queue(new Animation_Seasonal_Winter_Snow());
 	//led_thread_handler.queue();
 
 	Serial.println("----------------------");
@@ -19,8 +19,8 @@ void led_man_queue() {
 
 	std::vector<Thread*> t = led_thread_handler.listThreads();
 	for (unsigned int a = 0; a < t.size(); a++) {
-		Animation anim = t.at(a)->getAnimation();
-		String name = anim.getName();
+		Animation* anim = t.at(a)->getAnimation();
+		String name = anim->getName();
 		Serial.println(name);
 	}
 
