@@ -80,7 +80,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 		mode = 1;
 	} else if (mode == 1) {
 		// fade for a bit
-		this->sparkle_fade((float&) i, increasing);
+		this->sparkle_fade(i, increasing);
 
 		i++;
 
@@ -128,29 +128,36 @@ unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_hallo
 			return medium_purple;
 		case 6:
 			return dim_purple;
+		default:
+			return 0;
 	}
 }
 
-void sparkle_fade(float& i, bool*& inc) {
+// warning = float i is UNUSED
+void sparkle_fade(float i, bool*& inc) {
 	const float ORANGE_R_SLOPE = 1.0;
 	const float ORANGE_G_SLOPE = 0.196078;
 	const float PURPLE_R_SLOPE = 0.588235;
 	const float PURPLE_B_SLOPE = 1.0;
+
+	Adafruit_NeoPixel* temp_win;
 
 	// fade with absolute value since so many different values
 	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
 		int pixel = 0;
 
 		if (x < WINDOW_LENGTH) {
-			Adafruit_NeoPixel& win = window1;
+			temp_win = &window1;
 			pixel = x;
 		} else if (x < WINDOW_LENGTH * 2) {
-			Adafruit_NeoPixel& win = window2;
+			temp_win = &window2;
 			pixel = x - WINDOW_LENGTH;
 		} else {
-			Adafruit_NeoPixel& win = window3;
+			temp_win = &window3;
 			pixel = x - WINDOW_LENGTH * 2;
 		}
+
+		Adafruit_NeoPixel& win = *temp_win;
 
 		unsigned long int color = win.getPixelColor(pixel);
 
