@@ -10,7 +10,9 @@ MemObj::~MemObj() {}
 
 // get the data
 template <typename mem_type>
-mem_type& MemObj::get() { return (mem_type&) var; }
+mem_type& MemObj::get() {
+	return *((mem_type*) var);
+}
 
 /*
 // update the data
@@ -22,4 +24,6 @@ void MemObj::set(mem_type* new_data) {
 
 // free the memory
 template <typename mem_type>
-void MemObj::destroy() { delete (mem_type*) var; }
+void MemObj::destroy() {
+	delete (mem_type*) var;
+}
