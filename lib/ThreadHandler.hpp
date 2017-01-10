@@ -19,14 +19,14 @@ private:
 	unsigned int elapsed_time;
 	unsigned int next_id;
 
-	void dequeueConflicts(Animation& anim);
-	void setStripsInUse(Animation& anim);
-	bool conflictsWith(int* str1, int length1, int* str2, int length2);
+	void dequeueConflicts(Animation* anim);
+	void setStripsInUse(Animation* anim);
+	bool conflictsWith(short int* str1, int length1, short int* str2, int length2);
 public:
 	ThreadHandler();
 	~ThreadHandler();
 	std::vector<Thread*> listThreads();
-	void queue(Animation& anim);
+	void queue(Animation* anim);
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 };

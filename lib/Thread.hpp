@@ -13,7 +13,7 @@ private:
 	unsigned long int updateRate;
 	unsigned long int timeSum;
 public:
-	Thread(unsigned int id, Animation& anim);
+	Thread(unsigned int id, Animation* anim);
 	~Thread();
 
 	unsigned int getID();
@@ -22,7 +22,7 @@ public:
 	void addTimeSum(unsigned int dT);
 	void zeroTimeSum();
 
-	Animation& getAnimation();
+	Animation* getAnimation();
 };
 
 #endif

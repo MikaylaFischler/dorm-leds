@@ -23,11 +23,11 @@
 #include "lib/strip_id.h"
 #include "lib/strip_ownership.h"
 
-#include "lib/MemObj.hpp"
-#include "lib/LocalStack.hpp"
-#include "lib/Animation.hpp"
-#include "lib/Thread.hpp"
-#include "lib/ThreadHandler.hpp"
+#include "lib/MemObj.cpp"
+#include "lib/LocalStack.cpp"
+#include "lib/Animation.cpp"
+#include "lib/Thread.cpp"
+#include "lib/ThreadHandler.cpp"
 
 // Animations
 #include "def/animations.h"

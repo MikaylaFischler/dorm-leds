@@ -8,18 +8,18 @@ void Animation_Holiday_Hanukkah_Win2Snow::init() {
 	this->num_strips = 1;
  	this->strips = WINDOW_2;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new bool(true));
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new bool(true));
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new unsigned short int(0)));
 }
 
 void Animation_Holiday_Hanukkah_Win2Snow::step() {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	bool& mode = this->stack.get(1).get<bool>();
-	unsigned short int& left = this->stack.get(2).get<unsigned short int>();
-	unsigned short int& right = this->stack.get(3).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
+	bool& mode = this->stack->get(1).get<bool>();
+	unsigned short int& left = this->stack->get(2).get<unsigned short int>();
+	unsigned short int& right = this->stack->get(3).get<unsigned short int>();
 
 	if (mode == 0) {
 		// randomize
@@ -40,7 +40,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::step() {
 		if (i == 800) {
 			i = 0;
 			mode = 0;
-			this->execution_count++;
+			this->current_exec++;
 		}
 	}
 }
@@ -67,7 +67,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		if (rel_index < a % leftFullLength) {
 			window2.setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, off);
+			window2.setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -78,7 +78,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		if (rel_index < a % rightFullLength) {
 			window2.setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, off);
+			window2.setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -89,7 +89,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		if (rel_index < a % rightFullLength) {
 			window2.setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, off);
+			window2.setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -100,7 +100,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		if (rel_index < a % rightFullLength) {
 			window2.setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, off);
+			window2.setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -114,7 +114,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 			if (x - 4 < a % rightFullLength) {
 				window2.setPixelColor(x, blue);
 			} else {
-				window2.setPixelColor(x, off);
+				window2.setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
@@ -129,7 +129,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 			if (rel_index + 4 < a % leftFullLength) {
 				window2.setPixelColor(x, blue);
 			} else {
-				window2.setPixelColor(x, off);
+				window2.setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
@@ -138,8 +138,10 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 }
 
 void Animation_Holiday_Hanukkah_Win2Snow::clean() {
-	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<bool>();
-	this->stack.get(2).destroy<unsigned short int>();
-	this->stack.get(3).destroy<unsigned short int>();
+	this->stack->get(0).destroy<unsigned short int>();
+	this->stack->get(1).destroy<bool>();
+	this->stack->get(2).destroy<unsigned short int>();
+	this->stack->get(3).destroy<unsigned short int>();
+
+	delete this->stack;
 }

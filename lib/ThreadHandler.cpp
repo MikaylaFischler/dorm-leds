@@ -10,7 +10,7 @@ ThreadHandler::~ThreadHandler() {}
 std::vector<Thread*> ThreadHandler::listThreads() { return threads; }
 
 // queue an animation
-void ThreadHandler::queue(Animation& anim) {
+void ThreadHandler::queue(Animation* anim) {
 	dequeueConflicts(anim);
 	setStripsInUse(anim);
 
@@ -21,7 +21,7 @@ void ThreadHandler::queue(Animation& anim) {
 	threads.push_back(t);
 
 	Serial.print(F("ThreadHandler.cpp:> New Thread Queued: "));
-	Serial.println(anim.getName());
+	Serial.println(anim->getName());
 }
 
 // update the time sums for each thread
@@ -42,7 +42,7 @@ void ThreadHandler::executeTick() {
 		unsigned long int timeSum = this_thread.getTimeSum();
 
 		if(timeSum >= updateRate){
-			this_thread.getAnimation().step();
+			this_thread.getAnimation()->step();
 			this_thread.zeroTimeSum();
 		}
 	}
@@ -50,9 +50,9 @@ void ThreadHandler::executeTick() {
 
 // update the list of strips in use
 // the multiple loops shouldn't have much overhead since it is not possible for either will be larger than 5 elements
-void ThreadHandler::setStripsInUse(Animation& anim) {
-	int* str = anim.getDependencies();
-	int length = anim.getNumStrips();
+void ThreadHandler::setStripsInUse(Animation* anim) {
+	short int* str = anim->getDependencies();
+	int length = anim->getNumStrips();
 
 	for (int i = 0; i < length; i++) {
 		for (int y = 0; y < 5; y++) {
@@ -64,18 +64,18 @@ void ThreadHandler::setStripsInUse(Animation& anim) {
 }
 
 // dequeue any conflicts (recursive)
-void ThreadHandler::dequeueConflicts(Animation& anim) {
+void ThreadHandler::dequeueConflicts(Animation* anim) {
 	int i = 0;
 
 	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++, i++) {
 		Thread& this_thread = **it;
 
-		if (conflictsWith(anim.getDependencies(), anim.getNumStrips(), this_thread.getAnimation().getDependencies(), this_thread.getAnimation().getNumStrips())) {
+		if (conflictsWith(anim->getDependencies(), anim->getNumStrips(), this_thread.getAnimation()->getDependencies(), this_thread.getAnimation()->getNumStrips())) {
 			delete it;
 			threads.erase(threads.begin() + i);
 
 			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued"));
-			Serial.println(this_thread.getAnimation().getName());
+			Serial.println(this_thread.getAnimation()->getName());
 
 			dequeueConflicts(anim);
 			break;
@@ -85,7 +85,7 @@ void ThreadHandler::dequeueConflicts(Animation& anim) {
 
 // check if the inputed list conflicts another inputed list
 // the multiple loops shouldn't have much overhead since it is not possible for either will be larger than 5 elements
-bool ThreadHandler::conflictsWith(int* str1, int length1, int* str2, int length2) {
+bool ThreadHandler::conflictsWith(short int* str1, int length1, short int* str2, int length2) {
 	for (int a = 0; a < length1; a++) {
 		for (int b = 0; b < length2; b++) {
 			if (str1[a] == str2[b]) {

@@ -12,7 +12,7 @@ class Animation {
 protected:
     String name;
     int num_strips;
-    int* strips;
+    short int* strips;
 
     LocalStack* stack;
 
@@ -31,7 +31,7 @@ public:
 
     String getName();
     int getNumStrips();
-    int* getDependencies();
+    short int* getDependencies();
     unsigned long int getUpdateRate();
 };
 
