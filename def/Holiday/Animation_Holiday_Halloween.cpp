@@ -8,14 +8,14 @@ void Animation_Holiday_Halloween_WinAllFade::init() {
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new bool(true)));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new bool(true)));
 }
 
 void Animation_Holiday_Halloween_WinAllFade::step() {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	bool& increasing = this->stack.get(1).get<bool>();
+	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
+	bool& increasing = this->stack->get(1).get<bool>();
 
     for (int x = 0; x < WINDOW_LENGTH; x++) {
     	window1.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
@@ -36,7 +36,7 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
         if (i == 0) {
             i++;
             increasing = true;
-      		this->execution_count++;
+      		this->current_exec++;
         } else {
             i--;
         }
@@ -44,8 +44,10 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
 }
 
 void Animation_Holiday_Halloween_WinAllFade::clean() {
-	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<bool>();
+	this->stack->get(0).destroy<unsigned short int>();
+	this->stack->get(1).destroy<bool>();
+
+	delete this->stack;
 }
 
 /* ~~~ Animation Holiday Halloween: Randomized Sparkle Effect (All Windows) ~~~ */
@@ -56,10 +58,10 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned int(0)));
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned int(0)));
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
@@ -68,9 +70,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	const float PURPLE_R_SLOPE = 0.588235;
 	const float PURPLE_B_SLOPE = 1.0;
 
-	unsigned int& i = this->stack.get(0).get<unsigned int>();
-	unsigned short int mode = this->stack.get(1).get<unsigned short int>();
-	bool*& increasing = this->stack.get(2).get<bool*>();
+	unsigned int& i = this->stack->get(0).get<unsigned int>();
+	unsigned short int mode = this->stack->get(1).get<unsigned short int>();
+	bool*& increasing = this->stack->get(2).get<bool*>();
 
 	if (mode == 0) {
 		// randomize
@@ -90,7 +92,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 		if (i == 256) {
 			i = 0;
 			mode = 0;
-      		this->execution_count++;
+      		this->current_exec++;
 		}
 	}
 
@@ -98,9 +100,11 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 }
 
 void Animation_Holiday_Halloween_WinAllFade::clean() {
-	this->stack.get(0).destroy<unsigned int>();
-	this->stack.get(1).destroy<unsigned short int>();
-	this->stack.get(2).destroy<bool*>();
+	this->stack.get(0)->destroy<unsigned int>();
+	this->stack.get(1)->destroy<unsigned short int>();
+	this->stack.get(2)->destroy<bool*>();
+
+	delete this->stack;
 }
 
 unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_halloween_color() {

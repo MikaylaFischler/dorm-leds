@@ -33,14 +33,14 @@ void Animation_Simple_Win1RainbowWipe::init() {
 	this->num_strips = 1;
  	this->strips = WINDOW_1;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new unsigned short int(0)));
 }
 
 void Animation_Simple_Win1RainbowWipe::step() {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	unsigned short int& color_mode = this->stack.get(1).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
+	unsigned short int& color_mode = this->stack->get(1).get<unsigned short int>();
 
     this->rainbow_color_wipe(window1, i, color_mode);
 
@@ -54,14 +54,16 @@ void Animation_Simple_Win1RainbowWipe::step() {
 
 		if (color_mode == 16) {
 			color_mode = 0;
-			this->execution_count++;
+			this->current_exec++;
 		}
 	}
 }
 
 void Animation_Simple_Win1RainbowWipe::clean() {
-	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<unsigned short int>();
+	this->stack->get(0).destroy<unsigned short int>();
+	this->stack->get(1).destroy<unsigned short int>();
+
+	delete this->stack;
 }
 
 /* ~~~ Animation Simple: Window 2 Rainbow Color Wipe ~~~ */
@@ -72,14 +74,14 @@ void Animation_Simple_Win2RainbowWipe::init() {
 	this->num_strips = 1;
  	this->strips = WINDOW_2;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new unsigned short int(0)));
 }
 
 void Animation_Simple_Win2RainbowWipe::step() {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	unsigned short int& color_mode = this->stack.get(1).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
+	unsigned short int& color_mode = this->stack->get(1).get<unsigned short int>();
 
     this->rainbow_color_wipe(window2, i, color_mode);
 
@@ -93,14 +95,16 @@ void Animation_Simple_Win2RainbowWipe::step() {
 
 		if (color_mode == 16) {
 			color_mode = 0;
-			this->execution_count++;
+			this->current_exec++;
 		}
 	}
 }
 
 void Animation_Simple_Win2RainbowWipe::clean() {
-	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<unsigned short int>();
+	this->stack->get(0).destroy<unsigned short int>();
+	this->stack->get(1).destroy<unsigned short int>();
+
+	delete this->stack;
 }
 
 /* ~~~ Animation Simple: Window 3 Rainbow Color Wipe ~~~ */
@@ -111,14 +115,14 @@ void Animation_Simple_Win3RainbowWipe::init() {
 	this->num_strips = 1;
  	this->strips = WINDOW_3;
 
-	this->stack = LocalStack();
-	this->stack.push(MemObj(new unsigned short int(0)));
-	this->stack.push(MemObj(new unsigned short int(0)));
+	this->stack = new LocalStack();
+	this->stack->push(MemObj(new unsigned short int(0)));
+	this->stack->push(MemObj(new unsigned short int(0)));
 }
 
 void Animation_Simple_Win3RainbowWipe::step() {
-	unsigned short int& i = this->stack.get(0).get<unsigned short int>();
-	unsigned short int& color_mode = this->stack.get(1).get<unsigned short int>();
+	unsigned short int& i = this->stack->get(0).get<unsigned short int>();
+	unsigned short int& color_mode = this->stack->get(1).get<unsigned short int>();
 
     this->rainbow_color_wipe(window2, i, color_mode);
 
@@ -132,12 +136,14 @@ void Animation_Simple_Win3RainbowWipe::step() {
 
 		if (color_mode == 16) {
 			color_mode = 0;
-			this->execution_count++;
+			this->current_exec++;
 		}
 	}
 }
 
 void Animation_Simple_Win3RainbowWipe::clean() {
-	this->stack.get(0).destroy<unsigned short int>();
-	this->stack.get(1).destroy<unsigned short int>();
+	this->stack->get(0).destroy<unsigned short int>();
+	this->stack->get(1).destroy<unsigned short int>();
+
+	delete this->stack;
 }
