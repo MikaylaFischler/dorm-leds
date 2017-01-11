@@ -39,46 +39,42 @@ public:
 	void clean();
 };
 
-class Animation_Simple_WPISpirit : public Animation_Simple {
-protected:
-	void init();
+class Animation_Simple_WinAllWPISpirit : public Animation_Simple {
 public:
-	Animation_Simple_WPISpirit() {}
-	~Animation_Simple_WPISpirit() {}
+	Animation_Simple_WinAllWPISpirit() {}
+	~Animation_Simple_WinAllWPISpirit() {}
 
+	void init();
 	void step();
 	void clean();
 };
 
 class Animation_Simple_Win1RainbowWipe : public Animation_Simple_WinColorWipe {
-protected:
-	void init();
 public:
 	Animation_Simple_Win1RainbowWipe() {}
 	~Animation_Simple_Win1RainbowWipe() {}
 
+	void init();
 	void step();
 	void clean();
 };
 
 class Animation_Simple_Win2RainbowWipe : public Animation_Simple_WinColorWipe {
-protected:
-	void init();
 public:
 	Animation_Simple_Win2RainbowWipe() {}
 	~Animation_Simple_Win2RainbowWipe() {}
 
+	void init();
 	void step();
 	void clean();
 };
 
 class Animation_Simple_Win3RainbowWipe : public Animation_Simple_WinColorWipe {
-protected:
-	void init();
 public:
 	Animation_Simple_Win3RainbowWipe() {}
 	~Animation_Simple_Win3RainbowWipe() {}
 
+	void init();
 	void step();
 	void clean();
 };
