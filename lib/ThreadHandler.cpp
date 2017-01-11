@@ -74,10 +74,10 @@ void ThreadHandler::dequeueConflicts(Animation* anim) {
 		Thread& this_thread = **it;
 
 		if (conflictsWith(anim->getDependencies(), anim->getNumStrips(), this_thread.getAnimation()->getDependencies(), this_thread.getAnimation()->getNumStrips())) {
-			delete it;
+			delete *it;
 			threads.erase(threads.begin() + i);
 
-			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued"));
+			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued: "));
 			Serial.println(this_thread.getAnimation()->getName());
 
 			dequeueConflicts(anim);
