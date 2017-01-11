@@ -3,6 +3,8 @@
 /* ~~~ Animation Seasonal Winter: Generic Functions */
 
 void Animation_Seasonal_Winter_Snow::init() {
+	this->update_rate = 50;
+
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
 	this->stack->push(new MemObj(new bool(true)));

@@ -17,15 +17,14 @@ protected:
 
     LocalStack* stack;
 
-    unsigned long int updateRate;
+    unsigned long int update_rate;
     int max_exec;
     int current_exec;
 
-	Animation();
-
-    virtual void init();
+	virtual Animation();
 public:
 	virtual ~Animation();
+    virtual void init();
 
 	virtual void step() {};
     virtual void clean() {};

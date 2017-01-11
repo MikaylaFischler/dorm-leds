@@ -5,7 +5,7 @@
 // define the generic static init
 void Animation_Static::init() {
     Animation::init();
-    this->updateRate = 60000;
+    this->update_rate = 60000;
     this->max_exec = -1;
 }
 
