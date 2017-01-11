@@ -12,6 +12,7 @@ private:
 	Animation* animation;
 	unsigned long int updateRate;
 	unsigned long int timeSum;
+	bool firstCall;
 public:
 	Thread(unsigned int id, Animation* anim);
 	~Thread();
@@ -21,6 +22,7 @@ public:
 	unsigned long int getTimeSum();
 	void addTimeSum(unsigned int dT);
 	void zeroTimeSum();
+	bool checkFirstCall();
 
 	Animation* getAnimation();
 };

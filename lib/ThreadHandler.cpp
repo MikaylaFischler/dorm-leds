@@ -11,7 +11,7 @@ std::vector<Thread*> ThreadHandler::listThreads() { return threads; }
 
 // queue an animation
 void ThreadHandler::queue(Animation* anim) {
-	dequeueConflicts(anim);
+	//dequeueConflicts(anim);
 	setStripsInUse(anim);
 
 	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
