@@ -76,5 +76,6 @@ void loop() {
 	//ctrl_main_loop();
 
 	Serial.print(F("Free SRAM: "));
-	Serial.println(freeMemory());
+	Serial.print(freeMemory());
+	Serial.println(F(" bytes"));
 }
