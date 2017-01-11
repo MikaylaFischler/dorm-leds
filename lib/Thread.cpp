@@ -30,7 +30,7 @@ void Thread::addTimeSum(unsigned int dT) { this->timeSum += dT; }
 void Thread::zeroTimeSum() { this->timeSum = 0; }
 
 // check first call
-void Thread::checkFirstCall() {
+bool Thread::checkFirstCall() {
 	bool temp = this->firstCall;
 	this->firstCall = false;
 	return temp;
