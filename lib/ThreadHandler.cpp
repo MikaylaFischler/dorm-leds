@@ -1,4 +1,6 @@
 #include "ThreadHandler.hpp"
+#include "../util/mem.c"
+#include "../util/MemoryFree.h"
 
 //<<constructor>>
 ThreadHandler::ThreadHandler() {}
@@ -26,7 +28,12 @@ void ThreadHandler::queue(Animation* anim) {
 	Serial.print(anim->getName());
 	Serial.print(F(" at "));
 	Serial.print(anim->getUpdateRate());
-	Serial.println(F(" mHz"));
+	Serial.print(F(" mHz"));
+	Serial.print(F(", occupying "));
+	Serial.print(mem_available - freeMemory());
+	Serial.println(F(" bytes of SRAM"));
+
+	mem_available = freeMemory();
 }
 
 // update the time sums for each thread
