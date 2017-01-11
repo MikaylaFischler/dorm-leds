@@ -12,13 +12,12 @@ protected:
 };
 
 class Animation_Static_DeskDimAmbient : public Animation_Static {
-protected:
-	void init();
 public:
     Animation_Static_DeskDimAmbient() {}
     ~Animation_Static_DeskDimAmbient() {}
-	
+
     void step();
+	void init();
 };
 
 

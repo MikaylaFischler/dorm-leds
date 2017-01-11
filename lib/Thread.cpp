@@ -2,6 +2,8 @@
 
 //<<constructor>>
 Thread::Thread (unsigned int id, Animation* anim) {
+	anim->init();
+
 	this->id = id;
 	this->animation = anim;
 	this->updateRate = anim->getUpdateRate();

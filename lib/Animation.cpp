@@ -1,7 +1,7 @@
 #include "Animation.hpp"
 
 // <<constructor>>
-Animation::Animation() { init(); }
+Animation::Animation() {}
 
 // <<destructor>>
 Animation::~Animation() { clean(); }
@@ -19,4 +19,4 @@ int Animation::getNumStrips() { return this->num_strips; }
 short int* Animation::getDependencies() { return this->strips; }
 
 // get update rate
-unsigned long int Animation::getUpdateRate() { return this->updateRate; }
+unsigned long int Animation::getUpdateRate() { return this->update_rate; }
