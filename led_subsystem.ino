@@ -11,7 +11,7 @@ unsigned long int dT = 0;
 ThreadHandler led_thread_handler = ThreadHandler();
 
 void led_man_queue() {
-	led_thread_handler.queue(new Animation_Static_DeskDimAmbient());
+	led_thread_handler.queue(new Animation_Static_DeskThirdDimAmbient());
 	led_thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win1());
 	led_thread_handler.queue(new Animation_Simple_Win2RainbowWipe());
 	led_thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win3());

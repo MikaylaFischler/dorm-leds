@@ -18,8 +18,8 @@ protected:
     LocalStack* stack;
 
     unsigned long int update_rate;
-    int max_exec;
-    int current_exec;
+    long int max_exec;
+    long int current_exec;
 
 	Animation();
 public:
@@ -33,6 +33,8 @@ public:
     int getNumStrips();
     short int* getDependencies();
     unsigned long int getUpdateRate();
+	long int getMaxExecutions();
+	long int getCurrentExecutionCount();
 };
 
 #endif

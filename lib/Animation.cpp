@@ -20,3 +20,9 @@ short int* Animation::getDependencies() { return this->strips; }
 
 // get update rate
 unsigned long int Animation::getUpdateRate() { return this->update_rate; }
+
+// get max execution count
+long int Animation::getMaxExecutions() { return this->max_exec; }
+
+//get current execution count
+long int Animation::getCurrentExecutionCount() { return this->current_exec; }
