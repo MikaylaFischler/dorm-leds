@@ -11,6 +11,15 @@ protected:
     void init();
 };
 
+class Animation_Static_DeskThirdDimAmbient : public Animation_Static {
+public:
+    Animation_Static_DeskThirdDimAmbient() {}
+    ~Animation_Static_DeskThirdDimAmbient() {}
+
+    void step();
+	void init();
+};
+
 class Animation_Static_DeskDimAmbient : public Animation_Static {
 public:
     Animation_Static_DeskDimAmbient() {}
