@@ -34,6 +34,7 @@
 
 // Utility Files
 #include "util/led.c"
+#include "util/mem.c"
 #include "util/MemoryFree.h"
 
 // Timing
@@ -58,6 +59,7 @@ void setup() {
 	init_strips();
 
 	// manual queue
+	mem_available = freeMemory();
 	Serial.println(F("Manually queueing animations..."));
 	led_man_queue();
 
