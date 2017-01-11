@@ -47,8 +47,10 @@ void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 
 // execute a tick of the handler
 void ThreadHandler::executeTick() {
+	int i = 0;
+
 	// iterate through each queued thread
-	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++) {
+	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++, i++) {
 		Thread& this_thread = **it;
 		unsigned long int updateRate = this_thread.getUpdateRate();
 		unsigned long int timeSum = this_thread.getTimeSum();
@@ -56,6 +58,14 @@ void ThreadHandler::executeTick() {
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
 			this_thread.zeroTimeSum();
+		}
+
+		long int max_exec = this_thread.getAnimation()->getMaxExecutions();
+		long int current_exec = this_thread.getAnimation()->getCurrentExecutionCount();
+
+		if (max_exec != -1 && current_exec >= max_exec) {
+			delete *it;
+			threads.erase(threads.begin() + i);
 		}
 	}
 }
