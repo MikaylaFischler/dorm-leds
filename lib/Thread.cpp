@@ -2,8 +2,6 @@
 
 //<<constructor>>
 Thread::Thread (unsigned int id, Animation* anim) {
-	anim->init();
-
 	this->firstCall = true;
 	this->id = id;
 	this->animation = anim;

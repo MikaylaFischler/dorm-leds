@@ -11,6 +11,8 @@ std::vector<Thread*> ThreadHandler::listThreads() { return threads; }
 
 // queue an animation
 void ThreadHandler::queue(Animation* anim) {
+	anim->init();
+
 	// dequeue conflicting threads
 	dequeueConflicts(anim);
 
@@ -59,11 +61,11 @@ void ThreadHandler::dequeueConflicts(Animation* anim) {
 		Thread& this_thread = **it;
 
 		if (conflictsWith(anim->getDependencies(), anim->getNumStrips(), this_thread.getAnimation()->getDependencies(), this_thread.getAnimation()->getNumStrips())) {
-			delete *it;
-			threads.erase(threads.begin() + i);
-
 			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued: "));
 			Serial.println(this_thread.getAnimation()->getName());
+
+			delete *it;
+			threads.erase(threads.begin() + i);
 
 			dequeueConflicts(anim);
 			break;
