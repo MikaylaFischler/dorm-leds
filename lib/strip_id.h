@@ -1,3 +1,6 @@
+#ifndef STRIP_ID_H
+#define STRIP_ID_H
+
 // constants for strip management
 #define WINDOW1 1
 #define WINDOW2 2
@@ -5,5 +8,4 @@
 #define DESK1 4
 #define DESK2 5
 
-#define STRIP_OFF 0
-#define STRIP_ON 1
+#endif

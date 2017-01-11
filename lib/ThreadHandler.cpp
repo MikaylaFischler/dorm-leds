@@ -11,8 +11,8 @@ std::vector<Thread*> ThreadHandler::listThreads() { return threads; }
 
 // queue an animation
 void ThreadHandler::queue(Animation* anim) {
-	//dequeueConflicts(anim);
-	setStripsInUse(anim);
+	// dequeue conflicting threads
+	dequeueConflicts(anim);
 
 	// queue this command as a new thread (set current time as the update rate so it initially sets on start)
 	Thread* t = new Thread(next_id, anim);
@@ -47,21 +47,6 @@ void ThreadHandler::executeTick() {
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
 			this_thread.zeroTimeSum();
-		}
-	}
-}
-
-// update the list of strips in use
-// the multiple loops shouldn't have much overhead since it is not possible for either will be larger than 5 elements
-void ThreadHandler::setStripsInUse(Animation* anim) {
-	short int* str = anim->getDependencies();
-	int length = anim->getNumStrips();
-
-	for (int i = 0; i < length; i++) {
-		for (int y = 0; y < 5; y++) {
-			if (str[i] == this->strip_status[y][0]) {
-				this->strip_status[y][1] = STRIP_ON;
-			}
 		}
 	}
 }
