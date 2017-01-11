@@ -74,7 +74,6 @@ void setup() {
 void loop() {
 	// Run multithreaded system code
 	led_main_loop();
-
 	ctrl_main_loop();
 
 	Serial.print(F("Free SRAM: "));
