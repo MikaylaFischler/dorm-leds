@@ -128,3 +128,4 @@ void allTheaterChaseRainbow(uint8_t wait) {
     }
   }
 }
+
