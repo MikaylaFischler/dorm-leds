@@ -10,17 +10,11 @@
 
 class ThreadHandler {
 private:
-	int strip_status[5][2] = {	{ WINDOW1, STRIP_OFF },
-							 	{ WINDOW2, STRIP_OFF },
-							 	{ WINDOW3, STRIP_OFF },
-							    { DESK1, STRIP_OFF },
-							    { DESK2, STRIP_OFF } };
 	std::vector<Thread*> threads;
 	unsigned int elapsed_time;
 	unsigned int next_id;
 
 	void dequeueConflicts(Animation* anim);
-	void setStripsInUse(Animation* anim);
 	bool conflictsWith(short int* str1, int length1, short int* str2, int length2);
 public:
 	ThreadHandler();
