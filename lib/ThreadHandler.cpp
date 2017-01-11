@@ -21,13 +21,16 @@ void ThreadHandler::queue(Animation* anim) {
 	threads.push_back(t);
 
 	Serial.print(F("ThreadHandler.cpp:> New Thread Queued: "));
-	Serial.println(anim->getName());
+	Serial.print(anim->getName());
+	Serial.print(F(" at "));
+	Serial.print(anim->getUpdateRate());
+	Serial.println(F(" mHz"));
 }
 
 // update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 	// iterate through each queued thread
-	for(std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++){
+	for (std::vector<Thread*>::iterator it = threads.begin(); it != threads.end(); it++) {
 		Thread& this_thread = **it;
 		this_thread.addTimeSum(dT);
 	}
@@ -41,7 +44,7 @@ void ThreadHandler::executeTick() {
 		unsigned long int updateRate = this_thread.getUpdateRate();
 		unsigned long int timeSum = this_thread.getTimeSum();
 
-		if(timeSum >= updateRate){
+		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
 			this_thread.zeroTimeSum();
 		}
