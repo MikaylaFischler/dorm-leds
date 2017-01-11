@@ -11,7 +11,7 @@ void Animation_Holiday_Christmas_Win13Snow::init() {
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	this->stack->push(new MemObj(new bool(false)));
 	this->stack->push(new MemObj(new unsigned short int(0)));
 	this->stack->push(new MemObj(new unsigned short int(0)));
 }
@@ -22,7 +22,7 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 	unsigned short int& left = this->stack->get(2)->get<unsigned short int>();
 	unsigned short int& right = this->stack->get(3)->get<unsigned short int>();
 
-	if (mode == 0) {
+	if (mode == false) {
 		// randomize
 		left = random(3,8);
 		right = random(3,8);
@@ -30,8 +30,8 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 		// snow fall
 		this->christmas_snow(i, left, right);
 
-		mode = 1;
-	} else if (mode == 1) {
+		mode = true;
+	} else {
 		// snow fall
 		this->christmas_snow(i, left, right);
 
@@ -40,7 +40,7 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 		// 40 for a loop one direction, 80 for a full forwards and backwards
 		if (i == 800) {
 			i = 0;
-			mode = 0;
+			mode = false;
 			this->current_exec++;
 		}
 	}
