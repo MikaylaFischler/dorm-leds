@@ -7,7 +7,7 @@ class Animation_Simple : public Animation {
 protected:
     Animation_Simple() {}
     ~Animation_Simple() {}
-
+public:
     void init();
 };
 
@@ -20,23 +20,21 @@ protected:
 };
 
 class Animation_Simple_DeskWhitePurpleFade : public Animation_Simple {
-protected:
-    void init();
 public:
     Animation_Simple_DeskWhitePurpleFade() {}
     ~Animation_Simple_DeskWhitePurpleFade() {}
 
+	void init();
 	void step();
 	void clean();
 };
 
 class Animation_Simple_WinAllPurpleFade : public Animation_Simple {
-protected:
-	void init();
 public:
 	Animation_Simple_WinAllPurpleFade() {}
 	~Animation_Simple_WinAllPurpleFade() {}
 
+	void init();
 	void step();
 	void clean();
 };
