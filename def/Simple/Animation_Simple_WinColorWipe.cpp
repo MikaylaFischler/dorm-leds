@@ -127,7 +127,7 @@ void Animation_Simple_Win3RainbowWipe::step() {
 	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
 	unsigned short int& color_mode = this->stack->get(1)->get<unsigned short int>();
 
-    this->rainbow_color_wipe(window2, i, color_mode);
+    this->rainbow_color_wipe(window3, i, color_mode);
 
     window3.show();
 
