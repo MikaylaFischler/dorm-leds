@@ -121,7 +121,7 @@ void Animation_Simple_WinAllPurpleFade::clean() {
 
 /* ~~~ Animation Simple: Window All WPI Spirit ~~~ */
 
-void Animation_Simple_WPISpirit::init() {
+void Animation_Simple_WinAllWPISpirit::init() {
 	Animation_Simple::init();
 	this->name = F("Window[all]: WPI Spirit");
 	this->num_strips = 3;
@@ -132,7 +132,7 @@ void Animation_Simple_WPISpirit::init() {
 	this->stack->push(new MemObj(new bool(true)));
 }
 
-void Animation_Simple_WPISpirit::step() {
+void Animation_Simple_WinAllWPISpirit::step() {
 	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
 	bool& mode = this->stack->get(1)->get<bool>();
 
@@ -195,7 +195,7 @@ void Animation_Simple_WPISpirit::step() {
 	}
 }
 
-void Animation_Simple_WPISpirit::clean() {
+void Animation_Simple_WinAllWPISpirit::clean() {
 	this->stack->get(0)->destroy<unsigned short int>();
 	this->stack->get(1)->destroy<bool>();
 
