@@ -5,6 +5,7 @@
 void Animation_Holiday_Christmas_Win13Snow::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[1,3]: Christmas with Snow");
+    this->update_rate = 50;
 	this->num_strips = 2;
  	this->strips = WINDOW_1_3;
 

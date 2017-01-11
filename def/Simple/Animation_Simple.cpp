@@ -13,6 +13,7 @@ void Animation_Simple::init() {
 void Animation_Simple_DeskWhitePurpleFade::init() {
  	Animation_Simple::init();
  	this->name = F("Desk[all]: Off White with Purple Fade");
+    this->update_rate = 10;
 	this->num_strips = 2;
  	this->strips = FULL_DESK;
 
@@ -74,6 +75,7 @@ void Animation_Simple_DeskWhitePurpleFade::clean() {
 void Animation_Simple_WinAllPurpleFade::init() {
 	Animation_Simple::init();
 	this->name = F("Window[all]: Purple Fade");
+    this->update_rate = 10;
 	this->num_strips = 3;
 	this->strips = WINDOW_ALL;
 

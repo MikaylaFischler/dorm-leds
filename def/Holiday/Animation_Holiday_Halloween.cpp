@@ -5,6 +5,7 @@
 void Animation_Holiday_Halloween_WinAllFade::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Basic Halloween Fade");
+    this->update_rate = 5;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
@@ -55,6 +56,7 @@ void Animation_Holiday_Halloween_WinAllFade::clean() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
+    this->update_rate = 10;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 

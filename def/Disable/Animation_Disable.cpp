@@ -6,7 +6,7 @@
 void Animation_Disable::init() {
     Animation::init();
     this->num_strips = 1;
-    this->updateRate = 1;
+    this->update_rate = 1;
     this->max_exec = 1;
 }
 
