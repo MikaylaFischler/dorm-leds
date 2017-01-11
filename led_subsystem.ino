@@ -17,7 +17,7 @@ void led_man_queue() {
 	led_thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win3());
 
 	Serial.println(F("----------------------"));
-	Serial.println(F("Manual Queue:"));
+	Serial.println(F("Manual Queue Contains:"));
 
 	std::vector<Thread*> t = led_thread_handler.listThreads();
 	for (unsigned int a = 0; a < t.size(); a++) {
