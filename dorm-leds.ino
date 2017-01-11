@@ -12,6 +12,9 @@
 #include <system_configuration.h>
 #include <utility.h>
 
+// Memory Monitoring
+#include "MemoryFree.h"
+
 // LED Library
 #include <Adafruit_NeoPixel.h>
 
@@ -73,4 +76,7 @@ void loop() {
 	led_main_loop();
 
 	//ctrl_main_loop();
+
+	Serial.print(F("Free SRAM: "));
+	Serial.println(freeMemory());
 }
