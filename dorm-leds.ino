@@ -12,9 +12,6 @@
 #include <system_configuration.h>
 #include <utility.h>
 
-// Memory Monitoring
-#include "MemoryFree.h"
-
 // LED Library
 #include <Adafruit_NeoPixel.h>
 
@@ -37,6 +34,7 @@
 
 // Utility Files
 #include "util/led.c"
+#include "util/MemoryFree.h"
 
 // Timing
 unsigned long int prev_time = millis();
