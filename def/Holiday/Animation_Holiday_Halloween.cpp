@@ -56,7 +56,7 @@ void Animation_Holiday_Halloween_WinAllFade::clean() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
-    this->update_rate = 10;
+    this->update_rate = 100;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
@@ -68,7 +68,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	unsigned int& i = this->stack->get(0)->get<unsigned int>();
-	unsigned short int mode = this->stack->get(1)->get<unsigned short int>();
+	unsigned short int& mode = this->stack->get(1)->get<unsigned short int>();
 	bool*& increasing = this->stack->get(2)->get<bool*>();
 
 	if (mode == 0) {
@@ -88,7 +88,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 
 		if (i == 256) {
 			i = 0;
-			mode = 0;
+			//mode = 0;
       		this->current_exec++;
 		}
 	}
@@ -131,12 +131,12 @@ unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_hallo
 		case 6:
 			return dim_purple;
 		default:
-			return 0;
+			return COLOR_OFF;
 	}
 }
 
 // warning = float i is UNUSED
-void sparkle_fade(float i, bool*& inc) {
+void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(float i, bool*& inc) {
 	const float ORANGE_R_SLOPE = 1.0;
 	const float ORANGE_G_SLOPE = 0.196078;
 	const float PURPLE_R_SLOPE = 0.588235;
@@ -195,9 +195,9 @@ void sparkle_fade(float i, bool*& inc) {
 			}
 		} else if (blue == 0) {
 			// was orange
-			if(increasing){
+			if (increasing) {
 				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red + ORANGE_R_SLOPE), (unsigned int)((float)green + ORANGE_G_SLOPE), 0));
-			}else{
+			} else {
 				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red - ORANGE_R_SLOPE), (unsigned int)((float)green - ORANGE_G_SLOPE), 0));
 			}
 		}
