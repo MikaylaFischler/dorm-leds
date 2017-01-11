@@ -15,7 +15,7 @@ void Animation_Simple_WinColorWipe::rainbow_color_wipe(Adafruit_NeoPixel& strip,
 	} else if (color_mode == 6) {
 		strip.setPixelColor(i, COLOR_GREEN);
 	} else if (color_mode == 8) {
-		strip.setPixelColor(i, COLOR_SEA_GREEN);
+		strip.setPixelColor(i, COLOR_LIGHT_BLUE_GREEN);
 	} else if (color_mode == 10) {
 		strip.setPixelColor(i, COLOR_BLUE);
 	} else if (color_mode == 12) {
