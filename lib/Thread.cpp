@@ -4,6 +4,7 @@
 Thread::Thread (unsigned int id, Animation* anim) {
 	anim->init();
 
+	this->firstCall = true;
 	this->id = id;
 	this->animation = anim;
 	this->updateRate = anim->getUpdateRate();
@@ -27,6 +28,13 @@ void Thread::addTimeSum(unsigned int dT) { this->timeSum += dT; }
 
 // set the time sum back down to zero
 void Thread::zeroTimeSum() { this->timeSum = 0; }
+
+// check first call
+void Thread::checkFirstCall() {
+	bool temp = this->firstCall;
+	this->firstCall = false;
+	return temp;
+}
 
 // get the command that this thread contains
 Animation* Thread::getAnimation() { return animation; }
