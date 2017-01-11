@@ -21,7 +21,7 @@ protected:
     int max_exec;
     int current_exec;
 
-	virtual Animation();
+	Animation();
 public:
 	virtual ~Animation();
     virtual void init();
