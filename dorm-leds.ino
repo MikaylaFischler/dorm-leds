@@ -26,6 +26,7 @@
 #include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
 #include "lib/Animation.cpp"
+#include "lib/Process.cpp"
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
@@ -40,6 +41,10 @@
 // Timing
 unsigned long int prev_time = millis();
 unsigned long int cur_time = millis();
+
+// Threading Variables
+unsigned long int dT = 0;
+ThreadHandler thread_handler = ThreadHandler();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -60,6 +65,11 @@ void setup() {
 
 	// manual queue
 	mem_available = freeMemory();
+	Serial.println(F("Queueing system threads..."));
+	queue_sys_threads();
+
+	// manual queue
+	mem_available = freeMemory();
 	Serial.println(F("Manually queueing animations..."));
 	led_man_queue();
 
@@ -71,12 +81,25 @@ void setup() {
 }
 
 // the loop function runs over and over again forever
+// run multithreaded system code
 void loop() {
-	// Run multithreaded system code
-	led_main_loop();
+	// set change in time
+	cur_time = millis();
+	dT = cur_time - prev_time;
 
-	//ctrl_main_loop();
+	// tell each thread the time change
+	thread_handler.updateTimeAccumulated(dT);
 
+	// execute commands that it is time to execute
+	thread_handler.executeTick();
+
+	// save this time as previous time
+	prev_time = millis();
+
+	// prevent ticks less than a millisecond
+	delay(1);
+
+	// print memory
 	Serial.print(F("Free SRAM: "));
 	Serial.print(freeMemory());
 	Serial.println(F(" bytes"));
