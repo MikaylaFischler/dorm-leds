@@ -26,6 +26,7 @@
 #include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
 #include "lib/Animation.cpp"
+#include "lib/Process.cpp"
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
@@ -61,6 +62,11 @@ void setup() {
 	// initialize LED strips and set them to off
 	Serial.println(F("Initializing neopixel strips..."));
 	init_strips();
+
+	// manual queue
+	mem_available = freeMemory();
+	Serial.println(F("Queueing system threads..."));
+	queue_sys_threads();
 
 	// manual queue
 	mem_available = freeMemory();

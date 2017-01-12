@@ -6,12 +6,13 @@
 
 #include "strip_id.h"
 #include "Animation.hpp"
+#include "Process.hpp"
 #include "Thread.hpp"
 
 class ThreadHandler {
 private:
-	std::vector<AnimationThread*> threads;
-	std::vector<ProcessThread*> threads;
+	std::vector<AnimationThread*> anim_threads;
+	std::vector<ProcessThread*> proc_threads;
 
 	unsigned int elapsed_time;
 	unsigned int next_id;
@@ -26,7 +27,6 @@ public:
 	void queue(Animation* anim);
 	void queue(Process* proc);
 
-	std::vector<Thread*> listThreads();
 	std::vector<AnimationThread*> listAnimationThreads();
 	std::vector<ProcessThread*> listProcessThreads();
 	void updateTimeAccumulated(unsigned long int dT);

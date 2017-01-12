@@ -13,7 +13,7 @@ protected:
 	unsigned long int timeSum;
 	bool firstCall;
 
-	Thread() {}
+	Thread();
 public:
 	virtual ~Thread() {}
 
