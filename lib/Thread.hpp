@@ -7,15 +7,15 @@
 #include "Animation.hpp"
 
 class Thread {
-private:
+protected:
 	unsigned int id;
-	Animation* animation;
 	unsigned long int updateRate;
 	unsigned long int timeSum;
 	bool firstCall;
+
+	Thread() {}
 public:
-	Thread(unsigned int id, Animation* anim);
-	~Thread();
+	virtual ~Thread() {}
 
 	unsigned int getID();
 	unsigned long int getUpdateRate();
@@ -23,8 +23,26 @@ public:
 	void addTimeSum(unsigned int dT);
 	void zeroTimeSum();
 	bool checkFirstCall();
+};
+
+class AnimationThread : public Thread {
+private:
+	Animation* animation;
+public:
+	AnimationThread(unsigned int id, Animation* anim);
+	~AnimationThread();
 
 	Animation* getAnimation();
+};
+
+class ProcessThread : public Thread {
+private:
+	Process* process;
+public:
+	ProcessThread(unsigned int id, Process* proc);
+	~ProcessThread();
+
+	Process* getProcess();
 };
 
 #endif
