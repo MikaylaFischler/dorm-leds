@@ -4,24 +4,15 @@
 #include <StandardCplusplus.h>
 #include <vector>
 
-class Process {
+#include "Executable.hpp"
+
+class Process : public Executable {
 protected:
-    String name;
-
-    LocalStack* stack;
-
-    unsigned long int update_rate;
-
 	Process();
 public:
 	virtual ~Process();
     virtual void init();
-
 	virtual void run() {};
-    virtual void clean() {};
-
-    String getName();
-    unsigned long int getUpdateRate();
 };
 
 #endif
