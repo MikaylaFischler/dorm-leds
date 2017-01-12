@@ -75,9 +75,8 @@ void setup() {
 }
 
 // the loop function runs over and over again forever
+// run multithreaded system code
 void loop() {
-	// Run multithreaded system code
-
 	// set change in time
 	cur_time = millis();
 	dT = cur_time - prev_time;
