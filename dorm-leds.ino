@@ -41,6 +41,10 @@
 unsigned long int prev_time = millis();
 unsigned long int cur_time = millis();
 
+// Threading Variables
+unsigned long int dT = 0;
+ThreadHandler thread_handler = ThreadHandler();
+
 // the setup function runs once when you press reset or power the board
 void setup() {
 	Serial.begin(115200);
@@ -73,9 +77,24 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
 	// Run multithreaded system code
-	led_main_loop();
-	ctrl_main_loop();
 
+	// set change in time
+	cur_time = millis();
+	dT = cur_time - prev_time;
+
+	// tell each thread the time change
+	thread_handler.updateTimeAccumulated(dT);
+
+	// execute commands that it is time to execute
+	thread_handler.executeTick();
+
+	// save this time as previous time
+	prev_time = millis();
+
+	// prevent ticks less than a millisecond
+	delay(1);
+
+	// print memory
 	Serial.print(F("Free SRAM: "));
 	Serial.print(freeMemory());
 	Serial.println(F(" bytes"));
