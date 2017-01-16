@@ -35,11 +35,14 @@ void init_timing() {
 }
 
 void queue_sys_threads() {
-
+	// system processes
+	//thread_handler.queue();
 }
 
 void led_man_queue() {
-	thread_handler.queue(new Animation_Static_DeskThirdDimAmbient());
+	// manually queue animations for startup
+	thread_handler.queue(new Animation_Static_DeskDimAmbient());
+	//thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 	thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win1());
 	thread_handler.queue(new Animation_Simple_Win2RainbowWipe());
 	thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win3());

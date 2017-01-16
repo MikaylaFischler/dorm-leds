@@ -9,6 +9,28 @@ void Animation_Static::init() {
     this->max_exec = -1;
 }
 
+/* ~~~ Animation Static: Desk Both Bright White ~~~ */
+
+void Animation_Static_DeskBrightWhite::init() {
+    Animation_Static::init();
+    this->name = F("Desk[all]: Bright White");
+	this->num_strips = 2;
+    this->strips = FULL_DESK;
+}
+
+void Animation_Static_DeskBrightWhite::step() {
+	for (int i = 0; i < DESK1_LENGTH; i++) {
+		desk1.setPixelColor(i, COLOR_WHITE);
+	}
+
+	for (int i = 0; i < DESK2_LENGTH; i++){
+		desk2.setPixelColor(i, COLOR_WHITE);
+	}
+
+	desk1.show();
+	desk2.show();
+}
+
 /* ~~~ Animation Static: Desk Both Third Dim Ambient ~~~ */
 
 void Animation_Static_DeskThirdDimAmbient::init() {
