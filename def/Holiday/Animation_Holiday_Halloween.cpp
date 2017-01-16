@@ -94,6 +94,8 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	}
 
 	showAllWindowStrips();
+
+	Serial.println("heartbeat");
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
@@ -184,7 +186,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(bool*& inc
 		// if blue is 0, orange is being displayed
 		// if red is 0, black (off) is being displayed
 
-		if (red <= 0) {
+		if (red == 0) {
 			// is off, randomly pick a color
 			int r = random(0,2);
 
@@ -193,6 +195,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(bool*& inc
 			} else {
 				increasing = true;
 			}
+
+			Serial.println(r);
+			Serial.println(pixel);
 
 			if (r == 0) {
 				// purple
@@ -204,16 +209,16 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(bool*& inc
 		} else if (green == 0) {
 			// was purple
 			if (increasing) {
-				win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
 			} else {
-				win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
 			}
 		} else if (blue == 0) {
 			// was orange
 			if (increasing) {
-				win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
 			} else {
-				win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
 			}
 		}
 
