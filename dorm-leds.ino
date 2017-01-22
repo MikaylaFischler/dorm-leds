@@ -36,7 +36,7 @@
 // Utility Files
 #include "util/led.c"
 #include "util/mem.c"
-#include "util/MemoryFree.h"
+#include "util/MemoryFree.cpp"
 
 // Timing
 unsigned long int prev_time = millis();
@@ -100,7 +100,7 @@ void loop() {
 	delay(1);
 
 	// print memory
-	Serial.print(F("Free SRAM: "));
-	Serial.print(freeMemory());
-	Serial.println(F(" bytes"));
+	//Serial.print(F("Free SRAM: "));
+	//Serial.print(freeMemory());
+	//Serial.println(F(" bytes"));
 }
