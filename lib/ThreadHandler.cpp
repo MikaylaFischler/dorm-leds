@@ -1,6 +1,4 @@
 #include "ThreadHandler.hpp"
-#include "../util/mem.c"
-#include "../util/MemoryFree.h"
 
 //<<constructor>>
 ThreadHandler::ThreadHandler() {}

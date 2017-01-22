@@ -9,6 +9,9 @@
 #include "Process.hpp"
 #include "Thread.hpp"
 
+#include "../util/mem.c"
+#include "../util/MemoryFree.h"
+
 class ThreadHandler {
 private:
 	std::vector<AnimationThread*> anim_threads;
