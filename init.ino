@@ -55,7 +55,7 @@ void init_strips() {
 
 void init_lcd() {
 	lcd.begin(16, 2);
-	lcd.print(F("LED Control System"));
+	lcd.print(F("LED Control"));
 }
 
 void init_timing() {
