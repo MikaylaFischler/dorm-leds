@@ -31,7 +31,7 @@ String getNameOfStrip(Adafruit_NeoPixel* strip) {
 	return "";
 }
 
-short int* getStripID(Adafruit_NeoPixel* strip) {
+short int* getAsStripArray(Adafruit_NeoPixel* strip) {
 	// compare actual memory address
 	if (strip == &window1) {
 		return WINDOW_1;
