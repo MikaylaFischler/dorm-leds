@@ -97,6 +97,33 @@ public:
 
 // Animation_Simple_Indiv.cpp
 
+class Animation_Simple_Indiv_ColorFlash : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color);
+	~Animation_Simple_Indiv_ColorFlash() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+	uint32_t color;
+};
+
+class Animation_Simple_Indiv_AlternatingColorFlash : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b);
+	~Animation_Simple_Indiv_AlternatingColorFlash() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+	uint32_t color_a;
+	uint32_t color_b;
+};
+
 class Animation_Simple_Indiv_ColorFade : public Animation_Simple_Indiv {
 public:
 	Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t color);

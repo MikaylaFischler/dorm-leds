@@ -9,6 +9,107 @@ void Animation_Simple_Indiv::init() {
 	this->num_strips = 1;
 }
 
+/* ~~~ Animation Simple: Strip Color Flash ~~~ */
+
+Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color) {
+	this->strip = strip;
+	this->color = color;
+}
+
+void Animation_Simple_Indiv_ColorFlash::init() {
+	Animation_Simple_Indiv::init();
+	this->name = getNameOfStrip(this->strip);
+	this->name += F(": Color Flash");
+    this->update_rate = 50;
+	this->strips = getAsStripArray(this->strip);
+
+	this->stack = new LocalStack();
+	this->stack->push(new MemObj(new bool(true)));
+}
+
+void Animation_Simple_Indiv_ColorFlash::step() {
+	bool& mode = this->stack->get(0)->get<bool>();
+
+	// set each led to the proper color
+	for (unsigned int j = 0; j < strip->numPixels(); j++) {
+		if (mode) {
+			strip->setPixelColor(j, this->color);
+		} else {
+			strip->setPixelColor(j, COLOR_OFF);
+		}
+	}
+
+	strip->show();
+
+	if (mode) {
+		mode = false;
+	} else {
+		mode = true;
+		this->current_exec++;
+	}
+}
+
+void Animation_Simple_Indiv_ColorFlash::clean() {
+	this->stack->get(0)->destroy<bool>();
+
+	delete this->stack;
+}
+
+/* ~~~ Animation Simple: Strip Color Flash ~~~ */
+
+Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b) {
+	this->strip = strip;
+	this->color_a = color_a;
+	this->color_b = color_b;
+}
+
+void Animation_Simple_Indiv_AlternatingColorFlash::init() {
+	Animation_Simple_Indiv::init();
+	this->name = getNameOfStrip(this->strip);
+	this->name += F(": Color Flash");
+    this->update_rate = 200;
+	this->strips = getAsStripArray(this->strip);
+
+	this->stack = new LocalStack();
+	this->stack->push(new MemObj(new bool(true)));
+	this->stack->push(new MemObj(new bool(true)));
+}
+
+void Animation_Simple_Indiv_AlternatingColorFlash::step() {
+	bool& mode = this->stack->get(0)->get<bool>();
+	bool& c = this->stack->get(1)->get<bool>();
+
+	// set each led to the proper color
+	for (unsigned int j = 0; j < strip->numPixels(); j++) {
+		if (mode) {
+			if (c) {
+				strip->setPixelColor(j, this->color_a);
+			} else {
+				strip->setPixelColor(j, this->color_b);
+			}
+		} else {
+			strip->setPixelColor(j, COLOR_OFF);
+		}
+	}
+
+	strip->show();
+
+	if (mode) {
+		mode = false;
+		c = !c;
+	} else {
+		mode = true;
+		this->current_exec++;
+	}
+}
+
+void Animation_Simple_Indiv_AlternatingColorFlash::clean() {
+	this->stack->get(0)->destroy<bool>();
+	this->stack->get(1)->destroy<bool>();
+
+	delete this->stack;
+}
+
 /* ~~~ Animation Simple: Strip Color Fade ~~~ */
 
 Animation_Simple_Indiv_ColorFade::Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t color) {
