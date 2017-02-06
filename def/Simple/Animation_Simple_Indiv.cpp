@@ -21,7 +21,7 @@ void Animation_Simple_Indiv_ColorFade::init() {
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Color Fade");
     this->update_rate = 50;
-	this->strips = getStripID(this->strip);
+	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
@@ -33,13 +33,9 @@ void Animation_Simple_Indiv_ColorFade::step() {
 	bool& increasing = this->stack->get(1)->get<bool>();
 
 	// set each led to the proper color
-	uint16_t red = ;
-	uint16_t green = ;
-	uint16_t blue = ;
-
 	for (unsigned int j = 0; j < strip->numPixels(); j++) {
 		strip->setPixelColor(j, (redFromColor(this->color) * i/255),
-								(greenFromColor(this->color) * i/255), 
+								(greenFromColor(this->color) * i/255),
 								(blueFromColor(this->color) * i/255));
 	}
 
@@ -80,7 +76,7 @@ void Animation_Simple_Indiv_Rainbow::init() {
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Rainbow");
     this->update_rate = 50;
-	this->strips = getStripID(this->strip);
+	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
@@ -121,7 +117,7 @@ void Animation_Simple_Indiv_RainbowCycle::init() {
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Rainbow Cycle");
     this->update_rate = 50;
-	this->strips = getStripID(this->strip);
+	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
