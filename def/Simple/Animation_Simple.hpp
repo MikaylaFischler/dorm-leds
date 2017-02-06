@@ -11,6 +11,18 @@ public:
     void init();
 };
 
+// Animation_Simple_Indiv.cpp
+
+class Animation_Simple_Indiv : public Animation_Simple {
+protected:
+	Animation_Simple_Indiv() {}
+	~Animation_Simple_Indiv() {}
+public:
+    void init();
+};
+
+// Animation_Simple_WinColorWipe.cpp
+
 class Animation_Simple_WinColorWipe : public Animation_Simple {
 protected:
     Animation_Simple_WinColorWipe() {}
@@ -18,6 +30,8 @@ protected:
 
 	void rainbow_color_wipe(Adafruit_NeoPixel& strip, unsigned short int i, unsigned short int color_mode);
 };
+
+// Animation_Simple.cpp
 
 class Animation_Simple_DeskWhitePurpleFade : public Animation_Simple {
 public:
@@ -49,6 +63,8 @@ public:
 	void clean();
 };
 
+// Animation_Simple_WinColorWipe.cpp
+
 class Animation_Simple_Win1RainbowWipe : public Animation_Simple_WinColorWipe {
 public:
 	Animation_Simple_Win1RainbowWipe() {}
@@ -77,6 +93,45 @@ public:
 	void init();
 	void step();
 	void clean();
+};
+
+// Animation_Simple_Indiv.cpp
+
+class Animation_Simple_Indiv_ColorFade : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t color);
+	~Animation_Simple_Indiv_ColorFade() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+	uint32_t color;
+};
+
+class Animation_Simple_Indiv_Rainbow : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip);
+	~Animation_Simple_Indiv_Rainbow() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+};
+
+class Animation_Simple_Indiv_RainbowCycle : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_RainbowCycle(Adafruit_NeoPixel* strip);
+	~Animation_Simple_Indiv_RainbowCycle() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
 };
 
 #endif
