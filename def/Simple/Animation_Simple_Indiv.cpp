@@ -135,9 +135,7 @@ void Animation_Simple_Indiv_ColorFade::step() {
 
 	// set each led to the proper color
 	for (unsigned int j = 0; j < strip->numPixels(); j++) {
-		strip->setPixelColor(j, (redFromColor(this->color) * i/255),
-								(greenFromColor(this->color) * i/255),
-								(blueFromColor(this->color) * i/255));
+		strip->setPixelColor(j, (redFromColor(this->color) * i/255), (greenFromColor(this->color) * i/255), (blueFromColor(this->color) * i/255));
 	}
 
 	strip->show();
