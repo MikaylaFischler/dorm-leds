@@ -1,0 +1,54 @@
+### List of Animations ###
+
+[Advanced]
+	<empty>
+
+[Disable]
+	{Animation_Disable}
+		_Desk1
+		_Desk2
+		_Window1
+		_Window2
+		_Window3
+
+[Holiday]
+	{Animation_Holiday}
+		{Animation_Holiday_Halloween}
+			_WinAllFade
+			_WinAllHalloweenSparkle
+
+		{Animation_Holiday_Christmas}
+			_Win13Snow
+
+		{Animation_Holiday_Hanukkah}
+			_Win2Snow
+
+[Seasonal]
+	{Animation_Seasonal}
+		{Animation_Seasonal_Winter}
+			{Animation_Seasonal_Winter_Snow}
+				_Win1
+				_Win2
+				_Win3
+
+[Simple]
+	{Animation_Simple}
+		_DeskWhitePurpleFade
+		_WinAllPurpleFade
+		_WinAllWPISpirit
+
+		{Animation_Simple_Indiv}
+			_ColorFade
+			_Rainbow
+			_RainbowCycle
+
+		{Animation_Simple_WinColorWipe}
+			_Win1RainbowWipe
+			_Win2RainbowWipe
+			_Win3RainbowWipe
+
+[Static]
+	{Animation_Static}
+		_DeskBrightWhite
+		_DeskThirdDimAmbient
+		_DeskDimAmbient
