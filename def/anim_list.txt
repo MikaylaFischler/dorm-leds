@@ -47,11 +47,7 @@
 				_Rainbow(&strip)
 				_RainbowCycle(&strip)
 				_RainbowTheaterChase(&strip)
-
-		{Animation_Simple_WinColorWipe}
-			_Win1RainbowWipe
-			_Win2RainbowWipe
-			_Win3RainbowWipe
+				_RainbowWipe(&strip)
 
 [Static]
 	{Animation_Static}
