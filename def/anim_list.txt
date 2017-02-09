@@ -34,13 +34,15 @@
 [Simple]
 	{Animation_Simple}
 		_DeskWhitePurpleFade
-		_WinAllPurpleFade
 		_WinAllWPISpirit
 
 		{Animation_Simple_Indiv}
-			_ColorFade
-			_Rainbow
-			_RainbowCycle
+			_CalmPurpleFade(&strip)
+			_ColorFlash(&strip, color, [rate])
+			_AlternatingColorFlash(&strip, color_a, color_b, [rate])
+			_ColorFade(&strip, color)
+			_Rainbow(&strip)
+			_RainbowCycle(&strip)
 
 		{Animation_Simple_WinColorWipe}
 			_Win1RainbowWipe
