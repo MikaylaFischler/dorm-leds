@@ -69,12 +69,14 @@ void queue_sys_threads() {
 
 void led_man_queue() {
 	// manually queue animations for startup
-	thread_handler.queue(new Animation_Static_DeskThirdDimAmbient());
 	//thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
+	thread_handler.queue(new Animation_Static_DeskThirdDimAmbient());
+	thread_handler.queue(new Animation_Simple_Indiv_Rainbow(&desk1));
+	thread_handler.queue(new Animation_Simple_Indiv_Rainbow(&desk2));
 	//thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
-	thread_handler.queue(new Animation_Simple_Indiv_ColorFade(&window1, COLOR_RED));
+	thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window1));
 	//thread_handler.queue(new Animation_Simple_Win2RainbowWipe());
-	thread_handler.queue(new Animation_Seasonal_Winter_Snow_Win2());
+	thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
 	//thread_handler.queue(new Animation_Simple_WinAllPurpleFade());
-	thread_handler.queue(new Animation_Simple_Indiv_ColorFade(&window3, COLOR_BLUE));
+	thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window3));
 }
