@@ -1,0 +1,53 @@
+### List of Animations ###
+
+[Advanced]
+	<empty>
+
+[Disable]
+	{Animation_Disable}
+		_Desk1
+		_Desk2
+		_Window1
+		_Window2
+		_Window3
+
+[Holiday]
+	{Animation_Holiday}
+		{Animation_Holiday_Halloween}
+			_WinAllFade
+			_WinAllHalloweenSparkle
+
+		{Animation_Holiday_Christmas}
+			_Win13Snow
+
+		{Animation_Holiday_Hanukkah}
+			_Win2Snow
+
+[Seasonal]
+	{Animation_Seasonal}
+		{Animation_Seasonal_Winter}
+			Animation_Seasonal_Winter_WindowSnow(&strip)
+
+[Simple]
+	{Animation_Simple}
+		_DeskWhitePurpleFade
+		_WinAllWPISpirit
+
+		{Animation_Simple_Indiv}
+			_CalmPurpleFade(&strip)
+			_ColorFlash(&strip, color, [rate])
+			_AlternatingColorFlash(&strip, color_a, color_b, [rate])
+			_ColorFade(&strip, color)
+			_TheaterChase(&strip, color)
+
+			{Animation_Simple_Indiv_Rainbow}
+				_Rainbow(&strip)
+				_RainbowCycle(&strip)
+				_RainbowTheaterChase(&strip)
+				_RainbowWipe(&strip)
+
+[Static]
+	{Animation_Static}
+		_DeskBrightWhite
+		_DeskThirdDimAmbient
+		_DeskDimAmbient

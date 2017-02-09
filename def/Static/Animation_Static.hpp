@@ -11,6 +11,15 @@ protected:
     void init();
 };
 
+class Animation_Static_DeskBrightWhite : public Animation_Static {
+public:
+    Animation_Static_DeskBrightWhite() {}
+    ~Animation_Static_DeskBrightWhite() {}
+
+    void step();
+	void init();
+};
+
 class Animation_Static_DeskThirdDimAmbient : public Animation_Static {
 public:
     Animation_Static_DeskThirdDimAmbient() {}

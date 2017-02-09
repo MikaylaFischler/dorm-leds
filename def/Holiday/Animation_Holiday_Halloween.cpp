@@ -56,22 +56,22 @@ void Animation_Holiday_Halloween_WinAllFade::clean() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
-    this->update_rate = 100;
+    this->update_rate = 1000;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned int(0)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool[9] {false,false,false,false,false,false,false,false,false}));
+	this->stack->push(new MemObj(new bool(true)));
+	this->stack->push(new MemObj(new bool[WINDOW_LENGTH * 3] {false}));
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	unsigned int& i = this->stack->get(0)->get<unsigned int>();
-	unsigned short int& mode = this->stack->get(1)->get<unsigned short int>();
+	bool& reset = this->stack->get(1)->get<bool>();
 	bool*& increasing = this->stack->get(2)->get<bool*>();
 
-	if (mode == 0) {
+	if (reset) {
 		// randomize
 		for (int x = 0; x < WINDOW_LENGTH; x++) {
 			window1.setPixelColor(x, this->rand_halloween_color());
@@ -79,27 +79,30 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 			window3.setPixelColor(x, this->rand_halloween_color());
 		}
 
-		mode = 1;
-	} else if (mode == 1) {
+		reset = false;
+	} else {
 		// fade for a bit
-		this->sparkle_fade(i, increasing);
+		this->sparkle_fade(increasing);
 
 		i++;
 
 		if (i == 256) {
 			i = 0;
-			//mode = 0;
+			reset = true;
       		this->current_exec++;
 		}
 	}
 
 	showAllWindowStrips();
+
+	Serial.println("heartbeat");
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<unsigned short int>();
-	this->stack->get(2)->destroy<bool*>();
+	bool* arr = this->stack->get(2)->get<bool[WINDOW_LENGTH * 3]>();
+	delete[] arr;
 
 	delete this->stack;
 }
@@ -135,8 +138,17 @@ unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_hallo
 	}
 }
 
-// warning = float i is UNUSED
-void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(float i, bool*& inc) {
+unsigned int Animation_Holiday_Halloween_WinAllHalloweenSparkle::floor_0(float x) {
+	if (x <= 0.0) {
+		// handle cases below 0
+		return (unsigned int) 0;
+	} else {
+		// this will not be negative ever
+		return (unsigned int) floor(x);
+	}
+}
+
+void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(bool*& inc) {
 	const float ORANGE_R_SLOPE = 1.0;
 	const float ORANGE_G_SLOPE = 0.196078;
 	const float PURPLE_R_SLOPE = 0.588235;
@@ -169,7 +181,12 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(float i, b
 
 		bool increasing = inc[x];
 
-		if (red <= 0) {
+		// now check each value to see if one is zero (acts as a data bit indicating which color is being displayed)
+		// if green is 0, purple is being displayed
+		// if blue is 0, orange is being displayed
+		// if red is 0, black (off) is being displayed
+
+		if (red == 0) {
 			// is off, randomly pick a color
 			int r = random(0,2);
 
@@ -178,6 +195,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(float i, b
 			} else {
 				increasing = true;
 			}
+
+			Serial.println(r);
+			Serial.println(pixel);
 
 			if (r == 0) {
 				// purple
@@ -189,16 +209,16 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(float i, b
 		} else if (green == 0) {
 			// was purple
 			if (increasing) {
-				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red + PURPLE_R_SLOPE), 0, (unsigned int)((float)blue + PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
 			} else {
-				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red - PURPLE_R_SLOPE), 0, (unsigned int)((float)blue - PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
 			}
 		} else if (blue == 0) {
 			// was orange
 			if (increasing) {
-				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red + ORANGE_R_SLOPE), (unsigned int)((float)green + ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
 			} else {
-				win.setPixelColor(pixel, window_generic.Color((unsigned int)((float)red - ORANGE_R_SLOPE), (unsigned int)((float)green - ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
 			}
 		}
 
