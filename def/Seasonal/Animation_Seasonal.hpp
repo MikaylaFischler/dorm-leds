@@ -11,49 +11,18 @@ public:
     void init();
 };
 
-class Animation_Seasonal_Winter : public Animation_Seasonal {
-protected:
-    Animation_Seasonal_Winter() {}
-    ~Animation_Seasonal_Winter() {}
-};
-
-class Animation_Seasonal_Winter_Snow : public Animation_Seasonal_Winter {
+class Animation_Seasonal_Winter_Snow : public Animation_Seasonal {
 protected:
 	void snow(Adafruit_NeoPixel& strip, unsigned int i, unsigned short int left_spacing, unsigned short int right_spacing);
-	void snow_step(Adafruit_NeoPixel& strip);
 public:
-    Animation_Seasonal_Winter_Snow() {}
+    Animation_Seasonal_Winter_Snow(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Winter_Snow() {}
 
 	void init();
+	void step();
 	void clean();
-};
-
-class Animation_Seasonal_Winter_Snow_Win1 : public Animation_Seasonal_Winter_Snow {
-public:
-    Animation_Seasonal_Winter_Snow_Win1() {}
-    ~Animation_Seasonal_Winter_Snow_Win1() {}
-
-	void init();
-    void step();
-};
-
-class Animation_Seasonal_Winter_Snow_Win2 : public Animation_Seasonal_Winter_Snow {
-public:
-	Animation_Seasonal_Winter_Snow_Win2() {}
-	~Animation_Seasonal_Winter_Snow_Win2() {}
-
-	void init();
-	void step();
-};
-
-class Animation_Seasonal_Winter_Snow_Win3 : public Animation_Seasonal_Winter_Snow {
-public:
-	Animation_Seasonal_Winter_Snow_Win3() {}
-	~Animation_Seasonal_Winter_Snow_Win3() {}
-
-	void init();
-	void step();
+private:
+	Adafruit_NeoPixel* strip;
 };
 
 #endif
