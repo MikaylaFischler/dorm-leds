@@ -14,13 +14,20 @@ void Animation_Simple_Indiv::init() {
 Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color) {
 	this->strip = strip;
 	this->color = color;
+	this->rate = 200;
+}
+
+Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color, int rate) {
+	this->strip = strip;
+	this->color = color;
+	this->rate = rate;
 }
 
 void Animation_Simple_Indiv_ColorFlash::init() {
 	Animation_Simple_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Color Flash");
-    this->update_rate = 50;
+    this->update_rate = this->rate;
 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
@@ -61,13 +68,21 @@ Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_Alternating
 	this->strip = strip;
 	this->color_a = color_a;
 	this->color_b = color_b;
+	this->rate = 200;
+}
+
+Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b, int rate) {
+	this->strip = strip;
+	this->color_a = color_a;
+	this->color_b = color_b;
+	this->rate = rate;
 }
 
 void Animation_Simple_Indiv_AlternatingColorFlash::init() {
 	Animation_Simple_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Color Flash");
-    this->update_rate = 200;
+    this->update_rate = this->rate;
 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
