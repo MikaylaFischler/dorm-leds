@@ -26,10 +26,7 @@
 [Seasonal]
 	{Animation_Seasonal}
 		{Animation_Seasonal_Winter}
-			{Animation_Seasonal_Winter_Snow}
-				_Win1
-				_Win2
-				_Win3
+			Animation_Seasonal_Winter_Snow(&strip)
 
 [Simple]
 	{Animation_Simple}
