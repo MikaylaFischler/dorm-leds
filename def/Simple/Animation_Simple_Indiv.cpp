@@ -229,3 +229,58 @@ void Animation_Simple_Indiv_ColorFade::clean() {
 
 	delete this->stack;
 }
+
+/* ~~~ Animation Simple: Theater Chase ~~~ */
+
+Animation_Simple_Indiv_TheaterChase::Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t color) {
+	this->strip = strip;
+	this->color = color;
+}
+
+void Animation_Simple_Indiv_TheaterChase::init() {
+	Animation_Simple_Indiv::init();
+	this->name = getNameOfStrip(this->strip);
+	this->name += F(": Theater Chase");
+    this->update_rate = 50;
+	this->strips = getAsStripArray(this->strip);
+
+	this->stack = new LocalStack();
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
+}
+
+void Animation_Simple_Indiv_TheaterChase::step() {
+	unsigned short int& q = this->stack->get(0)->get<unsigned short int>();
+	bool& alternate = this->stack->get(1)->get<bool>();
+
+	if (alternate) {
+		// set each led to the proper color
+		for (unsigned int i = 0; i < this->strip->numPixels(); i = i + 3) {
+			// turn every third pixel on
+			this->strip->setPixelColor(i + q, this->color);
+		}
+
+		this->strip->show();
+	} else {
+		for (unsigned int i = 0; i < this->strip->numPixels(); i = i + 3) {
+			// turn every third pixel off
+			this->strip->setPixelColor(i + q, COLOR_OFF);
+		}
+	}
+
+	alternate = !alternate;
+
+	if (q < 2 && alternate) {
+		q++;
+	} else if (q == 2 && alternate) {
+		q = 0;
+		this->current_exec++;
+	}
+}
+
+void Animation_Simple_Indiv_TheaterChase::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
+
+	delete this->stack;
+}
