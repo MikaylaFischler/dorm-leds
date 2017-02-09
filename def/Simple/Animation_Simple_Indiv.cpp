@@ -4,9 +4,61 @@
 
 // define the generic individual init
 void Animation_Simple_Indiv::init() {
-  	Animation::init();
-  	this->max_exec = -1;
+  	Animation_Simple::init();
 	this->num_strips = 1;
+}
+
+/* ~~~ Animation Simple: Calm Purple Fade ~~~ */
+
+Animation_Simple_Indiv_CalmPurpleFade::Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip) {
+	this->strip = strip;
+}
+
+void Animation_Simple_Indiv_CalmPurpleFade::init() {
+	Animation_Simple_Indiv::init();
+	this->name = getNameOfStrip(this->strip);
+	this->name += F(": Purple Fade");
+    this->update_rate = 10;
+	this->strips = getAsStripArray(this->strip);
+
+	this->stack = new LocalStack();
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new bool(true)));
+}
+
+void Animation_Simple_Indiv_CalmPurpleFade::step() {
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	bool& increasing = this->stack->get(1)->get<bool>();
+
+	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
+		this->strip->setPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
+	}
+
+	this->strip->show();
+
+  	if (increasing) {
+    	if (i == 150) {
+    		i--;
+      		increasing = false;
+    	} else {
+      		i++;
+    	}
+  	} else {
+    	if (i == 0) {
+      		i++;
+      		increasing = true;
+      		this->current_exec++;
+    	} else {
+      		i--;
+    	}
+  	}
+}
+
+void Animation_Simple_Indiv_CalmPurpleFade::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<bool>();
+
+	delete this->stack;
 }
 
 /* ~~~ Animation Simple: Strip Color Flash ~~~ */
@@ -40,13 +92,13 @@ void Animation_Simple_Indiv_ColorFlash::step() {
 	// set each led to the proper color
 	for (unsigned int j = 0; j < strip->numPixels(); j++) {
 		if (mode) {
-			strip->setPixelColor(j, this->color);
+			this->strip->setPixelColor(j, this->color);
 		} else {
-			strip->setPixelColor(j, COLOR_OFF);
+			this->strip->setPixelColor(j, COLOR_OFF);
 		}
 	}
 
-	strip->show();
+	this->strip->show();
 
 	if (mode) {
 		mode = false;
@@ -95,19 +147,19 @@ void Animation_Simple_Indiv_AlternatingColorFlash::step() {
 	bool& c = this->stack->get(1)->get<bool>();
 
 	// set each led to the proper color
-	for (unsigned int j = 0; j < strip->numPixels(); j++) {
+	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
 		if (mode) {
 			if (c) {
-				strip->setPixelColor(j, this->color_a);
+				this->strip->setPixelColor(j, this->color_a);
 			} else {
-				strip->setPixelColor(j, this->color_b);
+				this->strip->setPixelColor(j, this->color_b);
 			}
 		} else {
-			strip->setPixelColor(j, COLOR_OFF);
+			this->strip->setPixelColor(j, COLOR_OFF);
 		}
 	}
 
-	strip->show();
+	this->strip->show();
 
 	if (mode) {
 		mode = false;
@@ -149,11 +201,11 @@ void Animation_Simple_Indiv_ColorFade::step() {
 	bool& increasing = this->stack->get(1)->get<bool>();
 
 	// set each led to the proper color
-	for (unsigned int j = 0; j < strip->numPixels(); j++) {
-		strip->setPixelColor(j, (redFromColor(this->color) * i/255), (greenFromColor(this->color) * i/255), (blueFromColor(this->color) * i/255));
+	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
+		this->strip->setPixelColor(j, (redFromColor(this->color) * i/255), (greenFromColor(this->color) * i/255), (blueFromColor(this->color) * i/255));
 	}
 
-	strip->show();
+	this->strip->show();
 
 	if (increasing) {
 		if (i == 255) {
@@ -200,11 +252,11 @@ void Animation_Simple_Indiv_Rainbow::step() {
 	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
 
 	// set each led to the proper color
-	for (unsigned int j = 0; j < strip->numPixels(); j++) {
-		strip->setPixelColor(j, ColorWheel((i + j) & 255));
+	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
+		this->strip->setPixelColor(j, ColorWheel((i + j) & 255));
 	}
 
-	strip->show();
+	this->strip->show();
 
 	if (i == 255) {
 		i = 0;
@@ -241,11 +293,11 @@ void Animation_Simple_Indiv_RainbowCycle::step() {
 	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
 
 	// set each led to the proper color
-	for (unsigned int j = 0; j < strip->numPixels(); j++) {
-		strip->setPixelColor(j, ((i * 256 / strip->numPixels()) + j) & 255);
+	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
+		this->strip->setPixelColor(j, ((i * 256 / this->strip->numPixels()) + j) & 255);
 	}
 
-	strip->show();
+	this->strip->show();
 
 	if (i == 255) {
 		i = 0;

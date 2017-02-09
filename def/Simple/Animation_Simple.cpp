@@ -70,55 +70,6 @@ void Animation_Simple_DeskWhitePurpleFade::clean() {
 	delete this->stack;
 }
 
-/* ~~~ Animation Simple: Window All Purple Fade ~~~ */
-
-void Animation_Simple_WinAllPurpleFade::init() {
-	Animation_Simple::init();
-	this->name = F("Window[all]: Purple Fade");
-    this->update_rate = 10;
-	this->num_strips = 3;
-	this->strips = WINDOW_ALL;
-
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
-}
-
-void Animation_Simple_WinAllPurpleFade::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& increasing = this->stack->get(1)->get<bool>();
-
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		setAllWindowPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
-	}
-
-	showAllWindowStrips();
-
-  	if (increasing) {
-    	if (i == 150) {
-    		i--;
-      		increasing = false;
-    	} else {
-      		i++;
-    	}
-  	} else {
-    	if (i == 0) {
-      		i++;
-      		increasing = true;
-      		this->current_exec++;
-    	} else {
-      		i--;
-    	}
-  	}
-}
-
-void Animation_Simple_WinAllPurpleFade::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Simple: Window All WPI Spirit ~~~ */
 
 void Animation_Simple_WinAllWPISpirit::init() {
