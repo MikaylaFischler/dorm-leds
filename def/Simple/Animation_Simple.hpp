@@ -143,6 +143,21 @@ private:
 	uint32_t color;
 };
 
+class Animation_Simple_Indiv_TheaterChase : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t color);
+	~Animation_Simple_Indiv_TheaterChase() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+	uint32_t color;
+};
+
+// Animation_Simple_Indiv_Rainbow.cpp
+
 class Animation_Simple_Indiv_Rainbow : public Animation_Simple_Indiv {
 public:
 	Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip);
