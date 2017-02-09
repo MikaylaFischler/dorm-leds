@@ -182,4 +182,16 @@ private:
 	Adafruit_NeoPixel* strip;
 };
 
+class Animation_Simple_Indiv_RainbowTheaterChase : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_RainbowTheaterChase(Adafruit_NeoPixel* strip);
+	~Animation_Simple_Indiv_RainbowTheaterChase() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+};
+
 #endif

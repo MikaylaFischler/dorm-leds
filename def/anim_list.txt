@@ -41,8 +41,12 @@
 			_ColorFlash(&strip, color, [rate])
 			_AlternatingColorFlash(&strip, color_a, color_b, [rate])
 			_ColorFade(&strip, color)
-			_Rainbow(&strip)
-			_RainbowCycle(&strip)
+			_TheaterChase(&strip, color)
+
+			{Animation_Simple_Indiv_Rainbow}
+				_Rainbow(&strip)
+				_RainbowCycle(&strip)
+				_RainbowTheaterChase(&strip)
 
 		{Animation_Simple_WinColorWipe}
 			_Win1RainbowWipe
