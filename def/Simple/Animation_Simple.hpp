@@ -43,16 +43,6 @@ public:
 	void clean();
 };
 
-class Animation_Simple_WinAllPurpleFade : public Animation_Simple {
-public:
-	Animation_Simple_WinAllPurpleFade() {}
-	~Animation_Simple_WinAllPurpleFade() {}
-
-	void init();
-	void step();
-	void clean();
-};
-
 class Animation_Simple_WinAllWPISpirit : public Animation_Simple {
 public:
 	Animation_Simple_WinAllWPISpirit() {}
@@ -96,6 +86,18 @@ public:
 };
 
 // Animation_Simple_Indiv.cpp
+
+class Animation_Simple_Indiv_CalmPurpleFade : public Animation_Simple_Indiv {
+public:
+	Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip);
+	~Animation_Simple_Indiv_CalmPurpleFade() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+};
 
 class Animation_Simple_Indiv_ColorFlash : public Animation_Simple_Indiv {
 public:
