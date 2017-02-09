@@ -294,7 +294,7 @@ void Animation_Simple_Indiv_RainbowCycle::step() {
 
 	// set each led to the proper color
 	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
-		this->strip->setPixelColor(j, ((i * 256 / this->strip->numPixels()) + j) & 255);
+		this->strip->setPixelColor(j, ColorWheel(((j * 256 / this->strip->numPixels()) + i) & 255));
 	}
 
 	this->strip->show();
