@@ -10,6 +10,7 @@
 // Simple Animations
 #include "Simple/Animation_Simple.cpp"
 #include "Simple/Animation_Simple_Indiv.cpp"
+#include "Simple/Animation_Simple_Indiv_Rainbow.cpp"
 #include "Simple/Animation_Simple_WinColorWipe.cpp"
 
 // Seasonal Animations
