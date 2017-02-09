@@ -11,12 +11,12 @@ public:
     void init();
 };
 
-class Animation_Seasonal_Winter_Snow : public Animation_Seasonal {
+class Animation_Seasonal_Winter_WindowSnow : public Animation_Seasonal {
 protected:
 	void snow(Adafruit_NeoPixel& strip, unsigned int i, unsigned short int left_spacing, unsigned short int right_spacing);
 public:
-    Animation_Seasonal_Winter_Snow(Adafruit_NeoPixel* strip);
-    ~Animation_Seasonal_Winter_Snow() {}
+    Animation_Seasonal_Winter_WindowSnow(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Winter_WindowSnow() {}
 
 	void init();
 	void step();
