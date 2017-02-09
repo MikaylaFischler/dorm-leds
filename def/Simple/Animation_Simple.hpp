@@ -100,6 +100,7 @@ public:
 class Animation_Simple_Indiv_ColorFlash : public Animation_Simple_Indiv {
 public:
 	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color);
+	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color, int rate);
 	~Animation_Simple_Indiv_ColorFlash() {}
 
 	void init();
@@ -108,11 +109,13 @@ public:
 private:
 	Adafruit_NeoPixel* strip;
 	uint32_t color;
+	int rate;
 };
 
 class Animation_Simple_Indiv_AlternatingColorFlash : public Animation_Simple_Indiv {
 public:
 	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b);
+	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b, int rate);
 	~Animation_Simple_Indiv_AlternatingColorFlash() {}
 
 	void init();
@@ -122,6 +125,7 @@ private:
 	Adafruit_NeoPixel* strip;
 	uint32_t color_a;
 	uint32_t color_b;
+	int rate;
 };
 
 class Animation_Simple_Indiv_ColorFade : public Animation_Simple_Indiv {
