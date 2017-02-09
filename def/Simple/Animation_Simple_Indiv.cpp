@@ -241,7 +241,7 @@ void Animation_Simple_Indiv_TheaterChase::init() {
 	Animation_Simple_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Theater Chase");
-    this->update_rate = 50;
+    this->update_rate = 35;
 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
