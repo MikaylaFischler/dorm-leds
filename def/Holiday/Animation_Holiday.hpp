@@ -24,7 +24,8 @@ public:
 class Animation_Holiday_Halloween_WinAllHalloweenSparkle : public Animation_Holiday {
 private:
 	unsigned long int rand_halloween_color();
-	void sparkle_fade(float i, bool*& inc);
+	void sparkle_fade(bool*& inc);
+	unsigned int floor_0(float x);
 public:
 	Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
 	~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
