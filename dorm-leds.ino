@@ -28,6 +28,7 @@
 
 #include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
+#include "lib/Executable.cpp"
 #include "lib/Animation.cpp"
 #include "lib/Process.cpp"
 #include "lib/Thread.cpp"
