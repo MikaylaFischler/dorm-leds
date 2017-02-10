@@ -1,7 +1,6 @@
 #ifndef Animation_H
 #define Animation_H
 
-#include <Arduino>
 #include <Adafruit_NeoPixel.h>
 #include <StandardCplusplus.h>
 #include <vector>
@@ -25,6 +24,7 @@ public:
 	virtual ~Animation();
     virtual void init();
 	virtual void step() {};
+	virtual void clean() {};
 
     int getNumStrips();
     short int* getDependencies();
