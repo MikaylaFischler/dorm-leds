@@ -1,5 +1,5 @@
-#ifndef ANIMATION_IMPORT_H
-#define ANIMATION_IMPORT_H
+#ifndef Animation_Import_H
+#define Animation_Import_H
 
 // Disable Animations
 #include "Disable/Animation_Disable.cpp"
@@ -9,7 +9,11 @@
 
 // Simple Animations
 #include "Simple/Animation_Simple.cpp"
-#include "Simple/Animation_Simple_WinColorWipe.cpp"
+#include "Simple/Animation_Simple_Indiv.cpp"
+#include "Simple/Animation_Simple_Indiv_Rainbow.cpp"
+
+// Advanced Animations
+//#include "Simple/Animation_Advanced.cpp"
 
 // Seasonal Animations
 #include "Seasonal/Animation_Seasonal.cpp"

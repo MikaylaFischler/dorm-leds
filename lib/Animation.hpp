@@ -1,6 +1,7 @@
 #ifndef Animation_H
 #define Animation_H
 
+#include <Arduino>
 #include <Adafruit_NeoPixel.h>
 #include <StandardCplusplus.h>
 #include <vector>

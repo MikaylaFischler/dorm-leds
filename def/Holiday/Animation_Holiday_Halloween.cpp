@@ -102,7 +102,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<unsigned short int>();
 	bool* arr = this->stack->get(2)->get<bool[WINDOW_LENGTH * 3]>();
-	delete [] arr;
+	delete[] arr;
 
 	delete this->stack;
 }
