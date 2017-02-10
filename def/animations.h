@@ -1,5 +1,5 @@
-#ifndef ANIMATION_IMPORT_H
-#define ANIMATION_IMPORT_H
+#ifndef Animation_Import_H
+#define Animation_Import_H
 
 // Disable Animations
 #include "Disable/Animation_Disable.cpp"

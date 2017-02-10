@@ -1,5 +1,5 @@
-#ifndef STRIPS_H
-#define STRIPS_H
+#ifndef Strips_H
+#define Strips_H
 
 #include "config.h"
 
