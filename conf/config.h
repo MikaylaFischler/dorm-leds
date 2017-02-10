@@ -1,5 +1,5 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef Config_H
+#define Config_H
 
 // pin configuration (avoid pins 0 and 1)
 #define STRIP_PIN_W1 8
