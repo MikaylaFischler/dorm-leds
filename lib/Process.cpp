@@ -5,6 +5,3 @@ Process::Process() {}
 
 // <<destructor>>
 Process::~Process() { clean(); }
-
-// basic initialization
-void Process::init() {}
