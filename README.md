@@ -8,3 +8,33 @@ Hopefully I'll add documentation in the future.
 ### Dependencies
 
 This code depends on the [Adafruit_Neopixel Library](https://github.com/adafruit/Adafruit_NeoPixel) and the [StandardCplusplus Library](https://github.com/maniacbug/StandardCplusplus).
+
+### File Structure
+
+#### /
+<i> Project Root </i><br>
+dorm-leds.ino
+- The main file for the entire project. Includes all files and calls initialization functions. After initialization, runs loop with thread handler execution.
+
+init.ino
+- The initialization code for the project. Begins LED strips and queues default animations and processes.
+
+#### /conf/
+<i> Configuration </i><br>
+config.h
+- Defines all the ports used in the project, the length of the LED strips, and the type of LED strip used.
+
+strips.h
+- Constructors for each LED strip. Note; window_generic is used to call the Color() function, which will soon be replaced by my own copy of that so I don't need to initialize an unnecessary object.
+
+#### /def
+<i> Animation Definitions </i><br>
+
+#### /dev
+<i> Device Interface Files </i><br>
+
+#### /lib
+<i> The Core Library </i><br>
+
+#### /proc
+<i> Process Definitions </i><br>
