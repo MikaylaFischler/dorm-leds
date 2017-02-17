@@ -37,4 +37,4 @@ strips.h
 *The Core Library*<br>
 
 #### /proc
-*Process Definitions(<br>
+*Process Definitions*<br>
