@@ -5,6 +5,8 @@ As stated in the description, this is probably not the best thing for Arduino/C/
 
 Hopefully I'll add documentation in the future.
 
+On "completion" of this project, specifically the library, in addition to possible increased abstraction, I may release this as a library for others to implement (with actual documentation).
+
 ### Dependencies
 
 This code depends on the [Adafruit_Neopixel Library](https://github.com/adafruit/Adafruit_NeoPixel) and the [StandardCplusplus Library](https://github.com/maniacbug/StandardCplusplus).
