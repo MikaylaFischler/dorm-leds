@@ -2,16 +2,20 @@
 #define DEVICE_HPP_
 
 #include <Arduino.h>
+#include "../conf/dev_types.h"
 
 class Device {
 protected:
 	const String name;
-	Device(void);
+	const unsigned int type;
+	Device();
 	Device(String name);
+	Device(String name, unsigned int type);
 public:
-	virtual ~Device(void);
+	virtual ~Device();
 
-	String getName(void);
+	String getName();
+	unsigned int getType();
 };
 
 #endif
