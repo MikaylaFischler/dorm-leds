@@ -6,15 +6,15 @@
 class DigitalDevice : public Device {
 protected:
 	int port;
-	int type;
+	int io_type;
 	int value;
 public:
-	DigitalDevice(void);
-	DigitalDevice(String name, int port, int type);
-	virtual ~DigitalDevice(void);
+	DigitalDevice();
+	DigitalDevice(String name, int port, int io_type, unsigned int type);
+	virtual ~DigitalDevice();
 
-	void write(int value);
-	int read(void);
+	virtual void write(int value);
+	virtual int read();
 };
 
 #endif
