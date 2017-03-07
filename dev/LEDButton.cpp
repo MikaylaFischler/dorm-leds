@@ -1,23 +1,21 @@
 #include "LEDButton.hpp"
 
 // <<constructors>>
-LEDButton::LEDButton(String name, int port_led, int port_button) : Device(name, DEV_LED_PUSH_BUTTON) {
-	this->led = new DigitalDevice(name + F(": LED"), port_led, OUTPUT, DEV_LED);
-	this->button = new DigitalDevice(name + F(": Button"), port_button, INPUT, DEV_PUSH_BUTTON);
+LEDButton::LEDButton(String name, int led_port, int button_port) : Device(name, DEV_LED_PUSH_BUTTON),
+								led(led_port), button(button_port) {
+	pinMode(led_port, OUTPUT);
+	pinMode(button_port, INPUT);
 }
 
 // <<destructor>>
-LEDButton::~LEDButton() {
-	delete this->led;
-	delete this->button;
-}
+LEDButton::~LEDButton() {}
 
-// write to the digital device
+// light the led
 void LEDButton::setLED(int value) {
-	this->led->write(value);
+	digitalWrite(led, value);
 }
 
-// read this digital device
-int LEDButton::read() {
-	return this->button->read();
+// read the button
+int LEDButton::read() const {
+	return digitalRead(button);
 }

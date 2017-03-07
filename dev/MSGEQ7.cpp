@@ -1,31 +1,27 @@
 #include "MSGEQ7.hpp"
 
 // <<constructors>>
-MSGEQ7::MSGEQ7(String name, int strobe_port, int reset_port, int input_port) : Device(name, DEV_MSGEQ7) {
-	this->strobe = new DigitalDevice(name + F(": Strobe"), strobe_port, OUTPUT, DEV_GENERIC_D_OUTPUT);
-	this->reset = new DigitalDevice(name + F(": Reset"), reset_port, OUTPUT, DEV_GENERIC_D_OUTPUT);
-	this->input = new AnalogDevice(name + F(": Signal"), input_port, DEV_GENERIC_A_INPUT);
+MSGEQ7::MSGEQ7(String name, int strobe_port, int reset_port, int input_port) : Device(name, DEV_MSGEQ7),
+						strobe(strobe_port), reset(reset_port), input(input_port) {
+	pinMode(strobe_port, OUTPUT);
+	pinMode(reset_port, OUTPUT);
 }
 
 // <<destructor>>
-MSGEQ7::~MSGEQ7() {
-	delete this->strobe;
-	delete this->reset;
-	delete this->input;
-}
+MSGEQ7::~MSGEQ7() {}
 
 // update stored values
-void MSGEQ7::update(int value) {
-	reset->write(HIGH);
-	reset->write(LOW);
+void MSGEQ7::update() {
+	digitalWrite(reset, HIGH);
+	digitalWrite(reset, LOW);
 
 	for (int i = 0; i < 7; i++) {
-		strobe->write(LOW);
+		digitalWrite(strobe, LOW);
 		delay(30); // THIS IS A PROBLEM
 
-		spectrum_values[i] =
+		spectrum_values[i] = analogRead(input);
 
-		strobe->write(HIGH);
+		digitalWrite(strobe, HIGH);
 	}
 }
 
