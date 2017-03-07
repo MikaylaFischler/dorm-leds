@@ -22,20 +22,27 @@
 #include "conf/config.h"
 #include "conf/strips.h"
 
-// Threading System
+// System
 #include "lib/strip_id.h"
 #include "lib/strip_ownership.h"
 
 #include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
+
 #include "lib/Executable.cpp"
 #include "lib/Animation.cpp"
 #include "lib/Process.cpp"
+
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
+#include "lib/Device.cpp"
+
 // Animations
 #include "def/animations.h"
+
+// Devices (like drivers)
+#include "dev/devices.h"
 
 // Utility Files
 #include "util/led.c"
