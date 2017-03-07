@@ -21,6 +21,7 @@
 // Configuration
 #include "conf/config.h"
 #include "conf/strips.h"
+#include "conf/dev_types.h"
 
 // System
 #include "lib/strip_id.h"
