@@ -1,9 +1,8 @@
 #include "DigitalDevice.hpp"
 
 // <<constructors>>
-DigitalDevice::DigitalDevice() : Device(F("NullDigitalDevice")), port(-1), io_type(-1), value(0) {}
-DigitalDevice::DigitalDevice(String name, int port, int io_type, unsigned int type) : Device(name, type), value(0) {
-	this->port = port;
+DigitalDevice::DigitalDevice() : IODevice(F("NullDigitalDevice"), -1, 0), io_type(-1) {}
+DigitalDevice::DigitalDevice(String name, int port, int io_type, unsigned int type) : IODevice(name, port, type) {
 	this->io_type = io_type;
 	pinMode(port, io_type);
 }
