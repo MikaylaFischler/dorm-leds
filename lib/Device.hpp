@@ -12,8 +12,8 @@ protected:
 public:
 	virtual ~Device();
 
-	String getName();
-	unsigned int getType();
+	String getName() const;
+	unsigned int getType() const;
 };
 
 #endif
