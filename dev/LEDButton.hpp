@@ -6,14 +6,14 @@
 
 class LEDButton : public Device {
 private:
-	DigitalDevice* led;
-	DigitalDevice* button;
+	const int led;
+	const int button;
 public:
 	LEDButton(String name, int port_led, int port_button);
 	virtual ~LEDButton();
 
 	void setLED(int value);
-	int read();
+	int read() const;
 };
 
 #endif

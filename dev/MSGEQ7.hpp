@@ -2,14 +2,12 @@
 #define MSGEQ7_H_
 
 #include "../lib/Device.hpp"
-#include "DigitalDevice.hpp"
-#include "AnalogDevice.hpp"
 
 class MSGEQ7 : public Device {
 private:
-	DigitalDevice* strobe;
-	DigitalDevice* reset;
-	AnalogDevice* input;
+	const int strobe;
+	const int reset;
+	const int input;
 
 	int spectrum_values[7];
 
