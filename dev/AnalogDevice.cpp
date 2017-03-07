@@ -1,7 +1,6 @@
 #include "AnalogDevice.hpp"
 
 // <<constructors>>
-AnalogDevice::AnalogDevice() : IODevice(F("NullAnalogDevice"), -1, 0) {}
 AnalogDevice::AnalogDevice(String name, int port, unsigned int type) : IODevice(name, port, type) {}
 
 // <<destructor>>

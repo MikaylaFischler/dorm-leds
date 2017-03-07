@@ -7,9 +7,9 @@ class IODevice : public Device {
 protected:
 	int port;
 	int value;
-public:
-	IODevice();
+	
 	IODevice(String name, int port, unsigned int type);
+public:
 	virtual ~IODevice();
 
 	virtual void write(int value) = 0;
