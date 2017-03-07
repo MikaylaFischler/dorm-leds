@@ -1,10 +1,9 @@
 #ifndef DEVICE_DRIVERS_H_
 #define DEVICE_DRIVERS_H_
 
-// Digital I/O
+// Basic I/O
 #include "DigitalDevice.cpp"
-
-// Analog I/O
+#include "AnalogDevice.cpp"
 
 // Multi-Component Systems
 #include "LEDButton.cpp"

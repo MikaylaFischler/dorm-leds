@@ -1,13 +1,11 @@
 #ifndef DIGITALDEVICE_HPP_
 #define DIGITALDEVICE_HPP_
 
-#include "../lib/Device.hpp"
+#include "IODevice.hpp"
 
-class DigitalDevice : public Device {
+class DigitalDevice : public IODevice {
 protected:
-	int port;
 	int io_type;
-	int value;
 public:
 	DigitalDevice();
 	DigitalDevice(String name, int port, int io_type, unsigned int type);
