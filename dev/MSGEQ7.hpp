@@ -1,5 +1,5 @@
-#ifndef MSGEQ7_H_
-#define MSGEQ7_H_
+#ifndef MSGEQ7_HPP_
+#define MSGEQ7_HPP_
 
 #include "../lib/Device.hpp"
 
