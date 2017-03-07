@@ -1,7 +1,6 @@
 #include "DigitalDevice.hpp"
 
-// <<constructors>>
-DigitalDevice::DigitalDevice() : IODevice(F("NullDigitalDevice"), -1, 0), io_type(-1) {}
+// <<constructor>>
 DigitalDevice::DigitalDevice(String name, int port, int io_type, unsigned int type) : IODevice(name, port, type) {
 	this->io_type = io_type;
 	pinMode(port, io_type);

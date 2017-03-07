@@ -9,7 +9,6 @@ private:
 	DigitalDevice* led;
 	DigitalDevice* button;
 public:
-	LEDButton();
 	LEDButton(String name, int port_led, int port_button);
 	virtual ~LEDButton();
 

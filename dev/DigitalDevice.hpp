@@ -7,7 +7,6 @@ class DigitalDevice : public IODevice {
 protected:
 	int io_type;
 public:
-	DigitalDevice();
 	DigitalDevice(String name, int port, int io_type, unsigned int type);
 	virtual ~DigitalDevice();
 

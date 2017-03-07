@@ -5,7 +5,6 @@
 
 class AnalogDevice : public IODevice {
 public:
-	AnalogDevice();
 	AnalogDevice(String name, int port, unsigned int type);
 	virtual ~AnalogDevice();
 
