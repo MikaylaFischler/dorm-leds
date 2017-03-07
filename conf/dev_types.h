@@ -21,5 +21,6 @@
 // Multi-Component Systems
 #define DEV_GENERIC_MCOMPONENT 0x00000FFFF
 #define DEV_LED_PUSH_BUTTON 0x00001FFFF
+#define DEV_MSGEQ7 0x00002FFFF
 
 #endif
