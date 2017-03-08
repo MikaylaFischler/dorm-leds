@@ -38,6 +38,7 @@
 #include "lib/ThreadHandler.cpp"
 
 #include "lib/Device.cpp"
+#include "lib/DeviceManager.cpp"
 
 // Animations
 #include "def/animations.h"
@@ -57,9 +58,10 @@ unsigned long int cur_time = millis();
 // LCD Display
 LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
 
-// Threading Variables
+// Core System Variables and Class Instances
 unsigned long int dT = 0;
 ThreadHandler thread_handler = ThreadHandler();
+DeviceManager device_manager = DeviceManager();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
