@@ -22,7 +22,7 @@ void DeviceManager::mount(Device* dev) {
 // remove a device from the system
 void DeviceManager::unmount(int id) {
 	Serial.print(F("DeviceManager.cpp:> Device Unmounted: "));
-	Serial.println(this->devices.at(this->devices.begin() + id)->getName());
+	Serial.println(this->devices.at(id)->getName());
 
 	this->devices.erase(this->devices.begin() + id);
 }
