@@ -19,7 +19,7 @@ public:
 	unsigned int getNumDevices() const;
 
 	std::vector<Device*> listDevices() const;
-	Device* getDevice(unsigned int id) const;
+	template <typename dev_type> dev_type* getDevice(unsigned int id) const;
 
 	Device* operator[] (int id) const;
 };

@@ -84,6 +84,10 @@ void mount_devices() {
 }
 
 void queue_sys_threads() {
+	// device processes
+	thread_handler.queue(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(0)));
+	thread_handler.queue(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(1)));
+
 	// system processes
 	//thread_handler.queue();
 }
