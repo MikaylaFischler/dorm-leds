@@ -62,6 +62,27 @@ void init_timing() {
 	prev_time = millis();
 }
 
+void mount_devices() {
+	// order matters
+																									// device id
+	// equalizers
+	device_manager.mount(new MSGEQ7(F("Left Equalizer"), EQ_L_STROBE, EQ_L_RESET, EQ_L_INPUT));		// 0
+	device_manager.mount(new MSGEQ7(F("Right Equalizer"), EQ_R_STROBE, EQ_R_RESET, EQ_R_INPUT));	// 1
+
+	// LED buttons
+	device_manager.mount(new LEDButton(F("Desk 1 Mode"), MODE_DESK1_LED_PIN, MODE_DESK1_BTN_PIN));	// 2
+	device_manager.mount(new LEDButton(F("Desk 2 Mode"), MODE_DESK2_LED_PIN, MODE_DESK2_BTN_PIN));	// 3
+	device_manager.mount(new LEDButton(F("Desk Mode"), MODE_DESK_LED_PIN, MODE_DESK_BTN_PIN));		// 4
+
+	device_manager.mount(new LEDButton(F("Win 1 Mode"), MODE_WIN1_LED_PIN, MODE_WIN1_BTN_PIN));		// 5
+	device_manager.mount(new LEDButton(F("Win 2 Mode"), MODE_WIN2_LED_PIN, MODE_WIN2_BTN_PIN));		// 6
+	device_manager.mount(new LEDButton(F("Win 3 Mode"), MODE_WIN3_LED_PIN, MODE_WIN3_BTN_PIN));		// 7
+	device_manager.mount(new LEDButton(F("Window Mode"), MODE_WIN_LED_PIN, MODE_WIN_BTN_PIN));		// 8
+
+	device_manager.mount(new LEDButton(F("Select"), SELECT_LED_PIN, SELECT_BTN_PIN));				// 9
+	device_manager.mount(new LEDButton(F("Disable"), DISABLE_LED_PIN, DISABLE_BTN_PIN));			// 10
+}
+
 void queue_sys_threads() {
 	// system processes
 	//thread_handler.queue();
