@@ -38,7 +38,7 @@ public:
 		virtual ~UpdaterProcess();
 
 		void init();
-		void run();
+		void step();
 		void clean();
 	};
 };

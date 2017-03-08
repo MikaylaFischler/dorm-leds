@@ -11,10 +11,10 @@ protected:
 	Process();
 public:
 	virtual ~Process();
-	
-    virtual void init() {}
-	virtual void run() {}
-	virtual void clean() {}
+
+    virtual void init() {};
+	virtual void step() {};
+	virtual void clean() {};
 };
 
 #endif

@@ -32,6 +32,7 @@ public:
 
 	std::vector<AnimationThread*> listAnimationThreads();
 	std::vector<ProcessThread*> listProcessThreads();
+
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 };

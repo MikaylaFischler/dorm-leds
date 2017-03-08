@@ -62,7 +62,7 @@ void MSGEQ7::UpdaterProcess::init() {
 	this->stack->push(new MemObj(new short int(0)));
 }
 
-void MSGEQ7::UpdaterProcess::run() {
+void MSGEQ7::UpdaterProcess::step() {
 	bool& new_call = this->stack->get(0)->get<bool>();
 	bool& waiting = this->stack->get(1)->get<bool>();
 	short int& i = this->stack->get(2)->get<short int>();

@@ -9,7 +9,7 @@ ThreadHandler::~ThreadHandler() {}
 // get the list of queued animation threads
 std::vector<AnimationThread*> ThreadHandler::listAnimationThreads() { return anim_threads; }
 
-// get the list of queued threads
+// get the list of queued process threads
 std::vector<ProcessThread*> ThreadHandler::listProcessThreads() { return proc_threads; }
 
 // queue an animation
