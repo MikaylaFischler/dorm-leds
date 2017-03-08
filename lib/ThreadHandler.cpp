@@ -103,7 +103,7 @@ void ThreadHandler::executeTick() {
 		unsigned long int timeSum = this_thread.getTimeSum();
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
-			this_thread.getProcess()->run();
+			this_thread.getProcess()->step();
 			this_thread.zeroTimeSum();
 		}
 	}
