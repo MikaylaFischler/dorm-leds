@@ -4,6 +4,9 @@
 #include <StandardCplusplus.h>
 #include <vector>
 
+#include "../util/mem.c"
+#include "../util/free_memory.h"
+
 class DeviceManager {
 private:
 	std::vector<Device*> devices;
