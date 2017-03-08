@@ -10,7 +10,7 @@
 #include "Thread.hpp"
 
 #include "../util/mem.c"
-#include "../util/MemoryFree.h"
+#include "../util/free_memory.h"
 
 class ThreadHandler {
 private:
