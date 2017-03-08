@@ -1,6 +1,6 @@
 #include "LEDButton.hpp"
 
-// <<constructors>>
+// <<constructor>>
 LEDButton::LEDButton(String name, int led_port, int button_port) : Device(name, DEV_LED_PUSH_BUTTON),
 								led(led_port), button(button_port) {
 	pinMode(led_port, OUTPUT);
