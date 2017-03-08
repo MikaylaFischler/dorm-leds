@@ -15,8 +15,9 @@ public:
 	virtual ~Executable();
 
     virtual void init() = 0;
+    virtual void step() = 0;
     virtual void clean() = 0;
-	
+
     String getName();
     unsigned long int getUpdateRate();
 };
