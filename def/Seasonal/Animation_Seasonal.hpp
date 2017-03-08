@@ -12,11 +12,21 @@ public:
 };
 
 class Animation_Seasonal_Winter_WindowSnow : public Animation_Seasonal {
-protected:
-	void snow(Adafruit_NeoPixel& strip, unsigned int i, unsigned short int left_spacing, unsigned short int right_spacing);
 public:
     Animation_Seasonal_Winter_WindowSnow(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Winter_WindowSnow() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	Adafruit_NeoPixel* strip;
+};
+
+class Animation_Seasonal_Spring_ClearSkyFade : public Animation_Seasonal {
+public:
+    Animation_Seasonal_Spring_ClearSkyFade(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Spring_ClearSkyFade() {}
 
 	void init();
 	void step();
