@@ -1,6 +1,11 @@
 #ifndef LEDBUTTON_HPP_
 #define LEDBUTTON_HPP_
 
+/*
+ *	Device code for sparkfun LED button
+ *  Really simple, its just an LED and a button in one
+ */
+
 #include "../lib/Device.hpp"
 #include "DigitalDevice.hpp"
 
