@@ -1,6 +1,6 @@
 #include "Device.hpp"
 
-// <<constructors>>
+// <<constructor>>
 Device::Device(String name, unsigned int type) : name(name), type(type) {}
 
 // <<destructor>>
