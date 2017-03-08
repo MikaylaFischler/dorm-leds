@@ -48,7 +48,7 @@
 // Utility Files
 #include "util/led.c"
 #include "util/mem.c"
-#include "util/MemoryFree.cpp"
+#include "util/free_memory.c"
 
 // Timing
 unsigned long int prev_time = millis();
