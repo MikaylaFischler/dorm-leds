@@ -34,13 +34,14 @@ unsigned int DeviceManager::getNumDevices() const { return this->devices.size();
 std::vector<Device*> DeviceManager::listDevices() const { return this->devices; };
 
 // get a device (with bounds check)
-Device* DeviceManager::getDevice(unsigned int id) const {
+template <typename dev_type>
+dev_type* DeviceManager::getDevice(unsigned int id) const {
 	if (id < this->devices.size()) {
-		return this->devices[id];
+		return reinterpret_cast<dev_type*>(this->devices[id]);
 	} else {
 		return NULL;
 	}
 }
 
 // get a device with the overloaded [] operator
-Device* DeviceManager::operator[] (int id) const { return this->getDevice(id); }
+Device* DeviceManager::operator[] (int id) const { return this->getDevice<Device>(id); }
