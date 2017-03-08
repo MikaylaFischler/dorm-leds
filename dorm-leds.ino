@@ -68,7 +68,7 @@ void setup() {
 
 	// random seed
 	Serial.println(F("Generating random seed..."));
-	randomSeed(analogRead(0));
+	randomSeed(analogRead(A0));
 
 	// initialize pins
 	Serial.println(F("Setting pin modes..."));
