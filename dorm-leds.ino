@@ -70,7 +70,7 @@ void setup() {
 
 	// random seed
 	Serial.println(F("Generating random seed..."));
-	randomSeed(analogRead(A0));
+	randomSeed(analogRead(RAND_SEED_ANALOG_NOISE_PORT));
 
 	// initialize pins
 	Serial.println(F("Setting pin modes..."));
@@ -83,6 +83,11 @@ void setup() {
 	// initialize LCD display
 	Serial.println(F("Initializing LCD display..."));
 	init_lcd();
+
+	// mount other devices
+	mem_available = freeMemory();
+	Serial.println(F("Mounting Additional Devices..."));
+	mount_devices();
 
 	// manual queue
 	mem_available = freeMemory();
