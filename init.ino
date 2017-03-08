@@ -63,7 +63,7 @@ void init_timing() {
 }
 
 void mount_devices() {
-	// order matters
+	// note: order matters; it defines the device index
 																									// device id
 	// equalizers
 	device_manager.mount(new MSGEQ7(F("Left Equalizer"), EQ_L_STROBE, EQ_L_RESET, EQ_L_INPUT));		// 0
