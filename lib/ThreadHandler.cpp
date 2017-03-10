@@ -39,6 +39,8 @@ void ThreadHandler::queue(Animation* anim) {
 
 // queue a process
 void ThreadHandler::queue(Process* proc) {
+	proc->init();
+	
 	// queue this process as a new thread (set current time as the update rate so it initially sets on start)
 	ProcessThread* t = new ProcessThread(next_id, proc);
 	next_id++;
