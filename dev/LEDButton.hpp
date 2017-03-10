@@ -7,7 +7,6 @@
  */
 
 #include "../lib/Device.hpp"
-#include "DigitalDevice.hpp"
 
 class LEDButton : public Device {
 private:
