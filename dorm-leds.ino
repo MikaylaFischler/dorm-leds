@@ -85,18 +85,18 @@ void setup() {
 	init_lcd();
 
 	// mount other devices
-	mem_available = freeMemory();
 	Serial.println(F("Mounting Additional Devices..."));
+	mem_available = freeMemory();
 	mount_devices();
 
 	// manual queue
-	mem_available = freeMemory();
 	Serial.println(F("Queueing system threads..."));
+	mem_available = freeMemory();
 	queue_sys_threads();
 
 	// manual queue
-	mem_available = freeMemory();
 	Serial.println(F("Manually queueing animations..."));
+	mem_available = freeMemory();
 	led_man_queue();
 
 	// initialize timing
