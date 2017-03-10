@@ -60,6 +60,9 @@ void MSGEQ7::UpdaterProcess::init() {
 	this->stack->push(new MemObj(new bool(true)));
 	this->stack->push(new MemObj(new bool(false)));
 	this->stack->push(new MemObj(new short int(0)));
+
+	digitalWrite(equalizer->reset, HIGH);
+	digitalWrite(equalizer->reset, LOW);
 }
 
 void MSGEQ7::UpdaterProcess::step() {
@@ -74,20 +77,19 @@ void MSGEQ7::UpdaterProcess::step() {
 		new_call = false;
 	}
 
-	// simulate a delay(30) between strobe low and data read
-	if (waiting) {
-		equalizer->spectrum_values[i] = analogRead(equalizer->input);
-		digitalWrite(equalizer->strobe, HIGH);
+	digitalWrite(equalizer->strobe, LOW);
+	equalizer->spectrum_values[i] = analogRead(equalizer->input);
+    equalizer->spectrum_values[i] = constrain(equalizer->spectrum_values[i], 80, 1023);
+	digitalWrite(equalizer->strobe, HIGH);
 
-	    this->update_rate = 1;
-		waiting = false;
-		i++;
+	if (i == 0) {
+		Serial.print(equalizer->spectrum_values[0]);
 	} else {
-		digitalWrite(equalizer->strobe, LOW);
-		waiting = true;
-
-	    this->update_rate = 30;
+		Serial.print(F(" "));
+		Serial.print(equalizer->spectrum_values[i]);
 	}
+
+	i++;
 
 	// check if read all frequencies
 	if (i > 7) {
@@ -96,6 +98,8 @@ void MSGEQ7::UpdaterProcess::step() {
 		new_call = true;
 		waiting = false;
 		i = 0;
+
+		Serial.println("");
 	}
 }
 
