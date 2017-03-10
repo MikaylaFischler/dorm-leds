@@ -68,6 +68,10 @@ void setup() {
 	Serial.begin(115200);
 	Serial.println(F("Initializing..."));
 
+	// starting available memory
+	Serial.print(freeMemory());
+	Serial.println(F(" bytes of free SRAM."));
+
 	// random seed
 	Serial.println(F("Generating random seed..."));
 	randomSeed(analogRead(RAND_SEED_ANALOG_NOISE_PORT));
@@ -104,6 +108,8 @@ void setup() {
 	init_timing();
 
 	Serial.println(F("System Initialized."));
+	Serial.print(freeMemory());
+	Serial.println(F(" bytes of free SRAM."));
 }
 
 // the loop function runs over and over again forever
