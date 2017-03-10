@@ -11,7 +11,7 @@ void DeviceManager::mount(Device* dev) {
 	this->devices.push_back(dev);
 
 	Serial.print(F("DeviceManager.cpp:> Device Mounted: "));
-	Serial.println(dev->getName());
+	Serial.print(dev->getName());
 	Serial.print(F(", occupying "));
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
