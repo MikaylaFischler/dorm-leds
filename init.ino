@@ -104,11 +104,13 @@ void led_man_queue() {
 	//thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window1));
 	//thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window3));
 
-  thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window1));
-  //thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window2));
-  thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window3));
+	thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window1));
+	//thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window2));
+	thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window3));
 
-  //thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window1));
-  thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
-  //thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window3));
+	//thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window1));
+	thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
+	//thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window3));
+
+	thread_handler.queue(new Animation_Advanced_Audio_BeatWindowPulse());
 }
