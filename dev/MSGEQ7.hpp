@@ -22,7 +22,6 @@ public:
 	MSGEQ7(String name, int strobe_port, int reset_port, int input_port);
 	virtual ~MSGEQ7();
 
-	void update();
 	int getRaw(int i) const;
 	int get8Bit(int i) const;
 
@@ -34,7 +33,7 @@ public:
 	private:
 		MSGEQ7* equalizer; // do not call delete on this
 	public:
-		UpdaterProcess(MSGEQ7* equalizer);
+		UpdaterProcess(MSGEQ7* eq);
 		virtual ~UpdaterProcess();
 
 		void init();
