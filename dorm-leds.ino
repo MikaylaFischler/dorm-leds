@@ -52,8 +52,8 @@
 #include "util/free_memory.c"
 
 // Timing
-unsigned long int prev_time = millis();
-unsigned long int cur_time = millis();
+unsigned long int prev_time;
+unsigned long int cur_time;
 
 // LCD Display
 LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
