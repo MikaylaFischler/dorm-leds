@@ -15,7 +15,7 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
  	this->name = F("Desk[all]: Off White with Purple Fade");
     this->update_rate = 10;
 	this->num_strips = 2;
- 	this->strips = FULL_DESK;
+ 	this->strips = DESK_ALL;
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));

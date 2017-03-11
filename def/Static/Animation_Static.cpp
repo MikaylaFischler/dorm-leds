@@ -15,7 +15,7 @@ void Animation_Static_DeskBrightWhite::init() {
     Animation_Static::init();
     this->name = F("Desk[all]: Bright White");
 	this->num_strips = 2;
-    this->strips = FULL_DESK;
+    this->strips = DESK_ALL;
 }
 
 void Animation_Static_DeskBrightWhite::step() {
@@ -37,7 +37,7 @@ void Animation_Static_DeskThirdDimAmbient::init() {
     Animation_Static::init();
     this->name = F("Desk[all]: Third LED Dim Ambient");
 	this->num_strips = 2;
-    this->strips = FULL_DESK;
+    this->strips = DESK_ALL;
 }
 
 void Animation_Static_DeskThirdDimAmbient::step() {
@@ -67,7 +67,7 @@ void Animation_Static_DeskDimAmbient::init() {
     Animation_Static::init();
     this->name = F("Desk[all]: Dim Ambient");
 	this->num_strips = 2;
-    this->strips = FULL_DESK;
+    this->strips = DESK_ALL;
 }
 
 void Animation_Static_DeskDimAmbient::step() {
