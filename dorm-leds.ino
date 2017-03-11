@@ -64,7 +64,6 @@ ThreadHandler thread_handler = ThreadHandler();
 
 // Globals
 #include "conf/globals.h"
-device_manager = DeviceManager();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -93,6 +92,7 @@ void setup() {
 
 	// mount other devices
 	Serial.println(F("Mounting Additional Devices..."));
+	device_manager = DeviceManager();
 	mem_available = freeMemory();
 	mount_devices();
 
