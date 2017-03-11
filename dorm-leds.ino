@@ -21,25 +21,35 @@
 // Configuration
 #include "conf/config.h"
 #include "conf/strips.h"
+#include "conf/dev_types.h"
 
-// Threading System
+// System
 #include "lib/strip_id.h"
 #include "lib/strip_ownership.h"
 
 #include "lib/MemObj.cpp"
 #include "lib/LocalStack.cpp"
+
+#include "lib/Executable.cpp"
 #include "lib/Animation.cpp"
 #include "lib/Process.cpp"
+
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
+
+#include "lib/Device.cpp"
+#include "lib/DeviceManager.cpp"
 
 // Animations
 #include "def/animations.h"
 
+// Devices (like drivers)
+#include "dev/devices.h"
+
 // Utility Files
 #include "util/led.c"
 #include "util/mem.c"
-#include "util/MemoryFree.cpp"
+#include "util/free_memory.c"
 
 // Timing
 unsigned long int prev_time = millis();
@@ -48,18 +58,26 @@ unsigned long int cur_time = millis();
 // LCD Display
 LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
 
-// Threading Variables
+// Core System Variables and Class Instances
 unsigned long int dT = 0;
 ThreadHandler thread_handler = ThreadHandler();
+
+// Globals
+#include "conf/globals.h"
+device_manager = DeviceManager();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
 	Serial.begin(115200);
 	Serial.println(F("Initializing..."));
 
+	// starting available memory
+	Serial.print(freeMemory());
+	Serial.println(F(" bytes of free SRAM."));
+
 	// random seed
 	Serial.println(F("Generating random seed..."));
-	randomSeed(analogRead(0));
+	randomSeed(analogRead(RAND_SEED_ANALOG_NOISE_PORT));
 
 	// initialize pins
 	Serial.println(F("Setting pin modes..."));
@@ -73,14 +91,19 @@ void setup() {
 	Serial.println(F("Initializing LCD display..."));
 	init_lcd();
 
-	// manual queue
+	// mount other devices
+	Serial.println(F("Mounting Additional Devices..."));
 	mem_available = freeMemory();
+	mount_devices();
+
+	// manual queue
 	Serial.println(F("Queueing system threads..."));
+	mem_available = freeMemory();
 	queue_sys_threads();
 
 	// manual queue
-	mem_available = freeMemory();
 	Serial.println(F("Manually queueing animations..."));
+	mem_available = freeMemory();
 	led_man_queue();
 
 	// initialize timing
@@ -88,6 +111,8 @@ void setup() {
 	init_timing();
 
 	Serial.println(F("System Initialized."));
+	Serial.print(freeMemory());
+	Serial.println(F(" bytes of free SRAM."));
 }
 
 // the loop function runs over and over again forever
@@ -107,7 +132,7 @@ void loop() {
 	prev_time = millis();
 
 	// prevent ticks less than a millisecond
-	delay(1);
+	delayMicroseconds(400);
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));

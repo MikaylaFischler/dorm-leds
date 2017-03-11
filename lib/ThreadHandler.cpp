@@ -9,7 +9,7 @@ ThreadHandler::~ThreadHandler() {}
 // get the list of queued animation threads
 std::vector<AnimationThread*> ThreadHandler::listAnimationThreads() { return anim_threads; }
 
-// get the list of queued threads
+// get the list of queued process threads
 std::vector<ProcessThread*> ThreadHandler::listProcessThreads() { return proc_threads; }
 
 // queue an animation
@@ -39,6 +39,8 @@ void ThreadHandler::queue(Animation* anim) {
 
 // queue a process
 void ThreadHandler::queue(Process* proc) {
+	proc->init();
+	
 	// queue this process as a new thread (set current time as the update rate so it initially sets on start)
 	ProcessThread* t = new ProcessThread(next_id, proc);
 	next_id++;
@@ -103,7 +105,7 @@ void ThreadHandler::executeTick() {
 		unsigned long int timeSum = this_thread.getTimeSum();
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
-			this_thread.getProcess()->run();
+			this_thread.getProcess()->step();
 			this_thread.zeroTimeSum();
 		}
 	}
