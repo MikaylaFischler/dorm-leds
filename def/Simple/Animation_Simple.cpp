@@ -27,23 +27,23 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
 	bool& increasing = this->stack->get(1)->get<bool>();
 
 	for (int y = 0; y < DESK1_LENGTH; y++) {
-		if (y%3 != 0) {
-			desk1.setPixelColor(y, desk1.Color((int)(((float)i / 150.0) * 100), 0, i));
+		if (y % 3 != 0) {
+			desk1.setPixelColor(y, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
 			desk1.setPixelColor(y, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
 	for (int z = 0; z < DESK2_LENGTH; z++) {
-		if (z%3 != 0) {
-			desk2.setPixelColor(z, desk2.Color((int)(((float)i / 150.0) * 100), 0, i));
+		if (z % 3 != 0) {
+			desk2.setPixelColor(z, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
 			desk2.setPixelColor(z, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
-	desk1.show();
-	desk2.show();
+	//desk1.show();
+	//desk2.show();
 
   	if (increasing) {
     	if (i == 150) {

@@ -55,9 +55,9 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	int leftFullLength = 41; // 39 pixels
 	int rightFullLength = 41; // 40 pixels
 
-	unsigned long int on  = window_generic.Color(150,150,150);
-	unsigned long int red = window_generic.Color(150,0,0);
-	unsigned long int green = window_generic.Color(0,150,0);
+	unsigned long int on  = Color(150,150,150);
+	unsigned long int red = Color(150,0,0);
+	unsigned long int green = Color(0,150,0);
 
 	int a = 40 - abs(40 - i % 80);
 
