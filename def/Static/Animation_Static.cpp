@@ -42,7 +42,7 @@ void Animation_Static_DeskThirdDimAmbient::init() {
 
 void Animation_Static_DeskThirdDimAmbient::step() {
 	for (int i = 0; i < DESK1_LENGTH; i++) {
-		if (i%3 == 0) {
+		if (i % 3 == 0) {
 			desk1.setPixelColor(i, COLOR_DIM_OFF_WHITE);
 		} else {
 			desk1.setPixelColor(i, COLOR_OFF);
@@ -50,7 +50,7 @@ void Animation_Static_DeskThirdDimAmbient::step() {
 	}
 
 	for (int i = 0; i < DESK2_LENGTH; i++){
-		if (i%3 == 0) {
+		if (i % 3 == 0) {
 			desk2.setPixelColor(i, COLOR_DIM_OFF_WHITE);
 		} else {
 			desk2.setPixelColor(i, COLOR_OFF);
