@@ -31,7 +31,7 @@ void Animation_Simple_Indiv_CalmPurpleFade::step() {
 	bool& increasing = this->stack->get(1)->get<bool>();
 
 	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
-		this->strip->setPixelColor(x, window_generic.Color((int)(((float)i / 150.0) * 100), 0, i));
+		this->strip->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 	}
 
 	this->strip->show();

@@ -28,7 +28,7 @@ void Animation_Seasonal_Winter_WindowSnow::step() {
 	const int leftTop = 50;
 	const int leftBottom = 80;
 
-	const unsigned long int on  = window_generic.Color(100,100,100);
+	const unsigned long int on  = Color(100,100,100);
 
 	unsigned int& i = this->stack->get(0)->get<unsigned int>();
 	bool& mode = this->stack->get(1)->get<bool>();
