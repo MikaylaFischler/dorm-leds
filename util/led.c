@@ -40,9 +40,9 @@ short int* getAsStripArray(Adafruit_NeoPixel* strip) {
 	} else if (strip == &window3) {
 		return WINDOW_3;
 	} else if (strip == &desk1) {
-		return BOTTOM_DESK;
+		return DESK_BOTTOM;
 	} else if (strip == &desk2) {
-		return TOP_DESK;
+		return DESK_TOP;
 	}
 
 	return NULL;
