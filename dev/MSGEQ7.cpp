@@ -33,7 +33,7 @@ int MSGEQ7::getRaw(int i) const {
 // get the value (0 - 255)
 int MSGEQ7::get8Bit(int i) const {
 	// mapped to 8-bit, constrain the noise out (make it all 0)
-	return map(constrain(spectrum_values[i], NOISE_FILTER, 1023), NOISE_FILTER, 1023, 0, 255);
+	return map(spectrum_values[i], NOISE_FILTER, 1023, 0, 255);
 }
 
 // an overload of the [] operator to provide the 8-bit values
@@ -79,14 +79,14 @@ void MSGEQ7::UpdaterProcess::step() {
 
 	digitalWrite(equalizer->strobe, LOW);
 	equalizer->spectrum_values[i] = analogRead(equalizer->input);
-    equalizer->spectrum_values[i] = constrain(equalizer->spectrum_values[i], 80, 1023);
+    equalizer->spectrum_values[i] = constrain(equalizer->spectrum_values[i], NOISE_FILTER, 1023);
 	digitalWrite(equalizer->strobe, HIGH);
 
 	if (i == 0) {
-		Serial.print(equalizer->spectrum_values[0]);
+		// Serial.print(equalizer->spectrum_values[0]);
 	} else {
-		Serial.print(F(" "));
-		Serial.print(equalizer->spectrum_values[i]);
+		// Serial.print(F(" "));
+		// Serial.print(equalizer->spectrum_values[i]);
 	}
 
 	i++;
@@ -99,7 +99,7 @@ void MSGEQ7::UpdaterProcess::step() {
 		waiting = false;
 		i = 0;
 
-		Serial.println("");
+		// Serial.println("");
 	}
 }
 
