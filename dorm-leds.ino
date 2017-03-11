@@ -52,8 +52,8 @@
 #include "util/free_memory.c"
 
 // Timing
-unsigned long int prev_time = millis();
-unsigned long int cur_time = millis();
+unsigned long int prev_time;
+unsigned long int cur_time;
 
 // LCD Display
 LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
@@ -64,7 +64,6 @@ ThreadHandler thread_handler = ThreadHandler();
 
 // Globals
 #include "conf/globals.h"
-device_manager = DeviceManager();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -93,6 +92,7 @@ void setup() {
 
 	// mount other devices
 	Serial.println(F("Mounting Additional Devices..."));
+	device_manager = DeviceManager();
 	mem_available = freeMemory();
 	mount_devices();
 
