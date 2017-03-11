@@ -24,6 +24,7 @@ public:
 	virtual ~Animation();
     virtual void init();
 	virtual void step() {};
+	virtual void clean() {};
 
     int getNumStrips();
     short int* getDependencies();

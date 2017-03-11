@@ -10,7 +10,7 @@
 #include "Thread.hpp"
 
 #include "../util/mem.c"
-#include "../util/MemoryFree.h"
+#include "../util/free_memory.h"
 
 class ThreadHandler {
 private:
@@ -32,6 +32,7 @@ public:
 
 	std::vector<AnimationThread*> listAnimationThreads();
 	std::vector<ProcessThread*> listProcessThreads();
+
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
 };
