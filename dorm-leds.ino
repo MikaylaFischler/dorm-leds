@@ -132,7 +132,7 @@ void loop() {
 	prev_time = millis();
 
 	// prevent ticks less than a millisecond
-	delay(1);
+	delayMicroseconds(400);
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));

@@ -13,7 +13,8 @@
 #include "Simple/Animation_Simple_Indiv_Rainbow.cpp"
 
 // Advanced Animations
-//#include "Simple/Animation_Advanced.cpp"
+#include "Advanced/Animation_Advanced.cpp"
+#include "Advanced/Animation_Advanced_Audio.cpp"
 
 // Seasonal Animations
 #include "Seasonal/Animation_Seasonal.cpp"
