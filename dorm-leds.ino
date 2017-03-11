@@ -61,7 +61,10 @@ LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD
 // Core System Variables and Class Instances
 unsigned long int dT = 0;
 ThreadHandler thread_handler = ThreadHandler();
-DeviceManager device_manager = DeviceManager();
+
+// Globals
+#include "conf/globals.h"
+device_manager = DeviceManager();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
