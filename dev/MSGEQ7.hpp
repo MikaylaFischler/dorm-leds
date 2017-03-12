@@ -4,6 +4,7 @@
 /*
  *	Device code for MSGEQ7 IC
  *  Requires a process for parralized updating
+ *  63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25kHz and 16kHz
  */
 
 #include "../lib/Device.hpp"
