@@ -19,6 +19,8 @@ protected:
 	~Animation_Simple_Indiv() {}
 
     void init();
+
+	Adafruit_NeoPixel* strip;
 };
 
 // Animation_Simple.cpp
@@ -53,8 +55,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	Adafruit_NeoPixel* strip;
 };
 
 class Animation_Simple_Indiv_ColorFlash : public Animation_Simple_Indiv {
@@ -67,7 +67,6 @@ public:
 	void step();
 	void clean();
 private:
-	Adafruit_NeoPixel* strip;
 	uint32_t color;
 	int rate;
 };
@@ -82,7 +81,6 @@ public:
 	void step();
 	void clean();
 private:
-	Adafruit_NeoPixel* strip;
 	uint32_t color_a;
 	uint32_t color_b;
 	int rate;
@@ -97,7 +95,6 @@ public:
 	void step();
 	void clean();
 private:
-	Adafruit_NeoPixel* strip;
 	uint32_t color;
 };
 
@@ -110,7 +107,6 @@ public:
 	void step();
 	void clean();
 private:
-	Adafruit_NeoPixel* strip;
 	uint32_t color;
 };
 
@@ -124,8 +120,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	Adafruit_NeoPixel* strip;
 };
 
 class Animation_Simple_Indiv_RainbowCycle : public Animation_Simple_Indiv {
@@ -136,8 +130,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	Adafruit_NeoPixel* strip;
 };
 
 class Animation_Simple_Indiv_RainbowWipe : public Animation_Simple_Indiv {
@@ -148,8 +140,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	Adafruit_NeoPixel* strip;
 };
 
 class Animation_Simple_Indiv_RainbowTheaterChase : public Animation_Simple_Indiv {
@@ -160,8 +150,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	Adafruit_NeoPixel* strip;
 };
 
 #endif

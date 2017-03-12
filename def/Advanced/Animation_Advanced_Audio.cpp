@@ -84,6 +84,8 @@ void Animation_Advanced_Audio_BeatPulseWindow::step() {
 
 	window2.show();
 
+	this->current_exec++;
+
 }
 
 /* ~~~ Animation Advanced Audio: Bass Window Pulse ~~~ */
@@ -110,6 +112,8 @@ void Animation_Advanced_Audio_BassPulseWindow::step() {
 	window1.show();
 	window2.show();
 	window3.show();
+
+	this->current_exec++;
 }
 
 /* ~~~ Animation Advanced Audio: Bass and Mid Window Pulse ~~~ */
@@ -136,6 +140,8 @@ void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 	window1.show();
 	window2.show();
 	window3.show();
+
+	this->current_exec++;
 }
 
 /* ~~~ Animation Advanced Audio: Basic Equalizer ~~~ */
@@ -214,6 +220,8 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 	window2.show();
 	window3.show();
 	// desk2.show();
+
+	this->current_exec++;
 }
 
 /* ~~~ Animation Advanced Audio: Advanced Equalizer w/ Max ~~~ */
@@ -357,6 +365,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	} else {
 		count++;
 	}
+
+	this->current_exec++;
 }
 
 void Animation_Advanced_Audio_MaxEqualizerWindow::clean() {

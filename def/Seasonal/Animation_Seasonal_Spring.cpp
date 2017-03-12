@@ -47,6 +47,7 @@ void Animation_Seasonal_Spring_ClearSkyFade::step() {
 		if (i <= 0) {
 			i++;
 			increasing = true;
+      		this->current_exec++;
 		} else {
 			i--;
 		}

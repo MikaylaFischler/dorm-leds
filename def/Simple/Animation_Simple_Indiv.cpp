@@ -8,7 +8,7 @@ void Animation_Simple_Indiv::init() {
 	this->num_strips = 1;
 }
 
-/* ~~~ Animation Simple: Calm Purple Fade ~~~ */
+/* ~~~ Animation Simple Individual: Calm Purple Fade ~~~ */
 
 Animation_Simple_Indiv_CalmPurpleFade::Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip) {
 	this->strip = strip;
@@ -61,7 +61,7 @@ void Animation_Simple_Indiv_CalmPurpleFade::clean() {
 	delete this->stack;
 }
 
-/* ~~~ Animation Simple: Strip Color Flash ~~~ */
+/* ~~~ Animation Simple Individual: Strip Color Flash ~~~ */
 
 Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color) {
 	this->strip = strip;
@@ -114,7 +114,7 @@ void Animation_Simple_Indiv_ColorFlash::clean() {
 	delete this->stack;
 }
 
-/* ~~~ Animation Simple: Strip Color Flash ~~~ */
+/* ~~~ Animation Simple Individual: Strip Color Flash ~~~ */
 
 Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b) {
 	this->strip = strip;
@@ -177,7 +177,7 @@ void Animation_Simple_Indiv_AlternatingColorFlash::clean() {
 	delete this->stack;
 }
 
-/* ~~~ Animation Simple: Strip Color Fade ~~~ */
+/* ~~~ Animation Simple Individual: Strip Color Fade ~~~ */
 
 Animation_Simple_Indiv_ColorFade::Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t color) {
 	this->strip = strip;
@@ -230,7 +230,7 @@ void Animation_Simple_Indiv_ColorFade::clean() {
 	delete this->stack;
 }
 
-/* ~~~ Animation Simple: Theater Chase ~~~ */
+/* ~~~ Animation Simple Individual: Theater Chase ~~~ */
 
 Animation_Simple_Indiv_TheaterChase::Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t color) {
 	this->strip = strip;
