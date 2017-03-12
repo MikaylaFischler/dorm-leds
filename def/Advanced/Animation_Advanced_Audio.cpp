@@ -86,8 +86,6 @@ void Animation_Advanced_Audio_BeatPulseWindow::step() {
 
 }
 
-void Animation_Advanced_Audio_BeatPulseWindow::clean() {}
-
 /* ~~~ Animation Advanced Audio: Base Window Pulse ~~~ */
 
 void Animation_Advanced_Audio_BasePulseWindow::init() {
@@ -125,8 +123,6 @@ void Animation_Advanced_Audio_BasePulseWindow::step() {
 	window1.show();
 	window3.show();
 }
-
-void Animation_Advanced_Audio_BasePulseWindow::clean() {}
 
 /* ~~~ Animation Advanced Audio: Basic Equalizer ~~~ */
 
@@ -205,8 +201,6 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 	window3.show();
 	// desk2.show();
 }
-
-void Animation_Advanced_Audio_EqualizerWindow::clean() {}
 
 /* ~~~ Animation Advanced Audio: Advanced Equalizer w/ Max ~~~ */
 
