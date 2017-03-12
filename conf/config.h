@@ -1,5 +1,5 @@
-#ifndef Config_H
-#define Config_H
+#ifndef CONFIG_H_
+#define CONFIG_H_
 
 // pin configuration (avoid pins 0 and 1)
 #define STRIP_PIN_W1 8
@@ -32,12 +32,22 @@
 #define MODE_DESK1_LED_PIN 30
 #define MODE_DESK1_BTN_PIN 31
 
+#define EQ_L_STROBE 32
+#define EQ_L_RESET 33
+#define EQ_L_INPUT A0
+
+#define EQ_R_STROBE 34
+#define EQ_R_RESET 35
+#define EQ_R_INPUT A1
+
 #define LCD_D7_PIN 49
 #define LCD_D6_PIN 48
 #define LDC_D5_PIN 51
 #define LCD_D4_PIN 50
 #define LCD_RS_PIN 53
 #define LCD_E_PIN 52
+
+#define RAND_SEED_ANALOG_NOISE_PORT A2
 
 // strip length
 #define WINDOW_LENGTH 81

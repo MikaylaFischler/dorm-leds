@@ -1,5 +1,5 @@
-#ifndef Executable_H
-#define Executable_H
+#ifndef EXECUTABLE_HPP_
+#define EXECUTABLE_HPP_
 
 #include <Arduino.h>
 #include "LocalStack.hpp"
@@ -10,14 +10,16 @@ protected:
     LocalStack* stack;
     unsigned long int update_rate;
 
-	Executable() {}
+	Executable();
 public:
-	virtual ~Executable() {}
+	virtual ~Executable();
 
-    virtual void init() {}
-    virtual void clean() {}
-    String getName() { return this->name; }
-    unsigned long int getUpdateRate() { return this->update_rate; }
+    virtual void init() = 0;
+    virtual void step() = 0;
+    virtual void clean() = 0;
+
+    String getName();
+    unsigned long int getUpdateRate();
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef Process_H
-#define Process_H
+#ifndef PROCESS_HPP_
+#define PROCESS_HPP_
 
 #include <StandardCplusplus.h>
 #include <vector>
@@ -11,8 +11,10 @@ protected:
 	Process();
 public:
 	virtual ~Process();
-    virtual void init();
-	virtual void run() {};
+
+    virtual void init() {};
+	virtual void step() {};
+	virtual void clean() {};
 };
 
 #endif

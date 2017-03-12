@@ -1,5 +1,5 @@
-#ifndef MemObj_H
-#define MemObj_H
+#ifndef MEMOBJ_HPP_
+#define MEMOBJ_HPP_
 
 class MemObj {
 private:
@@ -9,8 +9,9 @@ public:
     ~MemObj();
 
     template <typename mem_type> mem_type& get();
-    //template <typename mem_type> void set(mem_type* new_var);
+	template <typename mem_type> mem_type* getpointer();
     template <typename mem_type> void destroy();
+    template <typename mem_type> void destroyarray();
 };
 
 #endif
