@@ -7,10 +7,10 @@ Animation_Seasonal_Indiv_Winter_WindowSnow::Animation_Seasonal_Indiv_Winter_Wind
 }
 
 void Animation_Seasonal_Indiv_Winter_WindowSnow::init() {
- 	Animation_Seasonal::init();
+ 	Animation_Seasonal_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
  	this->name += F(": Randomized Snow");
-	this->update_rate = 50;
+	this->update_rate = 100;
 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
