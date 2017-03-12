@@ -34,10 +34,10 @@ private:
 	MSGEQ7* left_eq;
 };
 
-class Animation_Advanced_Audio_BasePulseWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
 public:
-    Animation_Advanced_Audio_BasePulseWindow() {}
-    ~Animation_Advanced_Audio_BasePulseWindow() {}
+    Animation_Advanced_Audio_BassPulseWindow() {}
+    ~Animation_Advanced_Audio_BassPulseWindow() {}
 
 	void init();
 	void step();
