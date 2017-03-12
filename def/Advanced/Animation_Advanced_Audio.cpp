@@ -86,9 +86,9 @@ void Animation_Advanced_Audio_BeatPulseWindow::step() {
 
 }
 
-/* ~~~ Animation Advanced Audio: Base Window Pulse ~~~ */
+/* ~~~ Animation Advanced Audio: Bass Window Pulse ~~~ */
 
-void Animation_Advanced_Audio_BasePulseWindow::init() {
+void Animation_Advanced_Audio_BassPulseWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Rainbow and Beat Pulse");
 	this->num_strips = 3;
@@ -97,7 +97,7 @@ void Animation_Advanced_Audio_BasePulseWindow::init() {
 	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
 }
 
-void Animation_Advanced_Audio_BasePulseWindow::step() {
+void Animation_Advanced_Audio_BassPulseWindow::step() {
 	int low_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(1), 2));
 	int high_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(2), 2));
 
@@ -115,7 +115,7 @@ void Animation_Advanced_Audio_BasePulseWindow::step() {
 	// center window
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, 0);
-		window2.setPixelColor(x, high_sum, high_sum, high_sum);
+		window2.setPixelColor(x, 0, high_sum, high_sum);
 		window3.setPixelColor(x, low_sum, 0, 0);
 	}
 
