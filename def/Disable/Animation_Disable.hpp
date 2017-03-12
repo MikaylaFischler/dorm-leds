@@ -1,5 +1,5 @@
-#ifndef Animation_Disable_H
-#define Animation_Disable_H
+#ifndef ANIMATION_DISABLE_HPP_
+#define ANIMATION_DISABLE_HPP_
 
 #include "../../lib/Animation.hpp"
 

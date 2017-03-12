@@ -1,5 +1,5 @@
-#ifndef MemObj_H
-#define MemObj_H
+#ifndef MEMOBJ_HPP_
+#define MEMOBJ_HPP_
 
 class MemObj {
 private:

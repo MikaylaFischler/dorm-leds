@@ -1,5 +1,5 @@
-#ifndef Animation_Simple_H
-#define Animation_Simple_H
+#ifndef ANIMATION_SIMPLE_HPP_
+#define ANIMATION_SIMPLE_HPP_
 
 #include "../../lib/Animation.hpp"
 
@@ -17,7 +17,7 @@ class Animation_Simple_Indiv : public Animation_Simple {
 protected:
 	Animation_Simple_Indiv() {}
 	~Animation_Simple_Indiv() {}
-	
+
     void init();
 };
 

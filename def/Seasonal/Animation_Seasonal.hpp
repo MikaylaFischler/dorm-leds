@@ -1,5 +1,5 @@
-#ifndef Animation_Seasonal_H
-#define Animation_Seasonal_H
+#ifndef ANIMATION_SEASONAL_HPP_
+#define ANIMATION_SEASONAL_HPP_
 
 #include "../../lib/Animation.hpp"
 
@@ -10,6 +10,8 @@ protected:
 
     void init();
 };
+
+// Animation_Seasonal_Winter.cpp
 
 class Animation_Seasonal_Winter_WindowSnow : public Animation_Seasonal {
 public:
@@ -22,6 +24,8 @@ public:
 private:
 	Adafruit_NeoPixel* strip;
 };
+
+// Animation_Seasonal_Spring.cpp
 
 class Animation_Seasonal_Spring_ClearSkyFade : public Animation_Seasonal {
 public:

@@ -1,5 +1,5 @@
-#ifndef Animation_H
-#define Animation_H
+#ifndef ANIMATION_HPP_
+#define ANIMATION_HPP_
 
 #include <Adafruit_NeoPixel.h>
 #include <StandardCplusplus.h>
