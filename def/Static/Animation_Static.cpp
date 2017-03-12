@@ -29,6 +29,8 @@ void Animation_Static_DeskBrightWhite::step() {
 
 	desk1.show();
 	desk2.show();
+
+	this->current_exec++;
 }
 
 /* ~~~ Animation Static: Desk Both Third Dim Ambient ~~~ */
@@ -59,6 +61,8 @@ void Animation_Static_DeskThirdDimAmbient::step() {
 
 	desk1.show();
 	desk2.show();
+
+	this->current_exec++;
 }
 
 /* ~~~ Animation Static: Desk Both Dim Ambient ~~~ */
@@ -81,4 +85,6 @@ void Animation_Static_DeskDimAmbient::step() {
 
 	desk1.show();
 	desk2.show();
+
+	this->current_exec++;
 }
