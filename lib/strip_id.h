@@ -1,5 +1,5 @@
-#ifndef STRIP_ID_H
-#define STRIP_ID_H
+#ifndef STRIP_ID_H_
+#define STRIP_ID_H_
 
 // constants for strip management
 #define WINDOW1 1

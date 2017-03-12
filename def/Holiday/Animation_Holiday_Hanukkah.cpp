@@ -55,8 +55,8 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	int leftFullLength = 41; // 39 pixels
 	int rightFullLength = 41; // 40 pixels
 
-	unsigned long int on  = window_generic.Color(150,150,150);
-    unsigned long int blue = window_generic.Color(0,0,150);
+	unsigned long int on  = Color(150,150,150);
+    unsigned long int blue = Color(0,0,150);
 
 	int a = 40 - abs(40 - i % 80);
 

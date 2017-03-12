@@ -9,7 +9,7 @@ ThreadHandler::~ThreadHandler() {}
 // get the list of queued animation threads
 std::vector<AnimationThread*> ThreadHandler::listAnimationThreads() { return anim_threads; }
 
-// get the list of queued threads
+// get the list of queued process threads
 std::vector<ProcessThread*> ThreadHandler::listProcessThreads() { return proc_threads; }
 
 // queue an animation
@@ -39,6 +39,8 @@ void ThreadHandler::queue(Animation* anim) {
 
 // queue a process
 void ThreadHandler::queue(Process* proc) {
+	proc->init();
+
 	// queue this process as a new thread (set current time as the update rate so it initially sets on start)
 	ProcessThread* t = new ProcessThread(next_id, proc);
 	next_id++;
@@ -57,30 +59,31 @@ void ThreadHandler::queue(Process* proc) {
 	mem_available = freeMemory();
 }
 
-// update the time sums for each animation thread
+// update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
-	// iterate through each queued thread
+	// iterate through each queued animation thread
 	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++) {
-		Thread& this_thread = **it;
-		this_thread.addTimeSum(dT);
+		(*it)->addTimeSum(dT);;
 	}
 
 	// iterate through each queued process thread
 	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
-		Thread& this_thread = **it;
-		this_thread.addTimeSum(dT);
+		(*it)->addTimeSum(dT);
 	}
 }
 
-// execute a tick of the handler
+// execute a tick of the handler (step all threads)
 void ThreadHandler::executeTick() {
 	int i = 0;
+
+	unsigned long int updateRate;
+	unsigned long int timeSum;
 
 	// iterate through each queued animation thread
 	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, i++) {
 		AnimationThread& this_thread = **it;
-		unsigned long int updateRate = this_thread.getUpdateRate();
-		unsigned long int timeSum = this_thread.getTimeSum();
+		updateRate = this_thread.getUpdateRate();
+		timeSum = this_thread.getTimeSum();
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
@@ -99,17 +102,17 @@ void ThreadHandler::executeTick() {
 	// iterate through each queued process thread
 	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
 		ProcessThread& this_thread = **it;
-		unsigned long int updateRate = this_thread.getUpdateRate();
-		unsigned long int timeSum = this_thread.getTimeSum();
+		updateRate = this_thread.getUpdateRate();
+		timeSum = this_thread.getTimeSum();
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
-			this_thread.getProcess()->run();
+			this_thread.getProcess()->step();
 			this_thread.zeroTimeSum();
 		}
 	}
 }
 
-// dequeue any conflicts (recursive)
+// dequeue any conflicting animations (recursive)
 void ThreadHandler::dequeueConflicts(Animation* anim) {
 	int i = 0;
 
@@ -134,9 +137,7 @@ void ThreadHandler::dequeueConflicts(Animation* anim) {
 bool ThreadHandler::conflictsWith(short int* str1, int length1, short int* str2, int length2) {
 	for (int a = 0; a < length1; a++) {
 		for (int b = 0; b < length2; b++) {
-			if (str1[a] == str2[b]) {
-				return true;
-			}
+			if (str1[a] == str2[b]) { return true; }
 		}
 	}
 

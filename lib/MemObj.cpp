@@ -5,25 +5,21 @@ MemObj::MemObj(void* var) { this->var = var; }
 
 // <<destructor>>
 // WARNING: YOU MUST CALL DESTROY WHEN THIS OBJECT IS DONE BEING USED [WITH KNOWLEDGE OF THE TYPE]
-// OTHERWISE THE `var` WILL BE A MEMORY LEAK
+// OTHERWISE THE 'var' WILL BE A MEMORY LEAK
 MemObj::~MemObj() {}
 
 // get the data
 template <typename mem_type>
-mem_type& MemObj::get() {
-	return *((mem_type*) var);
-}
+mem_type& MemObj::get() { return *(reinterpret_cast<mem_type*>(var)); }
 
-/*
-// update the data
-void MemObj::set(mem_type* new_data) {
-    delete (mem_type*) data;
-    this->data = new_data;
-}
-*/
+// get the data as a pointer
+template <typename mem_type>
+mem_type* MemObj::getpointer() { return reinterpret_cast<mem_type*>(var); }
 
 // free the memory
 template <typename mem_type>
-void MemObj::destroy() {
-	delete (mem_type*) var;
-}
+void MemObj::destroy() { delete reinterpret_cast<mem_type*>(var); }
+
+// free the memory as an array
+template <typename mem_type>
+void MemObj::destroyarray() { delete[] (mem_type*) var; }
