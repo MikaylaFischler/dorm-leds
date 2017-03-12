@@ -1,5 +1,5 @@
-#ifndef STRIP_OWNERSHIP_H
-#define STRIP_OWNERSHIP_H
+#ifndef STRIP_OWNERSHIP_H_
+#define STRIP_OWNERSHIP_H_
 
 // command strip ownership
 #include "strip_id.h"

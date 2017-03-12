@@ -1,9 +1,9 @@
-#ifndef ANIMATION_AUDIO_H_
-#define ANIMATION_AUDIO_H_
+#ifndef ANIMATION_AUDIO_HPP_
+#define ANIMATION_AUDIO_HPP_
 
 #include "../../lib/Animation.hpp"
-#include "../../conf/globals.h"
 #include "../../dev/MSGEQ7.hpp"
+#include "../../conf/globals.h"
 #include "../../util/led.c"
 #include "../../util/ledmath.c"
 
@@ -15,13 +15,15 @@ protected:
     void init();
 };
 
+// Animation_Advanced_Audio.cpp
+
 class Animation_Advanced_Audio : public Animation_Advanced {
 protected:
     Animation_Advanced_Audio() {}
     ~Animation_Advanced_Audio() {}
 
     void init();
-	
+
 	MSGEQ7* left_eq;
 	MSGEQ7* right_eq;
 };
