@@ -1,5 +1,5 @@
-#ifndef LED_C
-#define LED_C
+#ifndef LED_C_
+#define LED_C_
 
 #include "../conf/strips.h"
 #include "../lib/strip_id.h"
