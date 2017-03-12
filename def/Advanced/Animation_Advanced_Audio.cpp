@@ -137,20 +137,28 @@ void Animation_Advanced_Audio_EqualizerWindow::init() {
  	this->strips = WINDOW_ALL;
 
 	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
+
+	// clear these once, for efficency
+	for (int i = 0; i < 9; i++) {
+		window1.setPixelColor(i, COLOR_OFF);
+		window2.setPixelColor(i, COLOR_OFF);
+		window3.setPixelColor(i, COLOR_OFF);
+	}
 }
 
 void Animation_Advanced_Audio_EqualizerWindow::step() {
 	unsigned int val[7];
 
-	val[0] = map(left_eq->get8Bit(0), 0, 255, 80, 50);
-	val[1] = map(left_eq->get8Bit(1), 0, 255, 9, 40);
-	val[2] = map(left_eq->get8Bit(2), 0, 255, 80, 50);
-	val[3] = map(left_eq->get8Bit(3), 0, 255, 9, 40);
-	val[4] = map(left_eq->get8Bit(4), 0, 255, 80, 50);
-	val[5] = map(left_eq->get8Bit(5), 0, 255, 9, 40);
-	val[6] = map(left_eq->get8Bit(6), 0, 255, 0, 29);
+	// map is (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+	val[0] = left_eq->get8Bit(0) * -30 / 255 + 80;
+	val[1] = left_eq->get8Bit(1) * 31 / 255 + 9;
+	val[2] = left_eq->get8Bit(2) * -30 / 255 + 80;
+	val[3] = left_eq->get8Bit(3) * 31 / 255 + 9;
+	val[4] = left_eq->get8Bit(4) * -30 / 255 + 80;
+	val[5] = left_eq->get8Bit(5) * 31 / 255 + 9;
+	val[6] = left_eq->get8Bit(5) * 29 / 255;
 
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[1] && x >= 9) {
 			window1.setPixelColor(x, COLOR_ORANGE);
 		} else if (x >= val[0] && x <= 80) {
@@ -160,7 +168,7 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 		}
 	}
 
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[3] && x >= 9) {
 			window2.setPixelColor(x, COLOR_GREEN);
 		} else if (x >= val[2] && x <= 80) {
@@ -170,7 +178,7 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 		}
 	}
 
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
 			window3.setPixelColor(x, COLOR_VIOLET);
 		} else if (x >= val[4] && x <= 80) {
@@ -210,8 +218,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::init() {
 	this->stack->push(new MemObj(new unsigned short int[7]));
 	this->stack->push(new MemObj(new unsigned int(0)));
 
+	// initialize max vals
 	unsigned short int* max = this->stack->get(0)->getpointer<unsigned short int>();
-
 	max[0] = 80;
 	max[1] = 9;
 	max[2] = 80;
@@ -219,21 +227,30 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::init() {
 	max[4] = 80;
 	max[5] = 9;
 	max[6] = 0;
+
+	// clear these once, for efficency
+	for (int i = 0; i < 9; i++) {
+		window1.setPixelColor(i, COLOR_OFF);
+		window2.setPixelColor(i, COLOR_OFF);
+		window3.setPixelColor(i, COLOR_OFF);
+	}
 }
 
 void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	unsigned short int* max = this->stack->get(0)->getpointer<unsigned short int>();
 	unsigned int& count = this->stack->get(1)->get<unsigned int>();
-	int val[7];
+	unsigned int val[7];
 
-	val[0] = map(left_eq->get8Bit(0), 0, 255, 80, 50);
-	val[1] = map(left_eq->get8Bit(1), 0, 255, 9, 40);
-	val[2] = map(left_eq->get8Bit(2), 0, 255, 80, 50);
-	val[3] = map(left_eq->get8Bit(3), 0, 255, 9, 40);
-	val[4] = map(left_eq->get8Bit(4), 0, 255, 80, 50);
-	val[5] = map(left_eq->get8Bit(5), 0, 255, 9, 40);
-	val[6] = map(left_eq->get8Bit(6), 0, 255, 0, 29);
+	// map is (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+	val[0] = left_eq->get8Bit(0) * -30 / 255 + 80;
+	val[1] = left_eq->get8Bit(1) * 31 / 255 + 9;
+	val[2] = left_eq->get8Bit(2) * -30 / 255 + 80;
+	val[3] = left_eq->get8Bit(3) * 31 / 255 + 9;
+	val[4] = left_eq->get8Bit(4) * -30 / 255 + 80;
+	val[5] = left_eq->get8Bit(5) * 31 / 255 + 9;
+	val[6] = left_eq->get8Bit(5) * 29 / 255;
 
+	// update max vals
 	for (int i = 0; i < 7; i++) {
 		if ((i % 2 == 0) && i != 6) {
 			if (max[i] >= val[i]) {
@@ -246,7 +263,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 		}
 	}
 
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
+	// low eqs
+	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
 		if (x <= val[1] && x >= 9) {
 			window1.setPixelColor(x, COLOR_ORANGE);
 		} else if (x >= val[0] && x <= 80) {
@@ -260,7 +278,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 		}
 	}
 
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
+	// mid eqs
+	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
 		if (x <= val[3] && x >= 9) {
 			window2.setPixelColor(x, COLOR_GREEN);
 		} else if (x >= val[2] && x <= 80) {
@@ -274,7 +293,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 		}
 	}
 
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
+	// high eqs
+	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
 			window3.setPixelColor(x, COLOR_VIOLET);
 		} else if (x >= val[4] && x <= 80) {
@@ -288,7 +308,8 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 		}
 	}
 
-	for (int x = 0; x < 29; x++) {
+	// 16khz eq
+	for (unsigned int x = 0; x < 29; x++) {
 		if (x <= val[6]) {
 			desk2.setPixelColor(x, COLOR_WHITE);
 		} else {
@@ -300,6 +321,13 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 		}
 	}
 
+	// update strips
+	window1.show();
+	window2.show();
+	window3.show();
+	desk2.show();
+
+	// slowly drift max vals back down if possible
 	if (count >= 15) {
 		count = 0;
 
@@ -317,11 +345,6 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	} else {
 		count++;
 	}
-
-	window1.show();
-	window2.show();
-	window3.show();
-	desk2.show();
 }
 
 void Animation_Advanced_Audio_MaxEqualizerWindow::clean() {
