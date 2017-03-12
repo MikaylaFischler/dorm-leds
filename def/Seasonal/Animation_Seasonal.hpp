@@ -11,6 +11,8 @@ protected:
     void init();
 };
 
+// there will be no files with Indiv in the name, this is just to reduce code and follow some of the Indiv implementation standards used in the other animations
+// Each Animation_Seasonal_XXX.cpp can/will contain both Indiv and non-Indiv animations
 class Animation_Seasonal_Indiv : public Animation_Seasonal {
 protected:
     Animation_Seasonal_Indiv() {}
