@@ -56,6 +56,15 @@ public:
 	void step();
 };
 
+class Animation_Advanced_Audio_BassPulseMidHueWindow : public Animation_Advanced_Audio {
+public:
+    Animation_Advanced_Audio_BassPulseMidHueWindow() {}
+    ~Animation_Advanced_Audio_BassPulseMidHueWindow() {}
+
+	void init();
+	void step();
+};
+
 class Animation_Advanced_Audio_EqualizerWindow : public Animation_Advanced_Audio {
 public:
     Animation_Advanced_Audio_EqualizerWindow() {}
