@@ -7,7 +7,7 @@ class Animation_Seasonal : public Animation {
 protected:
     Animation_Seasonal() {}
     ~Animation_Seasonal() {}
-public:
+
     void init();
 };
 

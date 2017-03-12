@@ -7,7 +7,7 @@ class Animation_Simple : public Animation {
 protected:
     Animation_Simple() {}
     ~Animation_Simple() {}
-public:
+
     void init();
 };
 
@@ -17,7 +17,7 @@ class Animation_Simple_Indiv : public Animation_Simple {
 protected:
 	Animation_Simple_Indiv() {}
 	~Animation_Simple_Indiv() {}
-public:
+	
     void init();
 };
 

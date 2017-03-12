@@ -7,7 +7,7 @@ class Animation_Holiday : public Animation {
 protected:
     Animation_Holiday() {}
     ~Animation_Holiday() {}
-public:
+
     void init();
 };
 
