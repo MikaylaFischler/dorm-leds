@@ -67,7 +67,7 @@ ThreadHandler thread_handler = ThreadHandler();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	Serial.begin(115200);
+	Serial.begin(250000);
 	Serial.println(F("Initializing..."));
 
 	// starting available memory
