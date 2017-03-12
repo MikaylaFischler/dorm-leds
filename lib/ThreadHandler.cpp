@@ -28,7 +28,6 @@ void ThreadHandler::queue(Animation* anim) {
 	Serial.print(F(", occupying "));
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
-	Serial.println(anim->getNumStrips());
 
 	//dequeue conflicting threads
 	dequeueConflicts(anim); // this MUST be after memory calculations
