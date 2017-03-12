@@ -147,6 +147,43 @@ void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 	this->current_exec++;
 }
 
+/* ~~~ Animation Advanced Audio: Bass and Mid Window Pulse ~~~ */
+
+void Animation_Advanced_Audio_BassPulseMidHueWindow::init() {
+ 	Animation_Advanced_Audio::init();
+ 	this->name = F("Window[all]: Audio Bass Beat Pulse and Mid Hue");
+	this->num_strips = 3;
+ 	this->strips = WINDOW_ALL;
+}
+
+void Animation_Advanced_Audio_BassPulseMidHueWindow::step() {
+	int low_sum_l = quadraticBrightness(left_eq->get8Bit(1));
+	int low_sum_r = quadraticBrightness(right_eq->get8Bit(1));
+	int mid_sum_l = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.65 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 1.9);
+	int mid_sum_r = (int) round(((float) quadraticBrightness(right_eq->get8Bit(3)) + (float) quadraticBrightness(right_eq->get8Bit(4)) * 0.65 + (float) quadraticBrightness(right_eq->get8Bit(5)) * 0.25) / 1.9);
+
+	int low_sum = (int) round((float) (low_sum_l + low_sum_r) / 2.0);
+	int mid_sum = (int) round((float) (mid_sum_l + mid_sum_r) / 2.0);
+	long unsigned int hue = ColorWheel(mid_sum);
+
+	// center window (bass)
+	for (int x = 0; x < WINDOW_LENGTH; x++) {
+		window2.setPixelColor(x, low_sum, low_sum, low_sum);
+	}
+
+	// side windows (mid hue)
+	for (int x = 0; x < WINDOW_LENGTH; x++) {
+		window1.setPixelColor(x, hue);
+		window3.setPixelColor(x, hue);
+	}
+
+	window1.show();
+	window2.show();
+	window3.show();
+
+	this->current_exec++;
+}
+
 /* ~~~ Animation Advanced Audio: Basic Equalizer ~~~ */
 
 void Animation_Advanced_Audio_EqualizerWindow::init() {
