@@ -22,10 +22,46 @@ protected:
     void init();
 };
 
-class Animation_Advanced_Audio_BeatWindowPulse : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BeatPulseWindow : public Animation_Advanced_Audio {
 public:
-    Animation_Advanced_Audio_BeatWindowPulse() {}
-    ~Animation_Advanced_Audio_BeatWindowPulse() {}
+    Animation_Advanced_Audio_BeatPulseWindow() {}
+    ~Animation_Advanced_Audio_BeatPulseWindow() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	MSGEQ7* left_eq;
+};
+
+class Animation_Advanced_Audio_BasePulseWindow : public Animation_Advanced_Audio {
+public:
+    Animation_Advanced_Audio_BasePulseWindow() {}
+    ~Animation_Advanced_Audio_BasePulseWindow() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	MSGEQ7* left_eq;
+};
+
+class Animation_Advanced_Audio_EqualizerWindow : public Animation_Advanced_Audio {
+public:
+    Animation_Advanced_Audio_EqualizerWindow() {}
+    ~Animation_Advanced_Audio_EqualizerWindow() {}
+
+	void init();
+	void step();
+	void clean();
+private:
+	MSGEQ7* left_eq;
+};
+
+class Animation_Advanced_Audio_MaxEqualizerWindow : public Animation_Advanced_Audio {
+public:
+    Animation_Advanced_Audio_MaxEqualizerWindow() {}
+    ~Animation_Advanced_Audio_MaxEqualizerWindow() {}
 
 	void init();
 	void step();
