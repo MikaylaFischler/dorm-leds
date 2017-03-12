@@ -1,5 +1,5 @@
-#ifndef Listener_H
-#define Listener_H
+#ifndef LISTENER_HPP_
+#define LISTENER_HPP_
 
 #include "Process.hpp"
 

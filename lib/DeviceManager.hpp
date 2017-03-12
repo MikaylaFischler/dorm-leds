@@ -1,6 +1,7 @@
 #ifndef DEVICE_MANAGER_HPP_
 #define DEVICE_MANAGER_HPP_
 
+#include <Arduino.h>
 #include <StandardCplusplus.h>
 #include <vector>
 

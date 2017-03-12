@@ -1,27 +1,32 @@
 ### List of Animations ###
 
 [Advanced]
-	<empty>
+	{Animation_Advanced}
+		{Animation_Advanced_Audio}
+			Animation_Advanced_Audio_BassPulseWindow
+			Animation_Advanced_Audio_BassMidPulseWindow
+			Animation_Advanced_Audio_EqualizerWindow
+			Animation_Advanced_Audio_MaxEqualizerWindow
 
 [Disable]
 	{Animation_Disable}
-		_Desk1
-		_Desk2
-		_Window1
-		_Window2
-		_Window3
+		Animation_Disable_Desk1
+		Animation_Disable_Desk2
+		Animation_Disable_Window1
+		Animation_Disable_Window2
+		Animation_Disable_Window3
 
 [Holiday]
 	{Animation_Holiday}
 		{Animation_Holiday_Halloween}
-			_WinAllFade
-			_WinAllHalloweenSparkle
+			Animation_Holiday_Halloween_WinAllFade
+			Animation_Holiday_Halloween_WinAllHalloweenSparkle
 
 		{Animation_Holiday_Christmas}
-			_Win13Snow
+			Animation_Holiday_Christmas_Win13Snow
 
 		{Animation_Holiday_Hanukkah}
-			_Win2Snow
+			Animation_Holiday_Hanukkah_Win2Snow
 
 [Seasonal]
 	{Animation_Seasonal}
@@ -29,28 +34,28 @@
 			Animation_Seasonal_Winter_WindowSnow(&strip)
 
 		{Animation_Seasonal_Spring}
-			_ClearSkyFade(&strip)
+			Animation_Seasonal_Spring_ClearSkyFade(&strip)
 
 [Simple]
 	{Animation_Simple}
-		_DeskWhitePurpleFade
-		_WinAllWPISpirit
+		Animation_Simple_DeskWhitePurpleFade
+		Animation_Simple_WinAllWPISpirit
 
 		{Animation_Simple_Indiv}
-			_CalmPurpleFade(&strip)
-			_ColorFlash(&strip, color, [rate])
-			_AlternatingColorFlash(&strip, color_a, color_b, [rate])
-			_ColorFade(&strip, color)
-			_TheaterChase(&strip, color)
+			Animation_Simple_Indiv_CalmPurpleFade(&strip)
+			Animation_Simple_Indiv_ColorFlash(&strip, color, [rate])
+			Animation_Simple_Indiv_AlternatingColorFlash(&strip, color_a, color_b, [rate])
+			Animation_Simple_Indiv_ColorFade(&strip, color)
+			Animation_Simple_Indiv_TheaterChase(&strip, color)
 
 			{Animation_Simple_Indiv_Rainbow}
-				_Rainbow(&strip)
-				_RainbowCycle(&strip)
-				_RainbowTheaterChase(&strip)
-				_RainbowWipe(&strip)
+				Animation_Simple_Indiv_Rainbow_Rainbow(&strip)
+				Animation_Simple_Indiv_Rainbow_RainbowCycle(&strip)
+				Animation_Simple_Indiv_Rainbow_RainbowTheaterChase(&strip)
+				Animation_Simple_Indiv_Rainbow_RainbowWipe(&strip)
 
 [Static]
 	{Animation_Static}
-		_DeskBrightWhite
-		_DeskThirdDimAmbient
-		_DeskDimAmbient
+		Animation_Static_DeskBrightWhite
+		Animation_Static_DeskThirdDimAmbient
+		Animation_Static_DeskDimAmbient

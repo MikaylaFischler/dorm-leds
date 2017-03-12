@@ -1,5 +1,5 @@
-#ifndef Process_H
-#define Process_H
+#ifndef PROCESS_HPP_
+#define PROCESS_HPP_
 
 #include <StandardCplusplus.h>
 #include <vector>

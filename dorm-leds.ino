@@ -67,7 +67,7 @@ ThreadHandler thread_handler = ThreadHandler();
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	Serial.begin(115200);
+	Serial.begin(250000);
 	Serial.println(F("Initializing..."));
 
 	// starting available memory
@@ -122,17 +122,17 @@ void loop() {
 	cur_time = millis();
 	dT = cur_time - prev_time;
 
+	// save this time as previous time
+	prev_time = cur_time;
+
 	// tell each thread the time change
 	thread_handler.updateTimeAccumulated(dT);
 
 	// execute commands that it is time to execute
 	thread_handler.executeTick();
 
-	// save this time as previous time
-	prev_time = millis();
-
 	// prevent ticks less than a millisecond
-	delayMicroseconds(400);
+	Serial.println(dT); // takes ~200us
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));
