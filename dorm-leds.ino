@@ -132,7 +132,7 @@ void loop() {
 	thread_handler.executeTick();
 
 	// prevent ticks less than a millisecond
-	delayMicroseconds(400);
+	Serial.println(dT); // takes ~200us
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));
