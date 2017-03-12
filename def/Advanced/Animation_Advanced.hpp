@@ -28,17 +28,16 @@ protected:
 	MSGEQ7* right_eq;
 };
 
-class Animation_Advanced_Audio_BeatPulseWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BasePulseCircularEqWindow : public Animation_Advanced_Audio {
 public:
     Animation_Advanced_Audio_BeatPulseWindow() {}
     ~Animation_Advanced_Audio_BeatPulseWindow() {}
 
 	void init();
 	void step();
-	void clean();
 };
 
-class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BasePulseCircularEqWindow : public Animation_Advanced_Audio {
 public:
     Animation_Advanced_Audio_BassPulseWindow() {}
     ~Animation_Advanced_Audio_BassPulseWindow() {}
@@ -51,6 +50,15 @@ class Animation_Advanced_Audio_BassMidPulseWindow : public Animation_Advanced_Au
 public:
     Animation_Advanced_Audio_BassMidPulseWindow() {}
     ~Animation_Advanced_Audio_BassMidPulseWindow() {}
+
+	void init();
+	void step();
+};
+
+class Animation_Advanced_Audio_BassPulseMidHueWindow : public Animation_Advanced_Audio {
+public:
+    Animation_Advanced_Audio_BassPulseMidHueWindow() {}
+    ~Animation_Advanced_Audio_BassPulseMidHueWindow() {}
 
 	void init();
 	void step();

@@ -25,6 +25,7 @@ public:
 
 	int getRaw(int i) const;
 	int get8Bit(int i) const;
+	int getInWindowRange(int i) const;
 
 	int operator[] (int index) const;
 
