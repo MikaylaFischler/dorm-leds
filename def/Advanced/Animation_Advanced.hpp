@@ -21,6 +21,9 @@ protected:
     ~Animation_Advanced_Audio() {}
 
     void init();
+	
+	MSGEQ7* left_eq;
+	MSGEQ7* right_eq;
 };
 
 class Animation_Advanced_Audio_BeatPulseWindow : public Animation_Advanced_Audio {
@@ -31,8 +34,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	MSGEQ7* left_eq;
 };
 
 class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
@@ -42,8 +43,6 @@ public:
 
 	void init();
 	void step();
-private:
-	MSGEQ7* left_eq;
 };
 
 class Animation_Advanced_Audio_BassMidPulseWindow : public Animation_Advanced_Audio {
@@ -53,8 +52,6 @@ public:
 
 	void init();
 	void step();
-private:
-	MSGEQ7* left_eq;
 };
 
 class Animation_Advanced_Audio_EqualizerWindow : public Animation_Advanced_Audio {
@@ -64,8 +61,6 @@ public:
 
 	void init();
 	void step();
-private:
-	MSGEQ7* left_eq;
 };
 
 class Animation_Advanced_Audio_MaxEqualizerWindow : public Animation_Advanced_Audio {
@@ -76,8 +71,6 @@ public:
 	void init();
 	void step();
 	void clean();
-private:
-	MSGEQ7* left_eq;
 };
 
 #endif
