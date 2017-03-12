@@ -126,8 +126,13 @@ void Animation_Advanced_Audio_BassMidPulseWindow::init() {
 }
 
 void Animation_Advanced_Audio_BassMidPulseWindow::step() {
-	int low_sum = quadraticBrightness(left_eq->get8Bit(1));
-	int mid_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 2.0);
+	int low_sum_l = quadraticBrightness(left_eq->get8Bit(1));
+	int low_sum_r = quadraticBrightness(right_eq->get8Bit(1));
+	int mid_sum_l = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 2.0);
+	int mid_sum_r = (int) round(((float) quadraticBrightness(right_eq->get8Bit(3)) + (float) quadraticBrightness(right_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(right_eq->get8Bit(5)) * 0.25) / 2.0);
+
+	int low_sum = (int) round((float) (low_sum_l + low_sum_r) / 2.0);
+	int mid_sum = (int) round((float) (mid_sum_l + mid_sum_r) / 2.0);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, low_sum);
@@ -162,12 +167,12 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 	unsigned int val[7];
 
 	// map is (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-	val[0] = left_eq->get8Bit(0) * -30 / 255 + 80;
-	val[1] = left_eq->get8Bit(1) * 31 / 255 + 9;
-	val[2] = left_eq->get8Bit(2) * -30 / 255 + 80;
-	val[3] = left_eq->get8Bit(3) * 31 / 255 + 9;
-	val[4] = left_eq->get8Bit(4) * -30 / 255 + 80;
-	val[5] = left_eq->get8Bit(5) * 31 / 255 + 9;
+	val[0] = (int) round(((float) (left_eq->get8Bit(0) * -30 / 255 + 80) + (float) (right_eq->get8Bit(0) * -30 / 255 + 80)) / 2.0);
+	val[1] = (int) round(((float) (left_eq->get8Bit(1) * 31 / 255 + 9) + (float) (right_eq->get8Bit(1) * 31 / 255 + 9)) / 2.0);
+	val[2] = (int) round(((float) (left_eq->get8Bit(2) * -30 / 255 + 80) + (float) (right_eq->get8Bit(2) * -30 / 255 + 80)) / 2.0);
+	val[3] = (int) round(((float) (left_eq->get8Bit(3) * 31 / 255 + 9) + (float) (right_eq->get8Bit(3) * 31 / 255 + 9)) / 2.0);
+	val[4] = (int) round(((float) (left_eq->get8Bit(4) * -30 / 255 + 80) + (float) (right_eq->get8Bit(4) * -30 / 255 + 80)) / 2.0);
+	val[5] = (int) round(((float) (left_eq->get8Bit(5) * 31 / 255 + 9) + (float) (right_eq->get8Bit(5) * 31 / 255 + 9)) / 2.0);
 	// val[6] = left_eq->get8Bit(5) * 29 / 255;
 
 	// low eqs
@@ -256,12 +261,12 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	unsigned int val[6];
 
 	// map is (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-	val[0] = left_eq->get8Bit(0) * -30 / 255 + 80;
-	val[1] = left_eq->get8Bit(1) * 31 / 255 + 9;
-	val[2] = left_eq->get8Bit(2) * -30 / 255 + 80;
-	val[3] = left_eq->get8Bit(3) * 31 / 255 + 9;
-	val[4] = left_eq->get8Bit(4) * -30 / 255 + 80;
-	val[5] = left_eq->get8Bit(5) * 31 / 255 + 9;
+	val[0] = (int) round(((float) (left_eq->get8Bit(0) * -30 / 255 + 80) + (float) (right_eq->get8Bit(0) * -30 / 255 + 80)) / 2.0);
+	val[1] = (int) round(((float) (left_eq->get8Bit(1) * 31 / 255 + 9) + (float) (right_eq->get8Bit(1) * 31 / 255 + 9)) / 2.0);
+	val[2] = (int) round(((float) (left_eq->get8Bit(2) * -30 / 255 + 80) + (float) (right_eq->get8Bit(2) * -30 / 255 + 80)) / 2.0);
+	val[3] = (int) round(((float) (left_eq->get8Bit(3) * 31 / 255 + 9) + (float) (right_eq->get8Bit(3) * 31 / 255 + 9)) / 2.0);
+	val[4] = (int) round(((float) (left_eq->get8Bit(4) * -30 / 255 + 80) + (float) (right_eq->get8Bit(4) * -30 / 255 + 80)) / 2.0);
+	val[5] = (int) round(((float) (left_eq->get8Bit(5) * 31 / 255 + 9) + (float) (right_eq->get8Bit(5) * 31 / 255 + 9)) / 2.0);
 	// val[6] = left_eq->get8Bit(5) * 29 / 255;
 
 	// update max vals
