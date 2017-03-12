@@ -125,11 +125,11 @@ void Animation_Advanced_Audio_BassMidPulseWindow::init() {
 
 void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 	int low_sum = quadraticBrightness(left_eq->get8Bit(1));
-	int mid_sum = quadraticBrightness(left_eq->get8Bit(3));
+	int mid_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 2.0);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, 0);
-		window2.setPixelColor(x, 0, mid_sum, mid_sum);
+		window2.setPixelColor(x, mid_sum, mid_sum, 0);
 		window3.setPixelColor(x, low_sum, 0, 0);
 	}
 
