@@ -1,5 +1,5 @@
-#ifndef LED_COLOR_H
-#define LED_COLOR_H
+#ifndef LED_COLOR_H_
+#define LED_COLOR_H_
 
 // color definitions
 #define COLOR_OFF 0 			// (0, 0, 0)

@@ -1,6 +1,7 @@
-#ifndef ThreadHandler_H
-#define ThreadHandler_H
+#ifndef THREADHANDLER_HPP_
+#define THREADHANDLER_HPP_
 
+#include <Arduino.h>
 #include <StandardCplusplus.h>
 #include <vector>
 

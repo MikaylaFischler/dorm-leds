@@ -1,5 +1,5 @@
-#ifndef Animation_Static_H
-#define Animation_Static_H
+#ifndef ANIMATION_STATIC_HPP_
+#define ANIMATION_STATIC_HPP_
 
 #include "../../lib/Animation.hpp"
 

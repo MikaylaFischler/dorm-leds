@@ -1,5 +1,5 @@
-#ifndef Animation_Holiday_H
-#define Animation_Holiday_H
+#ifndef ANIMATION_HOLIDAY_HPP_
+#define ANIMATION_HOLIDAY_HPP_
 
 #include "../../lib/Animation.hpp"
 
@@ -7,7 +7,7 @@ class Animation_Holiday : public Animation {
 protected:
     Animation_Holiday() {}
     ~Animation_Holiday() {}
-public:
+
     void init();
 };
 

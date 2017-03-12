@@ -15,30 +15,30 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
  	this->name = F("Desk[all]: Off White with Purple Fade");
     this->update_rate = 10;
 	this->num_strips = 2;
- 	this->strips = FULL_DESK;
+ 	this->strips = DESK_ALL;
 
 	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new short int(0)));
 	this->stack->push(new MemObj(new bool(true)));
 }
 
 void Animation_Simple_DeskWhitePurpleFade::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	short int& i = this->stack->get(0)->get<short int>();
 	bool& increasing = this->stack->get(1)->get<bool>();
 
-	for (int y = 0; y < DESK1_LENGTH; y++) {
-		if (y%3 != 0) {
-			desk1.setPixelColor(y, desk1.Color((int)(((float)i / 150.0) * 100), 0, i));
+	for (int x = 0; x < DESK1_LENGTH; x++) {
+		if (x % 3 != 0) {
+			desk1.setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
-			desk1.setPixelColor(y, COLOR_DIM_OFF_WHITE);
+			desk1.setPixelColor(x, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
-	for (int z = 0; z < DESK2_LENGTH; z++) {
-		if (z%3 != 0) {
-			desk2.setPixelColor(z, desk2.Color((int)(((float)i / 150.0) * 100), 0, i));
+	for (int x = 0; x < DESK2_LENGTH; x++) {
+		if (x % 3 != 0) {
+			desk2.setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
-			desk2.setPixelColor(z, COLOR_DIM_OFF_WHITE);
+			desk2.setPixelColor(x, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
@@ -64,7 +64,7 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
 }
 
 void Animation_Simple_DeskWhitePurpleFade::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(0)->destroy<short int>();
 	this->stack->get(1)->destroy<bool>();
 
 	delete this->stack;
@@ -90,7 +90,7 @@ void Animation_Simple_WinAllWPISpirit::step() {
 	if (mode == 0) {
 		window1.setPixelColor(i, COLOR_MAROON);
 
-		if (i%2 == 0) {
+		if (i % 2 == 0) {
 			window2.setPixelColor(i, COLOR_LIGHT_SILVER);
 		} else {
 			window2.setPixelColor(i, COLOR_MAROON);
@@ -107,7 +107,7 @@ void Animation_Simple_WinAllWPISpirit::step() {
 		window1.setPixelColor(i, COLOR_LIGHT_SILVER);
 
 		for (int j = 0; j < WINDOW_LENGTH; j++) {
-			if (i%2 != 0) {
+			if (i % 2 != 0) {
 				window2.setPixelColor(i, COLOR_LIGHT_SILVER);
 			} else {
 				window2.setPixelColor(i, COLOR_MAROON);

@@ -19,9 +19,9 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
 	bool& increasing = this->stack->get(1)->get<bool>();
 
     for (int x = 0; x < WINDOW_LENGTH; x++) {
-    	window1.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
-        window2.setPixelColor(x, window_generic.Color((int)(((float)i / 255.0) * 150), 0, i));
-        window3.setPixelColor(x, window_generic.Color(i, (int)(((float)i / 255.0) * 50), 0));
+    	window1.setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
+        window2.setPixelColor(x, Color((int)(((float)i / 255.0) * 150), 0, i));
+        window3.setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
     }
 
     showAllWindowStrips();
@@ -107,13 +107,13 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
 }
 
 unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_halloween_color() {
-	unsigned long int bright_orange = window_generic.Color(255, 50, 0);
-	unsigned long int medium_orange = window_generic.Color(190, 37, 0);
-	unsigned long int dim_orange = window_generic.Color(100, 20, 0);
+	unsigned long int bright_orange = Color(255, 50, 0);
+	unsigned long int medium_orange = Color(190, 37, 0);
+	unsigned long int dim_orange = Color(100, 20, 0);
 
-	unsigned long int bright_purple = window_generic.Color(150, 0, 255);
-	unsigned long int medium_purple = window_generic.Color(112, 0, 190);
-	unsigned long int dim_purple = window_generic.Color(59, 0, 100);
+	unsigned long int bright_purple = Color(150, 0, 255);
+	unsigned long int medium_purple = Color(112, 0, 190);
+	unsigned long int dim_purple = Color(59, 0, 100);
 
 	long int r = random(0,7);
 
@@ -200,24 +200,24 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade(bool*& inc
 
 			if (r == 0) {
 				// purple
-				win.setPixelColor(pixel, window_generic.Color(1,0,2));
+				win.setPixelColor(pixel, Color(1,0,2));
 			} else {
 				// orange
-				win.setPixelColor(pixel, window_generic.Color(5,1,0));
+				win.setPixelColor(pixel, Color(5,1,0));
 			}
 		} else if (green == 0) {
 			// was purple
 			if (increasing) {
-				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
 			} else {
-				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
+				//win.setPixelColor(pixel, Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
 			}
 		} else if (blue == 0) {
 			// was orange
 			if (increasing) {
-				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
 			} else {
-				//win.setPixelColor(pixel, window_generic.Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
+				//win.setPixelColor(pixel, Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
 			}
 		}
 

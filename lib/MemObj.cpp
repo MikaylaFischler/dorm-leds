@@ -10,11 +10,15 @@ MemObj::~MemObj() {}
 
 // get the data
 template <typename mem_type>
-mem_type& MemObj::get() { return *((mem_type*) var); }
+mem_type& MemObj::get() { return *(reinterpret_cast<mem_type*>(var)); }
+
+// get the data as a pointer
+template <typename mem_type>
+mem_type* MemObj::getpointer() { return reinterpret_cast<mem_type*>(var); }
 
 // free the memory
 template <typename mem_type>
-void MemObj::destroy() { delete (mem_type*) var; }
+void MemObj::destroy() { delete reinterpret_cast<mem_type*>(var); }
 
 // free the memory as an array
 template <typename mem_type>

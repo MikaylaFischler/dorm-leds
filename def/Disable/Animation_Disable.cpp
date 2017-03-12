@@ -15,7 +15,7 @@ void Animation_Disable::init() {
 void Animation_Disable_Desk1::init() {
     Animation_Disable::init();
     this->name = F("Desk[1]: Off");
-    this->strips = BOTTOM_DESK;
+    this->strips = DESK_BOTTOM;
 }
 
 void Animation_Disable_Desk1::step() {
@@ -31,7 +31,7 @@ void Animation_Disable_Desk1::step() {
 void Animation_Disable_Desk2::init() {
     Animation_Disable::init();
     this->name = F("Desk[2]: Off");
-    this->strips = TOP_DESK;
+    this->strips = DESK_TOP;
 }
 
 void Animation_Disable_Desk2::step() {

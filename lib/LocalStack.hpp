@@ -1,5 +1,5 @@
-#ifndef LocalStack_H
-#define LocalStack_H
+#ifndef LOCALSTACK_HPP_
+#define LOCALSTACK_HPP_
 
 #include <StandardCplusplus.h>
 #include <vector>
@@ -11,8 +11,6 @@ class LocalStack {
         std::vector<MemObj*> stack;
     public:
         LocalStack();
-        //LocalStack(MemObj mem);
-        //LocalStack(MemObj stack[], int numElements);
         ~LocalStack();
 
         // untyped element manipulation

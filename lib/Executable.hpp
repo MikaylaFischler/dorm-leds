@@ -1,5 +1,5 @@
-#ifndef Executable_H
-#define Executable_H
+#ifndef EXECUTABLE_HPP_
+#define EXECUTABLE_HPP_
 
 #include <Arduino.h>
 #include "LocalStack.hpp"

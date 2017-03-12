@@ -3,18 +3,6 @@
 // <<constructors>>
 LocalStack::LocalStack() {}
 
-/*
-LocalStack::LocalStack(MemObj datum) {
-    this->stack.push_back(datum);
-}
-
-LocalStack::LocalStack(MemObj stack[], int numElements) {
-    for(int i = 0; i < numElements; i++) {
-        this->stack.push_back(stack[i]);
-    }
-}
-*/
-
 // <<destructor>>
 LocalStack::~LocalStack() {
 	// delete all the mem objects
