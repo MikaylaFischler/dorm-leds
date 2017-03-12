@@ -1,16 +1,15 @@
 #include "Animation_Seasonal.hpp"
 
-/* ~~~ Animation Seasonal Winter: Individual Window Randomized Snow */
+/* ~~~ Animation Seasonal Individual Winter: Randomized Snow */
 
-Animation_Seasonal_Winter_WindowSnow::Animation_Seasonal_Winter_WindowSnow(Adafruit_NeoPixel* strip) {
+Animation_Seasonal_Indiv_Winter_WindowSnow::Animation_Seasonal_Indiv_Winter_WindowSnow(Adafruit_NeoPixel* strip) {
 	this->strip = strip;
 }
 
-void Animation_Seasonal_Winter_WindowSnow::init() {
+void Animation_Seasonal_Indiv_Winter_WindowSnow::init() {
  	Animation_Seasonal::init();
 	this->name = getNameOfStrip(this->strip);
  	this->name += F(": Randomized Snow");
-	this->num_strips = 1;
 	this->update_rate = 50;
 	this->strips = getAsStripArray(this->strip);
 
@@ -22,7 +21,7 @@ void Animation_Seasonal_Winter_WindowSnow::init() {
 }
 
 
-void Animation_Seasonal_Winter_WindowSnow::step() {
+void Animation_Seasonal_Indiv_Winter_WindowSnow::step() {
 	const int rightBottom = 9;
 	const int rightTop = 40;
 	const int leftTop = 50;
@@ -103,7 +102,7 @@ void Animation_Seasonal_Winter_WindowSnow::step() {
 	}
 }
 
-void Animation_Seasonal_Winter_WindowSnow::clean() {
+void Animation_Seasonal_Indiv_Winter_WindowSnow::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<bool>();
 	this->stack->get(2)->destroy<unsigned short int>();

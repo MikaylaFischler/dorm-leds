@@ -1,16 +1,15 @@
 #include "Animation_Seasonal.hpp"
 
-/* ~~~ Animation Seasonal Spring: Clear Sky Blue Color Fade */
+/* ~~~ Animation Seasonal Individual Spring: Clear Sky Blue Color Fade */
 
-Animation_Seasonal_Spring_ClearSkyFade::Animation_Seasonal_Spring_ClearSkyFade(Adafruit_NeoPixel* strip) {
+Animation_Seasonal_Indiv_Spring_ClearSkyFade::Animation_Seasonal_Indiv_Spring_ClearSkyFade(Adafruit_NeoPixel* strip) {
 	this->strip = strip;
 }
 
-void Animation_Seasonal_Spring_ClearSkyFade::init() {
- 	Animation_Seasonal::init();
+void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
+ 	Animation_Seasonal_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
  	this->name += F(": Clear Skies");
-	this->num_strips = 1;
 	this->update_rate = 50;
 	this->strips = getAsStripArray(this->strip);
 
@@ -21,7 +20,7 @@ void Animation_Seasonal_Spring_ClearSkyFade::init() {
 	this->stack->push(new MemObj(new unsigned short int(0)));
 }
 
-void Animation_Seasonal_Spring_ClearSkyFade::step() {
+void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
 	static const int MAX_RED = 200;
 	static const int MAX_GREEN = 180;
 	static const int BLUE = 255;
@@ -55,7 +54,7 @@ void Animation_Seasonal_Spring_ClearSkyFade::step() {
 
 }
 
-void Animation_Seasonal_Spring_ClearSkyFade::clean() {
+void Animation_Seasonal_Indiv_Spring_ClearSkyFade::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<bool>();
 	this->stack->get(2)->destroy<unsigned short int>();
