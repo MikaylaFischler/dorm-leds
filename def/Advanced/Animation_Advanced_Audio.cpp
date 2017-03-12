@@ -6,6 +6,10 @@
 void Animation_Advanced_Audio::init() {
   	Animation_Advanced::init();
     this->update_rate = 1; // at rate of audio update
+
+	// get equalizer chips
+	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
+	this->right_eq = device_manager.getDevice<MSGEQ7>(1);
 }
 
 /* ~~~ Animation Advanced Audio: Beat Pulse Window ~~~ */
@@ -15,8 +19,6 @@ void Animation_Advanced_Audio_BeatPulseWindow::init() {
  	this->name = F("Window[all]: Audio Beat Pulse");
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
-
-	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
 }
 
 void Animation_Advanced_Audio_BeatPulseWindow::step() {
@@ -95,8 +97,6 @@ void Animation_Advanced_Audio_BassPulseWindow::init() {
  	this->name = F("Window[all]: Audio Bass Beat Pulse");
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
-
-	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
 }
 
 void Animation_Advanced_Audio_BassPulseWindow::step() {
@@ -123,8 +123,6 @@ void Animation_Advanced_Audio_BassMidPulseWindow::init() {
  	this->name = F("Window[all]: Audio Bass and Mid Beat Pulse");
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
-
-	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
 }
 
 void Animation_Advanced_Audio_BassMidPulseWindow::step() {
@@ -151,8 +149,6 @@ void Animation_Advanced_Audio_EqualizerWindow::init() {
  	this->name = F("Window[all]: Basic Audio Equalizer");
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
-
-	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
 
 	// clear these once, for efficency
 	for (int i = 0; i < 9; i++) {
@@ -232,8 +228,6 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::init() {
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
-	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
-
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int[6]));
 	this->stack->push(new MemObj(new unsigned int(0)));
@@ -284,7 +278,7 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	}
 
 	// low eqs
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[1] && x >= 9) {
 			window1.setPixelColor(x, COLOR_ORANGE);
 		} else if (x >= val[0] && x <= 80) {
@@ -299,7 +293,7 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	}
 
 	// mid eqs
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[3] && x >= 9) {
 			window2.setPixelColor(x, COLOR_GREEN);
 		} else if (x >= val[2] && x <= 80) {
@@ -314,7 +308,7 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	}
 
 	// high eqs
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
 			window3.setPixelColor(x, COLOR_VIOLET);
 		} else if (x >= val[4] && x <= 80) {
