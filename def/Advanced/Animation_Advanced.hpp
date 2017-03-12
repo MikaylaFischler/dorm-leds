@@ -41,7 +41,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 private:
 	MSGEQ7* left_eq;
 };
@@ -53,7 +52,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 private:
 	MSGEQ7* left_eq;
 };
