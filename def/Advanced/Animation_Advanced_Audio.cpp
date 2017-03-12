@@ -100,8 +100,8 @@ void Animation_Advanced_Audio_BassPulseWindow::init() {
 }
 
 void Animation_Advanced_Audio_BassPulseWindow::step() {
-	int low_sum = quadraticBrightness(left_eq->get8Bit(1));
-	int low2_sum = quadraticBrightness(left_eq->get8Bit(2));
+	int low_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(1)) + (float) quadraticBrightness(right_eq->get8Bit(1))) / 2.0);
+	int low2_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(2)) + (float) quadraticBrightness(right_eq->get8Bit(2))) / 2.0);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, 0);
