@@ -122,14 +122,14 @@ void loop() {
 	cur_time = millis();
 	dT = cur_time - prev_time;
 
+	// save this time as previous time
+	prev_time = cur_time;
+
 	// tell each thread the time change
 	thread_handler.updateTimeAccumulated(dT);
 
 	// execute commands that it is time to execute
 	thread_handler.executeTick();
-
-	// save this time as previous time
-	prev_time = millis();
 
 	// prevent ticks less than a millisecond
 	delayMicroseconds(400);
