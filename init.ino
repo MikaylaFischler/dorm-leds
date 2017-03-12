@@ -94,23 +94,24 @@ void queue_sys_threads() {
 
 void led_man_queue() {
 	// manually queue animations for startup
-  thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
-	//thread_handler.queue(new Animation_Static_DeskThirdDimAmbient());
-	//thread_handler.queue(new Animation_Simple_Indiv_Rainbow(&desk1));
-	//thread_handler.queue(new Animation_Simple_Indiv_Rainbow(&desk2));
 
-	//thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
+	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
+	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk2));
+	thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&desk1));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&desk2));
 
-	//thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window1));
-	//thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window3));
+	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
-	thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window1));
-	//thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window2));
-	thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window3));
+	// thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window1));
+	// thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window3));
 
-	//thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window1));
-	thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
-	//thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window3));
+	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window1));
+	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window2));
+	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window3));
 
-	thread_handler.queue(new Animation_Advanced_Audio_BeatWindowPulse());
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window1));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window3));
+
+	thread_handler.queue(new Animation_Advanced_Audio_MaxEqualizerWindow());
 }
