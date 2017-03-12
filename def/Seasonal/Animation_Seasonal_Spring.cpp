@@ -28,16 +28,16 @@ void Animation_Seasonal_Spring_ClearSkyFade::step() {
 
 	unsigned int& i = this->stack->get(0)->get<unsigned int>();
 	bool& increasing = this->stack->get(1)->get<bool>();
-	unsigned short int& red = this->stack->get(2)->get<unsigned short int>();
-	unsigned short int& green = this->stack->get(3)->get<unsigned short int>();
 
 	// step animation
 	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
 		this->strip->setPixelColor(x, MAX_RED - i, MAX_GREEN - i, BLUE);
 	}
 
+	this->strip->show();
+
 	if (increasing) {
-		if (i >= 50) {
+		if (i >= 150) {
 			i--;
 			increasing = false;
 		} else {
