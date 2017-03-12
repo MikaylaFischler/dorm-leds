@@ -11,6 +11,9 @@
   Calculated Brightness Curves: https://www.desmos.com/calculator/xqhb9ecn01
 */
 
+/* ~~~ Brightness Curves ~~~ */
+/* Curve input to bias towards lower outputs to cause more noticeable changes in brightness */
+
 // curve brightness input quadratically
 unsigned long int quadraticBrightness(long unsigned int x) {
 	return (unsigned long int) round(0.0039215686 * (double) pow(x, 2));
