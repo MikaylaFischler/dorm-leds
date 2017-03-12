@@ -90,7 +90,7 @@ void Animation_Advanced_Audio_BeatPulseWindow::step() {
 
 void Animation_Advanced_Audio_BassPulseWindow::init() {
  	Animation_Advanced_Audio::init();
- 	this->name = F("Window[all]: Audio Rainbow and Beat Pulse");
+ 	this->name = F("Window[all]: Audio Bass Beat Pulse");
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
@@ -98,17 +98,43 @@ void Animation_Advanced_Audio_BassPulseWindow::init() {
 }
 
 void Animation_Advanced_Audio_BassPulseWindow::step() {
-	int low_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(1), 2));
-	int high_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(2), 2));
-	
+	int low_sum = quadraticBrightness(left_eq->get8Bit(1));
+	int low2_sum = quadraticBrightness(left_eq->get8Bit(2));
+
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, 0);
-		window2.setPixelColor(x, 0, high_sum, high_sum);
+		window2.setPixelColor(x, 0, low2_sum, low2_sum);
 		window3.setPixelColor(x, low_sum, 0, 0);
 	}
 
-	window2.show();
 	window1.show();
+	window2.show();
+	window3.show();
+}
+
+/* ~~~ Animation Advanced Audio: Bass and Mid Window Pulse ~~~ */
+
+void Animation_Advanced_Audio_BassMidPulseWindow::init() {
+ 	Animation_Advanced_Audio::init();
+ 	this->name = F("Window[all]: Audio Bass and Mid Beat Pulse");
+	this->num_strips = 3;
+ 	this->strips = WINDOW_ALL;
+
+	this->left_eq = device_manager.getDevice<MSGEQ7>(0);
+}
+
+void Animation_Advanced_Audio_BassMidPulseWindow::step() {
+	int low_sum = quadraticBrightness(left_eq->get8Bit(1));
+	int mid_sum = quadraticBrightness(left_eq->get8Bit(3));
+
+	for (int x = 0; x < WINDOW_LENGTH; x++) {
+		window1.setPixelColor(x, low_sum, 0, 0);
+		window2.setPixelColor(x, 0, mid_sum, mid_sum);
+		window3.setPixelColor(x, low_sum, 0, 0);
+	}
+
+	window1.show();
+	window2.show();
 	window3.show();
 }
 
