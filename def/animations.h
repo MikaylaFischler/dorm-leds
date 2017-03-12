@@ -6,6 +6,7 @@
 
 // Static Animations
 #include "Static/Animation_Static.cpp"
+#include "Static/Animation_Static_Indiv.cpp"
 
 // Simple Animations
 #include "Simple/Animation_Simple.cpp"
