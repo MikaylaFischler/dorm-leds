@@ -100,19 +100,7 @@ void Animation_Advanced_Audio_BassPulseWindow::init() {
 void Animation_Advanced_Audio_BassPulseWindow::step() {
 	int low_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(1), 2));
 	int high_sum = (int) (0.0039215686 * (double) pow(left_eq->get8Bit(2), 2));
-
-	long int val = ColorWheel(high_sum);
-
-	// side windows
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window1.setPixelColor(x, val);
-		window3.setPixelColor(x, val);
-	}
-
-	//window1.show();
-	//window3.show();
-
-	// center window
+	
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		window1.setPixelColor(x, low_sum, 0, 0);
 		window2.setPixelColor(x, 0, high_sum, high_sum);
