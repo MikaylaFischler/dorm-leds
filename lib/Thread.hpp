@@ -18,9 +18,9 @@ protected:
 public:
 	virtual ~Thread() {}
 
-	unsigned int getID();
-	unsigned long int getUpdateRate();
-	unsigned long int getTimeSum();
+	unsigned int getID() const;
+	unsigned long int getUpdateRate() const;
+	unsigned long int getTimeSum() const;
 	void addTimeSum(unsigned int dT);
 	void zeroTimeSum();
 	bool checkFirstCall();
@@ -33,7 +33,7 @@ public:
 	AnimationThread(unsigned int id, Animation* anim);
 	~AnimationThread();
 
-	Animation* getAnimation();
+	Animation* getAnimation() const;
 };
 
 class ProcessThread : public Thread {
@@ -43,7 +43,7 @@ public:
 	ProcessThread(unsigned int id, Process* proc);
 	~ProcessThread();
 
-	Process* getProcess();
+	Process* getProcess() const;
 };
 
 #endif

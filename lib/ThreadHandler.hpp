@@ -31,8 +31,8 @@ public:
 	void queue(Animation* anim);
 	void queue(Process* proc);
 
-	std::vector<AnimationThread*> listAnimationThreads();
-	std::vector<ProcessThread*> listProcessThreads();
+	std::vector<AnimationThread*> listAnimationThreads() const;
+	std::vector<ProcessThread*> listProcessThreads() const;
 
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();

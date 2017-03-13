@@ -8,8 +8,8 @@ public:
     MemObj(void* var);
     ~MemObj();
 
-    template <typename mem_type> mem_type& get();
-	template <typename mem_type> mem_type* getpointer();
+    template <typename mem_type> mem_type& get() const;
+	template <typename mem_type> mem_type* getpointer() const;
     template <typename mem_type> void destroy();
     template <typename mem_type> void destroyarray();
 };
