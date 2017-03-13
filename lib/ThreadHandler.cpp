@@ -16,16 +16,11 @@ std::vector<ProcessThread*> ThreadHandler::listProcessThreads() { return proc_th
 void ThreadHandler::queue(Animation* anim) {
 	anim->init();
 
-	// dequeue conflicting threads
-	dequeueConflicts(anim);
-
 	// queue this animation as a new thread (set current time as the update rate so it initially sets on start)
 	AnimationThread* t = new AnimationThread(next_id, anim);
 	next_id++;
 
-	anim_threads.push_back(t);
-
-	Serial.print(F("ThreadHandler.cpp:> New Animation Thread Queued: "));
+	Serial.print(F("ThreadHandler.cpp:> New Animation Thread Generated: "));
 	Serial.print(anim->getName());
 	Serial.print(F(" at "));
 	Serial.print(anim->getUpdateRate());
@@ -33,6 +28,13 @@ void ThreadHandler::queue(Animation* anim) {
 	Serial.print(F(", occupying "));
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
+
+	//dequeue conflicting threads
+	dequeueConflicts(anim); // this MUST be after memory calculations
+
+	anim_threads.push_back(t);
+
+	Serial.println(F("ThreadHandler.cpp:> Animation Thread Queued."));
 
 	mem_available = freeMemory();
 }
