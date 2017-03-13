@@ -56,7 +56,7 @@ void Animation_Holiday_Halloween_WinAllFade::clean() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
-    this->update_rate = 1000;
+    this->update_rate = 100;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
@@ -69,7 +69,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 	unsigned int& i = this->stack->get(0)->get<unsigned int>();
 	bool& reset = this->stack->get(1)->get<bool>();
-	bool*& increasing = this->stack->get(2)->get<bool*>();
+	bool* increasing = this->stack->get(2)->getpointer<bool>();
 
 	if (reset) {
 		// randomize
@@ -101,7 +101,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<unsigned short int>();
-	this->stack->get(2)->destroyarray<bool[WINDOW_LENGTH * 3]>();
+	this->stack->get(2)->destroyarray<bool>();
 
 	delete this->stack;
 }

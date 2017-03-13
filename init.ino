@@ -96,8 +96,8 @@ void led_man_queue() {
 	// manually queue animations for startup
 
 	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
+	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk1));
 	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk2));
-	thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&desk1));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&desk2));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
