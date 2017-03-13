@@ -26,11 +26,11 @@ public:
 	virtual void step() {};
 	virtual void clean() {};
 
-    int getNumStrips();
-    short int* getDependencies();
+    int getNumStrips() const;
+    short int* getDependencies() const;
 
-	long int getMaxExecutions();
-	long int getCurrentExecutionCount();
+	long int getMaxExecutions() const;
+	long int getCurrentExecutionCount() const;
 };
 
 #endif

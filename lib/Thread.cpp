@@ -7,13 +7,13 @@ Thread::Thread() {
 }
 
 // get this thread ID
-unsigned int Thread::getID() { return this->id; }
+unsigned int Thread::getID() const { return this->id; }
 
 // get the update rate
-unsigned long int Thread::getUpdateRate() { return this->updateRate; }
+unsigned long int Thread::getUpdateRate() const { return this->updateRate; }
 
 // get the current time sum
-unsigned long int Thread::getTimeSum() { return this->timeSum; }
+unsigned long int Thread::getTimeSum() const { return this->timeSum; }
 
 // add to the time sum
 void Thread::addTimeSum(unsigned int dT) { this->timeSum += dT; }
@@ -41,7 +41,7 @@ AnimationThread::AnimationThread (unsigned int id, Animation* anim) {
 AnimationThread::~AnimationThread() { delete this->animation; }
 
 // get the command that this thread contains
-Animation* AnimationThread::getAnimation() { return animation; }
+Animation* AnimationThread::getAnimation() const { return animation; }
 
 /* ~~~ Process Thread Subclass ~~~ */
 
@@ -56,4 +56,4 @@ ProcessThread::ProcessThread (unsigned int id, Process* proc) {
 ProcessThread::~ProcessThread() { delete this->process; }
 
 // get the command that this thread contains
-Process* ProcessThread::getProcess() { return process; }
+Process* ProcessThread::getProcess() const { return process; }
