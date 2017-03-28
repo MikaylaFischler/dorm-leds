@@ -10,11 +10,11 @@ MemObj::~MemObj() {}
 
 // get the data
 template <typename mem_type>
-mem_type& MemObj::get() { return *(reinterpret_cast<mem_type*>(var)); }
+mem_type& MemObj::get() const { return *(reinterpret_cast<mem_type*>(var)); }
 
 // get the data as a pointer
 template <typename mem_type>
-mem_type* MemObj::getpointer() { return reinterpret_cast<mem_type*>(var); }
+mem_type* MemObj::getpointer() const { return reinterpret_cast<mem_type*>(var); }
 
 // free the memory
 template <typename mem_type>
