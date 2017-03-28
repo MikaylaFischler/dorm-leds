@@ -18,8 +18,8 @@ public:
     virtual void step() = 0;
     virtual void clean() = 0;
 
-    String getName();
-    unsigned long int getUpdateRate();
+    String getName() const;
+    unsigned long int getUpdateRate() const;
 };
 
 #endif
