@@ -62,3 +62,7 @@
 		Animation_Static_DeskBrightWhite
 		Animation_Static_DeskThirdDimAmbient
 		Animation_Static_DeskDimAmbient
+
+		{Animation_Static_Indiv}
+			Animation_Static_Indiv_Color(&strip, color)
+			Animation_Static_Indiv_ThirdDimAmbient(color)
