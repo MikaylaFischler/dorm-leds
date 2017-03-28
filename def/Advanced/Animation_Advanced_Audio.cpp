@@ -381,7 +381,7 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	// desk2.show();
 
 	// slowly drift max vals back down if possible
-	if (count >= 15) {
+	if (count >= 12) {
 		count = 0;
 
 		for (int i = 0; i < 6; i++) {
@@ -389,9 +389,21 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 				if (max[i] < val[i]) {
 					max[i]++;
 				}
+
+				if (max[i] <= 50) {
+					max[i] = 51; // it shouldn't be there
+				} else if (max[i] > 80) {
+					max[i] = 80;
+				}
 			} else {
 				if (max[i] > val[i]) {
 					max[i]--;
+				}
+
+				if (max[i] >= 41) {
+					max[i] = 40; // it shouldn't be there
+				} else if (max[i] < 9) {
+					max[i] = 9;
 				}
 			}
 		}
