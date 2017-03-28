@@ -7,20 +7,20 @@
 #include "MemObj.hpp"
 
 class LocalStack {
-    private:
-        std::vector<MemObj*> stack;
-    public:
-        LocalStack();
-        ~LocalStack();
+private:
+    std::vector<MemObj*> stack;
+public:
+    LocalStack();
+    ~LocalStack();
 
-        // untyped element manipulation
-        void push(MemObj* element);
-        MemObj* get(unsigned int i);
-        void update(unsigned int i, MemObj* val);
-        /* DEPRECATED void drop(unsigned int i); */
+    // untyped element manipulation
+    void push(MemObj* element);
+	void drop(unsigned int i);
+    void replace(unsigned int i, MemObj* obj);
+    MemObj* get(unsigned int i) const;
 
-        // get raw stack
-        std::vector<MemObj*> getStack();
+    // get raw stack
+    std::vector<MemObj*> getStack() const;
 };
 
 #endif
