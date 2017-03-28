@@ -30,14 +30,14 @@ protected:
 
 class Animation_Advanced_Audio_BasePulseCircularEqWindow : public Animation_Advanced_Audio {
 public:
-    Animation_Advanced_Audio_BeatPulseWindow() {}
-    ~Animation_Advanced_Audio_BeatPulseWindow() {}
+    Animation_Advanced_Audio_BasePulseCircularEqWindow() {}
+    ~Animation_Advanced_Audio_BasePulseCircularEqWindow() {}
 
 	void init();
 	void step();
 };
 
-class Animation_Advanced_Audio_BasePulseCircularEqWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
 public:
     Animation_Advanced_Audio_BassPulseWindow() {}
     ~Animation_Advanced_Audio_BassPulseWindow() {}

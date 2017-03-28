@@ -3,8 +3,10 @@
 [Advanced]
 	{Animation_Advanced}
 		{Animation_Advanced_Audio}
+			Animation_Advanced_Audio_BasePulseCircularEqWindow
 			Animation_Advanced_Audio_BassPulseWindow
 			Animation_Advanced_Audio_BassMidPulseWindow
+			Animation_Advanced_Audio_BassPulseMidHueWindow
 			Animation_Advanced_Audio_EqualizerWindow
 			Animation_Advanced_Audio_MaxEqualizerWindow
 
@@ -30,11 +32,12 @@
 
 [Seasonal]
 	{Animation_Seasonal}
-		{Animation_Seasonal_Winter}
-			Animation_Seasonal_Winter_WindowSnow(&strip)
+		{~Animation_Seasonal_Indiv~}
+			{Animation_Seasonal_Winter}
+				Animation_Seasonal_Indiv_Winter_WindowSnow(&strip)
 
-		{Animation_Seasonal_Spring}
-			Animation_Seasonal_Spring_ClearSkyFade(&strip)
+			{Animation_Seasonal_Spring}
+				Animation_Seasonal_Indiv_Spring_ClearSkyFade(&strip)
 
 [Simple]
 	{Animation_Simple}
@@ -59,3 +62,7 @@
 		Animation_Static_DeskBrightWhite
 		Animation_Static_DeskThirdDimAmbient
 		Animation_Static_DeskDimAmbient
+
+		{Animation_Static_Indiv}
+			Animation_Static_Indiv_Color(&strip, color)
+			Animation_Static_Indiv_ThirdDimAmbient(color)
