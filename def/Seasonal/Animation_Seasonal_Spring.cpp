@@ -16,8 +16,6 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned int(0)));
 	this->stack->push(new MemObj(new bool(true)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
 }
 
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
@@ -57,8 +55,6 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::clean() {
 	this->stack->get(0)->destroy<unsigned int>();
 	this->stack->get(1)->destroy<bool>();
-	this->stack->get(2)->destroy<unsigned short int>();
-	this->stack->get(3)->destroy<unsigned short int>();
 
 	delete this->stack;
 }
