@@ -19,8 +19,9 @@
 
 // Seasonal Animations
 #include "Seasonal/Animation_Seasonal.cpp"
-#include "Seasonal/Animation_Seasonal_Winter.cpp"
 #include "Seasonal/Animation_Seasonal_Spring.cpp"
+#include "Seasonal/Animation_Seasonal_Winter.cpp"
+#include "Seasonal/Animation_Seasonal_Weather.cpp"
 
 // Holiday Animations
 #include "Holiday/Animation_Holiday.cpp"

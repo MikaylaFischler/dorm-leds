@@ -33,8 +33,16 @@
 [Seasonal]
 	{Animation_Seasonal}
 		{~Animation_Seasonal_Indiv~}
+			{Animation_Seasonal_Weather}
+				<rain>
+				Animation_Seasonal_Indiv_Weather_WindowLightRain(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavyRain(&strip)
+				<snow>
+				Animation_Seasonal_Indiv_Weather_WindowLightSnow(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowSnow(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavySnow(&strip)
+
 			{Animation_Seasonal_Winter}
-				Animation_Seasonal_Indiv_Winter_WindowSnow(&strip)
 
 			{Animation_Seasonal_Spring}
 				Animation_Seasonal_Indiv_Spring_ClearSkyFade(&strip)
