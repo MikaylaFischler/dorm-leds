@@ -52,6 +52,24 @@ public:
 	void init();
 };
 
+class Animation_Static_TransFlagWindows : public Animation_Static {
+public:
+    Animation_Static_TransFlagWindows() {}
+    ~Animation_Static_TransFlagWindows() {}
+
+    void step();
+	void init();
+};
+
+class Animation_Static_TransFlagStripedWindows : public Animation_Static {
+public:
+    Animation_Static_TransFlagStripedWindows() {}
+    ~Animation_Static_TransFlagStripedWindows() {}
+
+    void step();
+	void init();
+};
+
 // Animation_Static_Indiv.cpp
 
 class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
