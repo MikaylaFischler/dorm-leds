@@ -27,20 +27,20 @@ protected:
 
 // Animation_Seasonal_Spring.cpp
 
-class Animation_Seasonal_Spring_WindowColors : public Animation_Seasonal {
+class Animation_Seasonal_Indiv_Spring_ClearSkyFade : public Animation_Seasonal_Indiv {
 public:
-    Animation_Seasonal_Spring_WindowColors() {}
-    ~Animation_Seasonal_Spring_WindowColors() {}
+    Animation_Seasonal_Indiv_Spring_ClearSkyFade(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Spring_ClearSkyFade() {}
 
 	void init();
 	void step();
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Spring_ClearSkyFade : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Spring_WindowColors : public Animation_Seasonal_Indiv {
 public:
-    Animation_Seasonal_Indiv_Spring_ClearSkyFade(Adafruit_NeoPixel* strip);
-    ~Animation_Seasonal_Indiv_Spring_ClearSkyFade() {}
+    Animation_Seasonal_Indiv_Spring_WindowColors(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Spring_WindowColors() {}
 
 	void init();
 	void step();
