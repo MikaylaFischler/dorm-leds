@@ -90,7 +90,14 @@ uint32_t ColorWheel(byte WheelPos) {
 
 /* ~~~ Window Functions ~~~ */
 
-// set the color of all three windows at once
+// set three individual colors (1 per window strip) per LED by index
+void setWindowPixelColor(uint16_t index, uint32_t win1_c, uint32_t win2_c, uint32_t win3_c){
+    window1.setPixelColor(index, win1_c);
+    window2.setPixelColor(index, win2_c);
+    window3.setPixelColor(index, win3_c);
+}
+
+// set the color of all three windows at once per LED by index
 void setAllWindowPixelColor(uint16_t index, uint32_t color){
     window1.setPixelColor(index, color);
     window2.setPixelColor(index, color);
@@ -99,9 +106,9 @@ void setAllWindowPixelColor(uint16_t index, uint32_t color){
 
 // shut off all window LEDs
 void clearAllWindowLEDs(){
-  for (int i = 0; i < WINDOW_LENGTH; i++) {
-    setAllWindowPixelColor(i, Color(0, 0, 0));
-  }
+	for (int i = 0; i < WINDOW_LENGTH; i++) {
+		setAllWindowPixelColor(i, Color(0, 0, 0));
+	}
 }
 
 // show all window strips

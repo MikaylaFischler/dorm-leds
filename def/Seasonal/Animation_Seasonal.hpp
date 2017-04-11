@@ -25,22 +25,94 @@ protected:
 
 // Animation_Seasonal_Winter.cpp
 
-class Animation_Seasonal_Indiv_Winter_WindowSnow : public Animation_Seasonal_Indiv {
-public:
-    Animation_Seasonal_Indiv_Winter_WindowSnow(Adafruit_NeoPixel* strip);
-    ~Animation_Seasonal_Indiv_Winter_WindowSnow() {}
-
-	void init();
-	void step();
-	void clean();
-};
-
 // Animation_Seasonal_Spring.cpp
 
 class Animation_Seasonal_Indiv_Spring_ClearSkyFade : public Animation_Seasonal_Indiv {
 public:
     Animation_Seasonal_Indiv_Spring_ClearSkyFade(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Spring_ClearSkyFade() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Spring_WindowColors : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Spring_WindowColors(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Spring_WindowColors() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Spring_ColorWipe : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Spring_ColorWipe(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Spring_ColorWipe() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+// Animation_Seasonal_Weather.cpp
+
+class Animation_Seasonal_Indiv_Weather_WindowLightRain : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowLightRain(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowLightRain() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowRain : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowRain(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowRain() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowHeavyRain : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowHeavyRain(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowHeavyRain() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowLightSnow : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowLightSnow(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowLightSnow() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowSnow : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowSnow(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowSnow() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowHeavySnow : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Weather_WindowHeavySnow(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Weather_WindowHeavySnow() {}
 
 	void init();
 	void step();

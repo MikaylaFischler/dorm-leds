@@ -10,4 +10,8 @@ Adafruit_NeoPixel window3         = Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W
 Adafruit_NeoPixel desk1           = Adafruit_NeoPixel(DESK1_LENGTH,  STRIP_PIN_DT, STRIP_TYPE);
 Adafruit_NeoPixel desk2           = Adafruit_NeoPixel(DESK2_LENGTH,  STRIP_PIN_DB, STRIP_TYPE);
 
+// Arrays of Strips
+Adafruit_NeoPixel* window[3] = {&window1, &window2, &window3};
+Adafruit_NeoPixel* desk[2] = {&desk1, &desk2};
+
 #endif
