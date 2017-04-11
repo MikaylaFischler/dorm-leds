@@ -47,6 +47,16 @@ public:
 	void clean();
 };
 
+class Animation_Seasonal_Indiv_Spring_ColorWipe : public Animation_Seasonal_Indiv {
+public:
+    Animation_Seasonal_Indiv_Spring_ColorWipe(Adafruit_NeoPixel* strip);
+    ~Animation_Seasonal_Indiv_Spring_ColorWipe() {}
+
+	void init();
+	void step();
+	void clean();
+};
+
 // Animation_Seasonal_Weather.cpp
 
 class Animation_Seasonal_Indiv_Weather_WindowLightRain : public Animation_Seasonal_Indiv {

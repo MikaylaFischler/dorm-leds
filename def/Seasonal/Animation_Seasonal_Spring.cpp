@@ -140,3 +140,58 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::clean() {
 
 	delete this->stack;
 }
+
+/* ~~~ Animation Seasonal Individual Spring: Spring Color Chase */
+
+Animation_Seasonal_Indiv_Spring_ColorWipe::Animation_Seasonal_Indiv_Spring_ColorWipe(Adafruit_NeoPixel* strip) {
+	this->strip = strip;
+}
+
+void Animation_Seasonal_Indiv_Spring_ColorWipe::init() {
+ 	Animation_Seasonal_Indiv::init();
+	this->name = getNameOfStrip(this->strip);
+ 	this->name += F(": Spring Color Fade");
+	this->update_rate = 35;
+	this->strips = getAsStripArray(this->strip);
+
+	this->stack = new LocalStack();
+	this->stack->push(new MemObj(new unsigned short int(0)));
+	this->stack->push(new MemObj(new unsigned short int(0)));
+}
+
+void Animation_Seasonal_Indiv_Spring_ColorWipe::step() {
+	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
+	unsigned short int& color_mode = this->stack->get(1)->get<unsigned short int>();
+
+	// start wiping the current color
+	if (color_mode == 0) {
+		this->strip->setPixelColor(i, COLOR_PINK);
+	} else if (color_mode == 1) {
+		this->strip->setPixelColor(i, COLOR_YELLOW);
+	} else if (color_mode == 2) {
+		this->strip->setPixelColor(i, COLOR_GREEN);
+	} else if (color_mode == 3) {
+		this->strip->setPixelColor(i, COLOR_LIGHT_BLUE_GREEN);
+	}
+
+    this->strip->show();
+
+    i++;
+
+	if (i == this->strip->numPixels()) {
+		color_mode++;
+		i = 0;
+
+		if (color_mode == 4) {
+			color_mode = 0;
+			this->current_exec++;
+		}
+	}
+}
+
+void Animation_Seasonal_Indiv_Spring_ColorWipe::clean() {
+	this->stack->get(0)->destroy<unsigned short int>();
+	this->stack->get(1)->destroy<unsigned short int>();
+
+	delete this->stack;
+}
