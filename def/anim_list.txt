@@ -46,6 +46,8 @@
 
 			{Animation_Seasonal_Spring}
 				Animation_Seasonal_Indiv_Spring_ClearSkyFade(&strip)
+				Animation_Seasonal_Indiv_Spring_WindowColors(&strip)
+				Animation_Seasonal_Indiv_Spring_ColorWipe(&strip)
 
 [Simple]
 	{Animation_Simple}
