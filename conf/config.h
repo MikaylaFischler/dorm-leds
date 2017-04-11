@@ -54,6 +54,12 @@
 #define DESK1_LENGTH 28
 #define DESK2_LENGTH 29
 
+// strip rectangle corners
+#define WINDOW_BOTTOM_RIGHT 9
+#define WINDOW_TOP_RIGHT 40
+#define WINDOW_TOP_LEFT 50
+#define WINDOW_BOTTOM_LEFT 80
+
 // strip type
 #define STRIP_TYPE NEO_GRB + NEO_KHZ800
 
