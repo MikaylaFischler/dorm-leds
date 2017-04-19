@@ -87,8 +87,8 @@ void Animation_Seasonal_Indiv_Spring_WindowColors::step() {
 	unsigned long int c = 0;
 
 	switch (color) {
-		case 0: // pink
-			c = Color(i, 0, round(180.0 * (i / 255.0)));
+		case 0: // violet
+			c = Color(round(175.0 * (i / 255.0)), 0, i);
 			break;
 		case 1: // yellow
 			c = Color(i, round(150.0 * (i / 255.0)), 0);
@@ -161,7 +161,7 @@ void Animation_Seasonal_Indiv_Spring_ColorWipe::step() {
 
 	// start wiping the current color
 	if (color_mode == 0) {
-		this->strip->setPixelColor(i, COLOR_PINK);
+		this->strip->setPixelColor(i, COLOR_VIOLET);
 	} else if (color_mode == 1) {
 		this->strip->setPixelColor(i, COLOR_YELLOW);
 	} else if (color_mode == 2) {
