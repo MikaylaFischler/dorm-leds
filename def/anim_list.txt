@@ -36,6 +36,7 @@
 			{Animation_Seasonal_Weather}
 				<rain>
 				Animation_Seasonal_Indiv_Weather_WindowLightRain(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowRain(&strip)
 				Animation_Seasonal_Indiv_Weather_WindowHeavyRain(&strip)
 				<snow>
 				Animation_Seasonal_Indiv_Weather_WindowLightSnow(&strip)

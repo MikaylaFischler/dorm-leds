@@ -59,7 +59,14 @@ public:
 
 // Animation_Seasonal_Weather.cpp
 
-class Animation_Seasonal_Indiv_Weather_WindowLightRain : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather : public Animation_Seasonal_Indiv {
+protected:
+	void precipitation_init(int update_rate);
+	void precipitation_step(int min_spacing, int max_spacing, long unsigned int color);
+	void precipitation_clean();
+};
+
+class Animation_Seasonal_Indiv_Weather_WindowLightRain : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowLightRain(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowLightRain() {}
@@ -69,7 +76,7 @@ public:
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Weather_WindowRain : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather_WindowRain : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowRain(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowRain() {}
@@ -79,7 +86,7 @@ public:
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Weather_WindowHeavyRain : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather_WindowHeavyRain : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowHeavyRain(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowHeavyRain() {}
@@ -89,7 +96,7 @@ public:
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Weather_WindowLightSnow : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather_WindowLightSnow : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowLightSnow(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowLightSnow() {}
@@ -99,7 +106,7 @@ public:
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Weather_WindowSnow : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather_WindowSnow : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowSnow(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowSnow() {}
@@ -109,7 +116,7 @@ public:
 	void clean();
 };
 
-class Animation_Seasonal_Indiv_Weather_WindowHeavySnow : public Animation_Seasonal_Indiv {
+class Animation_Seasonal_Indiv_Weather_WindowHeavySnow : public Animation_Seasonal_Indiv_Weather {
 public:
     Animation_Seasonal_Indiv_Weather_WindowHeavySnow(Adafruit_NeoPixel* strip);
     ~Animation_Seasonal_Indiv_Weather_WindowHeavySnow() {}
