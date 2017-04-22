@@ -188,7 +188,7 @@ void Animation_Simple_Indiv_ColorFade::init() {
 	Animation_Simple_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Color Fade");
-    this->update_rate = 50;
+    this->update_rate = 30;
 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
@@ -202,7 +202,7 @@ void Animation_Simple_Indiv_ColorFade::step() {
 
 	// set each led to the proper color
 	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
-		this->strip->setPixelColor(j, (redFromColor(this->color) * i/255), (greenFromColor(this->color) * i/255), (blueFromColor(this->color) * i/255));
+		this->strip->setPixelColor(j, round(redFromColor(this->color) * i/255.0), round(greenFromColor(this->color) * i/255.0), round(blueFromColor(this->color) * i/255.0));
 	}
 
 	this->strip->show();
