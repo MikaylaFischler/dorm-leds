@@ -11,6 +11,16 @@ protected:
     void init();
 };
 
+class Animation_Holiday_EarthDay_WinAllFade : public Animation_Holiday {
+public:
+    Animation_Holiday_EarthDay_WinAllFade() {}
+    ~Animation_Holiday_EarthDay_WinAllFade() {}
+
+	void init();
+    void step();
+	void clean();
+};
+
 class Animation_Holiday_Halloween_WinAllFade : public Animation_Holiday {
 public:
     Animation_Holiday_Halloween_WinAllFade() {}
