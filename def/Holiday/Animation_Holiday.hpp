@@ -11,6 +11,30 @@ protected:
     void init();
 };
 
+// Animation_Holiday_Indiv.cpp
+
+class Animation_Holiday_Indiv : public Animation_Holiday {
+protected:
+    Animation_Holiday_Indiv(Adafruit_NeoPixel* strip);
+    ~Animation_Holiday_Indiv() {}
+
+    void init();
+
+	Adafruit_NeoPixel* strip;
+};
+
+class Animation_Holiday_Indiv_EarthDay_Fade : public Animation_Holiday_Indiv {
+public:
+    Animation_Holiday_Indiv_EarthDay_Fade(Adafruit_NeoPixel* strip) : Animation_Holiday_Indiv(strip) {}
+    ~Animation_Holiday_Indiv_EarthDay_Fade() {}
+
+	void init();
+    void step();
+	void clean();
+};
+
+// Animation_Holiday.cpp
+
 class Animation_Holiday_EarthDay_WinAllFade : public Animation_Holiday {
 public:
     Animation_Holiday_EarthDay_WinAllFade() {}
@@ -20,6 +44,8 @@ public:
     void step();
 	void clean();
 };
+
+// Animation_Holiday_Halloween.cpp
 
 class Animation_Holiday_Halloween_WinAllFade : public Animation_Holiday {
 public:
@@ -45,6 +71,8 @@ public:
 	void clean();
 };
 
+// Animation_Holiday_Christmas.cpp
+
 class Animation_Holiday_Christmas_Win13Snow : public Animation_Holiday {
 private:
 	void christmas_snow(int i, int left_spacing, int right_spacing);
@@ -56,6 +84,8 @@ public:
 	void step();
 	void clean();
 };
+
+// Animation_Holiday_Hanukkah.cpp
 
 class Animation_Holiday_Hanukkah_Win2Snow : public Animation_Holiday {
 private:
