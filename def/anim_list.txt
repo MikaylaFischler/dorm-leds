@@ -20,6 +20,11 @@
 
 [Holiday]
 	{Animation_Holiday}
+		Animation_Holiday_EarthDay_WinAllFade
+
+		{Animation_Holiday_Indiv}
+			Animation_Holiday_Indiv_EarthDay_Fade(&strip)
+
 		{Animation_Holiday_Halloween}
 			Animation_Holiday_Halloween_WinAllFade
 			Animation_Holiday_Halloween_WinAllHalloweenSparkle
@@ -33,11 +38,22 @@
 [Seasonal]
 	{Animation_Seasonal}
 		{~Animation_Seasonal_Indiv~}
+			{Animation_Seasonal_Weather}
+				<rain>
+				Animation_Seasonal_Indiv_Weather_WindowLightRain(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowRain(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavyRain(&strip)
+				<snow>
+				Animation_Seasonal_Indiv_Weather_WindowLightSnow(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowSnow(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavySnow(&strip)
+
 			{Animation_Seasonal_Winter}
-				Animation_Seasonal_Indiv_Winter_WindowSnow(&strip)
 
 			{Animation_Seasonal_Spring}
 				Animation_Seasonal_Indiv_Spring_ClearSkyFade(&strip)
+				Animation_Seasonal_Indiv_Spring_WindowColors(&strip)
+				Animation_Seasonal_Indiv_Spring_ColorWipe(&strip)
 
 [Simple]
 	{Animation_Simple}
@@ -62,3 +78,7 @@
 		Animation_Static_DeskBrightWhite
 		Animation_Static_DeskThirdDimAmbient
 		Animation_Static_DeskDimAmbient
+
+		{Animation_Static_Indiv}
+			Animation_Static_Indiv_Color(&strip, color)
+			Animation_Static_Indiv_ThirdDimAmbient(color)
