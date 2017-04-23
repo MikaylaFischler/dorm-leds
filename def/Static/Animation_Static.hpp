@@ -15,7 +15,7 @@ protected:
 
 class Animation_Static_Indiv : public Animation_Static {
 protected:
-	Animation_Static_Indiv() {}
+	Animation_Static_Indiv(Adafruit_NeoPixel* strip);
 	~Animation_Static_Indiv() {}
 
     void init();
@@ -85,7 +85,7 @@ public:
 
 class Animation_Static_Indiv_ThirdDimAmbient : public Animation_Static_Indiv {
 public:
-    Animation_Static_Indiv_ThirdDimAmbient(Adafruit_NeoPixel* strip);
+    Animation_Static_Indiv_ThirdDimAmbient(Adafruit_NeoPixel* strip) : Animation_Static_Indiv(strip) {}
     ~Animation_Static_Indiv_ThirdDimAmbient() {}
 
     void step();

@@ -15,7 +15,7 @@ protected:
 
 class Animation_Simple_Indiv : public Animation_Simple {
 protected:
-	Animation_Simple_Indiv() {}
+	Animation_Simple_Indiv(Adafruit_NeoPixel* strip);
 	~Animation_Simple_Indiv() {}
 
     void init();
@@ -49,7 +49,7 @@ public:
 
 class Animation_Simple_Indiv_CalmPurpleFade : public Animation_Simple_Indiv {
 public:
-	Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip);
+	Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
 	~Animation_Simple_Indiv_CalmPurpleFade() {}
 
 	void init();
@@ -114,7 +114,7 @@ private:
 
 class Animation_Simple_Indiv_Rainbow : public Animation_Simple_Indiv {
 public:
-	Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip);
+	Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
 	~Animation_Simple_Indiv_Rainbow() {}
 
 	void init();
@@ -124,7 +124,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowCycle : public Animation_Simple_Indiv {
 public:
-	Animation_Simple_Indiv_RainbowCycle(Adafruit_NeoPixel* strip);
+	Animation_Simple_Indiv_RainbowCycle(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
 	~Animation_Simple_Indiv_RainbowCycle() {}
 
 	void init();
@@ -134,7 +134,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowWipe : public Animation_Simple_Indiv {
 public:
-	Animation_Simple_Indiv_RainbowWipe(Adafruit_NeoPixel* strip);
+	Animation_Simple_Indiv_RainbowWipe(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
 	~Animation_Simple_Indiv_RainbowWipe() {}
 
 	void init();
@@ -144,7 +144,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowTheaterChase : public Animation_Simple_Indiv {
 public:
-	Animation_Simple_Indiv_RainbowTheaterChase(Adafruit_NeoPixel* strip);
+	Animation_Simple_Indiv_RainbowTheaterChase(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
 	~Animation_Simple_Indiv_RainbowTheaterChase() {}
 
 	void init();
