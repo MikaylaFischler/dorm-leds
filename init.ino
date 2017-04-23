@@ -95,23 +95,40 @@ void queue_sys_threads() {
 void led_man_queue() {
 	// manually queue animations for startup
 
-	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk1));
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk2));
+	thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk1));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(&desk2));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&desk2));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
-	// thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window1));
-	// thread_handler.queue(new Animation_Seasonal_Winter_WindowSnow(&window3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Winter_WindowSnow(&window1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Winter_WindowSnow(&window2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Winter_WindowSnow(&window3));
 
-	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(&window1));
 	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window2));
-	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(&window3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(&window3));
 
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window1));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window2));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(&window3));
 
+	// thread_handler.queue(new Animation_Static_TransFlagWindows());
+
 	thread_handler.queue(new Animation_Advanced_Audio_MaxEqualizerWindow());
+
+	thread_handler.queue(new Animation_Seasonal_Indiv_Spring_ColorWipe(&window1));
+	thread_handler.queue(new Animation_Seasonal_Indiv_Spring_WindowColors(&window2));
+	thread_handler.queue(new Animation_Seasonal_Indiv_Spring_ColorWipe(&window3));
+
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(&window1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(&window2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(&window3));
+
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(&window1, COLOR_BLUE));
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(&window2, COLOR_GREEN));
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(&window3, COLOR_BLUE));
+
+	thread_handler.queue(new Animation_Holiday_EarthDay_WinAllFade());
 }
