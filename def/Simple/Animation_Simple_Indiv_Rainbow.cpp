@@ -2,16 +2,10 @@
 
 /* ~~~ Animation Simple Individual: Rainbow ~~~ */
 
-Animation_Simple_Indiv_Rainbow::Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 void Animation_Simple_Indiv_Rainbow::init() {
 	Animation_Simple_Indiv::init();
-	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Rainbow");
     this->update_rate = 50;
-	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
@@ -43,16 +37,10 @@ void Animation_Simple_Indiv_Rainbow::clean() {
 
 /* ~~~ Animation Simple Individual: Rainbow Cycle ~~~ */
 
-Animation_Simple_Indiv_RainbowCycle::Animation_Simple_Indiv_RainbowCycle(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 void Animation_Simple_Indiv_RainbowCycle::init() {
 	Animation_Simple_Indiv::init();
-	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Rainbow Cycle");
     this->update_rate = 50;
-	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
@@ -84,16 +72,10 @@ void Animation_Simple_Indiv_RainbowCycle::clean() {
 
 /* ~~~ Animation Simple Individual: Rainbow Color Wipe ~~~ */
 
-Animation_Simple_Indiv_RainbowWipe::Animation_Simple_Indiv_RainbowWipe(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 void Animation_Simple_Indiv_RainbowWipe::init() {
  	Animation_Simple_Indiv::init();
-	this->name = getNameOfStrip(this->strip);
  	this->name += F(": Rainbow Color Wipe");
     this->update_rate = 50;
- 	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
@@ -149,16 +131,10 @@ void Animation_Simple_Indiv_RainbowWipe::clean() {
 
 /* ~~~ Animation Simple Individual: Rainbow Theater Chase ~~~ */
 
-Animation_Simple_Indiv_RainbowTheaterChase::Animation_Simple_Indiv_RainbowTheaterChase(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 void Animation_Simple_Indiv_RainbowTheaterChase::init() {
 	Animation_Simple_Indiv::init();
-	this->name = getNameOfStrip(this->strip);
 	this->name += F(": Rainbow Theater Chase");
     this->update_rate = 35;
-	this->strips = getAsStripArray(this->strip);
 
 	this->stack = new LocalStack();
 	this->stack->push(new MemObj(new unsigned short int(0)));
