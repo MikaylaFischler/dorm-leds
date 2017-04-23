@@ -8,12 +8,12 @@ void Animation_Holiday::init() {
   	this->max_exec = -1;
 }
 
-/* ~~~ Animation Holiday Earth Day: Dual Color Alternating Fade ~~~ */
+/* ~~~ Animation Holiday Earth Day: All Window Dual Color Alternating Fade ~~~ */
 
 void Animation_Holiday_EarthDay_WinAllFade::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[All]: Alternating Earth Day Fade");
-    this->update_rate = 20;
+    this->update_rate = 10;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 

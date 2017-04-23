@@ -20,6 +20,11 @@
 
 [Holiday]
 	{Animation_Holiday}
+		Animation_Holiday_EarthDay_WinAllFade
+
+		{Animation_Holiday_Indiv}
+			Animation_Holiday_Indiv_EarthDay_Fade(&strip)
+
 		{Animation_Holiday_Halloween}
 			Animation_Holiday_Halloween_WinAllFade
 			Animation_Holiday_Halloween_WinAllHalloweenSparkle
