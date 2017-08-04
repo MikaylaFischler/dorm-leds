@@ -8,4 +8,6 @@
 
 int freeMemory();
 
+int mem_available = 0;
+
 #endif
