@@ -48,7 +48,6 @@
 
 // Utility Files
 #include "util/led.c"
-#include "util/mem.c"
 #include "util/free_memory.c"
 
 // Timing
