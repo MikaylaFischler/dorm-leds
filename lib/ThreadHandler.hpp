@@ -10,7 +10,6 @@
 #include "Process.hpp"
 #include "Thread.hpp"
 
-#include "../util/mem.c"
 #include "../util/free_memory.h"
 
 class ThreadHandler {
