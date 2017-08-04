@@ -2,7 +2,7 @@
 
 // <<constructor>>
 MSGEQ7::MSGEQ7(String name, int strobe_port, int reset_port, int input_port) : Device(name, DEV_MSGEQ7),
-						strobe(strobe_port), reset(reset_port), input(input_port) {
+				strobe(strobe_port), reset(reset_port), input(input_port) {
 	pinMode(strobe_port, OUTPUT);
 	pinMode(reset_port, OUTPUT);
 }
