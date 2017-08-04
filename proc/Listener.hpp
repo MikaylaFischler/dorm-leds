@@ -10,7 +10,6 @@ public:
 	virtual ~Listener();
 
 	virtual void init();
-	virtual bool check() = 0;
 };
 
 #endif
