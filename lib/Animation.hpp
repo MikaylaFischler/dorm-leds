@@ -6,9 +6,9 @@
 #include <vector>
 
 #include "Executable.hpp"
-#include "strip_ownership.h"
 #include "def/led_color.h"
 #include "../util/led.c"
+#include "../conf/strip_ownership.h"
 #include "../conf/strips.h"
 
 class Animation : public Executable {

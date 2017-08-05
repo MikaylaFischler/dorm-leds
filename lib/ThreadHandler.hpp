@@ -5,7 +5,7 @@
 #include <StandardCplusplus.h>
 #include <vector>
 
-#include "strip_id.h"
+#include "../conf/strip_id.h"
 #include "Animation.hpp"
 #include "Process.hpp"
 #include "Thread.hpp"
