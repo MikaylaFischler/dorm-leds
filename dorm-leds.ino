@@ -37,8 +37,8 @@
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
-#include "lib/Device.cpp"
-#include "lib/DeviceManager.cpp"
+#include "lib/device/Device.cpp"
+#include "lib/device/DeviceManager.cpp"
 
 // Animations
 #include "def/animations.h"
