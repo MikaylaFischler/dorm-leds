@@ -18,12 +18,14 @@ protected:
 public:
 	virtual ~Thread() {}
 
+	void addTime(unsigned int dT);
+	void resetTimeSum();
+
+	bool checkFirstCall();
+
 	unsigned int getID() const;
 	unsigned long int getUpdateRate() const;
 	unsigned long int getTimeSum() const;
-	void addTimeSum(unsigned int dT);
-	void zeroTimeSum();
-	bool checkFirstCall();
 };
 
 class AnimationThread : public Thread {

@@ -65,12 +65,12 @@ void ThreadHandler::queue(Process* proc) {
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 	// iterate through each queued animation thread
 	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++) {
-		(*it)->addTimeSum(dT);;
+		(*it)->addTime(dT);;
 	}
 
 	// iterate through each queued process thread
 	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
-		(*it)->addTimeSum(dT);
+		(*it)->addTime(dT);
 	}
 }
 
@@ -89,7 +89,7 @@ void ThreadHandler::executeTick() {
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
-			this_thread.zeroTimeSum();
+			this_thread.resetTimeSum();
 		}
 
 		long int max_exec = this_thread.getAnimation()->getMaxExecutions();
@@ -109,7 +109,7 @@ void ThreadHandler::executeTick() {
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getProcess()->step();
-			this_thread.zeroTimeSum();
+			this_thread.resetTimeSum();
 		}
 	}
 }
