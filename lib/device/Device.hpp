@@ -8,6 +8,7 @@ class Device {
 protected:
 	const String name;
 	const unsigned int type;
+
 	Device(String name, unsigned int type);
 public:
 	virtual ~Device();
