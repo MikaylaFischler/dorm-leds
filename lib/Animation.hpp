@@ -7,7 +7,7 @@
 
 #include "Executable.hpp"
 #include "strip_ownership.h"
-#include "led_color.h"
+#include "def/led_color.h"
 #include "../util/led.c"
 #include "../conf/strips.h"
 
