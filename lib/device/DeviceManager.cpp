@@ -10,6 +10,7 @@ DeviceManager::~DeviceManager() {}
 void DeviceManager::mount(Device* dev) {
 	this->devices.push_back(dev);
 
+	// log to console
 	Serial.print(F("DeviceManager.cpp:> Device Mounted: "));
 	Serial.print(dev->getName());
 	Serial.print(F(", occupying "));
@@ -21,6 +22,7 @@ void DeviceManager::mount(Device* dev) {
 
 // remove a device from the system
 void DeviceManager::unmount(int id) {
+	// log to console
 	Serial.print(F("DeviceManager.cpp:> Device Unmounted: "));
 	Serial.println(this->devices.at(id)->getName());
 
