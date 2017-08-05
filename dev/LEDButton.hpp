@@ -6,7 +6,7 @@
  *  Really simple, its just an LED and a button in one
  */
 
-#include "../lib/device/Device.hpp"
+#include "../lib/Device.hpp"
 
 class LEDButton : public Device {
 private:
