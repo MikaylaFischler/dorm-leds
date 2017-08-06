@@ -70,8 +70,8 @@ private:
 	int rate;
 	bool mode;
 public:
-	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c);
-	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c, int _rate);
+	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c), rate(200) {}
+	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c, int _rate) : Animation_Simple_Indiv(strip), color(c), rate(_rate) {}
 	~Animation_Simple_Indiv_ColorFlash() {}
 
 	void init();
@@ -86,8 +86,8 @@ private:
 	bool mode;
 	bool cur_color;
 public:
-	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b);
-	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b, int _rate);
+	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b) : Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(200) {}
+	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b, int _rate) : Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(_rate) {}
 	~Animation_Simple_Indiv_AlternatingColorFlash() {}
 
 	void init();
@@ -100,7 +100,7 @@ private:
 	unsigned short int i;
 	bool increasing;
 public:
-	Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t c);
+	Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c) {}
 	~Animation_Simple_Indiv_ColorFade() {}
 
 	void init();
@@ -113,7 +113,7 @@ private:
 	unsigned short int i;
 	bool alternate;
 public:
-	Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t c);
+	Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c) {}
 	~Animation_Simple_Indiv_TheaterChase() {}
 
 	void init();
