@@ -2,7 +2,7 @@
 
 // <<constructor>>
 MSGEQ7::MSGEQ7(String name, int strobe_port, int reset_port, int input_port) : Device(name, DEV_MSGEQ7),
-				strobe(strobe_port), reset(reset_port), input(input_port) {
+				strobe(strobe_port), reset(reset_port), input(input_port), i(0) {
 	pinMode(strobe_port, OUTPUT);
 	pinMode(reset_port, OUTPUT);
 }
@@ -19,6 +19,7 @@ int MSGEQ7::get8Bit(int i) const {
 	return map(spectrum_values[i], NOISE_FILTER, 1023, 0, 255);
 }
 
+// TODO this should NOT be here
 // get the value (0 to 80 to be in range of a window strip)
 int MSGEQ7::getInWindowRange(int i) const {
 	return map(spectrum_values[i], NOISE_FILTER, 1023, 0, 80);
@@ -42,16 +43,11 @@ void MSGEQ7::UpdaterProcess::init() {
  	this->name = F("MSGEQ7 Device Status Updater");
     this->update_rate = 1;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new short int(0)));
-
 	digitalWrite(equalizer->reset, HIGH);
 	digitalWrite(equalizer->reset, LOW);
 }
 
 void MSGEQ7::UpdaterProcess::step() {
-	short int& i = this->stack->get(0)->get<short int>();
-
 	// is this a new call?
 	if (i == 0) {
 		digitalWrite(equalizer->reset, HIGH);
@@ -71,11 +67,6 @@ void MSGEQ7::UpdaterProcess::step() {
 
 	// check if read all frequencies
 	if (++i > 7) { i = 0; }
+
 	// if (i == 0) { Serial.println(""); }
-}
-
-void MSGEQ7::UpdaterProcess::clean() {
-	this->stack->get(0)->destroy<short int>();
-
-	delete this->stack;
 }
