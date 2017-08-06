@@ -51,7 +51,8 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 
 	i = 0;
 	reset = true;
-	increasing = {false};
+
+	for (int x = 0; x < WINDOW_LENGTH * 3; x++) { increasing[x] = false; }
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
