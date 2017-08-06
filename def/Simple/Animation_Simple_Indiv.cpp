@@ -48,12 +48,6 @@ void Animation_Simple_Indiv_CalmPurpleFade::step() {
 
 /* ~~~ Animation Simple Individual: Strip Color Flash ~~~ */
 
-Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c) :
-	Animation_Simple_Indiv(strip), color(c), rate(200) {}
-
-Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c, int _rate) :
-	Animation_Simple_Indiv(strip), color(c), rate(_rate) {}
-
 void Animation_Simple_Indiv_ColorFlash::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Color Flash");
@@ -83,12 +77,6 @@ void Animation_Simple_Indiv_ColorFlash::step() {
 }
 
 /* ~~~ Animation Simple Individual: Strip Alternating Color Flash ~~~ */
-
-Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b) :
-	Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(200) {}
-
-Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b, int _rate) :
-	Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(_rate) {}
 
 void Animation_Simple_Indiv_AlternatingColorFlash::init() {
 	Animation_Simple_Indiv::init();
@@ -126,9 +114,6 @@ void Animation_Simple_Indiv_AlternatingColorFlash::step() {
 
 /* ~~~ Animation Simple Individual: Strip Color Fade ~~~ */
 
-Animation_Simple_Indiv_ColorFade::Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t c) :
-	Animation_Simple_Indiv(strip), color(c) {}
-
 void Animation_Simple_Indiv_ColorFade::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Color Fade");
@@ -163,9 +148,6 @@ void Animation_Simple_Indiv_ColorFade::step() {
 }
 
 /* ~~~ Animation Simple Individual: Theater Chase ~~~ */
-
-Animation_Simple_Indiv_TheaterChase::Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t c) :
-	Animation_Simple_Indiv(strip), color(c) {}
 
 void Animation_Simple_Indiv_TheaterChase::init() {
 	Animation_Simple_Indiv::init();
