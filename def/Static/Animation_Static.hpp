@@ -62,7 +62,7 @@ public:
 
 class Animation_Static_Indiv : public Animation_Static {
 protected:
-	Animation_Static_Indiv(Adafruit_NeoPixel* _strip), strip(_strip) {}
+	Animation_Static_Indiv(Adafruit_NeoPixel* _strip) : strip(_strip) {}
 	~Animation_Static_Indiv() {}
 
     void init();
@@ -74,7 +74,7 @@ class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
 private:
 	unsigned long int color;
 public:
-    Animation_Static_Indiv_Color(Adafruit_NeoPixel* strip, unsigned long int color) : Animation_Static_Indiv(strip), color(c) {}
+    Animation_Static_Indiv_Color(Adafruit_NeoPixel* strip, unsigned long int c) : Animation_Static_Indiv(strip), color(c) {}
     ~Animation_Static_Indiv_Color() {}
 
 	void init();
