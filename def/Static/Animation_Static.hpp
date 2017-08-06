@@ -11,18 +11,6 @@ protected:
     void init();
 };
 
-// Animation_Simple_Indiv.cpp
-
-class Animation_Static_Indiv : public Animation_Static {
-protected:
-	Animation_Static_Indiv(Adafruit_NeoPixel* _strip), strip(_strip) {}
-	~Animation_Static_Indiv() {}
-
-    void init();
-
-	Adafruit_NeoPixel* strip;
-};
-
 // Animation_Static.cpp
 
 class Animation_Static_DeskBrightWhite : public Animation_Static {
@@ -71,6 +59,16 @@ public:
 };
 
 // Animation_Static_Indiv.cpp
+
+class Animation_Static_Indiv : public Animation_Static {
+protected:
+	Animation_Static_Indiv(Adafruit_NeoPixel* _strip), strip(_strip) {}
+	~Animation_Static_Indiv() {}
+
+    void init();
+
+	Adafruit_NeoPixel* strip;
+};
 
 class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
 private:
