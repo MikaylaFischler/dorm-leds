@@ -12,13 +12,15 @@
 
 class MSGEQ7 : public Device {
 private:
+	// control for chip
 	const int strobe;
 	const int reset;
 	const int input;
 
-	int spectrum_values[7];
+	short int i; 						// current frequency range
+	int spectrum_values[7];				// all frequency range data
 
-	static const int NOISE_FILTER = 80;
+	static const int NOISE_FILTER = 80;	// noise filter threshold
 public:
 	MSGEQ7(String name, int strobe_port, int reset_port, int input_port);
 	virtual ~MSGEQ7();
@@ -40,7 +42,6 @@ public:
 
 		void init();
 		void step();
-		void clean();
 	};
 };
 
