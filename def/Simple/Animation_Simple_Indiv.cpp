@@ -2,10 +2,6 @@
 
 /* ~~~ Generic Individual ~~~ */
 
-Animation_Simple_Indiv::Animation_Simple_Indiv(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 // define the generic individual init
 void Animation_Simple_Indiv::init() {
   	Animation_Simple::init();
@@ -21,15 +17,11 @@ void Animation_Simple_Indiv_CalmPurpleFade::init() {
 	this->name += F(": Purple Fade");
     this->update_rate = 10;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	increasing = true;
 }
 
 void Animation_Simple_Indiv_CalmPurpleFade::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& increasing = this->stack->get(1)->get<bool>();
-
 	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
 		this->strip->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 	}
@@ -54,37 +46,23 @@ void Animation_Simple_Indiv_CalmPurpleFade::step() {
   	}
 }
 
-void Animation_Simple_Indiv_CalmPurpleFade::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Simple Individual: Strip Color Flash ~~~ */
 
-Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color) : Animation_Simple_Indiv(strip) {
-	this->color = color;
-	this->rate = 200;
-}
+Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c) :
+	Animation_Simple_Indiv(strip), color(c), rate(200) {}
 
-Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t color, int rate) : Animation_Simple_Indiv(strip) {
-	this->color = color;
-	this->rate = rate;
-}
+Animation_Simple_Indiv_ColorFlash::Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c, int _rate) :
+	Animation_Simple_Indiv(strip), color(c), rate(_rate) {}
 
 void Animation_Simple_Indiv_ColorFlash::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Color Flash");
     this->update_rate = this->rate;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new bool(true)));
+	mode = true;
 }
 
 void Animation_Simple_Indiv_ColorFlash::step() {
-	bool& mode = this->stack->get(0)->get<bool>();
-
 	// set each led to the proper color
 	for (unsigned int j = 0; j < strip->numPixels(); j++) {
 		if (mode) {
@@ -104,44 +82,28 @@ void Animation_Simple_Indiv_ColorFlash::step() {
 	}
 }
 
-void Animation_Simple_Indiv_ColorFlash::clean() {
-	this->stack->get(0)->destroy<bool>();
+/* ~~~ Animation Simple Individual: Strip Alternating Color Flash ~~~ */
 
-	delete this->stack;
-}
+Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b) :
+	Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(200) {}
 
-/* ~~~ Animation Simple Individual: Strip Color Flash ~~~ */
-
-Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b) : Animation_Simple_Indiv(strip) {
-	this->color_a = color_a;
-	this->color_b = color_b;
-	this->rate = 200;
-}
-
-Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t color_a, uint32_t color_b, int rate) : Animation_Simple_Indiv(strip) {
-	this->color_a = color_a;
-	this->color_b = color_b;
-	this->rate = rate;
-}
+Animation_Simple_Indiv_AlternatingColorFlash::Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b, int _rate) :
+	Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(_rate) {}
 
 void Animation_Simple_Indiv_AlternatingColorFlash::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Color Flash");
     this->update_rate = this->rate;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new bool(true)));
-	this->stack->push(new MemObj(new bool(true)));
+	mode = true;
+	cur_color = true;
 }
 
 void Animation_Simple_Indiv_AlternatingColorFlash::step() {
-	bool& mode = this->stack->get(0)->get<bool>();
-	bool& c = this->stack->get(1)->get<bool>();
-
 	// set each led to the proper color
 	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
 		if (mode) {
-			if (c) {
+			if (cur_color) {
 				this->strip->setPixelColor(j, this->color_a);
 			} else {
 				this->strip->setPixelColor(j, this->color_b);
@@ -155,40 +117,28 @@ void Animation_Simple_Indiv_AlternatingColorFlash::step() {
 
 	if (mode) {
 		mode = false;
-		c = !c;
+		cur_color = !cur_color;
 	} else {
 		mode = true;
 		this->current_exec++;
 	}
 }
 
-void Animation_Simple_Indiv_AlternatingColorFlash::clean() {
-	this->stack->get(0)->destroy<bool>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Simple Individual: Strip Color Fade ~~~ */
 
-Animation_Simple_Indiv_ColorFade::Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t color) : Animation_Simple_Indiv(strip) {
-	this->color = color;
-}
+Animation_Simple_Indiv_ColorFade::Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t c) :
+	Animation_Simple_Indiv(strip), color(c) {}
 
 void Animation_Simple_Indiv_ColorFade::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Color Fade");
     this->update_rate = 30;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	increasing = true;
 }
 
 void Animation_Simple_Indiv_ColorFade::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& increasing = this->stack->get(1)->get<bool>();
-
 	// set each led to the proper color
 	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
 		this->strip->setPixelColor(j, round(redFromColor(this->color) * i/255.0), round(greenFromColor(this->color) * i/255.0), round(blueFromColor(this->color) * i/255.0));
@@ -212,61 +162,42 @@ void Animation_Simple_Indiv_ColorFade::step() {
 	}
 }
 
-void Animation_Simple_Indiv_ColorFade::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Simple Individual: Theater Chase ~~~ */
 
-Animation_Simple_Indiv_TheaterChase::Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t color) : Animation_Simple_Indiv(strip) {
-	this->color = color;
-}
+Animation_Simple_Indiv_TheaterChase::Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t c) :
+	Animation_Simple_Indiv(strip), color(c) {}
 
 void Animation_Simple_Indiv_TheaterChase::init() {
 	Animation_Simple_Indiv::init();
 	this->name += F(": Theater Chase");
     this->update_rate = 35;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	alternate = true;
 }
 
 void Animation_Simple_Indiv_TheaterChase::step() {
-	unsigned short int& q = this->stack->get(0)->get<unsigned short int>();
-	bool& alternate = this->stack->get(1)->get<bool>();
-
 	if (alternate) {
 		// set each led to the proper color
-		for (unsigned int i = 0; i < this->strip->numPixels(); i = i + 3) {
+		for (unsigned int j = 0; j < this->strip->numPixels(); j += 3) {
 			// turn every third pixel on
-			this->strip->setPixelColor(i + q, this->color);
+			this->strip->setPixelColor(j + i, this->color);
 		}
 
 		this->strip->show();
 	} else {
-		for (unsigned int i = 0; i < this->strip->numPixels(); i = i + 3) {
+		for (unsigned int j = 0; j < this->strip->numPixels(); j += 3) {
 			// turn every third pixel off
-			this->strip->setPixelColor(i + q, COLOR_OFF);
+			this->strip->setPixelColor(j + i, COLOR_OFF);
 		}
 	}
 
 	alternate = !alternate;
 
-	if (q < 2 && alternate) {
-		q++;
-	} else if (q == 2 && alternate) {
-		q = 0;
+	if (i < 2 && alternate) {
+		i++;
+	} else if (i == 2 && alternate) {
+		i = 0;
 		this->current_exec++;
 	}
-}
-
-void Animation_Simple_Indiv_TheaterChase::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
 }
