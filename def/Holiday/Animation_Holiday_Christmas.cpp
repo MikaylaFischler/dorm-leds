@@ -9,19 +9,13 @@ void Animation_Holiday_Christmas_Win13Snow::init() {
 	this->num_strips = 2;
  	this->strips = WINDOW_1_3;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(false)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
+	i = 0;
+	left = 0;
+	right = 0;
+	mode = false;
 }
 
 void Animation_Holiday_Christmas_Win13Snow::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& mode = this->stack->get(1)->get<bool>();
-	unsigned short int& left = this->stack->get(2)->get<unsigned short int>();
-	unsigned short int& right = this->stack->get(3)->get<unsigned short int>();
-
 	if (mode == false) {
 		// randomize
 		left = random(3,8);
@@ -47,14 +41,6 @@ void Animation_Holiday_Christmas_Win13Snow::step() {
 }
 
 void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spacing, int right_spacing) {
-	int rightBottom = 9;
-	int rightTop = 40;
-	int leftTop = 50;
-	int leftBottom = 80;
-
-	int leftFullLength = 41; // 39 pixels
-	int rightFullLength = 41; // 40 pixels
-
 	unsigned long int on  = Color(150,150,150);
 	unsigned long int red = Color(150,0,0);
 	unsigned long int green = Color(0,150,0);
@@ -63,10 +49,10 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 
 	// handle top and bottom for christmas
 	// left top
-	for (int x = leftTop - 4; x < leftTop; x++) {
-		int rel_index = x - leftTop + 4;
+	for (int x = LEFT_TOP - 4; x < LEFT_TOP; x++) {
+		int rel_index = x - LEFT_TOP + 4;
 
-		if (rel_index < a % leftFullLength) {
+		if (rel_index < a % LEFT_FULL_LENGTH) {
 			window1.setPixelColor(x, red);
 			window3.setPixelColor(x, green);
 		} else {
@@ -76,10 +62,10 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	}
 
 	// right top
-	for (int x = rightTop + 1; x <= rightTop + 5; x++) {
+	for (int x = RIGHT_TOP + 1; x <= RIGHT_TOP + 5; x++) {
 		int rel_index = x - 6;
 
-		if (rel_index < a % rightFullLength) {
+		if (rel_index < a % RIGHT_FULL_LENGTH) {
 			window1.setPixelColor(x, green);
 			window3.setPixelColor(x, red);
 		} else {
@@ -92,7 +78,7 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	for (int x = 4; x >= 0; x--) {
 		int rel_index = x + 35;
 
-		if (rel_index < a % rightFullLength) {
+		if (rel_index < a % RIGHT_FULL_LENGTH) {
 			window1.setPixelColor(x, red);
 			window3.setPixelColor(x, green);
 		} else {
@@ -102,10 +88,10 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	}
 
 	// right bottom
-	for (int x = 5; x < rightBottom; x++) {
+	for (int x = 5; x < RIGHT_BOTTOM; x++) {
 		int rel_index = x - 5;
 
-		if (rel_index < a % rightFullLength) {
+		if (rel_index < a % RIGHT_FULL_LENGTH) {
 			window1.setPixelColor(x, green);
 			window3.setPixelColor(x, red);
 		} else {
@@ -115,14 +101,14 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	}
 
 	// set each right pixel
-	for (int x = rightBottom; x <= rightTop; x++) {
-		int rel_index = x - rightBottom;
+	for (int x = RIGHT_BOTTOM; x <= RIGHT_TOP; x++) {
+		int rel_index = x - RIGHT_BOTTOM;
 
 		if (rel_index % right_spacing == (800 - i) % right_spacing) {
 			window1.setPixelColor(x, on);
 			window3.setPixelColor(x, on);
 		} else {
-			if (x - 4 < a % rightFullLength) {
+			if (x - 4 < a % RIGHT_FULL_LENGTH) {
 				window1.setPixelColor(x, green);
 				window3.setPixelColor(x, red);
 			} else {
@@ -133,14 +119,14 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 	}
 
 	// set each left pixel
-	for (int x = leftTop; x <= leftBottom; x++){
-		int rel_index = x - leftTop;
+	for (int x = LEFT_TOP; x <= LEFT_BOTTOM; x++){
+		int rel_index = x - LEFT_TOP;
 
 		if (rel_index % left_spacing == i % left_spacing) {
 			window1.setPixelColor(x, on);
 			window3.setPixelColor(x, on);
 		} else {
-			if (rel_index + 4 < a % leftFullLength) {
+			if (rel_index + 4 < a % LEFT_FULL_LENGTH) {
 				window1.setPixelColor(x, red);
 				window3.setPixelColor(x, green);
 			} else {
@@ -152,13 +138,4 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 
 	window1.show();
 	window3.show();
-}
-
-void Animation_Holiday_Christmas_Win13Snow::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-	this->stack->get(2)->destroy<unsigned short int>();
-	this->stack->get(3)->destroy<unsigned short int>();
-
-	delete this->stack;
 }
