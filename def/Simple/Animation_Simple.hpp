@@ -59,7 +59,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 };
 
 class Animation_Simple_Indiv_ColorFlash : public Animation_Simple_Indiv {

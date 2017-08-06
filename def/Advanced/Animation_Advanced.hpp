@@ -121,7 +121,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 };
 
 #endif

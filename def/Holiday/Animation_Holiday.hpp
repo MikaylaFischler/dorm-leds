@@ -81,7 +81,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 };
 
 // Animation_Holiday_Christmas.cpp
@@ -134,7 +133,6 @@ public:
 
 	void init();
 	void step();
-	void clean();
 };
 
 #endif
