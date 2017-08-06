@@ -69,12 +69,12 @@ class Animation_Holiday_Halloween_WinAllHalloweenSparkle : public Animation_Holi
 private:
 	unsigned int i;
 	bool reset;
-	bool[3 * WINDOW_LENGTH] increasing;
+	bool increasing[3 * WINDOW_LENGTH];
 
 	unsigned long int rand_halloween_color();
 	unsigned int floor_0(float x);
 
-	void sparkle_fade(bool*& inc);
+	void sparkle_fade();
 public:
 	Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
 	~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
