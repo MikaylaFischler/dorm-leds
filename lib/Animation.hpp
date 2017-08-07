@@ -2,7 +2,7 @@
 #define ANIMATION_HPP_
 
 #include <Adafruit_NeoPixel.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
 #include "Executable.hpp"
