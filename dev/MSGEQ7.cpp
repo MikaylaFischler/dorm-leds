@@ -47,6 +47,7 @@ void MSGEQ7::UpdaterProcess::step() {
 	}
 
 	digitalWrite(equalizer->strobe, LOW);
+	delayMicroseconds(30);
     equalizer->spectrum_values[cur_freq] = constrain(analogRead(equalizer->input), NOISE_FILTER, 1023);
 	digitalWrite(equalizer->strobe, HIGH);
 
