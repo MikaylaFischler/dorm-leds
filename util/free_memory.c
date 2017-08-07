@@ -1,4 +1,4 @@
-#include <Arduino.h>;
+#include <Arduino.h>
 #include "free_memory.h"
 
 #if defined (__arm__) && defined (__SAM3X8E__) // Arduino Due compatible
