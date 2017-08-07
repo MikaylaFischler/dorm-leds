@@ -2,7 +2,7 @@
 #define THREADHANDLER_HPP_
 
 #include <Arduino.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
 #include "../conf/strip_id.h"

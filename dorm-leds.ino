@@ -1,5 +1,5 @@
 /*
-  Dorm LED Project: main.ino
+  Dorm LED Project: dorm-leds.ino
   Main file for the LED project.
 
   Created by: Michael Fischler
@@ -8,9 +8,8 @@
 
 // Standard C++ Library
 #include <unwind-cxx.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <system_configuration.h>
-#include <utility.h>
 
 // LED Library
 #include <Adafruit_NeoPixel.h>
