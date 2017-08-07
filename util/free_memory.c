@@ -1,4 +1,35 @@
-#include <Arduino.h>
+#include <Arduino.h>;
+#include "free_memory.h"
+
+#if defined (__arm__) && defined (__SAM3X8E__) // Arduino Due compatible
+// due free memory from here by user 'sync'
+// https://stackoverflow.com/questions/17723733/arduino-due-conditional-compilation-constant-for-custom-library
+
+int freeMemory() {
+	char *heapend = sbrk(0);
+	register char * stack_ptr asm ("sp");
+	struct mallinfo mi = mallinfo();
+
+	return stack_ptr - heapend + mi.fordblks;
+}
+
+void testfreememory() {
+	char *heapend = sbrk(0);
+	register char * stack_ptr asm ("sp");
+	struct mallinfo mi = mallinfo();
+
+	delay(100);
+	printf("\nDynamic ram used: %d\n",mi.uordblks);
+	delay(100);
+	printf("Program static ram used %d\n",&_end - ramstart);
+	delay(100);
+	printf("Stack ram used %d\n\n",ramend - stack_ptr);
+	delay(100);
+	printf("My guess at free mem: %d\n",stack_ptr - heapend + mi.fordblks);
+	delay(100);
+}
+
+#else // for other boards (assumed AVR)
 
 extern unsigned int __heap_start;
 extern void *__brkval;
@@ -13,9 +44,7 @@ struct __freelist {
 };
 
 /* The head of the free list structure */
-extern struct __freelist *__flp;
-
-#include "free_memory.h"
+extern struct __freelist *__flp
 
 /* Calculates the size of the free list */
 int freeListSize() {
@@ -43,3 +72,5 @@ int freeMemory() {
 
 	return free_memory;
 }
+
+#endif
