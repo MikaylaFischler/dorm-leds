@@ -72,10 +72,10 @@ public:
 
 class Animation_Seasonal_Indiv_Weather : public Animation_Seasonal_Indiv {
 protected:
-	unsigned int i;
+	int i;
 	bool randomized_spacing;
-	unsigned short int left_spacing;
-	unsigned short int right_spacing;
+	short int left_spacing;
+	short int right_spacing;
 
 	void precipitation_init(int update_rate);
 	void precipitation_step(int min_spacing, int max_spacing, long unsigned int color);
