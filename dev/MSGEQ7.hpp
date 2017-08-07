@@ -12,13 +12,14 @@
 
 class MSGEQ7 : public Device {
 private:
+	// control for chip
 	const int strobe;
 	const int reset;
 	const int input;
 
-	int spectrum_values[7];
+	int spectrum_values[7];				// all frequency range data
 
-	static const int NOISE_FILTER = 80;
+	static const int NOISE_FILTER = 80;	// noise filter threshold
 public:
 	MSGEQ7(String name, int strobe_port, int reset_port, int input_port);
 	virtual ~MSGEQ7();
@@ -33,14 +34,14 @@ public:
 	friend class UpdaterProcess;
 	class UpdaterProcess : public Process {
 	private:
-		MSGEQ7* equalizer; // do not call delete on this
+		short int cur_freq;	// current frequency range
+		MSGEQ7* equalizer; 	// do NOT call delete on this in this class
 	public:
-		UpdaterProcess(MSGEQ7* eq);
-		virtual ~UpdaterProcess();
+		UpdaterProcess(MSGEQ7* eq) : cur_freq(0), equalizer(eq) {}
+		~UpdaterProcess() {}
 
 		void init();
 		void step();
-		void clean();
 	};
 };
 

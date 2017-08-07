@@ -8,13 +8,14 @@
 #include "Animation.hpp"
 
 class Thread {
-protected:
+private:
 	unsigned int id;
-	unsigned long int updateRate;
 	unsigned long int timeSum;
 	bool firstCall;
+protected:
+	unsigned long int updateRate;
 
-	Thread();
+	Thread(unsigned int _id) : id(_id), timeSum(0), firstCall(true) {}
 public:
 	virtual ~Thread() {}
 
