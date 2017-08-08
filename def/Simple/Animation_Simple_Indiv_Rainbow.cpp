@@ -82,7 +82,7 @@ void Animation_Simple_Indiv_RainbowWipe::step() {
 	} else if (cur_color == 12) {
 		this->strip->setPixelColor(i, COLOR_INDIGO);
 	} else if (cur_color == 14) {
-		this->strip->setPixelColor(i, COLOR_VIOLET);
+		this->strip->setPixelColor(i, COLOR_PURPLE);
 	}
 
     this->strip->show();

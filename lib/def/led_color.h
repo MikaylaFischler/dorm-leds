@@ -18,7 +18,7 @@
 #define COLOR_GREEN 65280 				// (0, 255, 0)
 #define COLOR_BLUE 255 					// (0, 0, 255)
 #define COLOR_INDIGO 6553855			// (100, 0, 255)
-#define COLOR_VIOLET 11469055 			// (175, 0, 255)
+#define COLOR_PURPLE 11469055 			// (175, 0, 255)
 #define COLOR_MAGENTA 16711935 			// (255, 0, 255)
 #define COLOR_PINK 16711860				// (255, 0, 180)
 

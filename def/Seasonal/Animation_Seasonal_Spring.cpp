@@ -117,7 +117,7 @@ void Animation_Seasonal_Indiv_Spring_ColorWipe::init() {
 void Animation_Seasonal_Indiv_Spring_ColorWipe::step() {
 	// start wiping the current color
 	if (color_mode == 0) {
-		this->strip->setPixelColor(i, COLOR_VIOLET);
+		this->strip->setPixelColor(i, COLOR_PURPLE);
 	} else if (color_mode == 1) {
 		this->strip->setPixelColor(i, COLOR_YELLOW);
 	} else if (color_mode == 2) {
