@@ -2,12 +2,10 @@
 #define EXECUTABLE_HPP_
 
 #include <Arduino.h>
-#include "LocalStack.hpp"
 
 class Executable {
 protected:
     String name;
-    LocalStack* stack;
     unsigned long int update_rate;
 
 	Executable();

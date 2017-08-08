@@ -2,10 +2,6 @@
 
 /* ~~~ Generic Individual ~~~ */
 
-Animation_Static_Indiv::Animation_Static_Indiv(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 // define the generic individual init
 void Animation_Static_Indiv::init() {
   	Animation_Static::init();
@@ -15,10 +11,6 @@ void Animation_Static_Indiv::init() {
 }
 
 /* ~~~ Animation Static Individual: Single Color ~~~ */
-
-Animation_Static_Indiv_Color::Animation_Static_Indiv_Color(Adafruit_NeoPixel* strip, unsigned long int color) : Animation_Static_Indiv(strip) {
-	this->color = color;
-}
 
 void Animation_Static_Indiv_Color::init() {
 	Animation_Static_Indiv::init();
