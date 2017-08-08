@@ -2,7 +2,7 @@
 #define LED_C_
 
 #include "../conf/strips.h"
-#include "../lib/strip_id.h"
+#include "../conf/strip_id.h"
 
 /*
   Dorm LED Project: led.c

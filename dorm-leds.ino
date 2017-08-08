@@ -1,5 +1,5 @@
 /*
-  Dorm LED Project: main.ino
+  Dorm LED Project: dorm-leds.ino
   Main file for the LED project.
 
   Created by: Michael Fischler
@@ -8,9 +8,8 @@
 
 // Standard C++ Library
 #include <unwind-cxx.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <system_configuration.h>
-#include <utility.h>
 
 // LED Library
 #include <Adafruit_NeoPixel.h>
@@ -21,15 +20,11 @@
 // Configuration
 #include "conf/config.h"
 #include "conf/strips.h"
+#include "conf/strip_id.h"
+#include "conf/strip_ownership.h"
 #include "conf/dev_types.h"
 
 // System
-#include "lib/strip_id.h"
-#include "lib/strip_ownership.h"
-
-#include "lib/MemObj.cpp"
-#include "lib/LocalStack.cpp"
-
 #include "lib/Executable.cpp"
 #include "lib/Animation.cpp"
 #include "lib/Process.cpp"
@@ -48,7 +43,6 @@
 
 // Utility Files
 #include "util/led.c"
-#include "util/mem.c"
 #include "util/free_memory.c"
 
 // Timing

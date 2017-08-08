@@ -17,17 +17,12 @@ void Animation_Holiday_EarthDay_WinAllFade::init() {
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	mode = true;
+	increasing = true;
 }
 
 void Animation_Holiday_EarthDay_WinAllFade::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& mode = this->stack->get(1)->get<bool>();
-	bool& increasing = this->stack->get(2)->get<bool>();
-
 	if (mode) {
 		// blue green blue
 		for (int x = 0; x < WINDOW_LENGTH; x++) {
@@ -63,12 +58,4 @@ void Animation_Holiday_EarthDay_WinAllFade::step() {
 			i--;
 		}
 	}
-}
-
-void Animation_Holiday_EarthDay_WinAllFade::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-	this->stack->get(2)->destroy<bool>();
-
-	delete this->stack;
 }

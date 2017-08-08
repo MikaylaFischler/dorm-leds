@@ -1,11 +1,5 @@
 #include "ThreadHandler.hpp"
 
-//<<constructor>>
-ThreadHandler::ThreadHandler() {}
-
-//<<destructor>>
-ThreadHandler::~ThreadHandler() {}
-
 // get the list of queued animation threads
 std::vector<AnimationThread*> ThreadHandler::listAnimationThreads() const { return anim_threads; }
 
@@ -20,6 +14,7 @@ void ThreadHandler::queue(Animation* anim) {
 	AnimationThread* t = new AnimationThread(next_id, anim);
 	next_id++;
 
+	// console output
 	Serial.print(F("ThreadHandler.cpp:> New Animation Thread Generated: "));
 	Serial.print(anim->getName());
 	Serial.print(F(" at "));
@@ -29,7 +24,7 @@ void ThreadHandler::queue(Animation* anim) {
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
 
-	//dequeue conflicting threads
+	// dequeue conflicting threads
 	dequeueConflicts(anim); // this MUST be after memory calculations
 
 	anim_threads.push_back(t);
@@ -49,6 +44,7 @@ void ThreadHandler::queue(Process* proc) {
 
 	proc_threads.push_back(t);
 
+	// console output
 	Serial.print(F("ThreadHandler.cpp:> New Process Thread Queued: "));
 	Serial.print(proc->getName());
 	Serial.print(F(" at "));
@@ -65,12 +61,12 @@ void ThreadHandler::queue(Process* proc) {
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 	// iterate through each queued animation thread
 	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++) {
-		(*it)->addTimeSum(dT);;
+		(*it)->addTime(dT);;
 	}
 
 	// iterate through each queued process thread
 	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
-		(*it)->addTimeSum(dT);
+		(*it)->addTime(dT);
 	}
 }
 
@@ -89,7 +85,7 @@ void ThreadHandler::executeTick() {
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getAnimation()->step();
-			this_thread.zeroTimeSum();
+			this_thread.resetTimeSum();
 		}
 
 		long int max_exec = this_thread.getAnimation()->getMaxExecutions();
@@ -109,7 +105,7 @@ void ThreadHandler::executeTick() {
 
 		if (timeSum >= updateRate || this_thread.checkFirstCall()) {
 			this_thread.getProcess()->step();
-			this_thread.zeroTimeSum();
+			this_thread.resetTimeSum();
 		}
 	}
 }

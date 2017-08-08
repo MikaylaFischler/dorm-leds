@@ -2,10 +2,6 @@
 
 /* ~~~ Animation Seasonal Individual Spring: Clear Sky Blue Color Fade */
 
-Animation_Seasonal_Indiv_Spring_ClearSkyFade::Animation_Seasonal_Indiv_Spring_ClearSkyFade(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
-
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
  	Animation_Seasonal_Indiv::init();
 	this->name = getNameOfStrip(this->strip);
@@ -13,19 +9,11 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
 	this->update_rate = 50;
 	this->strips = getAsStripArray(this->strip);
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	increasing = true;
 }
 
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
-	static const int MAX_RED = 200;
-	static const int MAX_GREEN = 180;
-	static const int BLUE = 255;
-
-	unsigned int& i = this->stack->get(0)->get<unsigned int>();
-	bool& increasing = this->stack->get(1)->get<bool>();
-
 	// step animation
 	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
 		this->strip->setPixelColor(x, MAX_RED - i, MAX_GREEN - i, BLUE);
@@ -52,18 +40,7 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
 
 }
 
-void Animation_Seasonal_Indiv_Spring_ClearSkyFade::clean() {
-	this->stack->get(0)->destroy<unsigned int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Seasonal Spring: Window Spring Colors */
-
-Animation_Seasonal_Indiv_Spring_WindowColors::Animation_Seasonal_Indiv_Spring_WindowColors(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
 
 void Animation_Seasonal_Indiv_Spring_WindowColors::init() {
  	Animation_Seasonal_Indiv::init();
@@ -72,17 +49,12 @@ void Animation_Seasonal_Indiv_Spring_WindowColors::init() {
 	this->update_rate = 5;
 	this->strips = getAsStripArray(this->strip);
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned int(0)));
-	this->stack->push(new MemObj(new unsigned short int(random(0,4))));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	color = random(0,4);
+	increasing = true;
 }
 
 void Animation_Seasonal_Indiv_Spring_WindowColors::step() {
-	unsigned int& i = this->stack->get(0)->get<unsigned int>();
-	unsigned short int& color = this->stack->get(1)->get<unsigned short int>();
-	bool& increasing = this->stack->get(2)->get<bool>();
-
 	// step animation
 	unsigned long int c = 0;
 
@@ -129,19 +101,7 @@ void Animation_Seasonal_Indiv_Spring_WindowColors::step() {
 	}
 }
 
-void Animation_Seasonal_Indiv_Spring_WindowColors::clean() {
-	this->stack->get(0)->destroy<unsigned int>();
-	this->stack->get(1)->destroy<unsigned short int>();
-	this->stack->get(2)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Seasonal Individual Spring: Spring Color Chase */
-
-Animation_Seasonal_Indiv_Spring_ColorWipe::Animation_Seasonal_Indiv_Spring_ColorWipe(Adafruit_NeoPixel* strip) {
-	this->strip = strip;
-}
 
 void Animation_Seasonal_Indiv_Spring_ColorWipe::init() {
  	Animation_Seasonal_Indiv::init();
@@ -150,18 +110,14 @@ void Animation_Seasonal_Indiv_Spring_ColorWipe::init() {
 	this->update_rate = 35;
 	this->strips = getAsStripArray(this->strip);
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new unsigned short int(0)));
+	i = 0;
+	color_mode = 0;
 }
 
 void Animation_Seasonal_Indiv_Spring_ColorWipe::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	unsigned short int& color_mode = this->stack->get(1)->get<unsigned short int>();
-
 	// start wiping the current color
 	if (color_mode == 0) {
-		this->strip->setPixelColor(i, COLOR_VIOLET);
+		this->strip->setPixelColor(i, COLOR_PURPLE);
 	} else if (color_mode == 1) {
 		this->strip->setPixelColor(i, COLOR_YELLOW);
 	} else if (color_mode == 2) {
@@ -183,11 +139,4 @@ void Animation_Seasonal_Indiv_Spring_ColorWipe::step() {
 			this->current_exec++;
 		}
 	}
-}
-
-void Animation_Seasonal_Indiv_Spring_ColorWipe::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<unsigned short int>();
-
-	delete this->stack;
 }
