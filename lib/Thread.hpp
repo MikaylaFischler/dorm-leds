@@ -2,28 +2,31 @@
 #define THREAD_HPP_
 
 #include <Arduino.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
 #include "Animation.hpp"
 
 class Thread {
-protected:
+private:
 	unsigned int id;
-	unsigned long int updateRate;
 	unsigned long int timeSum;
 	bool firstCall;
+protected:
+	unsigned long int updateRate;
 
-	Thread();
+	Thread(unsigned int _id) : id(_id), timeSum(0), firstCall(true) {}
 public:
 	virtual ~Thread() {}
+
+	void addTime(unsigned int dT);
+	void resetTimeSum();
+
+	bool checkFirstCall();
 
 	unsigned int getID() const;
 	unsigned long int getUpdateRate() const;
 	unsigned long int getTimeSum() const;
-	void addTimeSum(unsigned int dT);
-	void zeroTimeSum();
-	bool checkFirstCall();
 };
 
 class AnimationThread : public Thread {

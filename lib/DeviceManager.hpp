@@ -2,10 +2,9 @@
 #define DEVICE_MANAGER_HPP_
 
 #include <Arduino.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
-#include "../util/mem.c"
 #include "../util/free_memory.h"
 
 class DeviceManager {

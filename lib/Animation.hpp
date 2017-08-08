@@ -2,13 +2,13 @@
 #define ANIMATION_HPP_
 
 #include <Adafruit_NeoPixel.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
 #include "Executable.hpp"
-#include "strip_ownership.h"
-#include "led_color.h"
+#include "def/led_color.h"
 #include "../util/led.c"
+#include "../conf/strip_ownership.h"
 #include "../conf/strips.h"
 
 class Animation : public Executable {
