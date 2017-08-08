@@ -17,15 +17,11 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
 	this->num_strips = 2;
  	this->strips = DESK_ALL;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	increasing = true;
 }
 
 void Animation_Simple_DeskWhitePurpleFade::step() {
-	short int& i = this->stack->get(0)->get<short int>();
-	bool& increasing = this->stack->get(1)->get<bool>();
-
 	for (int x = 0; x < DESK1_LENGTH; x++) {
 		if (x % 3 != 0) {
 			desk1.setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
@@ -63,13 +59,6 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
   	}
 }
 
-void Animation_Simple_DeskWhitePurpleFade::clean() {
-	this->stack->get(0)->destroy<short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
-}
-
 /* ~~~ Animation Simple: Window All WPI Spirit ~~~ */
 
 void Animation_Simple_WinAllWPISpirit::init() {
@@ -78,16 +67,12 @@ void Animation_Simple_WinAllWPISpirit::init() {
 	this->num_strips = 3;
 	this->strips = WINDOW_ALL;
 
-	this->stack = new LocalStack();
-	this->stack->push(new MemObj(new unsigned short int(0)));
-	this->stack->push(new MemObj(new bool(true)));
+	i = 0;
+	mode = true;
 }
 
 void Animation_Simple_WinAllWPISpirit::step() {
-	unsigned short int& i = this->stack->get(0)->get<unsigned short int>();
-	bool& mode = this->stack->get(1)->get<bool>();
-
-	if (mode == 0) {
+	if (!mode) {
 		window1.setPixelColor(i, COLOR_MAROON);
 
 		if (i % 2 == 0) {
@@ -103,7 +88,7 @@ void Animation_Simple_WinAllWPISpirit::step() {
 		}
 
 		window3.setPixelColor(modified, COLOR_MAROON);
-	} else if (mode == 1) {
+	} else if (mode) {
 		window1.setPixelColor(i, COLOR_LIGHT_SILVER);
 
 		for (int j = 0; j < WINDOW_LENGTH; j++) {
@@ -144,11 +129,4 @@ void Animation_Simple_WinAllWPISpirit::step() {
 			i++;
 		}
 	}
-}
-
-void Animation_Simple_WinAllWPISpirit::clean() {
-	this->stack->get(0)->destroy<unsigned short int>();
-	this->stack->get(1)->destroy<bool>();
-
-	delete this->stack;
 }

@@ -6,6 +6,23 @@
 #ifndef FREE_MEMORY_H_
 #define FREE_MEMORY_H_
 
+#if defined (__arm__) && defined (__SAM3X8E__) // Arduino Due compatible
+
+#include <malloc.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+extern char _end;
+extern "C" char *sbrk(int i);
+char *ramstart = (char *) 0x20070000;
+char *ramend   = (char *) 0x20088000;
+
+void testfreememory();
+
+#endif
+
 int freeMemory();
+
+int mem_available = 0;
 
 #endif

@@ -2,15 +2,14 @@
 #define THREADHANDLER_HPP_
 
 #include <Arduino.h>
-#include <StandardCplusplus.h>
+#include <ArduinoSTL.h>
 #include <vector>
 
-#include "strip_id.h"
+#include "../conf/strip_id.h"
 #include "Animation.hpp"
 #include "Process.hpp"
 #include "Thread.hpp"
 
-#include "../util/mem.c"
 #include "../util/free_memory.h"
 
 class ThreadHandler {
@@ -25,17 +24,17 @@ private:
 	void dequeueConflicts(Animation* anim);
 	bool conflictsWith(short int* str1, int length1, short int* str2, int length2);
 public:
-	ThreadHandler();
-	~ThreadHandler();
+	ThreadHandler() {}
+	~ThreadHandler() {}
 
 	void queue(Animation* anim);
 	void queue(Process* proc);
 
-	std::vector<AnimationThread*> listAnimationThreads() const;
-	std::vector<ProcessThread*> listProcessThreads() const;
-
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();
+
+	std::vector<AnimationThread*> listAnimationThreads() const;
+	std::vector<ProcessThread*> listProcessThreads() const;
 };
 
 #endif
