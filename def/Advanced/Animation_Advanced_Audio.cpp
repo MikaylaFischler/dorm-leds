@@ -232,7 +232,7 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 	// high eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
-			window3.setPixelColor(x, COLOR_VIOLET);
+			window3.setPixelColor(x, COLOR_PURPLE);
 		} else if (x >= val[4] && x <= 80) {
 			window3.setPixelColor(x, COLOR_BLUE);
 		} else {
@@ -339,7 +339,7 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	// high eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
-			window3.setPixelColor(x, COLOR_VIOLET);
+			window3.setPixelColor(x, COLOR_PURPLE);
 		} else if (x >= val[4] && x <= 80) {
 			window3.setPixelColor(x, COLOR_BLUE);
 		} else {
