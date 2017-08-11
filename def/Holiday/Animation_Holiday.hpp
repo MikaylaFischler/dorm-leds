@@ -74,11 +74,11 @@ private:
 
 	class HalloweenPixel {
 	public:
-		int r, g, b;
+		int i;
 		char color_id;
 		bool increasing;
 
-		HalloweenPixel(unsigned long int color_32b, bool inc, char cid);
+		HalloweenPixel(bool inc, int _i, char cid);
 		HalloweenPixel() {};
 	};
 
