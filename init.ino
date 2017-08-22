@@ -2,36 +2,13 @@
   Dorm LED Project: init.ino
   This file contains the initialization code for the dorm LED system.
 
-  Created by: Michael Fischler
+  Created by: Mikayla Fischler
   9/30/2016 @ WPI
 */
 
 void set_pin_modes() {
 	// set pin modes here
 
-	// select and disable pins
-	pinMode(DISABLE_LED_PIN, OUTPUT);
-	pinMode(DISABLE_BTN_PIN, INPUT);
-	pinMode(SELECT_LED_PIN, OUTPUT);
-	pinMode(SELECT_BTN_PIN, INPUT);
-
-	// window control pins
-	pinMode(MODE_WIN_LED_PIN, OUTPUT);
-	pinMode(MODE_WIN_BTN_PIN, INPUT);
-	pinMode(MODE_WIN3_LED_PIN, OUTPUT);
-	pinMode(MODE_WIN3_BTN_PIN, INPUT);
-	pinMode(MODE_WIN2_LED_PIN, OUTPUT);
-	pinMode(MODE_WIN2_BTN_PIN, INPUT);
-	pinMode(MODE_WIN1_LED_PIN, OUTPUT);
-	pinMode(MODE_WIN1_BTN_PIN, INPUT);
-
-	// desk control pins
-	pinMode(MODE_DESK_LED_PIN, OUTPUT);
-	pinMode(MODE_DESK_BTN_PIN, INPUT);
-	pinMode(MODE_DESK2_LED_PIN, OUTPUT);
-	pinMode(MODE_DESK2_BTN_PIN, INPUT);
-	pinMode(MODE_DESK1_LED_PIN, OUTPUT);
-	pinMode(MODE_DESK1_BTN_PIN, INPUT);
 }
 
 void init_strips() {

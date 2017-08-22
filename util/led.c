@@ -8,7 +8,7 @@
   Dorm LED Project: led.c
   This file contains utility functions for dorm LEDs.
 
-  Created by: Michael Fischler
+  Created by: Mikayla Fischler
   9/30/2016 @ WPI
 */
 
