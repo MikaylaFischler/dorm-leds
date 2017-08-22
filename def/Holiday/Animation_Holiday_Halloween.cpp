@@ -42,76 +42,81 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
 
 /* ~~~ Animation Holiday Halloween: Randomized Sparkle Effect (All Windows) ~~~ */
 
+Animation_Holiday_Halloween_WinAllHalloweenSparkle::HalloweenPixel::HalloweenPixel(bool inc, int _i, char cid) :
+	i(_i), color_id(cid), increasing(inc) {}
+
+Animation_Holiday_Halloween_WinAllHalloweenSparkle::~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {
+	// free memory for each pixel
+	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
+		delete pixeldata[x];
+	}
+}
+
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
-    this->update_rate = 100;
+    this->update_rate = 1;
 	this->num_strips = 3;
  	this->strips = WINDOW_ALL;
 
 	i = 0;
-	reset = true;
 
-	for (int x = 0; x < WINDOW_LENGTH * 3; x++) { increasing[x] = false; }
+	// randomize
+	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
+		randomize_display(x);
+
+		randomSeed(analogRead(RAND_SEED_ANALOG_NOISE_PORT) * micros());
+
+		// init all off
+		if (x < WINDOW_LENGTH) {
+			window1.setPixelColor(x, COLOR_OFF);
+		} else if (x < WINDOW_LENGTH * 2) {
+			window2.setPixelColor(x - WINDOW_LENGTH, COLOR_OFF);
+		} else {
+			window3.setPixelColor(x - WINDOW_LENGTH * 2, COLOR_OFF);
+		}
+	}
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
-	if (reset) {
-		// randomize
-		for (int x = 0; x < WINDOW_LENGTH; x++) {
-			window1.setPixelColor(x, this->rand_halloween_color());
-			window2.setPixelColor(x, this->rand_halloween_color());
-			window3.setPixelColor(x, this->rand_halloween_color());
-		}
+	// fade for a bit
+	this->sparkle_fade();
 
-		reset = false;
-	} else {
-		// fade for a bit
-		this->sparkle_fade();
-
-		i++;
-
-		if (i == 256) {
-			i = 0;
-			reset = true;
-      		this->current_exec++;
-		}
+	// somewhat of an idea of full executions
+	i++;
+	if (i == 256) {
+		i = 0;
+  		this->current_exec++;
 	}
 
 	showAllWindowStrips();
-
-	Serial.println("heartbeat");
 }
 
-unsigned long int Animation_Holiday_Halloween_WinAllHalloweenSparkle::rand_halloween_color() {
-	unsigned long int bright_orange = Color(255, 50, 0);
-	unsigned long int medium_orange = Color(190, 37, 0);
-	unsigned long int dim_orange = Color(100, 20, 0);
+void Animation_Holiday_Halloween_WinAllHalloweenSparkle::randomize_display(int x) {
+	// cast from long int to int explicitly
+	int i   = (int) random(1,255);
+	int inc = (int) random(0,2);
+	int cid = (int) random(0,3);
 
-	unsigned long int bright_purple = Color(150, 0, 255);
-	unsigned long int medium_purple = Color(112, 0, 190);
-	unsigned long int dim_purple = Color(59, 0, 100);
+	bool increasing;
+	char color_id;
 
-	long int r = random(0,7);
-
-	switch(r) {
-		case 0:
-			return COLOR_OFF;
-		case 1:
-			return bright_orange;
-		case 2:
-			return medium_orange;
-		case 3:
-			return dim_orange;
-		case 4:
-			return bright_purple;
-		case 5:
-			return medium_purple;
-		case 6:
-			return dim_purple;
-		default:
-			return COLOR_OFF;
+	if (inc == 1) {
+		increasing = true;
+	} else {
+		increasing = false;
 	}
+
+	// randomize color
+	if (cid == 0) {
+		color_id = 'x';
+	} else if (cid == 1) {
+		color_id = 'p';
+	} else {
+		color_id = 'o';
+	}
+
+	pixeldata[x] = new HalloweenPixel(increasing, i, color_id);
 }
 
 unsigned int Animation_Holiday_Halloween_WinAllHalloweenSparkle::floor_0(float x) {
@@ -125,11 +130,6 @@ unsigned int Animation_Holiday_Halloween_WinAllHalloweenSparkle::floor_0(float x
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade() {
-	const float ORANGE_R_SLOPE = 1.0;
-	const float ORANGE_G_SLOPE = 0.196078;
-	const float PURPLE_R_SLOPE = 0.588235;
-	const float PURPLE_B_SLOPE = 1.0;
-
 	Adafruit_NeoPixel* temp_win;
 
 	// fade with absolute value since so many different values
@@ -149,55 +149,45 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade() {
 
 		Adafruit_NeoPixel& win = *temp_win;
 
-		unsigned long int color = win.getPixelColor(pixel);
+		HalloweenPixel* data = pixeldata[x];
 
-		unsigned int red = redFromColor(color);
-		unsigned int green = greenFromColor(color);
-		unsigned int blue = blueFromColor(color);
-
-		bool inc = increasing[x];
-
-		// now check each value to see if one is zero (acts as a data bit indicating which color is being displayed)
-		// if green is 0, purple is being displayed
-		// if blue is 0, orange is being displayed
-		// if red is 0, black (off) is being displayed
-
-		if (red == 0) {
+		if (data->color_id == 'x') {
 			// is off, randomly pick a color
-			int r = random(0,2);
+			data->increasing = true;
+			data->i = 0;
 
-			if (inc) {
-				inc = false;
-			} else {
-				inc = true;
-			}
-
-			Serial.println(r);
-			Serial.println(pixel);
-
-			if (r == 0) {
+			if (random(0,2) == 0) {
 				// purple
-				win.setPixelColor(pixel, Color(1,0,2));
+				data->color_id = 'p';
+				win.setPixelColor(pixel, Color(floor_0((float)data->i * PURPLE_R_SLOPE), 0, floor_0((float)data->i * PURPLE_B_SLOPE)));
 			} else {
 				// orange
-				win.setPixelColor(pixel, Color(5,1,0));
+				data->color_id = 'o';
+				win.setPixelColor(pixel, Color(floor_0((float)data->i * ORANGE_R_SLOPE), floor_0((float)data->i * ORANGE_G_SLOPE), 0));
 			}
-		} else if (green == 0) {
-			// was purple
-			if (inc) {
-				win.setPixelColor(pixel, Color(floor_0((float)red + PURPLE_R_SLOPE), 0, floor_0((float)blue + PURPLE_B_SLOPE)));
-			} else {
-				win.setPixelColor(pixel, Color(floor_0((float)red - PURPLE_R_SLOPE), 0, floor_0((float)blue - PURPLE_B_SLOPE)));
+		} else {
+			if (data->color_id == 'p') {
+				// is purple
+				win.setPixelColor(pixel, Color(floor_0((float)data->i * PURPLE_R_SLOPE), 0, floor_0((float)data->i * PURPLE_B_SLOPE)));
+			} else if (data->color_id == 'o') {
+				// is orange
+				win.setPixelColor(pixel, Color(floor_0((float)data->i * ORANGE_R_SLOPE), floor_0((float)data->i * ORANGE_G_SLOPE), 0));
 			}
-		} else if (blue == 0) {
-			// was orange
-			if (inc) {
-				win.setPixelColor(pixel, Color(floor_0((float)red + ORANGE_R_SLOPE), floor_0((float)green + ORANGE_G_SLOPE), 0));
+
+			if (data->increasing) {
+				if (data->i >= 254) {
+					(data->i) -= 2;
+					data->increasing = false;
+				} else {
+					(data->i) += 2;
+				}
 			} else {
-				win.setPixelColor(pixel, Color(floor_0((float)red - ORANGE_R_SLOPE), floor_0((float)green - ORANGE_G_SLOPE), 0));
+				if (data->i <= 1) {
+					data->color_id = 'x';
+				} else {
+					(data->i) -= 2;
+				}
 			}
 		}
-
-		increasing[x] = inc;
 	}
 }
