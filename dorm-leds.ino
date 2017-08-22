@@ -2,7 +2,7 @@
   Dorm LED Project: dorm-leds.ino
   Main file for the LED project.
 
-  Created by: Michael Fischler
+  Created by: Mikayla Fischler
   9/20/2016 @ WPI
 */
 
