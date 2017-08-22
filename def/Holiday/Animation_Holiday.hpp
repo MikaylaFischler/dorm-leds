@@ -67,17 +67,33 @@ public:
 
 class Animation_Holiday_Halloween_WinAllHalloweenSparkle : public Animation_Holiday {
 private:
+	const float ORANGE_R_SLOPE = 1.0;
+	const float ORANGE_G_SLOPE = 0.196078;
+	const float PURPLE_R_SLOPE = 0.588235;
+	const float PURPLE_B_SLOPE = 1.0;
+
+	class HalloweenPixel {
+	public:
+		int i;
+		char color_id;
+		bool increasing;
+
+		HalloweenPixel(bool inc, int _i, char cid);
+		HalloweenPixel() {};
+	};
+
 	unsigned int i;
 	bool reset;
-	bool increasing[3 * WINDOW_LENGTH];
 
-	unsigned long int rand_halloween_color();
+	HalloweenPixel* pixeldata[3 * WINDOW_LENGTH];
+
 	unsigned int floor_0(float x);
+	void randomize_display(int x);
 
 	void sparkle_fade();
 public:
 	Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
-	~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {}
+	~Animation_Holiday_Halloween_WinAllHalloweenSparkle();
 
 	void init();
 	void step();
