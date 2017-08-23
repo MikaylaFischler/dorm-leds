@@ -19,9 +19,6 @@
 
 // Configuration
 #include "conf/config.h"
-#include "conf/strips.h"
-#include "conf/strip_id.h"
-#include "conf/strip_ownership.h"
 #include "conf/dev_types.h"
 
 // System

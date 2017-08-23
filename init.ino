@@ -12,15 +12,15 @@ void set_pin_modes() {
 }
 
 void init_strips() {
-	// Create Strips
-	npsm.addStrip(new Adafruit_NeoPixel(CEILING_LEFT_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
-	npsm.addStrip(new Adafruit_NeoPixel(CEILING_RIGHT_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
+	// create strips
+	npsm.addStrip(F("Ceiling Left"), true, new Adafruit_NeoPixel(CEILING_LEFT_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
+	npsm.addStrip(F("Ceiling Right"), true, new Adafruit_NeoPixel(CEILING_RIGHT_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
 
-	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_A_LENGTH, STRIP_PIN_W1, STRIP_TYPE_RGB));
-	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W2, STRIP_TYPE_RGB));
-	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
+	npsm.addStrip(F("Window 1"), false, new Adafruit_NeoPixel(WINDOW_A_LENGTH, STRIP_PIN_W1, STRIP_TYPE_RGB));
+	npsm.addStrip(F("Window 2"), false, new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W2, STRIP_TYPE_RGB));
+	npsm.addStrip(F("Window 3"), false, new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
 
-	// begin() the Strips
+	// begin() the strips
 	for (int i = 0; i < npsm.numStrips(); i++) {
 		npsm[i]->begin();
 		npsm[i]->show();
@@ -42,19 +42,6 @@ void mount_devices() {
 	// equalizers
 	device_manager.mount(new MSGEQ7(F("Left Equalizer"), EQ_L_STROBE, EQ_L_RESET, EQ_L_INPUT));		// 0
 	device_manager.mount(new MSGEQ7(F("Right Equalizer"), EQ_R_STROBE, EQ_R_RESET, EQ_R_INPUT));	// 1
-
-	// LED buttons
-	device_manager.mount(new LEDButton(F("Desk 1 Mode"), MODE_DESK1_LED_PIN, MODE_DESK1_BTN_PIN));	// 2
-	device_manager.mount(new LEDButton(F("Desk 2 Mode"), MODE_DESK2_LED_PIN, MODE_DESK2_BTN_PIN));	// 3
-	device_manager.mount(new LEDButton(F("Desk Mode"), MODE_DESK_LED_PIN, MODE_DESK_BTN_PIN));		// 4
-
-	device_manager.mount(new LEDButton(F("Win 1 Mode"), MODE_WIN1_LED_PIN, MODE_WIN1_BTN_PIN));		// 5
-	device_manager.mount(new LEDButton(F("Win 2 Mode"), MODE_WIN2_LED_PIN, MODE_WIN2_BTN_PIN));		// 6
-	device_manager.mount(new LEDButton(F("Win 3 Mode"), MODE_WIN3_LED_PIN, MODE_WIN3_BTN_PIN));		// 7
-	device_manager.mount(new LEDButton(F("Window Mode"), MODE_WIN_LED_PIN, MODE_WIN_BTN_PIN));		// 8
-
-	device_manager.mount(new LEDButton(F("Select"), SELECT_LED_PIN, SELECT_BTN_PIN));				// 9
-	device_manager.mount(new LEDButton(F("Disable"), DISABLE_LED_PIN, DISABLE_BTN_PIN));			// 10
 }
 
 void queue_sys_threads() {

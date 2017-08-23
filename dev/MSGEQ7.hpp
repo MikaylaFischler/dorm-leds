@@ -7,8 +7,8 @@
  *  63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25kHz and 16kHz
  */
 
-#include "../lib/Device.hpp"
-#include "../lib/Process.hpp"
+#include "../lib/device/Device.hpp"
+#include "../lib/exe/Process.hpp"
 
 class MSGEQ7 : public Device {
 private:
