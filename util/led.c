@@ -12,42 +12,6 @@
   9/30/2016 @ WPI
 */
 
-/* ~~~ General Utility Functions ~~~ */
-
-String getNameOfStrip(Adafruit_NeoPixel* strip) {
-	// compare actual memory address
-	if (strip == &window1) {
-		return F("Window[1]");
-	} else if (strip == &window2) {
-		return F("Window[2]");
-	} else if (strip == &window3) {
-		return F("Window[3]");
-	} else if (strip == &desk1) {
-		return F("Desk[1]");
-	} else if (strip == &desk2) {
-		return F("Desk[2]");
-	}
-
-	return "";
-}
-
-short int* getAsStripArray(Adafruit_NeoPixel* strip) {
-	// compare actual memory address
-	if (strip == &window1) {
-		return WINDOW_1;
-	} else if (strip == &window2) {
-		return WINDOW_2;
-	} else if (strip == &window3) {
-		return WINDOW_3;
-	} else if (strip == &desk1) {
-		return DESK_BOTTOM;
-	} else if (strip == &desk2) {
-		return DESK_TOP;
-	}
-
-	return NULL;
-}
-
 /* ~~~ Color Helper Functions ~~~ */
 
 // returns the Red component of a 32-bit color

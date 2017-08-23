@@ -25,15 +25,19 @@
 #include "conf/dev_types.h"
 
 // System
-#include "lib/exe/Executable.cpp"
-#include "lib/exe/Animation.cpp"
-#include "lib/exe/Process.cpp"
-
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
 #include "lib/device/Device.cpp"
 #include "lib/device/DeviceManager.cpp"
+
+#include "lib/exe/Executable.cpp"
+#include "lib/exe/Animation.cpp"
+#include "lib/exe/Process.cpp"
+
+#include "lib/neopixel/NeoPixelStripManager.cpp"
+#include "lib/neopixel/NeoPixelStripGroup.cpp"
+#include "lib/neopixel/VirtualNeoPixelStrip.cpp"
 
 // Animations
 #include "def/animations.h"

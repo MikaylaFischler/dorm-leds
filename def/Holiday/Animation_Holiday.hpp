@@ -1,7 +1,7 @@
 #ifndef ANIMATION_HOLIDAY_HPP_
 #define ANIMATION_HOLIDAY_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Holiday : public Animation {
 protected:
