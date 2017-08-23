@@ -1,7 +1,7 @@
 #ifndef ANIMATION_DISABLE_HPP_
 #define ANIMATION_DISABLE_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Disable : public Animation {
 protected:

@@ -1,7 +1,7 @@
 #ifndef ANIMATION_SEASONAL_HPP_
 #define ANIMATION_SEASONAL_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Seasonal : public Animation {
 protected:

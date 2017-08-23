@@ -1,7 +1,7 @@
 #ifndef ANIMATION_SIMPLE_HPP_
 #define ANIMATION_SIMPLE_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Simple : public Animation {
 protected:

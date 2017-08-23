@@ -1,7 +1,7 @@
 #ifndef ANIMATION_STATIC_HPP_
 #define ANIMATION_STATIC_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Static : public Animation {
 protected:
