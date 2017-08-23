@@ -12,22 +12,19 @@ void set_pin_modes() {
 }
 
 void init_strips() {
-	// Window Strips
-	window1.begin();
-	window1.show();
+	// Create Strips
+	npsm.addStrip(new Adafruit_NeoPixel(CEILING_LEFT_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
+	npsm.addStrip(new Adafruit_NeoPixel(CEILING_RIGHT_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
 
-	window2.begin();
-	window2.show();
+	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_A_LENGTH, STRIP_PIN_W1, STRIP_TYPE_RGB));
+	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W2, STRIP_TYPE_RGB));
+	npsm.addStrip(new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
 
-	window3.begin();
-	window3.show();
-
-	// Desk Strips
-	desk1.begin();
-	desk1.show();
-
-	desk2.begin();
-	desk2.show();
+	// begin() the Strips
+	for (int i = 0; i < npsm.numStrips(); i++) {
+		npsm[i]->begin();
+		npsm[i]->show();
+	}
 }
 
 void init_lcd() {

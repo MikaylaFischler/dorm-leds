@@ -22,21 +22,24 @@ private:
 	vector<Adafruit_NeoPixel*> strips;
 	vector<strip_data*> data;
 public:
-	NeoPixelStripManager();
-	~NeoPixelStripManager();
+	NeoPixelStripManager() {}
+	~NeoPixelStripManager() {}
 
-	void pushStrip(String name, bool rgbw, Adafruit_NeoPixel* strip);
+	void addStrip(String name, bool rgbw, Adafruit_NeoPixel* strip);
 	void dropStrip(int id);
+	int numStrips() const;
 
-	String name(int id);
-	bool isRGBW(int id);
-	bool inUse(int id);
-	Animation* usedBy(int id);
+	String name(int id) const;
+	bool isRGBW(int id) const;
+	bool inUse(int id) const;
+	Animation* usedBy(int id) const;
+
+	Adafruit_NeoPixel* strip(int id);
+
+	Adafruit_NeoPixel* operator[] (int id);
 
 	void use(int id, Animation* anim);
 	void release(int id);
-
-	Adafruit_NeoPixel* strip(int id);
 };
 
 #endif

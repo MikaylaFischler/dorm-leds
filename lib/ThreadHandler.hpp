@@ -6,8 +6,8 @@
 #include <vector>
 
 #include "../conf/strip_id.h"
-#include "Animation.hpp"
-#include "Process.hpp"
+#include "exe/Animation.hpp"
+#include "exe/Process.hpp"
 #include "Thread.hpp"
 
 #include "../util/free_memory.h"
