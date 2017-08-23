@@ -8,5 +8,6 @@
 
 #define DEV_LED_PUSH_BUTTON 0x1
 #define DEV_MSGEQ7 0x2
+#define DEV_PULSEMON 0x3
 
 #endif
