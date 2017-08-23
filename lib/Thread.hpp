@@ -5,7 +5,7 @@
 #include <ArduinoSTL.h>
 #include <vector>
 
-#include "Animation.hpp"
+#include "exe/Animation.hpp"
 
 class Thread {
 private:

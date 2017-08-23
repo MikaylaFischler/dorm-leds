@@ -2,7 +2,7 @@
 #define DEVICE_HPP_
 
 #include <Arduino.h>
-#include "../conf/dev_types.h"
+#include "../../conf/dev_types.h"
 
 class Device {
 protected:

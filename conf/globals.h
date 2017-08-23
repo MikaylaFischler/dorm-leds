@@ -4,5 +4,6 @@
 #include "../lib/DeviceManager.hpp"
 
 DeviceManager device_manager;
+NeoPixelStripManager npsm;
 
 #endif

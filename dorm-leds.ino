@@ -25,15 +25,15 @@
 #include "conf/dev_types.h"
 
 // System
-#include "lib/Executable.cpp"
-#include "lib/Animation.cpp"
-#include "lib/Process.cpp"
+#include "lib/exe/Executable.cpp"
+#include "lib/exe/Animation.cpp"
+#include "lib/exe/Process.cpp"
 
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
-#include "lib/Device.cpp"
-#include "lib/DeviceManager.cpp"
+#include "lib/device/Device.cpp"
+#include "lib/device/DeviceManager.cpp"
 
 // Animations
 #include "def/animations.h"
@@ -77,7 +77,8 @@ void setup() {
 	set_pin_modes();
 
 	// initialize LED strips and set them to off
-	Serial.println(F("Initializing neopixel strips..."));
+	Serial.println(F("Initializing NeoPixel strips..."));
+	npsm = NeoPixelStripManager();
 	init_strips();
 
 	// initialize LCD display
