@@ -10,10 +10,10 @@ Animation::~Animation() { clean(); }
 void Animation::init() { this->current_exec = 0; }
 
 // get number of strips
-int Animation::getNumStrips() const { return this->num_strips; }
+int Animation::getNumStrips() const { return this->strips.size(); }
 
 // get specific strip dependencies
-short int* Animation::getDependencies() const { return this->strips; }
+vector<int> Animation::getDependencies() const { return this->strips; }
 
 // get max execution count
 long int Animation::getMaxExecutions() const { return this->max_exec; }

@@ -8,13 +8,12 @@
 #include "Executable.hpp"
 #include "../def/led_color.h"
 #include "../../util/led.c"
-#include "../../conf/strip_ownership.h"
-#include "../../conf/strips.h"
+
+using std::vector;
 
 class Animation : public Executable {
 protected:
-    int num_strips;
-    short int* strips;
+    vector<int> strips;
 
     long int max_exec;
     long int current_exec;

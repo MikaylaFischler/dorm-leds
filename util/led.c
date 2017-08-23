@@ -1,9 +1,6 @@
 #ifndef LED_C_
 #define LED_C_
 
-#include "../conf/strips.h"
-#include "../conf/strip_id.h"
-
 /*
   Dorm LED Project: led.c
   This file contains utility functions for dorm LEDs.
