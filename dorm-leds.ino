@@ -14,9 +14,6 @@
 // LED Library
 #include <Adafruit_NeoPixel.h>
 
-// Liquid Crystal Display Library
-#include <LiquidCrystal.h>
-
 // Configuration
 #include "conf/config.h"
 #include "conf/dev_types.h"
@@ -50,9 +47,6 @@
 unsigned long int prev_time;
 unsigned long int cur_time;
 
-// LCD Display
-LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
-
 // Core System Variables and Class Instances
 unsigned long int dT = 0;
 ThreadHandler thread_handler = ThreadHandler();
@@ -81,10 +75,6 @@ void setup() {
 	Serial.println(F("Initializing NeoPixel strips..."));
 	npsm = NeoPixelStripManager();
 	init_strips();
-
-	// initialize LCD display
-	Serial.println(F("Initializing LCD display..."));
-	init_lcd();
 
 	// mount other devices
 	Serial.println(F("Mounting Additional Devices..."));

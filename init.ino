@@ -13,6 +13,16 @@ void set_pin_modes() {
 
 void init_strips() {
 	// create strips
+
+	// old strips
+	// npsm.addStrip(F("Window 1"), false, new Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
+	// npsm.addStrip(F("Window 2"), false, new Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
+	// npsm.addStrip(F("Window 3"), false, new Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_W1, STRIP_TYPE_RGB));
+	//
+	// npsm.addStrip(F("Desk 1"), false, new Adafruit_NeoPixel(DESK1_LENGTH, STRIP_PIN_W2, STRIP_TYPE_RGB));
+	// npsm.addStrip(F("Desk 2"), false, new Adafruit_NeoPixel(DESK2_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
+
+	// current strips
 	npsm.addStrip(F("Ceiling Left"), true, new Adafruit_NeoPixel(CEILING_LEFT_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
 	npsm.addStrip(F("Ceiling Right"), true, new Adafruit_NeoPixel(CEILING_RIGHT_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
 
@@ -25,11 +35,6 @@ void init_strips() {
 		npsm[i]->begin();
 		npsm[i]->show();
 	}
-}
-
-void init_lcd() {
-	lcd.begin(16, 2);
-	lcd.print(F("LED Control"));
 }
 
 void init_timing() {
