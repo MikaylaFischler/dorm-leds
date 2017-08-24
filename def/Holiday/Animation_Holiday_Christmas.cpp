@@ -6,8 +6,8 @@ void Animation_Holiday_Christmas_Win13Snow::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[1,3]: Christmas with Snow");
     this->update_rate = 50;
-	this->num_strips = 2;
- 	this->strips = WINDOW_1_3;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_3);
 
 	i = 0;
 	left = 0;
@@ -53,11 +53,11 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x - LEFT_TOP + 4;
 
 		if (rel_index < a % LEFT_FULL_LENGTH) {
-			window1.setPixelColor(x, red);
-			window3.setPixelColor(x, green);
+			npsm[ID_WINDOW_1]->setPixelColor(x, red);
+			npsm[ID_WINDOW_3]->setPixelColor(x, green);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -66,11 +66,11 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x - 6;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window1.setPixelColor(x, green);
-			window3.setPixelColor(x, red);
+			npsm[ID_WINDOW_1]->setPixelColor(x, green);
+			npsm[ID_WINDOW_3]->setPixelColor(x, red);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -79,11 +79,11 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x + 35;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window1.setPixelColor(x, red);
-			window3.setPixelColor(x, green);
+			npsm[ID_WINDOW_1]->setPixelColor(x, red);
+			npsm[ID_WINDOW_3]->setPixelColor(x, green);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -92,11 +92,11 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x - 5;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window1.setPixelColor(x, green);
-			window3.setPixelColor(x, red);
+			npsm[ID_WINDOW_1]->setPixelColor(x, green);
+			npsm[ID_WINDOW_3]->setPixelColor(x, red);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -105,15 +105,15 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x - RIGHT_BOTTOM;
 
 		if (rel_index % right_spacing == (800 - i) % right_spacing) {
-			window1.setPixelColor(x, on);
-			window3.setPixelColor(x, on);
+			npsm[ID_WINDOW_1]->setPixelColor(x, on);
+			npsm[ID_WINDOW_3]->setPixelColor(x, on);
 		} else {
 			if (x - 4 < a % RIGHT_FULL_LENGTH) {
-				window1.setPixelColor(x, green);
-				window3.setPixelColor(x, red);
+				npsm[ID_WINDOW_1]->setPixelColor(x, green);
+				npsm[ID_WINDOW_3]->setPixelColor(x, red);
 			} else {
-				window1.setPixelColor(x, COLOR_OFF);
-				window3.setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
@@ -123,19 +123,19 @@ void Animation_Holiday_Christmas_Win13Snow::christmas_snow(int i, int left_spaci
 		int rel_index = x - LEFT_TOP;
 
 		if (rel_index % left_spacing == i % left_spacing) {
-			window1.setPixelColor(x, on);
-			window3.setPixelColor(x, on);
+			npsm[ID_WINDOW_1]->setPixelColor(x, on);
+			npsm[ID_WINDOW_3]->setPixelColor(x, on);
 		} else {
 			if (rel_index + 4 < a % LEFT_FULL_LENGTH) {
-				window1.setPixelColor(x, red);
-				window3.setPixelColor(x, green);
+				npsm[ID_WINDOW_1]->setPixelColor(x, red);
+				npsm[ID_WINDOW_3]->setPixelColor(x, green);
 			} else {
-				window1.setPixelColor(x, COLOR_OFF);
-				window3.setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
 
-	window1.show();
-	window3.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_3]->show();
 }

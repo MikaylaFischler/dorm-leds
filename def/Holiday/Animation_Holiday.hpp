@@ -30,12 +30,12 @@ public:
 
 class Animation_Holiday_Indiv : public Animation_Holiday {
 protected:
-    Animation_Holiday_Indiv(Adafruit_NeoPixel* _strip) : strip(_strip) {}
+    Animation_Holiday_Indiv(int _id) : id(_id) {}
     ~Animation_Holiday_Indiv() {}
 
     void init();
 
-	Adafruit_NeoPixel* strip;
+	int id;
 };
 
 class Animation_Holiday_Indiv_EarthDay_Fade : public Animation_Holiday_Indiv {
@@ -44,7 +44,7 @@ private:
 	bool mode;
 	bool increasing;
 public:
-    Animation_Holiday_Indiv_EarthDay_Fade(Adafruit_NeoPixel* strip) : Animation_Holiday_Indiv(strip) {}
+    Animation_Holiday_Indiv_EarthDay_Fade(int id) : Animation_Holiday_Indiv(id) {}
     ~Animation_Holiday_Indiv_EarthDay_Fade() {}
 
 	void init();
