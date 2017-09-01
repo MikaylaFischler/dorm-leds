@@ -1,13 +1,12 @@
 #include "Animation_Simple.hpp"
 
-/* ~~~ Generic Individual ~~~ */
+/* ~~~ Generic Simple Individual ~~~ */
 
-// define the generic individual init
+// define the generic simple individual init
 void Animation_Simple_Indiv::init() {
   	Animation_Simple::init();
-	this->num_strips = 1;
-	this->name = getNameOfStrip(this->strip);
-	this->strips = getAsStripArray(this->strip);
+	this->name = npsm.name(this->id);
+	this->strips.push_back(this->id);
 }
 
 /* ~~~ Animation Simple Individual: Calm Purple Fade ~~~ */
@@ -22,11 +21,11 @@ void Animation_Simple_Indiv_CalmPurpleFade::init() {
 }
 
 void Animation_Simple_Indiv_CalmPurpleFade::step() {
-	for (unsigned int x = 0; x < this->strip->numPixels(); x++) {
-		this->strip->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
+	for (unsigned int x = 0; x < npsm[this->id]->numPixels(); x++) {
+		npsm[this->id]->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
   	if (increasing) {
     	if (i == 150) {
@@ -58,15 +57,15 @@ void Animation_Simple_Indiv_ColorFlash::init() {
 
 void Animation_Simple_Indiv_ColorFlash::step() {
 	// set each led to the proper color
-	for (unsigned int j = 0; j < strip->numPixels(); j++) {
+	for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j++) {
 		if (mode) {
-			this->strip->setPixelColor(j, this->color);
+			npsm[this->id]->setPixelColor(j, this->color);
 		} else {
-			this->strip->setPixelColor(j, COLOR_OFF);
+			npsm[this->id]->setPixelColor(j, COLOR_OFF);
 		}
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
 	if (mode) {
 		mode = false;
@@ -89,19 +88,19 @@ void Animation_Simple_Indiv_AlternatingColorFlash::init() {
 
 void Animation_Simple_Indiv_AlternatingColorFlash::step() {
 	// set each led to the proper color
-	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
+	for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j++) {
 		if (mode) {
 			if (cur_color) {
-				this->strip->setPixelColor(j, this->color_a);
+				npsm[this->id]->setPixelColor(j, this->color_a);
 			} else {
-				this->strip->setPixelColor(j, this->color_b);
+				npsm[this->id]->setPixelColor(j, this->color_b);
 			}
 		} else {
-			this->strip->setPixelColor(j, COLOR_OFF);
+			npsm[this->id]->setPixelColor(j, COLOR_OFF);
 		}
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
 	if (mode) {
 		mode = false;
@@ -125,11 +124,11 @@ void Animation_Simple_Indiv_ColorFade::init() {
 
 void Animation_Simple_Indiv_ColorFade::step() {
 	// set each led to the proper color
-	for (unsigned int j = 0; j < this->strip->numPixels(); j++) {
-		this->strip->setPixelColor(j, round(redFromColor(this->color) * i/255.0), round(greenFromColor(this->color) * i/255.0), round(blueFromColor(this->color) * i/255.0));
+	for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j++) {
+		npsm[this->id]->setPixelColor(j, round(redFromColor(this->color) * i/255.0), round(greenFromColor(this->color) * i/255.0), round(blueFromColor(this->color) * i/255.0));
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
 	if (increasing) {
 		if (i == 255) {
@@ -161,16 +160,16 @@ void Animation_Simple_Indiv_TheaterChase::init() {
 void Animation_Simple_Indiv_TheaterChase::step() {
 	if (alternate) {
 		// set each led to the proper color
-		for (unsigned int j = 0; j < this->strip->numPixels(); j += 3) {
+		for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j += 3) {
 			// turn every third pixel on
-			this->strip->setPixelColor(j + i, this->color);
+			npsm[this->id]->setPixelColor(j + i, this->color);
 		}
 
-		this->strip->show();
+		npsm[this->id]->show();
 	} else {
-		for (unsigned int j = 0; j < this->strip->numPixels(); j += 3) {
+		for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j += 3) {
 			// turn every third pixel off
-			this->strip->setPixelColor(j + i, COLOR_OFF);
+			npsm[this->id]->setPixelColor(j + i, COLOR_OFF);
 		}
 	}
 
