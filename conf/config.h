@@ -9,15 +9,17 @@
 #define STRIP_PIN_W3 6
 #define STRIP_PIN_XX 7
 
-#define EQ_L_STROBE 32
-#define EQ_L_RESET 33
+#define EQ_L_STROBE 52
+#define EQ_L_RESET 53
 #define EQ_L_INPUT A0
 
-#define EQ_R_STROBE 34
-#define EQ_R_RESET 35
+#define EQ_R_STROBE 50
+#define EQ_R_RESET 51
 #define EQ_R_INPUT A1
 
-#define RAND_SEED_ANALOG_NOISE_PORT A2
+#define PULSESENSOR_INPUT A2
+
+#define RAND_SEED_ANALOG_NOISE_PORT A3
 
 // strip length [old]
 #define WINDOW_LENGTH 81
