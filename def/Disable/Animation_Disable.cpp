@@ -12,10 +12,10 @@ void Animation_Disable::init() {
 
 void Animation_Disable::step() {
     for (int i = 0; i < npsm[id]->numPixels(); i++) {
-        npsm[i]->setPixelColor(i, COLOR_OFF);
+        npsm[id]->setPixelColor(i, COLOR_OFF);
     }
 
-    npsm[i]->show();
+    npsm[id]->show();
 
 	this->current_exec++;
 }

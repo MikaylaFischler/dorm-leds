@@ -89,7 +89,7 @@ void Animation_Simple_WinAllWPISpirit::step() {
 			modified -= WINDOW_LENGTH;
 		}
 
-		npsm[ID_DESK_3]->setPixelColor(modified, COLOR_MAROON);
+		npsm[ID_DESK_2]->setPixelColor(modified, COLOR_MAROON);
 	} else if (mode) {
 		npsm[ID_DESK_1]->setPixelColor(i, COLOR_LIGHT_SILVER);
 
@@ -107,11 +107,11 @@ void Animation_Simple_WinAllWPISpirit::step() {
 			modified -= WINDOW_LENGTH;
 		}
 
-		npsm[ID_DESK_3]->setPixelColor(modified, COLOR_LIGHT_SILVER);
+		npsm[ID_DESK_2]->setPixelColor(modified, COLOR_LIGHT_SILVER);
 	}
 
     npsm[ID_DESK_1]->show();
-    npsm[ID_DESK_3]->show();
+    npsm[ID_DESK_2]->show();
 
 	if (mode) {
 		if (i + 1 == WINDOW_LENGTH) {
