@@ -11,12 +11,7 @@
 			Animation_Advanced_Audio_MaxEqualizerWindow
 
 [Disable]
-	{Animation_Disable}
-		Animation_Disable_Desk1
-		Animation_Disable_Desk2
-		Animation_Disable_Window1
-		Animation_Disable_Window2
-		Animation_Disable_Window3
+	Animation_Disable
 
 [Holiday]
 	{Animation_Holiday}
@@ -76,7 +71,6 @@
 [Static]
 	{Animation_Static}
 		Animation_Static_DeskBrightWhite
-		Animation_Static_DeskThirdDimAmbient
 		Animation_Static_DeskDimAmbient
 
 		{Animation_Static_Indiv}

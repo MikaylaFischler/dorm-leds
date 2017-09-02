@@ -1,7 +1,7 @@
 #ifndef ANIMATION_AUDIO_HPP_
 #define ANIMATION_AUDIO_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 #include "../../dev/MSGEQ7.hpp"
 #include "../../conf/globals.h"

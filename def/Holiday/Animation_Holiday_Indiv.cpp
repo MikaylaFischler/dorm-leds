@@ -5,9 +5,8 @@
 // define the generic individual init
 void Animation_Holiday_Indiv::init() {
   	Animation_Holiday::init();
-	this->num_strips = 1;
-	this->name = getNameOfStrip(this->strip);
-	this->strips = getAsStripArray(this->strip);
+	this->name = npsm.name(this->id);
+	this->strips.push_back(this->id);
 }
 
 /* ~~~ Animation Holiday Earth Day: Single Strip Dual Color Alternating Fade ~~~ */
@@ -26,16 +25,16 @@ void Animation_Holiday_Indiv_EarthDay_Fade::step() {
 	if (mode) {
 		// green
 		for (int x = 0; x < this->strip->numPixels(); x++) {
-			this->strip->setPixelColor(x, 0, i, 0);
+			npsm[this->id]->setPixelColor(x, 0, i, 0);
 		}
 	} else {
 		// blue
 		for (int x = 0; x < this->strip->numPixels(); x++) {
-			this->strip->setPixelColor(x, 0, 0, i);
+			npsm[this->id]->setPixelColor(x, 0, 0, i);
 		}
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
 	if (increasing) {
 		if (i == 255) {

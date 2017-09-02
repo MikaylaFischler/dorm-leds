@@ -1,13 +1,8 @@
 #include "DeviceManager.hpp"
 
-// <<constructor>>
-DeviceManager::DeviceManager() {}
-
-// <<destructor>>
-DeviceManager::~DeviceManager() {}
-
 // add a device to the system
 void DeviceManager::mount(Device* dev) {
+	// add device
 	this->devices.push_back(dev);
 
 	// log to console
@@ -17,15 +12,18 @@ void DeviceManager::mount(Device* dev) {
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
 
+	// update global free memory
 	mem_available = freeMemory();
 }
 
 // remove a device from the system
+template <typename dev_type>
 void DeviceManager::unmount(int id) {
 	// log to console
 	Serial.print(F("DeviceManager.cpp:> Device Unmounted: "));
-	Serial.println(this->devices.at(id)->getName());
+	Serial.println(this->devices[id]->getName());
 
+	delete this->devices.getDevice<dev_type*>(id);
 	this->devices.erase(this->devices.begin() + id);
 }
 
@@ -33,7 +31,7 @@ void DeviceManager::unmount(int id) {
 unsigned int DeviceManager::getNumDevices() const { return this->devices.size(); }
 
 // return a vector of the devices (by value)
-std::vector<Device*> DeviceManager::listDevices() const { return this->devices; };
+vector<Device*> DeviceManager::listDevices() const { return this->devices; };
 
 // get a device (with bounds check)
 template <typename dev_type>
