@@ -4,7 +4,7 @@
 #include "../../lib/exe/Animation.hpp"
 
 #include "../../dev/MSGEQ7.hpp"
-#include "../../conf/globals.h"
+#include "../../dev/PulseMonitor.hpp"
 
 #include "../../util/led.c"
 #include "../../util/ledmath.c"
@@ -120,6 +120,29 @@ public:
     ~Animation_Advanced_Audio_MaxEqualizerWindow() {}
 
 	void init();
+	void step();
+};
+
+// Animation_Advanced_Pulse.cpp
+
+class Animation_Advanced_Pulse : public Animation_Advanced {
+protected:
+    Animation_Advanced_Pulse() {}
+    ~Animation_Advanced_Pulse() {}
+
+    void init();
+
+	PulseMonitor* pulse_mon;
+};
+
+class Animation_Advanced_Pulse_CeilingChart : public Animation_Advanced_Pulse {
+private:
+	int cur_pixel;
+public:
+    Animation_Advanced_Pulse_CeilingChart() {}
+    ~Animation_Advanced_Pulse_CeilingChart() {}
+
+    void init();
 	void step();
 };
 

@@ -47,6 +47,8 @@ void mount_devices() {
 	// equalizers
 	device_manager.mount(new MSGEQ7(F("Left Equalizer"), EQ_L_STROBE, EQ_L_RESET, EQ_L_INPUT));		// 0
 	device_manager.mount(new MSGEQ7(F("Right Equalizer"), EQ_R_STROBE, EQ_R_RESET, EQ_R_INPUT));	// 1
+	// pulse monitor
+	device_manager.mount(new PulseMonitor(F("Pulse Monitor"), PULSESENSOR_INPUT));					// 2
 }
 
 void queue_sys_threads() {
@@ -64,8 +66,9 @@ void led_man_queue() {
 	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
-	thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
-	thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
+	thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart());
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
