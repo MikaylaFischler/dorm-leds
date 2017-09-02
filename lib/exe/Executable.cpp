@@ -1,11 +1,5 @@
 #include "Executable.hpp"
 
-// <<constructor>>
-Executable::Executable() {}
-
-// <<destructor>>
-Executable::~Executable() {}
-
 // get the name of the executable
 String Executable::getName() const { return this->name; }
 

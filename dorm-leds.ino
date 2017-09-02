@@ -27,7 +27,7 @@
 
 #include "lib/exe/Executable.cpp"
 #include "lib/exe/Animation.cpp"
-#include "lib/exe/Process.cpp"
+#include "lib/exe/Process.hpp"
 
 #include "lib/neopixel/NeoPixelStripManager.cpp"
 #include "lib/neopixel/NeoPixelStripGroup.cpp"
