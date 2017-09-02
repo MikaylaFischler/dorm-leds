@@ -1,6 +1,7 @@
 #ifndef ANIMATION_HPP_
 #define ANIMATION_HPP_
 
+#include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <ArduinoSTL.h>
 #include <vector>
@@ -18,12 +19,12 @@ protected:
     long int max_exec;
     long int current_exec;
 
-	Animation();
+	Animation() {}
 public:
-	virtual ~Animation();
+	virtual ~Animation() {}
+
     virtual void init();
-	virtual void step() {};
-	virtual void clean() {};
+	virtual void step() {}
 
     int getNumStrips() const;
     short int* getDependencies() const;

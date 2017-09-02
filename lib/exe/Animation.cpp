@@ -1,11 +1,5 @@
 #include "Animation.hpp"
 
-// <<constructor>>
-Animation::Animation() {}
-
-// <<destructor>>
-Animation::~Animation() { clean(); }
-
 // basic initialization
 void Animation::init() { this->current_exec = 0; }
 

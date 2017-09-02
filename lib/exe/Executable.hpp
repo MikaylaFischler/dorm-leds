@@ -8,16 +8,15 @@ protected:
     String name;
     unsigned long int update_rate;
 
-	Executable();
+	Executable() {}
 public:
-	virtual ~Executable();
-
-    virtual void init() = 0;
-    virtual void step() = 0;
-    virtual void clean() = 0;
+	virtual ~Executable() {}
 
     String getName() const;
     unsigned long int getUpdateRate() const;
+
+    virtual void init() = 0;
+    virtual void step() = 0;
 };
 
 #endif
