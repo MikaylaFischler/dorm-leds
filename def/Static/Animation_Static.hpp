@@ -1,7 +1,7 @@
 #ifndef ANIMATION_STATIC_HPP_
 #define ANIMATION_STATIC_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Static : public Animation {
 protected:
@@ -17,15 +17,6 @@ class Animation_Static_DeskBrightWhite : public Animation_Static {
 public:
     Animation_Static_DeskBrightWhite() {}
     ~Animation_Static_DeskBrightWhite() {}
-
-	void init();
-    void step();
-};
-
-class Animation_Static_DeskThirdDimAmbient : public Animation_Static {
-public:
-    Animation_Static_DeskThirdDimAmbient() {}
-    ~Animation_Static_DeskThirdDimAmbient() {}
 
 	void init();
     void step();
@@ -62,19 +53,19 @@ public:
 
 class Animation_Static_Indiv : public Animation_Static {
 protected:
-	Animation_Static_Indiv(Adafruit_NeoPixel* _strip) : strip(_strip) {}
+	Animation_Static_Indiv(int _id) : id(_id) {}
 	~Animation_Static_Indiv() {}
 
     void init();
 
-	Adafruit_NeoPixel* strip;
+	int id;
 };
 
 class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
 private:
 	unsigned long int color;
 public:
-    Animation_Static_Indiv_Color(Adafruit_NeoPixel* strip, unsigned long int c) : Animation_Static_Indiv(strip), color(c) {}
+    Animation_Static_Indiv_Color(int id, unsigned long int c) : Animation_Static_Indiv(id), color(c) {}
     ~Animation_Static_Indiv_Color() {}
 
 	void init();
@@ -83,7 +74,7 @@ public:
 
 class Animation_Static_Indiv_ThirdDimAmbient : public Animation_Static_Indiv {
 public:
-    Animation_Static_Indiv_ThirdDimAmbient(Adafruit_NeoPixel* strip) : Animation_Static_Indiv(strip) {}
+    Animation_Static_Indiv_ThirdDimAmbient(int id) : Animation_Static_Indiv(id) {}
     ~Animation_Static_Indiv_ThirdDimAmbient() {}
 
 	void init();

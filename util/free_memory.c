@@ -44,7 +44,7 @@ struct __freelist {
 };
 
 /* The head of the free list structure */
-extern struct __freelist *__flp
+extern struct __freelist *__flp;
 
 /* Calculates the size of the free list */
 int freeListSize() {

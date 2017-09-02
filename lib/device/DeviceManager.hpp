@@ -5,20 +5,24 @@
 #include <ArduinoSTL.h>
 #include <vector>
 
-#include "../util/free_memory.h"
+#include "Device.hpp"
+#include "../../util/free_memory.h"
+
+using std::vector;
 
 class DeviceManager {
 private:
-	std::vector<Device*> devices;
+	vector<Device*> devices;
 public:
-	DeviceManager();
-	~DeviceManager();
+	DeviceManager() {}
+	~DeviceManager() {}
 
 	void mount(Device* dev);
-	void unmount(int id);
-	unsigned int getNumDevices() const;
+	template <typename dev_type> void unmount(int id);
 
-	std::vector<Device*> listDevices() const;
+	unsigned int getNumDevices() const;
+	vector<Device*> listDevices() const;
+
 	template <typename dev_type> dev_type* getDevice(unsigned int id) const;
 
 	Device* operator[] (int id) const;

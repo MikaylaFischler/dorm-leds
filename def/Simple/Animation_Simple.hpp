@@ -1,7 +1,7 @@
 #ifndef ANIMATION_SIMPLE_HPP_
 #define ANIMATION_SIMPLE_HPP_
 
-#include "../../lib/Animation.hpp"
+#include "../../lib/exe/Animation.hpp"
 
 class Animation_Simple : public Animation {
 protected:
@@ -41,12 +41,12 @@ public:
 
 class Animation_Simple_Indiv : public Animation_Simple {
 protected:
-	Animation_Simple_Indiv(Adafruit_NeoPixel* _strip) : strip(_strip) {}
+	Animation_Simple_Indiv(int _id) : id(_id) {}
 	~Animation_Simple_Indiv() {}
 
     void init();
 
-	Adafruit_NeoPixel* strip;
+	int id;
 };
 
 class Animation_Simple_Indiv_CalmPurpleFade : public Animation_Simple_Indiv {
@@ -54,7 +54,7 @@ private:
 	unsigned short int i;
 	bool increasing;
 public:
-	Animation_Simple_Indiv_CalmPurpleFade(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
+	Animation_Simple_Indiv_CalmPurpleFade(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_CalmPurpleFade() {}
 
 	void init();
@@ -67,8 +67,8 @@ private:
 	int rate;
 	bool mode;
 public:
-	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c), rate(200) {}
-	Animation_Simple_Indiv_ColorFlash(Adafruit_NeoPixel* strip, uint32_t c, int _rate) : Animation_Simple_Indiv(strip), color(c), rate(_rate) {}
+	Animation_Simple_Indiv_ColorFlash(int id, uint32_t c) : Animation_Simple_Indiv(id), color(c), rate(200) {}
+	Animation_Simple_Indiv_ColorFlash(int id, uint32_t c, int _rate) : Animation_Simple_Indiv(id), color(c), rate(_rate) {}
 	~Animation_Simple_Indiv_ColorFlash() {}
 
 	void init();
@@ -83,8 +83,8 @@ private:
 	bool mode;
 	bool cur_color;
 public:
-	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b) : Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(200) {}
-	Animation_Simple_Indiv_AlternatingColorFlash(Adafruit_NeoPixel* strip, uint32_t c_a, uint32_t c_b, int _rate) : Animation_Simple_Indiv(strip), color_a(c_a), color_b(c_b), rate(_rate) {}
+	Animation_Simple_Indiv_AlternatingColorFlash(int id, uint32_t c_a, uint32_t c_b) : Animation_Simple_Indiv(id), color_a(c_a), color_b(c_b), rate(200) {}
+	Animation_Simple_Indiv_AlternatingColorFlash(int id, uint32_t c_a, uint32_t c_b, int _rate) : Animation_Simple_Indiv(id), color_a(c_a), color_b(c_b), rate(_rate) {}
 	~Animation_Simple_Indiv_AlternatingColorFlash() {}
 
 	void init();
@@ -97,7 +97,7 @@ private:
 	unsigned short int i;
 	bool increasing;
 public:
-	Animation_Simple_Indiv_ColorFade(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c) {}
+	Animation_Simple_Indiv_ColorFade(int id, uint32_t c) : Animation_Simple_Indiv(id), color(c) {}
 	~Animation_Simple_Indiv_ColorFade() {}
 
 	void init();
@@ -110,7 +110,7 @@ private:
 	unsigned short int i;
 	bool alternate;
 public:
-	Animation_Simple_Indiv_TheaterChase(Adafruit_NeoPixel* strip, uint32_t c) : Animation_Simple_Indiv(strip), color(c) {}
+	Animation_Simple_Indiv_TheaterChase(int id, uint32_t c) : Animation_Simple_Indiv(id), color(c) {}
 	~Animation_Simple_Indiv_TheaterChase() {}
 
 	void init();
@@ -123,7 +123,7 @@ class Animation_Simple_Indiv_Rainbow : public Animation_Simple_Indiv {
 private:
 	unsigned short int i;
 public:
-	Animation_Simple_Indiv_Rainbow(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
+	Animation_Simple_Indiv_Rainbow(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_Rainbow() {}
 
 	void init();
@@ -134,7 +134,7 @@ class Animation_Simple_Indiv_RainbowCycle : public Animation_Simple_Indiv {
 private:
 	unsigned short int i;
 public:
-	Animation_Simple_Indiv_RainbowCycle(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
+	Animation_Simple_Indiv_RainbowCycle(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_RainbowCycle() {}
 
 	void init();
@@ -146,7 +146,7 @@ private:
 	unsigned short int i;
 	unsigned short int cur_color;
 public:
-	Animation_Simple_Indiv_RainbowWipe(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
+	Animation_Simple_Indiv_RainbowWipe(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_RainbowWipe() {}
 
 	void init();
@@ -159,7 +159,7 @@ private:
 	unsigned short int j;
 	bool alternate;
 public:
-	Animation_Simple_Indiv_RainbowTheaterChase(Adafruit_NeoPixel* strip) : Animation_Simple_Indiv(strip) {}
+	Animation_Simple_Indiv_RainbowTheaterChase(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_RainbowTheaterChase() {}
 
 	void init();
