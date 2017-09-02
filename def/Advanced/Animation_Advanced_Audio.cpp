@@ -17,8 +17,9 @@ void Animation_Advanced_Audio::init() {
 void Animation_Advanced_Audio_BassPulseWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Bass Beat Pulse");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Advanced_Audio_BassPulseWindow::step() {
@@ -26,14 +27,14 @@ void Animation_Advanced_Audio_BassPulseWindow::step() {
 	low2_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(2)) + (float) quadraticBrightness(right_eq->get8Bit(2))) / 2.0);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window1.setPixelColor(x, low_sum, 0, 0);
-		window2.setPixelColor(x, 0, low2_sum, low2_sum);
-		window3.setPixelColor(x, low_sum, 0, 0);
+		npsm[ID_WINDOW_1]->setPixelColor(x, low_sum, 0, 0);
+		npsm[ID_WINDOW_2]->setPixelColor(x, 0, low2_sum, low2_sum);
+		npsm[ID_WINDOW_3]->setPixelColor(x, low_sum, 0, 0);
 	}
 
-	window1.show();
-	window2.show();
-	window3.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 
 	this->current_exec++;
 }
@@ -43,8 +44,9 @@ void Animation_Advanced_Audio_BassPulseWindow::step() {
 void Animation_Advanced_Audio_BassMidPulseWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Bass and Mid Beat Pulse");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Advanced_Audio_BassMidPulseWindow::step() {
@@ -57,14 +59,14 @@ void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 	mid_sum = (int) round((float) (mid_sum_l + mid_sum_r) / 2.0);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window1.setPixelColor(x, low_sum, 0, low_sum);
-		window2.setPixelColor(x, mid_sum, mid_sum, 0);
-		window3.setPixelColor(x, low_sum, 0, low_sum);
+		npsm[ID_WINDOW_1]->setPixelColor(x, low_sum, 0, low_sum);
+		npsm[ID_WINDOW_2]->setPixelColor(x, mid_sum, mid_sum, 0);
+		npsm[ID_WINDOW_3]->setPixelColor(x, low_sum, 0, low_sum);
 	}
 
-	window1.show();
-	window2.show();
-	window3.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 
 	this->current_exec++;
 }
@@ -74,8 +76,9 @@ void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 void Animation_Advanced_Audio_BassPulseMidHueWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Bass Beat Pulse and Mid Hue");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Advanced_Audio_BassPulseMidHueWindow::step() {
@@ -90,18 +93,18 @@ void Animation_Advanced_Audio_BassPulseMidHueWindow::step() {
 
 	// center window (bass)
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window2.setPixelColor(x, low_sum, low_sum, low_sum);
+		npsm[ID_WINDOW_2]->setPixelColor(x, low_sum, low_sum, low_sum);
 	}
 
 	// side windows (mid hue)
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window1.setPixelColor(x, hue);
-		window3.setPixelColor(x, hue);
+		npsm[ID_WINDOW_1]->setPixelColor(x, hue);
+		npsm[ID_WINDOW_3]->setPixelColor(x, hue);
 	}
 
-	window1.show();
-	window2.show();
-	window3.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 
 	this->current_exec++;
 }
@@ -111,8 +114,9 @@ void Animation_Advanced_Audio_BassPulseMidHueWindow::step() {
 void Animation_Advanced_Audio_BasePulseCircularEqWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Bass Pulse and Circular Equalizer");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Advanced_Audio_BasePulseCircularEqWindow::step() {
@@ -130,53 +134,53 @@ void Animation_Advanced_Audio_BasePulseCircularEqWindow::step() {
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		if (no_0 && x == left_eq->getInWindowRange(0)) {
 			val = ColorWheel(left_eq->get8Bit(0));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_0 = false;
 		} else if (no_1 && x == left_eq->getInWindowRange(1)) {
 			val = ColorWheel(left_eq->get8Bit(1));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_1 = false;
 		} else if (no_2 && x == left_eq->getInWindowRange(2)) {
 			val = ColorWheel(left_eq->get8Bit(2));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_2 = false;
 		} else if (no_3 && x == left_eq->getInWindowRange(3)) {
 			val = ColorWheel(left_eq->get8Bit(3));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_3 = false;
 		} else if (no_4 && x == left_eq->getInWindowRange(4)) {
 			val = ColorWheel(left_eq->get8Bit(4));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_4 = false;
 		} else if (no_5 && x == left_eq->getInWindowRange(5)) {
 			val = ColorWheel(left_eq->get8Bit(5));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_5 = false;
 		} else if (no_6 && x == left_eq->getInWindowRange(6)) {
 			val = ColorWheel(left_eq->get8Bit(6));
-			window1.setPixelColor(x, val);
-			window3.setPixelColor(x, val);
+			npsm[ID_WINDOW_1]->setPixelColor(x, val);
+			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_6 = false;
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
 	// center window (bass)
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		window2.setPixelColor(x, low_sum, low_sum, low_sum);
+		npsm[ID_WINDOW_2]->setPixelColor(x, low_sum, low_sum, low_sum);
 	}
 
-	window1.show();
-	window2.show();
-	window3.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 
 	this->current_exec++;
 }
@@ -186,14 +190,15 @@ void Animation_Advanced_Audio_BasePulseCircularEqWindow::step() {
 void Animation_Advanced_Audio_EqualizerWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Basic Audio Equalizer");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 
 	// clear these once, for efficency
 	for (int i = 0; i < 9; i++) {
-		window1.setPixelColor(i, COLOR_OFF);
-		window2.setPixelColor(i, COLOR_OFF);
-		window3.setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_OFF);
 	}
 }
 
@@ -210,49 +215,49 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 	// low eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[1] && x >= 9) {
-			window1.setPixelColor(x, COLOR_ORANGE);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_ORANGE);
 		} else if (x >= val[0] && x <= 80) {
-			window1.setPixelColor(x, COLOR_RED);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_RED);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
 	// mid eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[3] && x >= 9) {
-			window2.setPixelColor(x, COLOR_GREEN);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_GREEN);
 		} else if (x >= val[2] && x <= 80) {
-			window2.setPixelColor(x, COLOR_YELLOW);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_YELLOW);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
 	// high eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
-			window3.setPixelColor(x, COLOR_PURPLE);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_PURPLE);
 		} else if (x >= val[4] && x <= 80) {
-			window3.setPixelColor(x, COLOR_BLUE);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_BLUE);
 		} else {
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
 	// 16khz eq
 	// for (unsigned int x = 0; x < DESK2_LENGTH; x++) {
 	// 	if (x <= val[6]) {
-	// 		desk2.setPixelColor(x, COLOR_WHITE);
+	// 		npsm[ID_DESK_2]->setPixelColor(x, COLOR_WHITE);
 	// 	} else {
-	// 		desk2.setPixelColor(x, COLOR_OFF);
+	// 		npsm[ID_DESK_2]->setPixelColor(x, COLOR_OFF);
 	// 	}
 	// }
 
-	window1.show();
-	window2.show();
-	window3.show();
-	// desk2.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
+	// npsm[ID_DESK_2]->show();
 
 	this->current_exec++;
 }
@@ -262,8 +267,9 @@ void Animation_Advanced_Audio_EqualizerWindow::step() {
 void Animation_Advanced_Audio_MaxEqualizerWindow::init() {
  	Animation_Advanced_Audio::init();
  	this->name = F("Window[all]: Audio Equalizer With Max");
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 
 	// initialize max vals
 	max[0] = 80;
@@ -278,9 +284,9 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::init() {
 
 	// clear these once, for efficency
 	for (int i = 0; i < 9; i++) {
-		window1.setPixelColor(i, COLOR_OFF);
-		window2.setPixelColor(i, COLOR_OFF);
-		window3.setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_OFF);
+		npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_OFF);
 	}
 }
 
@@ -309,66 +315,66 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 	// low eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[1] && x >= 9) {
-			window1.setPixelColor(x, COLOR_ORANGE);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_ORANGE);
 		} else if (x >= val[0] && x <= 80) {
-			window1.setPixelColor(x, COLOR_RED);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_RED);
 		} else {
-			window1.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
 		}
 
 		if (x == max[0] || x == max[1]) {
-			window1.setPixelColor(x, COLOR_WHITE);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_WHITE);
 		}
 	}
 
 	// mid eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[3] && x >= 9) {
-			window2.setPixelColor(x, COLOR_GREEN);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_GREEN);
 		} else if (x >= val[2] && x <= 80) {
-			window2.setPixelColor(x, COLOR_YELLOW);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_YELLOW);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 
 		if (x == max[2] || x == max[3]) {
-			window2.setPixelColor(x, COLOR_WHITE);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_WHITE);
 		}
 	}
 
 	// high eqs
 	for (unsigned int x = 9; x < WINDOW_LENGTH; x++) {
 		if (x <= val[5] && x >= 9) {
-			window3.setPixelColor(x, COLOR_PURPLE);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_PURPLE);
 		} else if (x >= val[4] && x <= 80) {
-			window3.setPixelColor(x, COLOR_BLUE);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_BLUE);
 		} else {
-			window3.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_OFF);
 		}
 
 		if (x == max[4] || x == max[5]) {
-			window3.setPixelColor(x, COLOR_WHITE);
+			npsm[ID_WINDOW_3]->setPixelColor(x, COLOR_WHITE);
 		}
 	}
 
 	// 16khz eq
 	// for (unsigned int x = 0; x < 29; x++) {
 	// 	if (x <= val[6]) {
-	// 		desk2.setPixelColor(x, COLOR_WHITE);
+	// 		npsm[ID_DESK_2]->setPixelColor(x, COLOR_WHITE);
 	// 	} else {
-	// 		desk2.setPixelColor(x, COLOR_OFF);
+	// 		npsm[ID_DESK_2]->setPixelColor(x, COLOR_OFF);
 	// 	}
 	//
 	// 	if (x == max[6]) {
-	// 		desk2.setPixelColor(x, COLOR_RED);
+	// 		npsm[ID_DESK_2]->setPixelColor(x, COLOR_RED);
 	// 	}
 	// }
 
 	// update strips
-	window1.show();
-	window2.show();
-	window3.show();
-	// desk2.show();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
+	// npsm[ID_DESK_2]->show();
 
 	// slowly drift max vals back down if possible
 	if (count >= 12) {

@@ -14,5 +14,6 @@ void Animation_Seasonal::init() {
 // define the generic seasonal individual init
 void Animation_Seasonal_Indiv::init() {
   	Animation_Seasonal::init();
-  	this->num_strips = 1;
+	this->name = npsm.name(this->id);
+	this->strips.push_back(this->id);
 }

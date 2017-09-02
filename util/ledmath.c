@@ -5,7 +5,7 @@
   Dorm LED Project: ledmath.c
   This file contains mathematical utility functions for dorm LEDs.
 
-  Created by: Michael Fischler
+  Created by: Mikayla Fischler
   2017-03-11 @ WPI
 
   Calculated Brightness Curves: https://www.desmos.com/calculator/evodsxrtjj

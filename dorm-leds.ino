@@ -2,7 +2,7 @@
   Dorm LED Project: dorm-leds.ino
   Main file for the LED project.
 
-  Created by: Michael Fischler
+  Created by: Mikayla Fischler
   9/20/2016 @ WPI
 */
 
@@ -14,26 +14,24 @@
 // LED Library
 #include <Adafruit_NeoPixel.h>
 
-// Liquid Crystal Display Library
-#include <LiquidCrystal.h>
-
 // Configuration
 #include "conf/config.h"
-#include "conf/strips.h"
-#include "conf/strip_id.h"
-#include "conf/strip_ownership.h"
 #include "conf/dev_types.h"
 
 // System
-#include "lib/Executable.cpp"
-#include "lib/Animation.cpp"
-#include "lib/Process.cpp"
-
 #include "lib/Thread.cpp"
 #include "lib/ThreadHandler.cpp"
 
-#include "lib/Device.cpp"
-#include "lib/DeviceManager.cpp"
+#include "lib/device/Device.cpp"
+#include "lib/device/DeviceManager.cpp"
+
+#include "lib/exe/Executable.cpp"
+#include "lib/exe/Animation.cpp"
+#include "lib/exe/Process.hpp"
+
+#include "lib/neopixel/NeoPixelStripManager.cpp"
+#include "lib/neopixel/NeoPixelStripGroup.cpp"
+#include "lib/neopixel/VirtualNeoPixelStrip.cpp"
 
 // Animations
 #include "def/animations.h"
@@ -48,9 +46,6 @@
 // Timing
 unsigned long int prev_time;
 unsigned long int cur_time;
-
-// LCD Display
-LiquidCrystal lcd(LCD_E_PIN, LCD_RS_PIN, LCD_D4_PIN, LDC_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
 
 // Core System Variables and Class Instances
 unsigned long int dT = 0;
@@ -77,12 +72,9 @@ void setup() {
 	set_pin_modes();
 
 	// initialize LED strips and set them to off
-	Serial.println(F("Initializing neopixel strips..."));
+	Serial.println(F("Initializing NeoPixel strips..."));
+	npsm = NeoPixelStripManager();
 	init_strips();
-
-	// initialize LCD display
-	Serial.println(F("Initializing LCD display..."));
-	init_lcd();
 
 	// mount other devices
 	Serial.println(F("Mounting Additional Devices..."));

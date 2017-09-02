@@ -4,9 +4,7 @@
 
 void Animation_Seasonal_Indiv_Weather::precipitation_init(int update_rate) {
  	Animation_Seasonal_Indiv::init();
-	this->name = getNameOfStrip(this->strip);
 	this->update_rate = update_rate;
-	this->strips = getAsStripArray(this->strip);
 
 	i = 0;
 	randomized_spacing = false;
@@ -28,9 +26,9 @@ void Animation_Seasonal_Indiv_Weather::precipitation_step(int min_spacing, int m
 		int rel_index = x - WINDOW_BOTTOM_RIGHT;
 
 		if (rel_index % right_spacing == (1000 - i) % right_spacing) {
-			this->strip->setPixelColor(x, color);
+			npsm[this->id]->setPixelColor(x, color);
 		} else {
-			this->strip->setPixelColor(x, COLOR_OFF);
+			npsm[this->id]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -39,13 +37,13 @@ void Animation_Seasonal_Indiv_Weather::precipitation_step(int min_spacing, int m
 		int rel_index = x - WINDOW_TOP_LEFT;
 
 		if (rel_index % left_spacing == i % left_spacing) {
-			this->strip->setPixelColor(x, color);
+			npsm[this->id]->setPixelColor(x, color);
 		} else {
-			this->strip->setPixelColor(x, COLOR_OFF);
+			npsm[this->id]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 
 	if (randomized_spacing) {
 		i++;

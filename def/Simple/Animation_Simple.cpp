@@ -14,8 +14,8 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
  	Animation_Simple::init();
  	this->name = F("Desk[all]: Off White with Purple Fade");
     this->update_rate = 10;
-	this->num_strips = 2;
- 	this->strips = DESK_ALL;
+ 	this->strips.push_back(ID_DESK_1);
+ 	this->strips.push_back(ID_DESK_2);
 
 	i = 0;
 	increasing = true;
@@ -24,22 +24,22 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
 void Animation_Simple_DeskWhitePurpleFade::step() {
 	for (int x = 0; x < DESK1_LENGTH; x++) {
 		if (x % 3 != 0) {
-			desk1.setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
+			npsm[ID_DESK_1]->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
-			desk1.setPixelColor(x, COLOR_DIM_OFF_WHITE);
+			npsm[ID_DESK_1]->setPixelColor(x, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
 	for (int x = 0; x < DESK2_LENGTH; x++) {
 		if (x % 3 != 0) {
-			desk2.setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
+			npsm[ID_DESK_2]->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
-			desk2.setPixelColor(x, COLOR_DIM_OFF_WHITE);
+			npsm[ID_DESK_2]->setPixelColor(x, COLOR_DIM_OFF_WHITE);
 		}
 	}
 
-	desk1.show();
-	desk2.show();
+	npsm[ID_DESK_1]->show();
+	npsm[ID_DESK_2]->show();
 
   	if (increasing) {
     	if (i == 150) {
@@ -64,8 +64,10 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
 void Animation_Simple_WinAllWPISpirit::init() {
 	Animation_Simple::init();
 	this->name = F("Window[all]: WPI Spirit");
-	this->num_strips = 3;
-	this->strips = WINDOW_ALL;
+    this->update_rate = 30;
+	this->strips.push_back(ID_WINDOW_1);
+	this->strips.push_back(ID_WINDOW_2);
+	this->strips.push_back(ID_WINDOW_3);
 
 	i = 0;
 	mode = true;
@@ -73,12 +75,12 @@ void Animation_Simple_WinAllWPISpirit::init() {
 
 void Animation_Simple_WinAllWPISpirit::step() {
 	if (!mode) {
-		window1.setPixelColor(i, COLOR_MAROON);
+		npsm[ID_DESK_1]->setPixelColor(i, COLOR_MAROON);
 
 		if (i % 2 == 0) {
-			window2.setPixelColor(i, COLOR_LIGHT_SILVER);
+			npsm[ID_DESK_2]->setPixelColor(i, COLOR_LIGHT_SILVER);
 		} else {
-			window2.setPixelColor(i, COLOR_MAROON);
+			npsm[ID_DESK_2]->setPixelColor(i, COLOR_MAROON);
 		}
 
 		int modified = WINDOW_LENGTH + 9 - 1 - i;
@@ -87,15 +89,15 @@ void Animation_Simple_WinAllWPISpirit::step() {
 			modified -= WINDOW_LENGTH;
 		}
 
-		window3.setPixelColor(modified, COLOR_MAROON);
+		npsm[ID_DESK_2]->setPixelColor(modified, COLOR_MAROON);
 	} else if (mode) {
-		window1.setPixelColor(i, COLOR_LIGHT_SILVER);
+		npsm[ID_DESK_1]->setPixelColor(i, COLOR_LIGHT_SILVER);
 
 		for (int j = 0; j < WINDOW_LENGTH; j++) {
 			if (i % 2 != 0) {
-				window2.setPixelColor(i, COLOR_LIGHT_SILVER);
+				npsm[ID_DESK_2]->setPixelColor(i, COLOR_LIGHT_SILVER);
 			} else {
-				window2.setPixelColor(i, COLOR_MAROON);
+				npsm[ID_DESK_2]->setPixelColor(i, COLOR_MAROON);
 			}
 		}
 
@@ -105,17 +107,17 @@ void Animation_Simple_WinAllWPISpirit::step() {
 			modified -= WINDOW_LENGTH;
 		}
 
-		window3.setPixelColor(modified, COLOR_LIGHT_SILVER);
+		npsm[ID_DESK_2]->setPixelColor(modified, COLOR_LIGHT_SILVER);
 	}
 
-    window1.show();
-    window3.show();
+    npsm[ID_DESK_1]->show();
+    npsm[ID_DESK_2]->show();
 
 	if (mode) {
 		if (i + 1 == WINDOW_LENGTH) {
 			i = 0;
 			mode = false;
-			window2.show();
+			npsm[ID_DESK_2]->show();
 			this->current_exec++;
 		} else {
 			i++;
@@ -124,7 +126,7 @@ void Animation_Simple_WinAllWPISpirit::step() {
 		if (i + 1 == WINDOW_LENGTH) {
 			i = 0;
 			mode = true;
-			window2.show();
+			npsm[ID_DESK_2]->show();
 		} else {
 			i++;
 		}
