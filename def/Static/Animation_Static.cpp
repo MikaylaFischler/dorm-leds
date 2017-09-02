@@ -69,9 +69,9 @@ void Animation_Static_TransFlagWindows::init() {
 
 void Animation_Static_TransFlagWindows::step() {
 	for (int i = 0; i < WINDOW_LENGTH; i++) {
-		npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_WHITE, COLOR_PINK, COLOR_BABY_BLUE);
-		npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_WHITE, COLOR_PINK, COLOR_BABY_BLUE);
-		npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_WHITE, COLOR_PINK, COLOR_BABY_BLUE);
+		npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_WHITE);
+		npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_PINK);
+		npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_BABY_BLUE);
 	}
 
 	npsm[ID_WINDOW_1]->show();
@@ -94,13 +94,13 @@ void Animation_Static_TransFlagStripedWindows::init() {
 void Animation_Static_TransFlagStripedWindows::step() {
 	for (int i = 0; i < WINDOW_LENGTH; i++) {
 		if (i >= WINDOW_BOTTOM_RIGHT && i <= WINDOW_TOP_RIGHT) {
-			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_PINK, COLOR_WHITE, COLOR_BABY_BLUE);
-			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_PINK, COLOR_WHITE, COLOR_BABY_BLUE);
-			npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_PINK, COLOR_WHITE, COLOR_BABY_BLUE);
+			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_PINK);
+			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_WHITE);
+			npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_BABY_BLUE);
 		} else if (i >= WINDOW_TOP_LEFT && i <= WINDOW_BOTTOM_LEFT) {
-			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_BABY_BLUE, COLOR_WHITE, COLOR_PINK);
-			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_BABY_BLUE, COLOR_WHITE, COLOR_PINK);
-			npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_BABY_BLUE, COLOR_WHITE, COLOR_PINK);
+			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_BABY_BLUE);
+			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_WHITE);
+			npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_PINK);
 		} else {
 			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_BLACK);
 			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_BLACK);

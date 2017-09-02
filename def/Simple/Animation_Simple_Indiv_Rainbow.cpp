@@ -89,7 +89,7 @@ void Animation_Simple_Indiv_RainbowWipe::step() {
 
     i++;
 
-	if (i == this->strip->numPixels()) {
+	if (i == npsm[this->id]->numPixels()) {
 		cur_color++;
 		i = 0;
 

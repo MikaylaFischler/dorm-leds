@@ -93,7 +93,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
   		this->current_exec++;
 	}
 
-	showAllWindowStrips();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::randomize_display(int x) {
@@ -141,13 +143,13 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade() {
 		int pixel = 0;
 
 		if (x < WINDOW_LENGTH) {
-			temp_win = &(npsm[ID_WINDOW_1]);
+			temp_win = npsm[ID_WINDOW_1];
 			pixel = x;
 		} else if (x < WINDOW_LENGTH * 2) {
-			temp_win = &(npsm[ID_WINDOW_2]);
+			temp_win = npsm[ID_WINDOW_2];
 			pixel = x - WINDOW_LENGTH;
 		} else {
-			temp_win = &(npsm[ID_WINDOW_3]);
+			temp_win = npsm[ID_WINDOW_3];
 			pixel = x - WINDOW_LENGTH * 2;
 		}
 
