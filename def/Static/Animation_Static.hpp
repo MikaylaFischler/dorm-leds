@@ -22,15 +22,6 @@ public:
     void step();
 };
 
-class Animation_Static_DeskThirdDimAmbient : public Animation_Static {
-public:
-    Animation_Static_DeskThirdDimAmbient() {}
-    ~Animation_Static_DeskThirdDimAmbient() {}
-
-	void init();
-    void step();
-};
-
 class Animation_Static_DeskDimAmbient : public Animation_Static {
 public:
     Animation_Static_DeskDimAmbient() {}
@@ -62,19 +53,19 @@ public:
 
 class Animation_Static_Indiv : public Animation_Static {
 protected:
-	Animation_Static_Indiv(Adafruit_NeoPixel* _strip) : strip(_strip) {}
+	Animation_Static_Indiv(int _id) : id(_id) {}
 	~Animation_Static_Indiv() {}
 
     void init();
 
-	Adafruit_NeoPixel* strip;
+	int id;
 };
 
 class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
 private:
 	unsigned long int color;
 public:
-    Animation_Static_Indiv_Color(Adafruit_NeoPixel* strip, unsigned long int c) : Animation_Static_Indiv(strip), color(c) {}
+    Animation_Static_Indiv_Color(int id, unsigned long int c) : Animation_Static_Indiv(id), color(c) {}
     ~Animation_Static_Indiv_Color() {}
 
 	void init();
@@ -83,7 +74,7 @@ public:
 
 class Animation_Static_Indiv_ThirdDimAmbient : public Animation_Static_Indiv {
 public:
-    Animation_Static_Indiv_ThirdDimAmbient(Adafruit_NeoPixel* strip) : Animation_Static_Indiv(strip) {}
+    Animation_Static_Indiv_ThirdDimAmbient(int id) : Animation_Static_Indiv(id) {}
     ~Animation_Static_Indiv_ThirdDimAmbient() {}
 
 	void init();

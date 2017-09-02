@@ -71,7 +71,6 @@
 [Static]
 	{Animation_Static}
 		Animation_Static_DeskBrightWhite
-		Animation_Static_DeskThirdDimAmbient
 		Animation_Static_DeskDimAmbient
 
 		{Animation_Static_Indiv}
