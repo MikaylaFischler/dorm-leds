@@ -5,6 +5,7 @@
 #include <ArduinoSTL.h>
 #include <vector>
 
+#include "Device.hpp"
 #include "../../util/free_memory.h"
 
 using std::vector;

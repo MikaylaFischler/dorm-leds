@@ -27,7 +27,7 @@ public:
 	virtual void step() {}
 
     int getNumStrips() const;
-    short int* getDependencies() const;
+    vector<int> getDependencies() const;
 
 	long int getMaxExecutions() const;
 	long int getCurrentExecutionCount() const;

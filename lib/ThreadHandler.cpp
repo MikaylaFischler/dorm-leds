@@ -28,24 +28,24 @@ void ThreadHandler::queue(Animation* anim) {
 	vector<Animation*> conflicts;
 
 	// check for conflicting animations
-	for (int i = 0; i < dependencies.size(); i++) {
+	for (unsigned int i = 0; i < dependencies.size(); i++) {
 		if (npsm.inUse(dependencies[i])) {
 			conflicts.push_back(npsm.usedBy(dependencies[i]));
 		}
 	}
 
 	// de-queue conflicting animations
-	for (int i = 0; i < conflicts.size(); i++) {
+	for (unsigned int i = 0; i < conflicts.size(); i++) {
 		int x = 0;
 		for (vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, x++) {
-			if (*it == conflicts[i]) {
+			if ((*it)->getAnimation() == conflicts[i]) {
 				Serial.print(F("ThreadHandler.cpp:> De-queuing conflict: "));
 				Serial.println((*it)->getAnimation()->getName());
 
 				vector<int> depend = anim->getDependencies();
 
 				// release the strips used by this animation
-				for (int i = 0; i < depend.size(); i++) {
+				for (unsigned int i = 0; i < depend.size(); i++) {
 					npsm.release(depend[i]);
 				}
 
@@ -59,7 +59,7 @@ void ThreadHandler::queue(Animation* anim) {
 	}
 
 	// attain owndership of necessary strips
-	for (int i = 0; i < dependencies.size(); i++) {
+	for (unsigned int i = 0; i < dependencies.size(); i++) {
 		npsm.use(dependencies[i], anim);
 	}
 
