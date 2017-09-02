@@ -62,10 +62,10 @@ void led_man_queue() {
 	// manually queue animations for startup
 
 	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
-	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_DESK_1));
-	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_DESK_2));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
+	thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
+	thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
