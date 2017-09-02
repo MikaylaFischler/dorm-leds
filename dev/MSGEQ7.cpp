@@ -7,9 +7,6 @@ MSGEQ7::MSGEQ7(String name, int strobe_port, int reset_port, int input_port) : D
 	pinMode(reset_port, OUTPUT);
 }
 
-// <<destructor>>
-MSGEQ7::~MSGEQ7() {}
-
 // get the value (NOISE_FILTER to 1023), note: there is some signal noise when there is silence
 int MSGEQ7::getRaw(int i) const { return spectrum_values[i]; }
 
