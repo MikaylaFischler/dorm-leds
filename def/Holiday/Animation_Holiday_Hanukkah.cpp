@@ -6,8 +6,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[2]: Hanukkah with Snow");
     this->update_rate = 50;
-	this->num_strips = 1;
- 	this->strips = WINDOW_2;
+ 	this->strips.push_back(ID_WINDOW_2);
 
 	i = 0;
 	left = 0;
@@ -52,9 +51,9 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x - LEFT_TOP + 4;
 
 		if (rel_index < a % LEFT_FULL_LENGTH) {
-			window2.setPixelColor(x, blue);
+			npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -63,9 +62,9 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x - 6;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window2.setPixelColor(x, blue);
+			npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -74,9 +73,9 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x + 35;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window2.setPixelColor(x, blue);
+			npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -85,9 +84,9 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x - 5;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
-			window2.setPixelColor(x, blue);
+			npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 		} else {
-			window2.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 		}
 	}
 
@@ -96,12 +95,12 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x - RIGHT_BOTTOM;
 
 		if (rel_index % right_spacing == (800 - i) % right_spacing) {
-			window2.setPixelColor(x, on);
+			npsm[ID_WINDOW_2]->setPixelColor(x, on);
 		} else {
 			if (x - 4 < a % RIGHT_FULL_LENGTH) {
-				window2.setPixelColor(x, blue);
+				npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 			} else {
-				window2.setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
@@ -111,15 +110,15 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 		int rel_index = x - LEFT_TOP;
 
 		if (rel_index % left_spacing == i % left_spacing) {
-			window2.setPixelColor(x, on);
+			npsm[ID_WINDOW_2]->setPixelColor(x, on);
 		} else {
 			if (rel_index + 4 < a % LEFT_FULL_LENGTH) {
-				window2.setPixelColor(x, blue);
+				npsm[ID_WINDOW_2]->setPixelColor(x, blue);
 			} else {
-				window2.setPixelColor(x, COLOR_OFF);
+				npsm[ID_WINDOW_2]->setPixelColor(x, COLOR_OFF);
 			}
 		}
 	}
 
-	window2.show();
+	npsm[ID_WINDOW_2]->show();
 }

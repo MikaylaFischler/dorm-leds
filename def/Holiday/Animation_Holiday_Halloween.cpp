@@ -6,8 +6,9 @@ void Animation_Holiday_Halloween_WinAllFade::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Basic Halloween Fade");
     this->update_rate = 5;
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 
 	i = 0;
 	increasing = true;
@@ -15,12 +16,14 @@ void Animation_Holiday_Halloween_WinAllFade::init() {
 
 void Animation_Holiday_Halloween_WinAllFade::step() {
     for (int x = 0; x < WINDOW_LENGTH; x++) {
-    	window1.setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
-        window2.setPixelColor(x, Color((int)(((float)i / 255.0) * 150), 0, i));
-        window3.setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
+    	npsm[ID_WINDOW_1]->setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
+        npsm[ID_WINDOW_2]->setPixelColor(x, Color((int)(((float)i / 255.0) * 150), 0, i));
+        npsm[ID_WINDOW_3]->setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
     }
 
-    showAllWindowStrips();
+	npsm[ID_WINDOW_1]->show();
+    npsm[ID_WINDOW_2]->show();
+    npsm[ID_WINDOW_3]->show();
 
     if (increasing) {
         if (i == 255) {
@@ -56,8 +59,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
  	this->name = F("Window[all]: Halloween Sparkle Fade");
     this->update_rate = 1;
-	this->num_strips = 3;
- 	this->strips = WINDOW_ALL;
+ 	this->strips.push_back(ID_WINDOW_1);
+ 	this->strips.push_back(ID_WINDOW_2);
+ 	this->strips.push_back(ID_WINDOW_3);
 
 	i = 0;
 
@@ -69,11 +73,11 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 
 		// init all off
 		if (x < WINDOW_LENGTH) {
-			window1.setPixelColor(x, COLOR_OFF);
+			npsm[ID_WINDOW_1]->setPixelColor(x, COLOR_OFF);
 		} else if (x < WINDOW_LENGTH * 2) {
-			window2.setPixelColor(x - WINDOW_LENGTH, COLOR_OFF);
+			npsm[ID_WINDOW_2]->setPixelColor(x - WINDOW_LENGTH, COLOR_OFF);
 		} else {
-			window3.setPixelColor(x - WINDOW_LENGTH * 2, COLOR_OFF);
+			npsm[ID_WINDOW_3]->setPixelColor(x - WINDOW_LENGTH * 2, COLOR_OFF);
 		}
 	}
 }
@@ -89,7 +93,9 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::step() {
   		this->current_exec++;
 	}
 
-	showAllWindowStrips();
+	npsm[ID_WINDOW_1]->show();
+	npsm[ID_WINDOW_2]->show();
+	npsm[ID_WINDOW_3]->show();
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::randomize_display(int x) {
@@ -137,13 +143,13 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade() {
 		int pixel = 0;
 
 		if (x < WINDOW_LENGTH) {
-			temp_win = &window1;
+			temp_win = npsm[ID_WINDOW_1];
 			pixel = x;
 		} else if (x < WINDOW_LENGTH * 2) {
-			temp_win = &window2;
+			temp_win = npsm[ID_WINDOW_2];
 			pixel = x - WINDOW_LENGTH;
 		} else {
-			temp_win = &window3;
+			temp_win = npsm[ID_WINDOW_3];
 			pixel = x - WINDOW_LENGTH * 2;
 		}
 
