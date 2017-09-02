@@ -2,10 +2,9 @@
 #define THREAD_HPP_
 
 #include <Arduino.h>
-#include <ArduinoSTL.h>
-#include <vector>
 
 #include "exe/Animation.hpp"
+#include "exe/Process.hpp"
 
 class Thread {
 private:

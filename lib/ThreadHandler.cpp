@@ -1,10 +1,10 @@
 #include "ThreadHandler.hpp"
 
 // get the list of queued animation threads
-std::vector<AnimationThread*> ThreadHandler::listAnimationThreads() const { return anim_threads; }
+vector<AnimationThread*> ThreadHandler::listAnimationThreads() const { return anim_threads; }
 
 // get the list of queued process threads
-std::vector<ProcessThread*> ThreadHandler::listProcessThreads() const { return proc_threads; }
+vector<ProcessThread*> ThreadHandler::listProcessThreads() const { return proc_threads; }
 
 // queue an animation
 void ThreadHandler::queue(Animation* anim) {
@@ -24,8 +24,44 @@ void ThreadHandler::queue(Animation* anim) {
 	Serial.print(mem_available - freeMemory());
 	Serial.println(F(" bytes of SRAM"));
 
-	// dequeue conflicting threads
-	dequeueConflicts(anim); // this MUST be after memory calculations
+	vector<int> dependencies = anim->getDependencies();
+	vector<Animation*> conflicts;
+
+	// check for conflicting animations
+	for (int i = 0; i < dependencies.size(); i++) {
+		if (npsm.inUse(dependencies[i])) {
+			conflicts.push_back(npsm.usedBy(dependencies[i]));
+		}
+	}
+
+	// de-queue conflicting animations
+	for (int i = 0; i < conflicts.size(); i++) {
+		int x = 0;
+		for (vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, x++) {
+			if (*it == conflicts[i]) {
+				Serial.print(F("ThreadHandler.cpp:> De-queuing conflict: "));
+				Serial.println((*it)->getAnimation()->getName());
+
+				vector<int> depend = anim->getDependencies();
+
+				// release the strips used by this animation
+				for (int i = 0; i < depend.size(); i++) {
+					npsm.release(depend[i]);
+				}
+
+				// delete this animation
+				delete *it;
+				anim_threads.erase(anim_threads.begin() + x);
+
+				Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued."));
+			}
+		}
+	}
+
+	// attain owndership of necessary strips
+	for (int i = 0; i < dependencies.size(); i++) {
+		npsm.use(dependencies[i], anim);
+	}
 
 	anim_threads.push_back(t);
 
@@ -60,12 +96,12 @@ void ThreadHandler::queue(Process* proc) {
 // update the time sums for each thread
 void ThreadHandler::updateTimeAccumulated(unsigned long int dT) {
 	// iterate through each queued animation thread
-	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++) {
+	for (vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++) {
 		(*it)->addTime(dT);;
 	}
 
 	// iterate through each queued process thread
-	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
+	for (vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
 		(*it)->addTime(dT);
 	}
 }
@@ -78,7 +114,7 @@ void ThreadHandler::executeTick() {
 	unsigned long int timeSum;
 
 	// iterate through each queued animation thread
-	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, i++) {
+	for (vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, i++) {
 		AnimationThread& this_thread = **it;
 		updateRate = this_thread.getUpdateRate();
 		timeSum = this_thread.getTimeSum();
@@ -98,7 +134,7 @@ void ThreadHandler::executeTick() {
 	}
 
 	// iterate through each queued process thread
-	for (std::vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
+	for (vector<ProcessThread*>::iterator it = proc_threads.begin(); it != proc_threads.end(); it++) {
 		ProcessThread& this_thread = **it;
 		updateRate = this_thread.getUpdateRate();
 		timeSum = this_thread.getTimeSum();
@@ -108,36 +144,4 @@ void ThreadHandler::executeTick() {
 			this_thread.resetTimeSum();
 		}
 	}
-}
-
-// dequeue any conflicting animations (recursive)
-void ThreadHandler::dequeueConflicts(Animation* anim) {
-	int i = 0;
-
-	for (std::vector<AnimationThread*>::iterator it = anim_threads.begin(); it != anim_threads.end(); it++, i++) {
-		AnimationThread& this_thread = **it;
-
-		if (conflictsWith(anim->getDependencies(), anim->getNumStrips(), this_thread.getAnimation()->getDependencies(), this_thread.getAnimation()->getNumStrips())) {
-			Serial.print(F("ThreadHandler.cpp:> Conflicting Function De-Queued: "));
-			Serial.println(this_thread.getAnimation()->getName());
-
-			delete *it;
-			anim_threads.erase(anim_threads.begin() + i);
-
-			dequeueConflicts(anim);
-			break;
-		}
-	}
-}
-
-// check if the inputed list conflicts another inputed list
-// the multiple loops shouldn't have much overhead since it is not possible for either will be larger than 5 elements
-bool ThreadHandler::conflictsWith(short int* str1, int length1, short int* str2, int length2) {
-	for (int a = 0; a < length1; a++) {
-		for (int b = 0; b < length2; b++) {
-			if (str1[a] == str2[b]) { return true; }
-		}
-	}
-
-	return false;
 }
