@@ -66,6 +66,7 @@
 				Animation_Simple_Indiv_Rainbow_Rainbow(&strip)
 				Animation_Simple_Indiv_Rainbow_RainbowCycle(&strip)
 				Animation_Simple_Indiv_Rainbow_RainbowTheaterChase(&strip)
+				Animation_Simple_Indiv_RainbowWhiteTheaterChase_W(id)
 				Animation_Simple_Indiv_Rainbow_RainbowWipe(&strip)
 
 [Static]
