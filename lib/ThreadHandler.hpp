@@ -12,6 +12,8 @@
 
 #include "../util/free_memory.h"
 
+#include "../conf/globals.h"
+
 using std::vector;
 
 class ThreadHandler {

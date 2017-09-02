@@ -1,7 +1,7 @@
 #include "NeoPixelStripManager.hpp"
 
 // add a new strip to the manager
-NeoPixelStripManager::addStrip(String name, bool rgbw, Adafruit_NeoPixel* strip) {
+void NeoPixelStripManager::addStrip(String name, bool rgbw, Adafruit_NeoPixel* strip) {
 	strip_data* d = new strip_data;
 
 	d->name = name;
@@ -14,7 +14,7 @@ NeoPixelStripManager::addStrip(String name, bool rgbw, Adafruit_NeoPixel* strip)
 }
 
 // drop a strip from the manager
-NeoPixelStripManager::dropStrip(int id) {
+void NeoPixelStripManager::dropStrip(int id) {
 	delete this->strips.at(id);
 	delete this->data.at(id);
 

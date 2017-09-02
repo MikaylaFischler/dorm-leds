@@ -18,7 +18,7 @@ void DeviceManager::mount(Device* dev) {
 
 // remove a device from the system
 template <typename dev_type>
-void DeviceManager::unmount<int id) {
+void DeviceManager::unmount(int id) {
 	// log to console
 	Serial.print(F("DeviceManager.cpp:> Device Unmounted: "));
 	Serial.println(this->devices[id]->getName());
