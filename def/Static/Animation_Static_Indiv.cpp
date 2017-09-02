@@ -5,9 +5,8 @@
 // define the generic individual init
 void Animation_Static_Indiv::init() {
   	Animation_Static::init();
-	this->num_strips = 1;
-	this->name = getNameOfStrip(this->strip);
-	this->strips = getAsStripArray(this->strip);
+	this->name = npsm.name(this->id);
+	this->strips.push_back(this->id);
 }
 
 /* ~~~ Animation Static Individual: Single Color ~~~ */
@@ -18,11 +17,11 @@ void Animation_Static_Indiv_Color::init() {
 }
 
 void Animation_Static_Indiv_Color::step() {
-	for (unsigned int i = 0; i < this->strip->numPixels(); i++) {
-		this->strip->setPixelColor(i, this->color);
+	for (unsigned int i = 0; i < npsm[this->id]->numPixels(); i++) {
+		npsm[this->id]->setPixelColor(i, this->color);
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 	this->current_exec++;
 }
 
@@ -34,14 +33,14 @@ void Animation_Static_Indiv_ThirdDimAmbient::init() {
 }
 
 void Animation_Static_Indiv_ThirdDimAmbient::step() {
-	for (unsigned int i = 0; i < this->strip->numPixels(); i++) {
+	for (unsigned int i = 0; i < npsm[this->id]->numPixels(); i++) {
 		if (i % 3 == 0) {
-			this->strip->setPixelColor(i, COLOR_DIM_OFF_WHITE);
+			npsm[this->id]->setPixelColor(i, COLOR_DIM_OFF_WHITE);
 		} else {
-			this->strip->setPixelColor(i, COLOR_OFF);
+			npsm[this->id]->setPixelColor(i, COLOR_OFF);
 		}
 	}
 
-	this->strip->show();
+	npsm[this->id]->show();
 	this->current_exec++;
 }
