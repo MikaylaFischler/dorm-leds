@@ -137,9 +137,10 @@ protected:
 
 class Animation_Advanced_Pulse_CeilingChart : public Animation_Advanced_Pulse {
 private:
+	bool quarticScaleFilter;
 	int cur_pixel;
 public:
-    Animation_Advanced_Pulse_CeilingChart() {}
+    Animation_Advanced_Pulse_CeilingChart(bool qSF) : quarticScaleFilter(qSF) {}
     ~Animation_Advanced_Pulse_CeilingChart() {}
 
     void init();

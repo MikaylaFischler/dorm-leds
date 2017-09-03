@@ -68,7 +68,7 @@ void led_man_queue() {
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
-	thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart());
+	thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart(true));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
