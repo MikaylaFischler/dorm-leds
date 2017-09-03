@@ -37,9 +37,15 @@ void Animation_Advanced_Pulse_CeilingChart::step() {
 	int value = this->pulse_mon->read();
 	int mapped_pixel;
 
-	Serial.println("heartbeat");
+	Serial.println(value);
 
-	int mapped_value = map(value, 500, 800, 0, 255);
+	int mapped_value = map(value, 400, 975, 0, 255);
+
+	if (quarticScaleFilter) {
+		mapped_value = round(pow((long double) mapped_value, 4) * 0.00000006); // agressive filter
+	} else {
+		mapped_value = round(pow((long double) mapped_value, 2) * 0.004); // less agressive filter
+	}
 
 	if (cur_pixel < CEILING_LEFT_LENGTH) {
 		mapped_pixel = CEILING_LEFT_LENGTH - cur_pixel - 1;
