@@ -106,45 +106,89 @@ void Animation_Advanced_Audio_PulseNestedLR::step() {
 	l6 = quadraticBrightness(left_eq->get8Bit(6));
 	r6 = quadraticBrightness(right_eq->get8Bit(6));
 
-	len = npsm[strip1]->numPixels();
-	mid = len / 2;
+	if (mode == true) {
+		// split as a whole
+		len = npsm[strip1]->numPixels();
 
-	for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
-		if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
-			npsm[strip1]->setPixelColor(x, (int) round(l6 * 175.0/255.0), 0, l6);
-		} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
-			npsm[strip1]->setPixelColor(x, (int) round(l5 * 100.0/255.0), 0, l5);
-		} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
-			npsm[strip1]->setPixelColor(x, 0, 0, l4);
-		} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
-			npsm[strip1]->setPixelColor(x, 0, l3, 0);
-		} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
-			npsm[strip1]->setPixelColor(x, l2, (int) round(l2 * 150.0/255.0), 0);
-		} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
-			npsm[strip1]->setPixelColor(x, l1, (int) round(l1 * 50.0/255.0), 0);
-		} else {
-			npsm[strip1]->setPixelColor(x, l0, 0, 0);
+		for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
+			if (x > len - (len / 7)) {
+				npsm[strip1]->setPixelColor(x, (int) round(l6 * 175.0/255.0), 0, l6);
+			} else if (x > len - (2 * len / 7)) {
+				npsm[strip1]->setPixelColor(x, (int) round(l5 * 100.0/255.0), 0, l5);
+			} else if (x > len - (3 * len / 7)) {
+				npsm[strip1]->setPixelColor(x, 0, 0, l4);
+			} else if (x > len - (4 * len / 7)) {
+				npsm[strip1]->setPixelColor(x, 0, l3, 0);
+			} else if (x > len - (5 * len / 7)) {
+				npsm[strip1]->setPixelColor(x, l2, (int) round(l2 * 150.0/255.0), 0);
+			} else if (x > len - (6 * len / 7)) {
+				npsm[strip1]->setPixelColor(x, l1, (int) round(l1 * 50.0/255.0), 0);
+			} else {
+				npsm[strip1]->setPixelColor(x, l0, 0, 0);
+			}
 		}
-	}
 
-	len = npsm[strip2]->numPixels();
-	mid = len / 2;
+		len = npsm[strip2]->numPixels();
 
-	for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
-		if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
-			npsm[strip2]->setPixelColor(x, (int) round(r6 * 175.0/255.0), 0, r6);
-		} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
-			npsm[strip2]->setPixelColor(x, (int) round(r5 * 100.0/255.0), 0, r5);
-		} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
-			npsm[strip2]->setPixelColor(x, 0, 0, r4);
-		} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
-			npsm[strip2]->setPixelColor(x, 0, r3, 0);
-		} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
-			npsm[strip2]->setPixelColor(x, r2, (int) round(r2 * 150.0/255.0), 0);
-		} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
-			npsm[strip2]->setPixelColor(x, r1, (int) round(r1 * 50.0/255.0), 0);
-		} else {
-			npsm[strip2]->setPixelColor(x, r0, 0, 0);
+		for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
+			if (x > len - (len / 7)) {
+				npsm[strip2]->setPixelColor(x, (int) round(r6 * 175.0/255.0), 0, r6);
+			} else if (x > len - (2 * len / 7)) {
+				npsm[strip2]->setPixelColor(x, (int) round(r5 * 100.0/255.0), 0, r5);
+			} else if (x > len - (3 * len / 7)) {
+				npsm[strip2]->setPixelColor(x, 0, 0, r4);
+			} else if (x > len - (4 * len / 7)) {
+				npsm[strip2]->setPixelColor(x, 0, r3, 0);
+			} else if (x > len - (5 * len / 7)) {
+				npsm[strip2]->setPixelColor(x, r2, (int) round(r2 * 150.0/255.0), 0);
+			} else if (x > len - (6 * len / 7)) {
+				npsm[strip2]->setPixelColor(x, r1, (int) round(r1 * 50.0/255.0), 0);
+			} else {
+				npsm[strip2]->setPixelColor(x, r0, 0, 0);
+			}
+		}
+	} else {
+		// individually split up
+		len = npsm[strip1]->numPixels();
+		mid = len / 2;
+
+		for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
+			if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
+				npsm[strip1]->setPixelColor(x, (int) round(l6 * 175.0/255.0), 0, l6);
+			} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
+				npsm[strip1]->setPixelColor(x, (int) round(l5 * 100.0/255.0), 0, l5);
+			} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
+				npsm[strip1]->setPixelColor(x, 0, 0, l4);
+			} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
+				npsm[strip1]->setPixelColor(x, 0, l3, 0);
+			} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
+				npsm[strip1]->setPixelColor(x, l2, (int) round(l2 * 150.0/255.0), 0);
+			} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
+				npsm[strip1]->setPixelColor(x, l1, (int) round(l1 * 50.0/255.0), 0);
+			} else {
+				npsm[strip1]->setPixelColor(x, l0, 0, 0);
+			}
+		}
+
+		len = npsm[strip2]->numPixels();
+		mid = len / 2;
+
+		for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
+			if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
+				npsm[strip2]->setPixelColor(x, (int) round(r6 * 175.0/255.0), 0, r6);
+			} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
+				npsm[strip2]->setPixelColor(x, (int) round(r5 * 100.0/255.0), 0, r5);
+			} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
+				npsm[strip2]->setPixelColor(x, 0, 0, r4);
+			} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
+				npsm[strip2]->setPixelColor(x, 0, r3, 0);
+			} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
+				npsm[strip2]->setPixelColor(x, r2, (int) round(r2 * 150.0/255.0), 0);
+			} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
+				npsm[strip2]->setPixelColor(x, r1, (int) round(r1 * 50.0/255.0), 0);
+			} else {
+				npsm[strip2]->setPixelColor(x, r0, 0, 0);
+			}
 		}
 	}
 

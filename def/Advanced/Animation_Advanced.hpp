@@ -61,8 +61,9 @@ private:
 	int r0, r1, r2, r3, r4, r5, r6;
 	int mid, len;
 	int strip1, strip2;
+	bool mode;
 public:
-    Animation_Advanced_Audio_PulseNestedLR(int str1, int str2) : strip1(str1), strip2(str2) {}
+    Animation_Advanced_Audio_PulseNestedLR(int str1, int str2, bool _mode) : strip1(str1), strip2(str2), mode(_mode) {}
     ~Animation_Advanced_Audio_PulseNestedLR() {}
 
 	void init();
