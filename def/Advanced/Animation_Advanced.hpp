@@ -135,6 +135,17 @@ protected:
 	PulseMonitor* pulse_mon;
 };
 
+class Animation_Advanced_Pulse_CeilingPulse : public Animation_Advanced_Pulse {
+private:
+	bool quarticScaleFilter;
+public:
+    Animation_Advanced_Pulse_CeilingPulse(bool qSF) : quarticScaleFilter(qSF) {}
+    ~Animation_Advanced_Pulse_CeilingPulse() {}
+
+    void init();
+	void step();
+};
+
 class Animation_Advanced_Pulse_CeilingChart : public Animation_Advanced_Pulse {
 private:
 	bool quarticScaleFilter;

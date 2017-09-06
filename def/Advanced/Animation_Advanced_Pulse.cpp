@@ -11,6 +11,53 @@ void Animation_Advanced_Pulse::init() {
 	this->pulse_mon = device_manager.getDevice<PulseMonitor>(2);
 }
 
+/* ~~~ Animation Advanced Pulse: Ceiling Pulse ~~~ */
+
+void Animation_Advanced_Pulse_CeilingPulse::init() {
+ 	Animation_Advanced_Pulse::init();
+ 	this->name = F("Ceiling[all]: Pulse");
+ 	this->strips.push_back(ID_CEILING_LEFT);
+ 	this->strips.push_back(ID_CEILING_RIGHT);
+
+	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+		npsm[ID_CEILING_LEFT]->setPixelColor(i, 0, 0, 0, 0);
+	}
+
+	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+		npsm[ID_CEILING_RIGHT]->setPixelColor(i, 0, 0, 0, 0);
+	}
+
+	npsm[ID_CEILING_LEFT]->show();
+	npsm[ID_CEILING_RIGHT]->show();
+}
+
+void Animation_Advanced_Pulse_CeilingPulse::step() {
+	int value = this->pulse_mon->read();
+
+	Serial.println(value);
+
+	int mapped_value = map(value, 400, 975, 0, 255);
+
+	if (quarticScaleFilter) {
+		mapped_value = round(pow((long double) mapped_value, 4) * 0.00000006); // agressive filter
+	} else {
+		mapped_value = round(pow((long double) mapped_value, 2) * 0.004); // less agressive filter
+	}
+
+	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+		npsm[ID_CEILING_LEFT]->setPixelColor(i, mapped_value, 0, 0, 0);
+	}
+
+	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+		npsm[ID_CEILING_RIGHT]->setPixelColor(i, mapped_value, 0, 0, 0);
+	}
+
+	npsm[ID_CEILING_LEFT]->show();
+	npsm[ID_CEILING_RIGHT]->show();
+
+	this->current_exec++;
+}
+
 /* ~~~ Animation Advanced Pulse: Ceiling Pulse Chart ~~~ */
 
 void Animation_Advanced_Pulse_CeilingChart::init() {
