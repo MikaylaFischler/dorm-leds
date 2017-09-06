@@ -12,6 +12,148 @@ void Animation_Advanced_Audio::init() {
 	this->right_eq = device_manager.getDevice<MSGEQ7>(1);
 }
 
+/* ~~~ Animation Advanced Audio: Bass Pulse w/ Left and Right ~~~ */
+
+void Animation_Advanced_Audio_BassPulseLR::init() {
+ 	Animation_Advanced_Audio::init();
+	// TODO make it not say ceiling inherently
+ 	this->name = F("Ceiling[all]: Audio Bass Beat Pulse L/R");
+ 	this->strips.push_back(strip1);
+ 	this->strips.push_back(strip2);
+}
+
+void Animation_Advanced_Audio_BassPulseLR::step() {
+	low_L = quadraticBrightness(left_eq->get8Bit(1));
+	low_R = quadraticBrightness(right_eq->get8Bit(1));
+
+	for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
+		npsm[strip1]->setPixelColor(x, low_L, 0, 0);
+	}
+
+	for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
+		npsm[strip2]->setPixelColor(x, low_R, 0, 0);
+	}
+
+	npsm[strip1]->show();
+	npsm[strip2]->show();
+
+	this->current_exec++;
+}
+
+/* ~~~ Animation Advanced Audio: Bass Pulse w/ Left and Right ~~~ */
+
+void Animation_Advanced_Audio_BassPulseNestedLR::init() {
+ 	Animation_Advanced_Audio::init();
+	// TODO make it not say ceiling inherently
+ 	this->name = F("Ceiling[all]: Audio Bass Beat Pulse Nested L/R");
+ 	this->strips.push_back(strip1);
+ 	this->strips.push_back(strip2);
+}
+
+void Animation_Advanced_Audio_BassPulseNestedLR::step() {
+	low_L = quadraticBrightness(left_eq->get8Bit(1));
+	low_R = quadraticBrightness(right_eq->get8Bit(1));
+	low2_L = quadraticBrightness(left_eq->get8Bit(2));
+	low2_R = quadraticBrightness(right_eq->get8Bit(2));
+
+	for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
+		mid = ((npsm[strip1]->numPixels()) / 2);
+		if (x > mid - (mid / 3) && x < mid + (mid / 3)) {
+			npsm[strip1]->setPixelColor(x, low2_L, (int) round(low2_L * 50.0/255.0), 0);
+		} else {
+			npsm[strip1]->setPixelColor(x, low_L, 0, 0);
+		}
+	}
+
+	for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
+		mid = ((npsm[strip2]->numPixels()) / 2);
+		if (x > mid - (mid / 3) && x < mid + (mid / 3)) {
+			npsm[strip2]->setPixelColor(x, low2_R, (int) round(low2_R * 50.0/255.0), 0);
+		} else {
+			npsm[strip2]->setPixelColor(x, low_R, 0, 0);
+		}
+	}
+
+	npsm[strip1]->show();
+	npsm[strip2]->show();
+
+	this->current_exec++;
+}
+
+/* ~~~ Animation Advanced Audio: Pulse w/ Left and Right ~~~ */
+
+void Animation_Advanced_Audio_PulseNestedLR::init() {
+ 	Animation_Advanced_Audio::init();
+	// TODO make it not say ceiling inherently
+ 	this->name = F("Ceiling[all]: Audio Pulse Nested L/R");
+ 	this->strips.push_back(strip1);
+ 	this->strips.push_back(strip2);
+}
+
+void Animation_Advanced_Audio_PulseNestedLR::step() {
+	l0 = quadraticBrightness(left_eq->get8Bit(0));
+	r0 = quadraticBrightness(right_eq->get8Bit(0));
+	l1 = quadraticBrightness(left_eq->get8Bit(1));
+	r1 = quadraticBrightness(right_eq->get8Bit(1));
+	l2 = quadraticBrightness(left_eq->get8Bit(2));
+	r2 = quadraticBrightness(right_eq->get8Bit(2));
+	l3 = quadraticBrightness(left_eq->get8Bit(3));
+	r3 = quadraticBrightness(right_eq->get8Bit(3));
+	l4 = quadraticBrightness(left_eq->get8Bit(4));
+	r4 = quadraticBrightness(right_eq->get8Bit(4));
+	l5 = quadraticBrightness(left_eq->get8Bit(5));
+	r5 = quadraticBrightness(right_eq->get8Bit(5));
+	l6 = quadraticBrightness(left_eq->get8Bit(6));
+	r6 = quadraticBrightness(right_eq->get8Bit(6));
+
+	len = npsm[strip1]->numPixels();
+	mid = len / 2;
+
+	for (int x = 0; x < npsm[strip1]->numPixels(); x++) {
+		if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
+			npsm[strip1]->setPixelColor(x, (int) round(l6 * 175.0/255.0), 0, l6);
+		} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
+			npsm[strip1]->setPixelColor(x, (int) round(l5 * 100.0/255.0), 0, l5);
+		} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
+			npsm[strip1]->setPixelColor(x, 0, 0, l4);
+		} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
+			npsm[strip1]->setPixelColor(x, 0, l3, 0);
+		} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
+			npsm[strip1]->setPixelColor(x, l2, (int) round(l2 * 150.0/255.0), 0);
+		} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
+			npsm[strip1]->setPixelColor(x, l1, (int) round(l1 * 50.0/255.0), 0);
+		} else {
+			npsm[strip1]->setPixelColor(x, l0, 0, 0);
+		}
+	}
+
+	len = npsm[strip2]->numPixels();
+	mid = len / 2;
+
+	for (int x = 0; x < npsm[strip2]->numPixels(); x++) {
+		if (x > mid - (mid / 7) && x < mid + (mid / 7)) {
+			npsm[strip2]->setPixelColor(x, (int) round(r6 * 175.0/255.0), 0, r6);
+		} else if (x > mid - (2 * mid / 7) && x < mid + (2 * mid / 7)) {
+			npsm[strip2]->setPixelColor(x, (int) round(r5 * 100.0/255.0), 0, r5);
+		} else if (x > mid - (3 * mid / 7) && x < mid + (3 * mid / 7)) {
+			npsm[strip2]->setPixelColor(x, 0, 0, r4);
+		} else if (x > mid - (4 * mid / 7) && x < mid + (4 * mid / 7)) {
+			npsm[strip2]->setPixelColor(x, 0, r3, 0);
+		} else if (x > mid - (5 * mid / 7) && x < mid + (5 * mid / 7)) {
+			npsm[strip2]->setPixelColor(x, r2, (int) round(r2 * 150.0/255.0), 0);
+		} else if (x > mid - (6 * mid / 7) && x < mid + (6 * mid / 7)) {
+			npsm[strip2]->setPixelColor(x, r1, (int) round(r1 * 50.0/255.0), 0);
+		} else {
+			npsm[strip2]->setPixelColor(x, r0, 0, 0);
+		}
+	}
+
+	npsm[strip1]->show();
+	npsm[strip2]->show();
+
+	this->current_exec++;
+}
+
 /* ~~~ Animation Advanced Audio: Bass Window Pulse ~~~ */
 
 void Animation_Advanced_Audio_BassPulseWindow::init() {
@@ -132,37 +274,37 @@ void Animation_Advanced_Audio_BasePulseCircularEqWindow::step() {
 
 	// side windows (lows) (bottom 3)
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		if (no_0 && x == left_eq->getInWindowRange(0)) {
+		if (no_0 && x == left_eq->getInRange(0, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(0));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_0 = false;
-		} else if (no_1 && x == left_eq->getInWindowRange(1)) {
+		} else if (no_1 && x == left_eq->getInRange(1, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(1));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_1 = false;
-		} else if (no_2 && x == left_eq->getInWindowRange(2)) {
+		} else if (no_2 && x == left_eq->getInRange(2, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(2));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_2 = false;
-		} else if (no_3 && x == left_eq->getInWindowRange(3)) {
+		} else if (no_3 && x == left_eq->getInRange(3, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(3));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_3 = false;
-		} else if (no_4 && x == left_eq->getInWindowRange(4)) {
+		} else if (no_4 && x == left_eq->getInRange(4, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(4));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_4 = false;
-		} else if (no_5 && x == left_eq->getInWindowRange(5)) {
+		} else if (no_5 && x == left_eq->getInRange(5, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(5));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
 			no_5 = false;
-		} else if (no_6 && x == left_eq->getInWindowRange(6)) {
+		} else if (no_6 && x == left_eq->getInRange(6, 0, WINDOW_LENGTH)) {
 			val = ColorWheel(left_eq->get8Bit(6));
 			npsm[ID_WINDOW_1]->setPixelColor(x, val);
 			npsm[ID_WINDOW_3]->setPixelColor(x, val);
@@ -402,6 +544,94 @@ void Animation_Advanced_Audio_MaxEqualizerWindow::step() {
 					max[i] = 9;
 				}
 			}
+		}
+	} else {
+		count++;
+	}
+
+	this->current_exec++;
+}
+
+/* ~~~ Animation Advanced Audio: Advanced Equalizer w/ Max ~~~ */
+
+void Animation_Advanced_Audio_MaxBassEqualizerCeiling::init() {
+ 	Animation_Advanced_Audio::init();
+ 	this->name = F("Window[all]: Horiz. Audio Eq. w/ Max");
+ 	this->strips.push_back(ID_CEILING_LEFT);
+ 	this->strips.push_back(ID_CEILING_RIGHT);
+
+	// initialize max vals
+	max[0] = 0;
+	max[1] = 0;
+
+	count = 0;
+
+	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+		npsm[ID_CEILING_LEFT]->setPixelColor(i, COLOR_OFF);
+	}
+
+	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+		npsm[ID_CEILING_RIGHT]->setPixelColor(i, COLOR_OFF);
+	}
+}
+
+void Animation_Advanced_Audio_MaxBassEqualizerCeiling::step() {
+	// get EQ values
+	val[0] = left_eq->getInRange(1, 0, CEILING_RIGHT_LENGTH);
+	val[1] = right_eq->getInRange(1, 0, CEILING_RIGHT_LENGTH);
+
+	// update max vals
+	for (int i = 0; i < 2; i++) {
+		if (max[i] <= val[i]) {
+			max[i] = val[i];
+		}
+	}
+
+	// low eqs
+	for (unsigned int x = 0; x < CEILING_LEFT_LENGTH; x++) {
+		if (x <= val[0]) {
+			npsm[ID_CEILING_LEFT]->setPixelColor(x, COLOR_ORANGE);
+		} else {
+			npsm[ID_CEILING_LEFT]->setPixelColor(x, COLOR_OFF);
+		}
+
+		if (x == max[0]) {
+			npsm[ID_CEILING_LEFT]->setPixelColor(x, COLOR_WHITE);
+		}
+	}
+
+	for (unsigned int x = 0; x < CEILING_RIGHT_LENGTH; x++) {
+		if (x <= val[1]) {
+			npsm[ID_CEILING_RIGHT]->setPixelColor(x, COLOR_ORANGE);
+		} else {
+			npsm[ID_CEILING_RIGHT]->setPixelColor(x, COLOR_OFF);
+		}
+
+		if (x == max[1]) {
+			npsm[ID_CEILING_RIGHT]->setPixelColor(x, COLOR_WHITE);
+		}
+	}
+
+	// update strips
+	npsm[ID_CEILING_LEFT]->show();
+	npsm[ID_CEILING_RIGHT]->show();
+
+	// slowly drift max vals back down if possible
+	if (count >= 10) {
+		count = 0;
+
+		for (int i = 0; i < 2; i++) {
+			if (max[i] > val[i] && max[i] > 0) {
+				max[i]--;
+			}
+		}
+
+		if (max[0] >= CEILING_LEFT_LENGTH) {
+			max[0] = CEILING_LEFT_LENGTH - 1; // it shouldn't be past here
+		}
+
+		if (max[1] >= CEILING_RIGHT_LENGTH) {
+			max[1] = CEILING_RIGHT_LENGTH - 1; // it shouldn't be past here
 		}
 	} else {
 		count++;

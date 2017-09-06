@@ -30,6 +30,45 @@ protected:
 	MSGEQ7* right_eq;
 };
 
+class Animation_Advanced_Audio_BassPulseLR : public Animation_Advanced_Audio {
+private:
+	int low_L;
+	int low_R;
+	int strip1, strip2;
+public:
+    Animation_Advanced_Audio_BassPulseLR(int str1, int str2) : strip1(str1), strip2(str2) {}
+    ~Animation_Advanced_Audio_BassPulseLR() {}
+
+	void init();
+	void step();
+};
+
+class Animation_Advanced_Audio_BassPulseNestedLR : public Animation_Advanced_Audio {
+private:
+	int low_L, low_R, low2_L, low2_R, mid;
+	int strip1, strip2;
+public:
+    Animation_Advanced_Audio_BassPulseNestedLR(int str1, int str2) : strip1(str1), strip2(str2) {}
+    ~Animation_Advanced_Audio_BassPulseNestedLR() {}
+
+	void init();
+	void step();
+};
+
+class Animation_Advanced_Audio_PulseNestedLR : public Animation_Advanced_Audio {
+private:
+	int l0, l1, l2, l3, l4, l5, l6;
+	int r0, r1, r2, r3, r4, r5, r6;
+	int mid, len;
+	int strip1, strip2;
+public:
+    Animation_Advanced_Audio_PulseNestedLR(int str1, int str2) : strip1(str1), strip2(str2) {}
+    ~Animation_Advanced_Audio_PulseNestedLR() {}
+
+	void init();
+	void step();
+};
+
 class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
 private:
 	int low_sum;
@@ -118,6 +157,19 @@ private:
 public:
     Animation_Advanced_Audio_MaxEqualizerWindow() {}
     ~Animation_Advanced_Audio_MaxEqualizerWindow() {}
+
+	void init();
+	void step();
+};
+
+class Animation_Advanced_Audio_MaxBassEqualizerCeiling : public Animation_Advanced_Audio {
+private:
+	unsigned int max[2];
+	unsigned int count;
+	unsigned int val[2];
+public:
+    Animation_Advanced_Audio_MaxBassEqualizerCeiling() {}
+    ~Animation_Advanced_Audio_MaxBassEqualizerCeiling() {}
 
 	void init();
 	void step();
