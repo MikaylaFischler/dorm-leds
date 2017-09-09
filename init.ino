@@ -47,6 +47,8 @@ void mount_devices() {
 	// equalizers
 	device_manager.mount(new MSGEQ7(F("Left Equalizer"), EQ_L_STROBE, EQ_L_RESET, EQ_L_INPUT));		// 0
 	device_manager.mount(new MSGEQ7(F("Right Equalizer"), EQ_R_STROBE, EQ_R_RESET, EQ_R_INPUT));	// 1
+	// pulse monitor
+	device_manager.mount(new PulseMonitor(F("Pulse Monitor"), PULSESENSOR_INPUT));					// 2
 }
 
 void queue_sys_threads() {
@@ -62,10 +64,16 @@ void led_man_queue() {
 	// manually queue animations for startup
 
 	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
-	thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
-	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_DESK_1));
-	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_DESK_2));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
+	const int window_sill_strips[] = {ID_WINDOWSILL_1,ID_WINDOWSILL_2,ID_WINDOWSILL_3};
+	thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(std::vector<int> (window_sill_strips, window_sill_strips + sizeof(window_sill_strips) / sizeof(window_sill_strips[0]))));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_2));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_3));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseLR(ID_CEILING_LEFT, ID_CEILING_RIGHT));
+	thread_handler.queue(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_LEFT, ID_CEILING_RIGHT, true));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 

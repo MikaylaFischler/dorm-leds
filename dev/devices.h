@@ -4,5 +4,6 @@
 // Devices
 #include "LEDButton.cpp"	// push button with LED inside
 #include "MSGEQ7.cpp" 		// equalizer IC
+#include "PulseMonitor.cpp" // pulse monitor
 
 #endif
