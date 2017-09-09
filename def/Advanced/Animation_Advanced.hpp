@@ -70,13 +70,20 @@ public:
 	void step();
 };
 
-class Animation_Advanced_Audio_BassPulseWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_BassPulseStrip : public Animation_Advanced_Audio {
 private:
-	int low_sum;
-	int low2_sum;
+	vector<int> strip_ids;
+	short unsigned int fadeFunctionOrder;
+	long unsigned int color;
+	int freq_range_0_sum, freq_range_1_sum, freq_range_2_sum, result;
 public:
-    Animation_Advanced_Audio_BassPulseWindow() {}
-    ~Animation_Advanced_Audio_BassPulseWindow() {}
+    Animation_Advanced_Audio_BassPulseStrip(int strip);
+    Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids);
+    Animation_Advanced_Audio_BassPulseStrip(int strip, short unsigned int _fadeFO);
+    Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, short unsigned int _fadeFO);
+    Animation_Advanced_Audio_BassPulseStrip(int strip, short unsigned int _fadeFO, long unsigned int _color);
+    Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, short unsigned int _fadeFO, long unsigned int _color);
+    ~Animation_Advanced_Audio_BassPulseStrip() {}
 
 	void init();
 	void step();
