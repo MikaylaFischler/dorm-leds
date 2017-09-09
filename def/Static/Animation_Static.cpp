@@ -13,17 +13,17 @@ void Animation_Static::init() {
 
 void Animation_Static_DeskBrightWhite::init() {
     Animation_Static::init();
-    this->name = F("Desk[all]: Bright White");
+    this->name = F("Desk Bright White");
     this->strips.push_back(ID_DESK_1);
     this->strips.push_back(ID_DESK_2);
 }
 
 void Animation_Static_DeskBrightWhite::step() {
-	for (int i = 0; i < DESK1_LENGTH; i++) {
+	for (uint16_t i = 0; i < DESK1_LENGTH; i++) {
 		npsm[ID_DESK_1]->setPixelColor(i, COLOR_WHITE);
 	}
 
-	for (int i = 0; i < DESK2_LENGTH; i++){
+	for (uint16_t i = 0; i < DESK2_LENGTH; i++){
 		npsm[ID_DESK_2]->setPixelColor(i, COLOR_WHITE);
 	}
 
@@ -37,17 +37,17 @@ void Animation_Static_DeskBrightWhite::step() {
 
 void Animation_Static_DeskDimAmbient::init() {
     Animation_Static::init();
-    this->name = F("Desk[all]: Dim Ambient");
+    this->name = F("Desk Dim Ambient");
     this->strips.push_back(ID_DESK_1);
     this->strips.push_back(ID_DESK_2);
 }
 
 void Animation_Static_DeskDimAmbient::step() {
-	for (int i = 0; i < DESK1_LENGTH; i++) {
+	for (uint16_t i = 0; i < DESK1_LENGTH; i++) {
 		npsm[ID_DESK_1]->setPixelColor(i, COLOR_DIM_OFF_WHITE);
 	}
 
-	for (int i = 0; i < DESK2_LENGTH; i++){
+	for (uint16_t i = 0; i < DESK2_LENGTH; i++){
 		npsm[ID_DESK_2]->setPixelColor(i, COLOR_DIM_OFF_WHITE);
 	}
 
@@ -61,14 +61,14 @@ void Animation_Static_DeskDimAmbient::step() {
 
 void Animation_Static_TransFlagWindows::init() {
     Animation_Static::init();
-    this->name = F("Window[all]: Trans Pride Flag");
+    this->name = F("Window Trans Pride Flag");
     this->strips.push_back(ID_WINDOW_1);
     this->strips.push_back(ID_WINDOW_2);
     this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Static_TransFlagWindows::step() {
-	for (int i = 0; i < WINDOW_LENGTH; i++) {
+	for (uint16_t i = 0; i < WINDOW_LENGTH; i++) {
 		npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_WHITE);
 		npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_PINK);
 		npsm[ID_WINDOW_3]->setPixelColor(i, COLOR_BABY_BLUE);
@@ -85,14 +85,14 @@ void Animation_Static_TransFlagWindows::step() {
 
 void Animation_Static_TransFlagStripedWindows::init() {
     Animation_Static::init();
-    this->name = F("Window[all]: Striped Trans Pride Flag");
+    this->name = F("Window Striped Trans Pride Flag");
     this->strips.push_back(ID_WINDOW_1);
     this->strips.push_back(ID_WINDOW_2);
     this->strips.push_back(ID_WINDOW_3);
 }
 
 void Animation_Static_TransFlagStripedWindows::step() {
-	for (int i = 0; i < WINDOW_LENGTH; i++) {
+	for (uint16_t i = 0; i < WINDOW_LENGTH; i++) {
 		if (i >= WINDOW_BOTTOM_RIGHT && i <= WINDOW_TOP_RIGHT) {
 			npsm[ID_WINDOW_1]->setPixelColor(i, COLOR_PINK);
 			npsm[ID_WINDOW_2]->setPixelColor(i, COLOR_WHITE);

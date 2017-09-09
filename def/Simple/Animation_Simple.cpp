@@ -12,7 +12,7 @@ void Animation_Simple::init() {
 
 void Animation_Simple_DeskWhitePurpleFade::init() {
  	Animation_Simple::init();
- 	this->name = F("Desk[all]: Off White with Purple Fade");
+ 	this->name = F("Desk Off-White with Purple Fade");
     this->update_rate = 10;
  	this->strips.push_back(ID_DESK_1);
  	this->strips.push_back(ID_DESK_2);
@@ -22,7 +22,7 @@ void Animation_Simple_DeskWhitePurpleFade::init() {
 }
 
 void Animation_Simple_DeskWhitePurpleFade::step() {
-	for (int x = 0; x < DESK1_LENGTH; x++) {
+	for (uint16_t x = 0; x < DESK1_LENGTH; x++) {
 		if (x % 3 != 0) {
 			npsm[ID_DESK_1]->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
@@ -30,7 +30,7 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
 		}
 	}
 
-	for (int x = 0; x < DESK2_LENGTH; x++) {
+	for (uint16_t x = 0; x < DESK2_LENGTH; x++) {
 		if (x % 3 != 0) {
 			npsm[ID_DESK_2]->setPixelColor(x, Color((int)(((float)i / 150.0) * 100), 0, i));
 		} else {
@@ -63,7 +63,7 @@ void Animation_Simple_DeskWhitePurpleFade::step() {
 
 void Animation_Simple_WinAllWPISpirit::init() {
 	Animation_Simple::init();
-	this->name = F("Window[all]: WPI Spirit");
+	this->name = F("Window WPI Spirit");
     this->update_rate = 30;
 	this->strips.push_back(ID_WINDOW_1);
 	this->strips.push_back(ID_WINDOW_2);
