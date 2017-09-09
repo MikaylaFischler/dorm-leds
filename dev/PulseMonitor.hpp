@@ -8,7 +8,6 @@
 #include <Arduino.h>
 
 #include "../lib/device/Device.hpp"
-#include "../lib/exe/Process.hpp"
 
 class PulseMonitor : public Device {
 private:

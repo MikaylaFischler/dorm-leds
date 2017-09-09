@@ -4,7 +4,7 @@
 	{Animation_Advanced}
 		{Animation_Advanced_Audio}
 			Animation_Advanced_Audio_BasePulseCircularEqWindow
-			Animation_Advanced_Audio_BassPulseWindow
+			Animation_Advanced_Audio_BassPulseStrip
 			Animation_Advanced_Audio_BassMidPulseWindow
 			Animation_Advanced_Audio_BassPulseMidHueWindow
 			Animation_Advanced_Audio_EqualizerWindow
@@ -66,6 +66,7 @@
 				Animation_Simple_Indiv_Rainbow_Rainbow(&strip)
 				Animation_Simple_Indiv_Rainbow_RainbowCycle(&strip)
 				Animation_Simple_Indiv_Rainbow_RainbowTheaterChase(&strip)
+				Animation_Simple_Indiv_RainbowWhiteTheaterChase_W(id)
 				Animation_Simple_Indiv_Rainbow_RainbowWipe(&strip)
 
 [Static]
