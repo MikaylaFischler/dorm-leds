@@ -166,4 +166,17 @@ public:
 	void step();
 };
 
+class Animation_Simple_Indiv_RainbowWhiteTheaterChase : public Animation_Simple_Indiv {
+private:
+	unsigned short int i;
+	unsigned short int j;
+	bool alternate;
+public:
+	Animation_Simple_Indiv_RainbowWhiteTheaterChase(int id) : Animation_Simple_Indiv(id) {}
+	~Animation_Simple_Indiv_RainbowWhiteTheaterChase() {}
+
+	void init();
+	void step();
+};
+
 #endif

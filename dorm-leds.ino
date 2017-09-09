@@ -10,9 +10,11 @@
 #include <unwind-cxx.h>
 #include <ArduinoSTL.h>
 #include <system_configuration.h>
+#include <vector>
 
-// LED Library
+// LED Libraries (NeoPixel for RGBW!)
 #include <Adafruit_NeoPixel.h>
+#include <FastLED.h>
 
 // Configuration
 #include "conf/config.h"
@@ -118,7 +120,7 @@ void loop() {
 	thread_handler.executeTick();
 
 	// prevent ticks less than a millisecond
-	// Serial.println(dT); // takes ~200us
+	Serial.println(dT); // takes ~200us
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));
