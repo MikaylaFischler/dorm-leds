@@ -111,6 +111,8 @@ public:
 	void step();
 };
 
+// Animation_Advanced_Audio_EQ.cpp
+
 class Animation_Advanced_Audio_EQ_BasePulseCircularEQWindow : public Animation_Advanced_Audio {
 private:
 	short unsigned int low_sum;
