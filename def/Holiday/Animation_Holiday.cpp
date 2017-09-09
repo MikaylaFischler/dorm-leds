@@ -12,7 +12,7 @@ void Animation_Holiday::init() {
 
 void Animation_Holiday_EarthDay_WinAllFade::init() {
  	Animation_Holiday::init();
- 	this->name = F("Window[All]: Alternating Earth Day Fade");
+ 	this->name = F("Window Alternating Earth Day Fade");
     this->update_rate = 10;
  	this->strips.push_back(ID_WINDOW_1);
  	this->strips.push_back(ID_WINDOW_2);
@@ -26,14 +26,14 @@ void Animation_Holiday_EarthDay_WinAllFade::init() {
 void Animation_Holiday_EarthDay_WinAllFade::step() {
 	if (mode) {
 		// blue green blue
-		for (int x = 0; x < WINDOW_LENGTH; x++) {
+		for (uint16_t x = 0; x < WINDOW_LENGTH; x++) {
 			npsm[ID_WINDOW_1]->setPixelColor(x, 0, 0, i);
 			npsm[ID_WINDOW_2]->setPixelColor(x, 0, i, 0);
 			npsm[ID_WINDOW_3]->setPixelColor(x, 0, 0, i);
 		}
 	} else {
 		// green blue green
-		for (int x = 0; x < WINDOW_LENGTH; x++) {
+		for (uint16_t x = 0; x < WINDOW_LENGTH; x++) {
 			npsm[ID_WINDOW_1]->setPixelColor(x, 0, i, 0);
 			npsm[ID_WINDOW_2]->setPixelColor(x, 0, 0, i);
 			npsm[ID_WINDOW_3]->setPixelColor(x, 0, i, 0);

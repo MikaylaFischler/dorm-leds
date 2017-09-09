@@ -273,8 +273,8 @@ void Animation_Advanced_Audio_BassMidPulseWindow::step() {
 	mid_sum_l = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 2.0);
 	mid_sum_r = (int) round(((float) quadraticBrightness(right_eq->get8Bit(3)) + (float) quadraticBrightness(right_eq->get8Bit(4)) * 0.75 + (float) quadraticBrightness(right_eq->get8Bit(5)) * 0.25) / 2.0);
 
-	low_sum = avg16(low_sum_l + low_sum_r);
-	mid_sum = avg16(mid_sum_l + mid_sum_r);
+	low_sum = avg16(low_sum_l, low_sum_r);
+	mid_sum = avg16(mid_sum_l, mid_sum_r);
 
 	for (int x = 0; x < WINDOW_LENGTH; x++) {
 		npsm[ID_WINDOW_1]->setPixelColor(x, low_sum, 0, low_sum);
@@ -305,8 +305,8 @@ void Animation_Advanced_Audio_BassPulseMidHueWindow::step() {
 	mid_sum_l = (int) round(((float) quadraticBrightness(left_eq->get8Bit(3)) + (float) quadraticBrightness(left_eq->get8Bit(4)) * 0.65 + (float) quadraticBrightness(left_eq->get8Bit(5)) * 0.25) / 1.9);
 	mid_sum_r = (int) round(((float) quadraticBrightness(right_eq->get8Bit(3)) + (float) quadraticBrightness(right_eq->get8Bit(4)) * 0.65 + (float) quadraticBrightness(right_eq->get8Bit(5)) * 0.25) / 1.9);
 
-	low_sum = avg16(low_sum_l + low_sum_r);
-	mid_sum = avg16(mid_sum_l + mid_sum_r);
+	low_sum = avg16(low_sum_l, low_sum_r);
+	mid_sum = avg16(mid_sum_l, mid_sum_r);
 	hue = ColorWheel(mid_sum);
 
 	// center window (bass)
