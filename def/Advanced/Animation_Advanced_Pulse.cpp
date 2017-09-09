@@ -15,15 +15,15 @@ void Animation_Advanced_Pulse::init() {
 
 void Animation_Advanced_Pulse_CeilingPulse::init() {
  	Animation_Advanced_Pulse::init();
- 	this->name = F("Ceiling[all]: Pulse");
+ 	this->name = F("Ceiling Pulse");
  	this->strips.push_back(ID_CEILING_LEFT);
  	this->strips.push_back(ID_CEILING_RIGHT);
 
-	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_LEFT_LENGTH; i++) {
 		npsm[ID_CEILING_LEFT]->setPixelColor(i, 0, 0, 0, 0);
 	}
 
-	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_RIGHT_LENGTH; i++) {
 		npsm[ID_CEILING_RIGHT]->setPixelColor(i, 0, 0, 0, 0);
 	}
 
@@ -44,11 +44,11 @@ void Animation_Advanced_Pulse_CeilingPulse::step() {
 		mapped_value = round(pow((long double) mapped_value, 2) * 0.004); // less agressive filter
 	}
 
-	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_LEFT_LENGTH; i++) {
 		npsm[ID_CEILING_LEFT]->setPixelColor(i, mapped_value, 0, 0, 0);
 	}
 
-	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_RIGHT_LENGTH; i++) {
 		npsm[ID_CEILING_RIGHT]->setPixelColor(i, mapped_value, 0, 0, 0);
 	}
 
@@ -62,15 +62,15 @@ void Animation_Advanced_Pulse_CeilingPulse::step() {
 
 void Animation_Advanced_Pulse_CeilingChart::init() {
  	Animation_Advanced_Pulse::init();
- 	this->name = F("Ceiling[all]: Pulse Chart");
+ 	this->name = F("Ceiling Pulse Chart");
  	this->strips.push_back(ID_CEILING_LEFT);
  	this->strips.push_back(ID_CEILING_RIGHT);
 
-	for (int i = 0; i < CEILING_LEFT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_LEFT_LENGTH; i++) {
 		npsm[ID_CEILING_LEFT]->setPixelColor(i, 0, 0, 0, 0);
 	}
 
-	for (int i = 0; i < CEILING_RIGHT_LENGTH; i++) {
+	for (uint16_t i = 0; i < CEILING_RIGHT_LENGTH; i++) {
 		npsm[ID_CEILING_RIGHT]->setPixelColor(i, 0, 0, 0, 0);
 	}
 
