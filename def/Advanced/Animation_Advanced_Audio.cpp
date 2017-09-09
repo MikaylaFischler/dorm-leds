@@ -200,27 +200,62 @@ void Animation_Advanced_Audio_PulseNestedLR::step() {
 
 /* ~~~ Animation Advanced Audio: Bass Window Pulse ~~~ */
 
-void Animation_Advanced_Audio_BassPulseWindow::init() {
+// given strip
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(int strip) : fadeFunctionOrder(4), color(COLOR_WHITE) { this->strip_ids.push_back(strip); }
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids) : fadeFunctionOrder(4), color(COLOR_WHITE) { this->strip_ids = strip_ids; }
+
+// give strip and fade function order
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(int strip, short unsigned int _fadeFO) : fadeFunctionOrder(_fadeFO), color(COLOR_WHITE) { this->strip_ids.push_back(strip); }
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, short unsigned int _fadeFO) : fadeFunctionOrder(_fadeFO), color(COLOR_WHITE) { this->strip_ids = strip_ids; }
+
+// given strip, fade function order, and color
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(int strip, short unsigned int _fadeFO, long unsigned int _color) : fadeFunctionOrder(_fadeFO), color(_color) { this->strip_ids.push_back(strip); }
+Animation_Advanced_Audio_BassPulseStrip::Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, short unsigned int _fadeFO, long unsigned int _color) : fadeFunctionOrder(_fadeFO), color(_color) { this->strip_ids = strip_ids; }
+
+void Animation_Advanced_Audio_BassPulseStrip::init() {
  	Animation_Advanced_Audio::init();
- 	this->name = F("Window[all]: Audio Bass Beat Pulse");
- 	this->strips.push_back(ID_WINDOW_1);
- 	this->strips.push_back(ID_WINDOW_2);
- 	this->strips.push_back(ID_WINDOW_3);
+	this->name = F("Audio Bass Pulse Strip");
+
+	for (unsigned int i = 0; i < this->strip_ids.size(); i++) {
+		this->strips.push_back(this->strip_ids[i]);
+	}
 }
 
-void Animation_Advanced_Audio_BassPulseWindow::step() {
-	low_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(1)) + (float) quadraticBrightness(right_eq->get8Bit(1))) / 2.0);
-	low2_sum = (int) round(((float) quadraticBrightness(left_eq->get8Bit(2)) + (float) quadraticBrightness(right_eq->get8Bit(2))) / 2.0);
-
-	for (int x = 0; x < WINDOW_LENGTH; x++) {
-		npsm[ID_WINDOW_1]->setPixelColor(x, low_sum, 0, 0);
-		npsm[ID_WINDOW_2]->setPixelColor(x, 0, low2_sum, low2_sum);
-		npsm[ID_WINDOW_3]->setPixelColor(x, low_sum, 0, 0);
+void Animation_Advanced_Audio_BassPulseStrip::step() {
+	switch (this->fadeFunctionOrder) {
+		case 4: // quartic
+			freq_range_0_sum = avg16(quarticBrightness(left_eq->get8Bit(0)), quarticBrightness(right_eq->get8Bit(0)));
+			freq_range_1_sum = avg16(quarticBrightness(left_eq->get8Bit(1)), quarticBrightness(right_eq->get8Bit(1)));
+			break;
+		case 3: // cubic
+			freq_range_0_sum = avg16(cubicBrightness(left_eq->get8Bit(0)), cubicBrightness(right_eq->get8Bit(0)));
+			freq_range_1_sum = avg16(cubicBrightness(left_eq->get8Bit(1)), cubicBrightness(right_eq->get8Bit(1)));
+			break;
+		case 2: // quadratic
+		default:
+			freq_range_0_sum = avg16(quadraticBrightness(left_eq->get8Bit(0)), quadraticBrightness(right_eq->get8Bit(0)));
+			freq_range_1_sum = avg16(quadraticBrightness(left_eq->get8Bit(1)), quadraticBrightness(right_eq->get8Bit(1)));
 	}
 
-	npsm[ID_WINDOW_1]->show();
-	npsm[ID_WINDOW_2]->show();
-	npsm[ID_WINDOW_3]->show();
+	// get most significant value
+	if (freq_range_0_sum > freq_range_1_sum) {
+		result = freq_range_0_sum;
+	} else {
+		result = freq_range_1_sum;
+	}
+
+	for (unsigned int i = 0; i < this->strip_ids.size(); i++) {
+		for (int x = 0; x < npsm[this->strip_ids[i]]->numPixels(); x++) {
+			npsm[this->strip_ids[i]]->setPixelColor(x, result * redFromColor(this->color) / 255,
+								      					result * greenFromColor(this->color) / 255,
+								      					result * blueFromColor(this->color) / 255
+													);
+		}
+	}
+
+	for (unsigned int i = 0; i < this->strip_ids.size(); i++) {
+		npsm[this->strip_ids[i]]->show();
+	}
 
 	this->current_exec++;
 }

@@ -4,7 +4,7 @@
 	{Animation_Advanced}
 		{Animation_Advanced_Audio}
 			Animation_Advanced_Audio_BasePulseCircularEqWindow
-			Animation_Advanced_Audio_BassPulseWindow
+			Animation_Advanced_Audio_BassPulseStrip
 			Animation_Advanced_Audio_BassMidPulseWindow
 			Animation_Advanced_Audio_BassPulseMidHueWindow
 			Animation_Advanced_Audio_EqualizerWindow
