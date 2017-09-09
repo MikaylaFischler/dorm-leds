@@ -16,6 +16,7 @@
 // Advanced Animations
 #include "Advanced/Animation_Advanced.cpp"
 #include "Advanced/Animation_Advanced_Audio.cpp"
+#include "Advanced/Animation_Advanced_Audio_EQ.cpp"
 #include "Advanced/Animation_Advanced_Pulse.cpp"
 
 // Seasonal Animations

@@ -32,8 +32,7 @@ protected:
 
 class Animation_Advanced_Audio_BassPulseLR : public Animation_Advanced_Audio {
 private:
-	int low_L;
-	int low_R;
+	int low_L, low_R;
 	int strip1, strip2;
 public:
     Animation_Advanced_Audio_BassPulseLR(int str1, int str2) : strip1(str1), strip2(str2) {}
@@ -91,13 +90,7 @@ public:
 
 class Animation_Advanced_Audio_BassMidPulseWindow : public Animation_Advanced_Audio {
 private:
-	int low_sum_l;
-	int low_sum_r;
-	int mid_sum_l;
-	int mid_sum_r;
-
-	int low_sum;
-	int mid_sum;
+	unsigned int low_sum_l, low_sum_r, mid_sum_l, mid_sum_r, low_sum, mid_sum;
 public:
     Animation_Advanced_Audio_BassMidPulseWindow() {}
     ~Animation_Advanced_Audio_BassMidPulseWindow() {}
@@ -108,14 +101,7 @@ public:
 
 class Animation_Advanced_Audio_BassPulseMidHueWindow : public Animation_Advanced_Audio {
 private:
-	int low_sum_l;
-	int low_sum_r;
-	int mid_sum_l;
-	int mid_sum_r;
-
-	int low_sum;
-	int mid_sum;
-
+	unsigned int low_sum_l, low_sum_r, mid_sum_l, mid_sum_r, low_sum, mid_sum;
 	long unsigned int hue;
 public:
     Animation_Advanced_Audio_BassPulseMidHueWindow() {}
@@ -125,59 +111,51 @@ public:
 	void step();
 };
 
-class Animation_Advanced_Audio_BasePulseCircularEqWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_EQ_BasePulseCircularEQWindow : public Animation_Advanced_Audio {
 private:
-	int low_sum;
-
+	short unsigned int low_sum;
 	long unsigned int val;
-
-	bool no_0;
-	bool no_1;
-	bool no_2;
-	bool no_3;
-	bool no_4;
-	bool no_5;
-	bool no_6;
+	bool no_0, no_1, no_2, no_3, no_4, no_5, no_6;
 public:
-    Animation_Advanced_Audio_BasePulseCircularEqWindow() {}
-    ~Animation_Advanced_Audio_BasePulseCircularEqWindow() {}
+    Animation_Advanced_Audio_EQ_BasePulseCircularEQWindow() {}
+    ~Animation_Advanced_Audio_EQ_BasePulseCircularEQWindow() {}
 
 	void init();
 	void step();
 };
 
-class Animation_Advanced_Audio_EqualizerWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_EQ_Window : public Animation_Advanced_Audio {
 private:
 	unsigned int val[7];
 public:
-    Animation_Advanced_Audio_EqualizerWindow() {}
-    ~Animation_Advanced_Audio_EqualizerWindow() {}
+    Animation_Advanced_Audio_EQ_Window() {}
+    ~Animation_Advanced_Audio_EQ_Window() {}
 
 	void init();
 	void step();
 };
 
-class Animation_Advanced_Audio_MaxEqualizerWindow : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_EQ_MaxWindow : public Animation_Advanced_Audio {
 private:
-	unsigned short int max[6];
 	unsigned int count;
 	unsigned int val[6];
+	unsigned short int max[6];
 public:
-    Animation_Advanced_Audio_MaxEqualizerWindow() {}
-    ~Animation_Advanced_Audio_MaxEqualizerWindow() {}
+    Animation_Advanced_Audio_EQ_MaxWindow() {}
+    ~Animation_Advanced_Audio_EQ_MaxWindow() {}
 
 	void init();
 	void step();
 };
 
-class Animation_Advanced_Audio_MaxBassEqualizerCeiling : public Animation_Advanced_Audio {
+class Animation_Advanced_Audio_EQ_MaxBassCeiling : public Animation_Advanced_Audio {
 private:
 	unsigned int max[2];
 	unsigned int count;
 	unsigned int val[2];
 public:
-    Animation_Advanced_Audio_MaxBassEqualizerCeiling() {}
-    ~Animation_Advanced_Audio_MaxBassEqualizerCeiling() {}
+    Animation_Advanced_Audio_EQ_MaxBassCeiling() {}
+    ~Animation_Advanced_Audio_EQ_MaxBassCeiling() {}
 
 	void init();
 	void step();
