@@ -143,3 +143,51 @@ void Animation_Simple_Indiv_RainbowTheaterChase::step() {
 		this->current_exec++;
 	}
 }
+
+/* ~~~ Animation Simple Individual: Rainbow with White Theater Chase ~~~ */
+
+void Animation_Simple_Indiv_RainbowWhiteTheaterChase::init() {
+	Animation_Simple_Indiv::init();
+	this->name += F(": Rainbow White Theater Chase");
+    this->update_rate = 35;
+
+	i = 0;
+	j = 0;
+	alternate = true;
+}
+
+void Animation_Simple_Indiv_RainbowWhiteTheaterChase::step() {
+	if (alternate) {
+		// set each led to the proper color
+		for (unsigned int k = 0; k < npsm[this->id]->numPixels(); k += 3) {
+			// turn every third pixel on
+			npsm[this->id]->setPixelColor(k + i, ColorWheel((k + j) % 255));
+		}
+
+		npsm[this->id]->show();
+	} else {
+		for (unsigned int k = 0; k < npsm[this->id]->numPixels(); k += 3) {
+			// turn every third pixel off (or white if RGBW)
+			if (npsm.isRGBW(this->id)) {
+				npsm[this->id]->setPixelColor(k + i, 0, 0, 0, 20);
+			} else {
+				npsm[this->id]->setPixelColor(k + i, COLOR_OFF);
+			}
+		}
+	}
+
+	alternate = !alternate;
+
+	if (j < 255 && alternate) {
+		j++;
+	} else if (j == 255 && alternate) {
+		j = 0;
+	}
+
+	if (i < 2 && alternate) {
+		i++;
+	} else if (i == 2 && alternate) {
+		i = 0;
+		this->current_exec++;
+	}
+}

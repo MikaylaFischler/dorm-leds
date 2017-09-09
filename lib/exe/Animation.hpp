@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include <FastLED.h>
 #include <ArduinoSTL.h>
 #include <vector>
 
