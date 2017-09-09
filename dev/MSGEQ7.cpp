@@ -16,10 +16,9 @@ int MSGEQ7::get8Bit(int i) const {
 	return map(spectrum_values[i], NOISE_FILTER, 1023, 0, 255);
 }
 
-// TODO this should NOT be here
-// get the value (0 to 80 to be in range of a window strip)
-int MSGEQ7::getInWindowRange(int i) const {
-	return map(spectrum_values[i], NOISE_FILTER, 1023, 0, 80);
+// get the value in a range
+int MSGEQ7::getInRange(int i, int min, int max) const {
+	return map(spectrum_values[i], NOISE_FILTER, 1023, min, max);
 }
 
 // an overload of the [] operator to provide the 8-bit values
