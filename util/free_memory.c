@@ -1,10 +1,20 @@
+/*!
+	@file free_memory.c
+	@brief Calculate free memory on arduino ARM and AVR.
+	Operates based on if "__arm__" or if "__SAM3X8E__" is defined.
+*/
+
 #include <Arduino.h>
 #include "free_memory.h"
 
 #if defined (__arm__) && defined (__SAM3X8E__) // Arduino Due compatible
-// due free memory from here by user 'sync'
+// arduino due free memory from here by user 'sync'
 // https://stackoverflow.com/questions/17723733/arduino-due-conditional-compilation-constant-for-custom-library
 
+/*!
+	@brief Calculate free memory in bytes.
+	@return integer bytes free
+*/
 int freeMemory() {
 	char *heapend = sbrk(0);
 	register char * stack_ptr asm ("sp");
@@ -13,17 +23,21 @@ int freeMemory() {
 	return stack_ptr - heapend + mi.fordblks;
 }
 
+/*!
+	@brief Prints test results showing dynamic RAM in use,
+   		static RAM in use, stack RAM in use, and an estimate at free memory.
+*/
 void testfreememory() {
 	char *heapend = sbrk(0);
 	register char * stack_ptr asm ("sp");
 	struct mallinfo mi = mallinfo();
 
 	delay(100);
-	printf("\nDynamic ram used: %d\n",mi.uordblks);
+	printf("\nDynamic RAM used: %d\n",mi.uordblks);
 	delay(100);
-	printf("Program static ram used %d\n",&_end - ramstart);
+	printf("Program Static RAM used %d\n",&_end - ramstart);
 	delay(100);
-	printf("Stack ram used %d\n\n",ramend - stack_ptr);
+	printf("Stack RAM used %d\n\n",ramend - stack_ptr);
 	delay(100);
 	printf("My guess at free mem: %d\n",stack_ptr - heapend + mi.fordblks);
 	delay(100);
@@ -31,22 +45,22 @@ void testfreememory() {
 
 #else // for other boards (assumed AVR)
 
-extern unsigned int __heap_start;
-extern void *__brkval;
+extern unsigned int __heap_start; //!< start of heap memory
+extern void *__brkval; //!< pointer to last memory address
 
-/*
- * The free list structure as maintained by the
- * avr-libc memory allocation routines.
+/*!
+	@brief The free list structure as maintained by the avr-libc memory allocation routines.
  */
 struct __freelist {
 	size_t sz;
 	struct __freelist *nx;
 };
 
-/* The head of the free list structure */
-extern struct __freelist *__flp;
+extern struct __freelist *__flp; //!< the head of the free list structure
 
-/* Calculates the size of the free list */
+/*!
+	@brief Calculates the size of the free list
+*/
 int freeListSize() {
 	struct __freelist* current;
 	int total = 0;
@@ -59,7 +73,10 @@ int freeListSize() {
 	return total;
 }
 
-/* Calculates how much memory is free */
+/*!
+	@brief Calculate free memory in bytes
+	@return integer bytes free
+*/
 int freeMemory() {
 	int free_memory;
 
