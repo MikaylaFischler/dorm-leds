@@ -3,6 +3,11 @@
 
 #include "../../lib/exe/Animation.hpp"
 
+/*!
+	@brief Shuts off the LEDs on a strip
+	@class Disables an LED strip
+	@remark Supports all RGB and RGBW strips
+*/
 class Animation_Disable : public Animation {
 private:
 	int id;
