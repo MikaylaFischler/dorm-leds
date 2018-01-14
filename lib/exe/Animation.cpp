@@ -3,6 +3,9 @@
 // basic initialization
 void Animation::init() { this->current_exec = 0; }
 
+// abort the animation
+void Animation::abort() { thread_handler.kill(thread); }
+
 // get number of strips
 int Animation::getNumStrips() const { return this->strips.size(); }
 
