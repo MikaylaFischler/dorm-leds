@@ -4,7 +4,7 @@
 
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
  	Animation_Seasonal_Indiv::init();
- 	this->name += F(": Clear Skies");
+ 	this->name = F("Clear Skies");
 	this->update_rate = 50;
 
 	i = 0;
@@ -13,7 +13,7 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::init() {
 
 void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
 	// step animation
-	for (unsigned int x = 0; x < npsm[this->id]->numPixels(); x++) {
+	for (uint16_t x = 0; x < npsm[this->id]->numPixels(); x++) {
 		npsm[this->id]->setPixelColor(x, MAX_RED - i, MAX_GREEN - i, BLUE);
 	}
 
@@ -42,7 +42,7 @@ void Animation_Seasonal_Indiv_Spring_ClearSkyFade::step() {
 
 void Animation_Seasonal_Indiv_Spring_WindowColors::init() {
  	Animation_Seasonal_Indiv::init();
- 	this->name += F(": Spring Colors");
+ 	this->name = F("Spring Colors");
 	this->update_rate = 5;
 
 	i = 0;
@@ -69,7 +69,7 @@ void Animation_Seasonal_Indiv_Spring_WindowColors::step() {
 			break;
 	}
 
-	for (unsigned int x = 0; x < WINDOW_LENGTH; x++) {
+	for (uint16_t x = 0; x < WINDOW_LENGTH; x++) {
 		npsm[this->id]->setPixelColor(x, c);
 	}
 
@@ -101,7 +101,7 @@ void Animation_Seasonal_Indiv_Spring_WindowColors::step() {
 
 void Animation_Seasonal_Indiv_Spring_ColorWipe::init() {
  	Animation_Seasonal_Indiv::init();
- 	this->name += F(": Spring Color Fade");
+ 	this->name = F("Spring Color Fade");
 	this->update_rate = 35;
 
 	i = 0;

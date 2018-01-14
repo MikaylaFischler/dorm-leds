@@ -4,7 +4,7 @@
 
 void Animation_Holiday_Halloween_WinAllFade::init() {
  	Animation_Holiday::init();
- 	this->name = F("Window[all]: Basic Halloween Fade");
+ 	this->name = F("Window Basic Halloween Fade");
     this->update_rate = 5;
  	this->strips.push_back(ID_WINDOW_1);
  	this->strips.push_back(ID_WINDOW_2);
@@ -15,7 +15,7 @@ void Animation_Holiday_Halloween_WinAllFade::init() {
 }
 
 void Animation_Holiday_Halloween_WinAllFade::step() {
-    for (int x = 0; x < WINDOW_LENGTH; x++) {
+    for (uint16_t x = 0; x < WINDOW_LENGTH; x++) {
     	npsm[ID_WINDOW_1]->setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
         npsm[ID_WINDOW_2]->setPixelColor(x, Color((int)(((float)i / 255.0) * 150), 0, i));
         npsm[ID_WINDOW_3]->setPixelColor(x, Color(i, (int)(((float)i / 255.0) * 50), 0));
@@ -45,19 +45,14 @@ void Animation_Holiday_Halloween_WinAllFade::step() {
 
 /* ~~~ Animation Holiday Halloween: Randomized Sparkle Effect (All Windows) ~~~ */
 
-Animation_Holiday_Halloween_WinAllHalloweenSparkle::HalloweenPixel::HalloweenPixel(bool inc, int _i, char cid) :
-	i(_i), color_id(cid), increasing(inc) {}
-
 Animation_Holiday_Halloween_WinAllHalloweenSparkle::~Animation_Holiday_Halloween_WinAllHalloweenSparkle() {
 	// free memory for each pixel
-	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
-		delete pixeldata[x];
-	}
+	for (uint32_t x = 0; x < WINDOW_LENGTH * 3; x++) { delete pixeldata[x]; }
 }
 
 void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
  	Animation_Holiday::init();
- 	this->name = F("Window[all]: Halloween Sparkle Fade");
+ 	this->name = F("Window Halloween Sparkle Fade");
     this->update_rate = 1;
  	this->strips.push_back(ID_WINDOW_1);
  	this->strips.push_back(ID_WINDOW_2);
@@ -66,7 +61,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::init() {
 	i = 0;
 
 	// randomize
-	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
+	for (uint32_t x = 0; x < WINDOW_LENGTH * 3; x++) {
 		randomize_display(x);
 
 		randomSeed(analogRead(RAND_SEED_ANALOG_NOISE_PORT) * micros());
@@ -139,7 +134,7 @@ void Animation_Holiday_Halloween_WinAllHalloweenSparkle::sparkle_fade() {
 	Adafruit_NeoPixel* temp_win;
 
 	// fade with absolute value since so many different values
-	for (int x = 0; x < WINDOW_LENGTH * 3; x++) {
+	for (uint32_t x = 0; x < WINDOW_LENGTH * 3; x++) {
 		int pixel = 0;
 
 		if (x < WINDOW_LENGTH) {
