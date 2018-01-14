@@ -6,5 +6,6 @@
 
 DeviceManager device_manager;
 NeoPixelStripManager npsm;
+ThreadHandler thread_handler;
 
 #endif

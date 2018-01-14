@@ -15,6 +15,7 @@ public:
 
     virtual void init() {};
 	virtual void step() {};
+	virtual void abort() {};
 };
 
 #endif

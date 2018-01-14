@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include <FastLED.h>
+// #include <FastLED.h>
 #include <ArduinoSTL.h>
 #include <vector>
 
@@ -26,6 +26,7 @@ public:
 
     virtual void init();
 	virtual void step() {}
+	virtual void abort();
 
     int getNumStrips() const;
     vector<int> getDependencies() const;
