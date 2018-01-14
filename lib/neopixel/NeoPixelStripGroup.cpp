@@ -6,7 +6,7 @@
 		that pixel will be skipped/ignored using the Adafruit_NeoPixel library.
 */
 
-#include "NeoPixelStripManager.hpp"
+#include "NeoPixelStripGroup.hpp"
 
 /*!
 	@brief Add a new strip to the group
