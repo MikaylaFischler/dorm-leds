@@ -16,8 +16,7 @@ protected:
 class Animation_Holiday_EarthDay_WinAllFade : public Animation_Holiday {
 private:
 	unsigned short int i;
-	bool mode;
-	bool increasing;
+	bool mode, increasing;
 public:
     Animation_Holiday_EarthDay_WinAllFade() {}
     ~Animation_Holiday_EarthDay_WinAllFade() {}
@@ -41,8 +40,7 @@ protected:
 class Animation_Holiday_Indiv_EarthDay_Fade : public Animation_Holiday_Indiv {
 private:
 	unsigned short int i;
-	bool mode;
-	bool increasing;
+	bool mode, increasing;
 public:
     Animation_Holiday_Indiv_EarthDay_Fade(int id) : Animation_Holiday_Indiv(id) {}
     ~Animation_Holiday_Indiv_EarthDay_Fade() {}
@@ -74,12 +72,12 @@ private:
 
 	class HalloweenPixel {
 	public:
+		bool increasing;
 		int i;
 		char color_id;
-		bool increasing;
 
-		HalloweenPixel(bool inc, int _i, char cid);
-		HalloweenPixel() {};
+		HalloweenPixel(bool inc, int _i, char cid) : increasing(inc), i(_i), color_id(cid) {};
+		~HalloweenPixel() {};
 	};
 
 	unsigned int i;

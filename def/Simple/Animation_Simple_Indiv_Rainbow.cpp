@@ -4,7 +4,7 @@
 
 void Animation_Simple_Indiv_Rainbow::init() {
 	Animation_Simple_Indiv::init();
-	this->name += F(": Rainbow");
+	this->name = F("Rainbow");
     this->update_rate = 50;
 
 	i = 0;
@@ -12,7 +12,7 @@ void Animation_Simple_Indiv_Rainbow::init() {
 
 void Animation_Simple_Indiv_Rainbow::step() {
 	// set each led to the proper color
-	for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j++) {
+	for (uint16_t j = 0; j < npsm[this->id]->numPixels(); j++) {
 		npsm[this->id]->setPixelColor(j, ColorWheel((i + j) & 255));
 	}
 
@@ -30,7 +30,7 @@ void Animation_Simple_Indiv_Rainbow::step() {
 
 void Animation_Simple_Indiv_RainbowCycle::init() {
 	Animation_Simple_Indiv::init();
-	this->name += F(": Rainbow Cycle");
+	this->name = F("Rainbow Cycle");
     this->update_rate = 50;
 
 	i = 0;
@@ -38,7 +38,7 @@ void Animation_Simple_Indiv_RainbowCycle::init() {
 
 void Animation_Simple_Indiv_RainbowCycle::step() {
 	// set each led to the proper color
-	for (unsigned int j = 0; j < npsm[this->id]->numPixels(); j++) {
+	for (uint16_t j = 0; j < npsm[this->id]->numPixels(); j++) {
 		npsm[this->id]->setPixelColor(j, ColorWheel(((j * 256 / npsm[this->id]->numPixels()) + i) & 255));
 	}
 
@@ -56,7 +56,7 @@ void Animation_Simple_Indiv_RainbowCycle::step() {
 
 void Animation_Simple_Indiv_RainbowWipe::init() {
  	Animation_Simple_Indiv::init();
- 	this->name += F(": Rainbow Color Wipe");
+ 	this->name = F("Rainbow Color Wipe");
     this->update_rate = 50;
 
 	i = 0;
@@ -104,7 +104,7 @@ void Animation_Simple_Indiv_RainbowWipe::step() {
 
 void Animation_Simple_Indiv_RainbowTheaterChase::init() {
 	Animation_Simple_Indiv::init();
-	this->name += F(": Rainbow Theater Chase");
+	this->name = F("Rainbow Theater Chase");
     this->update_rate = 35;
 
 	i = 0;
@@ -148,7 +148,7 @@ void Animation_Simple_Indiv_RainbowTheaterChase::step() {
 
 void Animation_Simple_Indiv_RainbowWhiteTheaterChase::init() {
 	Animation_Simple_Indiv::init();
-	this->name += F(": Rainbow White Theater Chase");
+	this->name = F("Rainbow White Theater Chase");
     this->update_rate = 35;
 
 	i = 0;
