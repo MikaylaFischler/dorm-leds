@@ -51,7 +51,7 @@
 #define ID_DESK_1 3
 #define ID_DESK_2 4
 
-// 2016-17 setup
+// 2017-18 setup
 #define ID_CEILING_LEFT 0
 #define ID_CEILING_RIGHT 1
 #define ID_WINDOWSILL_1 2
