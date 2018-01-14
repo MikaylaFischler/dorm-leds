@@ -143,8 +143,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowWipe : public Animation_Simple_Indiv {
 private:
-	unsigned short int i;
-	unsigned short int cur_color;
+	unsigned short int i, cur_color;
 public:
 	Animation_Simple_Indiv_RainbowWipe(int id) : Animation_Simple_Indiv(id) {}
 	~Animation_Simple_Indiv_RainbowWipe() {}
@@ -155,8 +154,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowTheaterChase : public Animation_Simple_Indiv {
 private:
-	unsigned short int i;
-	unsigned short int j;
+	unsigned short int i, j;
 	bool alternate;
 public:
 	Animation_Simple_Indiv_RainbowTheaterChase(int id) : Animation_Simple_Indiv(id) {}
@@ -168,8 +166,7 @@ public:
 
 class Animation_Simple_Indiv_RainbowWhiteTheaterChase : public Animation_Simple_Indiv {
 private:
-	unsigned short int i;
-	unsigned short int j;
+	unsigned short int i, j;
 	bool alternate;
 public:
 	Animation_Simple_Indiv_RainbowWhiteTheaterChase(int id) : Animation_Simple_Indiv(id) {}

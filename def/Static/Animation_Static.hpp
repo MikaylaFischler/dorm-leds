@@ -13,33 +13,29 @@ protected:
 
 // Animation_Static.cpp
 
-class Animation_Static_DeskBrightWhite : public Animation_Static {
+/*!
+	@brief Displays a transgender pride colors as three colored strips
+	@class Displays transgender pride colors using three windows bordered in
+		LED strips
+	@remark Utilizes pre-defined RGB LED strips, not portable (see warning)
+	@warning Only works for a specific LED strip setup
+*/
+class Animation_Static_TransColorWindows : public Animation_Static {
 public:
-    Animation_Static_DeskBrightWhite() {}
-    ~Animation_Static_DeskBrightWhite() {}
+    Animation_Static_TransColorWindows() {}
+    ~Animation_Static_TransColorWindows() {}
 
 	void init();
     void step();
 };
 
-class Animation_Static_DeskDimAmbient : public Animation_Static {
-public:
-    Animation_Static_DeskDimAmbient() {}
-    ~Animation_Static_DeskDimAmbient() {}
-
-	void init();
-    void step();
-};
-
-class Animation_Static_TransFlagWindows : public Animation_Static {
-public:
-    Animation_Static_TransFlagWindows() {}
-    ~Animation_Static_TransFlagWindows() {}
-
-	void init();
-    void step();
-};
-
+/*!
+	@brief Displays a transgender pride flag
+	@class Displays transgender flag using inner vertical borders of three
+		windows bordered in LEDs
+	@remark Utilizes pre-defined RGB LED strips, not portable (see warning)
+	@warning Only works for a specific LED strip setup
+*/
 class Animation_Static_TransFlagStripedWindows : public Animation_Static {
 public:
     Animation_Static_TransFlagStripedWindows() {}
@@ -61,6 +57,11 @@ protected:
 	int id;
 };
 
+/*!
+	@brief Displays a color on an LED strip
+	@class Sets all LEDs on a strip to a given color
+	@remark Supports all RGB and RGBW strips
+*/
 class Animation_Static_Indiv_Color : public Animation_Static_Indiv {
 private:
 	unsigned long int color;
@@ -72,10 +73,30 @@ public:
     void step();
 };
 
+/*!
+	@brief Displays a spaced dim lighting
+	@class Sets each third LED on a strip to a soft RGB white
+	@remark Supports all RGB and RGBW strips
+*/
 class Animation_Static_Indiv_ThirdDimAmbient : public Animation_Static_Indiv {
 public:
     Animation_Static_Indiv_ThirdDimAmbient(int id) : Animation_Static_Indiv(id) {}
     ~Animation_Static_Indiv_ThirdDimAmbient() {}
+
+	void init();
+    void step();
+};
+
+/*!
+	@brief Displays a spaced dim lighting
+	@class Sets each third LED on a strip to a soft RGB white
+	@remark Supports all RGBW strips
+	@warning Does not support RGB strips
+*/
+class Animation_Static_Indiv_ThirdDimAmbient_W : public Animation_Static_Indiv {
+public:
+    Animation_Static_Indiv_ThirdDimAmbient_W(int id) : Animation_Static_Indiv(id) {}
+    ~Animation_Static_Indiv_ThirdDimAmbient_W() {}
 
 	void init();
     void step();

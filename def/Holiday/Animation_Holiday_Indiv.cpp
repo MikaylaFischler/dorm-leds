@@ -5,7 +5,6 @@
 // define the generic individual init
 void Animation_Holiday_Indiv::init() {
   	Animation_Holiday::init();
-	this->name = npsm.name(this->id);
 	this->strips.push_back(this->id);
 }
 
@@ -13,7 +12,7 @@ void Animation_Holiday_Indiv::init() {
 
 void Animation_Holiday_Indiv_EarthDay_Fade::init() {
  	Animation_Holiday_Indiv::init();
-	this->name += F(": Earth Day Fade");
+	this->name = F("Earth Day Fade");
     this->update_rate = 10;
 
 	i = 0;
@@ -24,12 +23,12 @@ void Animation_Holiday_Indiv_EarthDay_Fade::init() {
 void Animation_Holiday_Indiv_EarthDay_Fade::step() {
 	if (mode) {
 		// green
-		for (int x = 0; x < this->strip->numPixels(); x++) {
+		for (uint16_t x = 0; x < this->strip->numPixels(); x++) {
 			npsm[this->id]->setPixelColor(x, 0, i, 0);
 		}
 	} else {
 		// blue
-		for (int x = 0; x < this->strip->numPixels(); x++) {
+		for (uint16_t x = 0; x < this->strip->numPixels(); x++) {
 			npsm[this->id]->setPixelColor(x, 0, 0, i);
 		}
 	}
