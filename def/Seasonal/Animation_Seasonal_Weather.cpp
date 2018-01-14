@@ -22,7 +22,7 @@ void Animation_Seasonal_Indiv_Weather::precipitation_step(int min_spacing, int m
 
 	// precipitation fall
 	// set each right pixel
-	for (int x = WINDOW_BOTTOM_RIGHT; x <= WINDOW_TOP_RIGHT; x++) {
+	for (uint16_t x = WINDOW_BOTTOM_RIGHT; x <= WINDOW_TOP_RIGHT; x++) {
 		int rel_index = x - WINDOW_BOTTOM_RIGHT;
 
 		if (rel_index % right_spacing == (1000 - i) % right_spacing) {
@@ -33,7 +33,7 @@ void Animation_Seasonal_Indiv_Weather::precipitation_step(int min_spacing, int m
 	}
 
 	// set each left pixel
-	for (int x = WINDOW_TOP_LEFT; x <= WINDOW_BOTTOM_LEFT; x++){
+	for (uint16_t x = WINDOW_TOP_LEFT; x <= WINDOW_BOTTOM_LEFT; x++){
 		int rel_index = x - WINDOW_TOP_LEFT;
 
 		if (rel_index % left_spacing == i % left_spacing) {
@@ -63,7 +63,7 @@ void Animation_Seasonal_Indiv_Weather::precipitation_step(int min_spacing, int m
 
 void Animation_Seasonal_Indiv_Weather_WindowLightRain::init() {
 	precipitation_init(50);
- 	this->name += F(": Light Rain");
+ 	this->name = F("Light Rain");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowLightRain::step() {
@@ -74,7 +74,7 @@ void Animation_Seasonal_Indiv_Weather_WindowLightRain::step() {
 
 void Animation_Seasonal_Indiv_Weather_WindowRain::init() {
 	precipitation_init(40);
- 	this->name += F(": Rain");
+ 	this->name = F("Rain");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowRain::step() {
@@ -85,7 +85,7 @@ void Animation_Seasonal_Indiv_Weather_WindowRain::step() {
 
 void Animation_Seasonal_Indiv_Weather_WindowHeavyRain::init() {
 	precipitation_init(40);
- 	this->name += F(": Heavy Rain");
+ 	this->name = F("Heavy Rain");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowHeavyRain::step() {
@@ -98,7 +98,7 @@ void Animation_Seasonal_Indiv_Weather_WindowHeavyRain::step() {
 
 void Animation_Seasonal_Indiv_Weather_WindowLightSnow::init() {
 	precipitation_init(90);
- 	this->name += F(": Light Snow");
+ 	this->name = F("Light Snow");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowLightSnow::step() {
@@ -109,7 +109,7 @@ void Animation_Seasonal_Indiv_Weather_WindowLightSnow::step() {
 
 void Animation_Seasonal_Indiv_Weather_WindowSnow::init() {
 	precipitation_init(80);
- 	this->name += F(": Snow");
+ 	this->name = F("Snow");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowSnow::step() {
@@ -120,7 +120,7 @@ void Animation_Seasonal_Indiv_Weather_WindowSnow::step() {
 
 void Animation_Seasonal_Indiv_Weather_WindowHeavySnow::init() {
 	precipitation_init(60);
- 	this->name += F(": Heavy Snow");
+ 	this->name = F("Heavy Snow");
 }
 
 void Animation_Seasonal_Indiv_Weather_WindowHeavySnow::step() {

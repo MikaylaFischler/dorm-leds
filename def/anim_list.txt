@@ -3,12 +3,26 @@
 [Advanced]
 	{Animation_Advanced}
 		{Animation_Advanced_Audio}
-			Animation_Advanced_Audio_BasePulseCircularEqWindow
+			Animation_Advanced_Audio_BassPulseLR
+			Animation_Advanced_Audio_BassPulseNestedLR
+			Animation_Advanced_Audio_PulseNestedLR
 			Animation_Advanced_Audio_BassPulseStrip
+				Animation_Advanced_Audio_BassPulseStrip(int strip)
+				Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids)
+				Animation_Advanced_Audio_BassPulseStrip(int strip, uint8_t _fadeFO)
+				Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, uint8_t _fadeFO)
+				Animation_Advanced_Audio_BassPulseStrip(int strip, uint8_t _fadeFO, uint32_t _color)
+				Animation_Advanced_Audio_BassPulseStrip(vector<int> strip_ids, uint8_t _fadeFO, uint32_t _color)
 			Animation_Advanced_Audio_BassMidPulseWindow
 			Animation_Advanced_Audio_BassPulseMidHueWindow
-			Animation_Advanced_Audio_EqualizerWindow
-			Animation_Advanced_Audio_MaxEqualizerWindow
+		{Animation_Advanced_Audio_EQ}
+			Animation_Advanced_Audio_EQ_Window
+			Animation_Advanced_Audio_EQ_BasePulseCircularEQWindow
+			Animation_Advanced_Audio_EQ_MaxWindow
+			Animation_Advanced_Audio_EQ_MaxBassCeiling
+		{Animation_Advanced_Audio}
+			Animation_Advanced_Pulse_CeilingPulse(bool quarticScaleFilter)
+			Animation_Advanced_Pulse_CeilingChart(bool quarticScaleFilter)
 
 [Disable]
 	Animation_Disable
@@ -18,7 +32,7 @@
 		Animation_Holiday_EarthDay_WinAllFade
 
 		{Animation_Holiday_Indiv}
-			Animation_Holiday_Indiv_EarthDay_Fade(&strip)
+			Animation_Holiday_Indiv_EarthDay_Fade(int strip)
 
 		{Animation_Holiday_Halloween}
 			Animation_Holiday_Halloween_WinAllFade
@@ -35,20 +49,20 @@
 		{~Animation_Seasonal_Indiv~}
 			{Animation_Seasonal_Weather}
 				<rain>
-				Animation_Seasonal_Indiv_Weather_WindowLightRain(&strip)
-				Animation_Seasonal_Indiv_Weather_WindowRain(&strip)
-				Animation_Seasonal_Indiv_Weather_WindowHeavyRain(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowLightRain(int strip)
+				Animation_Seasonal_Indiv_Weather_WindowRain(int strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavyRain(int strip)
 				<snow>
-				Animation_Seasonal_Indiv_Weather_WindowLightSnow(&strip)
-				Animation_Seasonal_Indiv_Weather_WindowSnow(&strip)
-				Animation_Seasonal_Indiv_Weather_WindowHeavySnow(&strip)
+				Animation_Seasonal_Indiv_Weather_WindowLightSnow(int strip)
+				Animation_Seasonal_Indiv_Weather_WindowSnow(int strip)
+				Animation_Seasonal_Indiv_Weather_WindowHeavySnow(int strip)
 
 			{Animation_Seasonal_Winter}
 
 			{Animation_Seasonal_Spring}
-				Animation_Seasonal_Indiv_Spring_ClearSkyFade(&strip)
-				Animation_Seasonal_Indiv_Spring_WindowColors(&strip)
-				Animation_Seasonal_Indiv_Spring_ColorWipe(&strip)
+				Animation_Seasonal_Indiv_Spring_ClearSkyFade(int strip)
+				Animation_Seasonal_Indiv_Spring_WindowColors(int strip)
+				Animation_Seasonal_Indiv_Spring_ColorWipe(int strip)
 
 [Simple]
 	{Animation_Simple}
@@ -56,18 +70,18 @@
 		Animation_Simple_WinAllWPISpirit
 
 		{Animation_Simple_Indiv}
-			Animation_Simple_Indiv_CalmPurpleFade(&strip)
-			Animation_Simple_Indiv_ColorFlash(&strip, color, [rate])
-			Animation_Simple_Indiv_AlternatingColorFlash(&strip, color_a, color_b, [rate])
-			Animation_Simple_Indiv_ColorFade(&strip, color)
-			Animation_Simple_Indiv_TheaterChase(&strip, color)
+			Animation_Simple_Indiv_CalmPurpleFade(int strip)
+			Animation_Simple_Indiv_ColorFlash(int strip, uint32_t color, [int rate])
+			Animation_Simple_Indiv_AlternatingColorFlash(int strip, uint32_t color_a, uint32_t color_b, [int rate])
+			Animation_Simple_Indiv_ColorFade(int strip, uint32_t color)
+			Animation_Simple_Indiv_TheaterChase(int strip, uint32_t color)
 
 			{Animation_Simple_Indiv_Rainbow}
-				Animation_Simple_Indiv_Rainbow_Rainbow(&strip)
-				Animation_Simple_Indiv_Rainbow_RainbowCycle(&strip)
-				Animation_Simple_Indiv_Rainbow_RainbowTheaterChase(&strip)
-				Animation_Simple_Indiv_RainbowWhiteTheaterChase_W(id)
-				Animation_Simple_Indiv_Rainbow_RainbowWipe(&strip)
+				Animation_Simple_Indiv_Rainbow_Rainbow(int strip)
+				Animation_Simple_Indiv_Rainbow_RainbowCycle(int strip)
+				Animation_Simple_Indiv_Rainbow_RainbowTheaterChase(int strip)
+				Animation_Simple_Indiv_RainbowWhiteTheaterChase_W(int strip)
+				Animation_Simple_Indiv_Rainbow_RainbowWipe(int strip)
 
 [Static]
 	{Animation_Static}
@@ -75,5 +89,5 @@
 		Animation_Static_DeskDimAmbient
 
 		{Animation_Static_Indiv}
-			Animation_Static_Indiv_Color(&strip, color)
-			Animation_Static_Indiv_ThirdDimAmbient(color)
+			Animation_Static_Indiv_Color(int strip, uint32_t color)
+			Animation_Static_Indiv_ThirdDimAmbient(int strip)

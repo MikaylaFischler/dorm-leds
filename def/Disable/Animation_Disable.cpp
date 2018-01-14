@@ -11,7 +11,7 @@ void Animation_Disable::init() {
 }
 
 void Animation_Disable::step() {
-    for (int i = 0; i < npsm[id]->numPixels(); i++) {
+    for (uint16_t i = 0; i < npsm[id]->numPixels(); i++) {
         npsm[id]->setPixelColor(i, COLOR_OFF);
     }
 
