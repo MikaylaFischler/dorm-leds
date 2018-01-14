@@ -19,9 +19,8 @@ void NeoPixelStripGroup::addStrip(Adafruit_NeoPixel* strip) {
 		longestStrip = strips.size();
 		longestStripLength = strip->numPixels();
 	} else if (strip->numPixels() > longestStripLength) {
-			longestStrip = strips.size();
-			longestStripLength = strip->numPixels();
-		}
+		longestStrip = strips.size();
+		longestStripLength = strip->numPixels();
 	}
 
 	this->strips.push_back(strip);
@@ -38,7 +37,7 @@ int NeoPixelStripGroup::numStrips() const { return this->strips.size(); };
 */
 void NeoPixelStripGroup::show() {
 	for (unsigned int i = 0; i < strips.size(); i++) {
-		strips[i].show();
+		strips[i]->show();
 	}
 }
 
@@ -51,7 +50,7 @@ void NeoPixelStripGroup::show() {
 */
 void NeoPixelStripGroup::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
 	for (unsigned int i = 0; i < strips.size(); i++) {
-		strips[i].setPixelColor(n, r, g, b);
+		strips[i]->setPixelColor(n, r, g, b);
 	}
 }
 
@@ -67,7 +66,7 @@ void NeoPixelStripGroup::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t
 void NeoPixelStripGroup::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
 	if (rgbw) {
 		for (unsigned int i = 0; i < strips.size(); i++) {
-			strips[i].setPixelColor(n, r, g, b, w);
+			strips[i]->setPixelColor(n, r, g, b, w);
 		}
 	}
 }
@@ -79,7 +78,7 @@ void NeoPixelStripGroup::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t
 */
 void NeoPixelStripGroup::setPixelColor(uint16_t n, uint32_t c) {
 	for (unsigned int i = 0; i < strips.size(); i++) {
-		strips[i].setPixelColor(n, c);
+		strips[i]->setPixelColor(n, c);
 	}
 }
 
@@ -90,7 +89,7 @@ void NeoPixelStripGroup::setPixelColor(uint16_t n, uint32_t c) {
 	@param[in] The index of the pixel
 	@return The pixel color
 */
-uint32_t NeoPixelStripGroup::getPixelColor(uint16_t n) {
+uint32_t NeoPixelStripGroup::getPixelColor(uint16_t n) const {
 	if (n >= longestStripLength) {
 		return 0;
 	} else {

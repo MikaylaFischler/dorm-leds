@@ -28,7 +28,7 @@ private:
 public:
 	NeoPixelStripGroup(bool _rgbw) : rgbw(_rgbw), longestStripLength(0) {}
 	NeoPixelStripGroup() : rgbw(false), longestStripLength(0) {}
-	~NeoPiexlStripGroup() {}
+	~NeoPixelStripGroup() {}
 
 	void addStrip(Adafruit_NeoPixel* strip);
 	int numStrips() const;
