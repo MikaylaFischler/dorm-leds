@@ -45,16 +45,16 @@
 #include "util/led.c"
 #include "util/free_memory.c"
 
+// Globals
+#include "conf/globals.h"
+
 // Timing
 unsigned long int prev_time; //!< millis() time at end of previous iteration
 unsigned long int cur_time; //!< current millis() time
 
 // Core System Variables and Class Instances
 unsigned long int dT = 0; //!< elapsed time across iterations
-ThreadHandler thread_handler = ThreadHandler(); //!< global multi-threading system
-
-// Globals
-#include "conf/globals.h"
+thread_handler = ThreadHandler(); //!< global multi-threading system
 
 /*!
 	@brief System Initialization
@@ -127,7 +127,7 @@ void loop() {
 	thread_handler.executeTick();
 
 	// prevent ticks less than a millisecond
-	Serial.println(dT); // takes ~200us
+	// Serial.println(dT); // takes ~200us
 
 	// print memory
 	//Serial.print(F("Free SRAM: "));
