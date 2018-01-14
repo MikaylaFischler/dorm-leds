@@ -1,9 +1,9 @@
-/*
-  Dorm LED Project: dorm-leds.ino
-  Main file for the LED project.
-
-  Created by: Mikayla Fischler
-  9/20/2016 @ WPI
+/*!
+	@file dorm-leds.ino
+	@brief Dorm LED Project<br/>
+		Arduino project file for the LED project.
+	@author Mikayla Fischler
+	@date 2016/09/20
 */
 
 // Standard C++ Library
@@ -46,17 +46,21 @@
 #include "util/free_memory.c"
 
 // Timing
-unsigned long int prev_time;
-unsigned long int cur_time;
+unsigned long int prev_time; //!< millis() time at end of previous iteration
+unsigned long int cur_time; //!< current millis() time
 
 // Core System Variables and Class Instances
-unsigned long int dT = 0;
-ThreadHandler thread_handler = ThreadHandler();
+unsigned long int dT = 0; //!< elapsed time across iterations
+ThreadHandler thread_handler = ThreadHandler(); //!< global multi-threading system
 
 // Globals
 #include "conf/globals.h"
 
-// the setup function runs once when you press reset or power the board
+/*!
+	@brief System Initialization
+ 	The setup function runs once when you press reset or power the board.
+	Sets-up all parts of the system and is responsibile for initialization.
+*/
 void setup() {
 	Serial.begin(250000);
 	Serial.println(F("Initializing..."));
@@ -103,8 +107,11 @@ void setup() {
 	Serial.println(F(" bytes of free SRAM."));
 }
 
-// the loop function runs over and over again forever
-// run multithreaded system code
+/*!
+	@brief Main Loop
+	The loop function runs over and over again forever.
+	Runs multithreaded system code.
+*/
 void loop() {
 	// set change in time
 	cur_time = millis();

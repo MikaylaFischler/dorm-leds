@@ -1,16 +1,19 @@
-/*
-  Dorm LED Project: init.ino
-  This file contains the initialization code for the dorm LED system.
-
-  Created by: Mikayla Fischler
-  9/30/2016 @ WPI
+/*!
+	@file init.ino
+  	@brief This file contains the initialization code for the dorm LED system.
 */
 
+/*!
+	@brief Set any Arduino pin modes if necessary.
+*/
 void set_pin_modes() {
 	// set pin modes here
-
+	// pinMode(PORT, INPUT/OUTPUT);
 }
 
+/*!
+	@brief Initialize LED strips
+*/
 void init_strips() {
 	// create strips
 
@@ -36,11 +39,17 @@ void init_strips() {
 		npsm[i]->show();
 	}
 }
-
+/*!
+	@brief Initialize timing
+*/
 void init_timing() {
 	prev_time = millis();
 }
 
+/*!
+	@brief "Mount" devices to the device manager.
+	Allows interface with the specified devices.
+*/
 void mount_devices() {
 	// note: order matters; it defines the device index
 																									// device id
@@ -51,6 +60,10 @@ void mount_devices() {
 	device_manager.mount(new PulseMonitor(F("Pulse Monitor"), PULSESENSOR_INPUT));					// 2
 }
 
+/*!
+	@brief Add system threads to the thread handler.
+	This includes device processes and system processes.
+*/
 void queue_sys_threads() {
 	// device processes
 	thread_handler.queue(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(0)));
@@ -60,6 +73,10 @@ void queue_sys_threads() {
 	//thread_handler.queue();
 }
 
+/*!
+	@brief Manually queues animations to the thread handler.
+	This takes the place of a controller such as a touch TFT screen.
+*/
 void led_man_queue() {
 	// manually queue animations for startup
 
@@ -74,6 +91,8 @@ void led_man_queue() {
 	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_3));
 	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseLR(ID_CEILING_LEFT, ID_CEILING_RIGHT));
 	thread_handler.queue(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_LEFT, ID_CEILING_RIGHT, true));
+
+	// thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart(true));
 
 	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 

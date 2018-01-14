@@ -19,14 +19,14 @@ private:
 
 	int spectrum_values[7];				// all frequency range data
 
-	static const int NOISE_FILTER = 80;	// noise filter threshold
+	static const int NOISE_FILTER = 94;	// noise filter threshold (recommended: 80)
 public:
 	MSGEQ7(String name, int strobe_port, int reset_port, int input_port);
 	virtual ~MSGEQ7() {}
 
 	int getRaw(int i) const;
 	int get8Bit(int i) const;
-	int getInWindowRange(int i) const;
+	int getInRange(int i, int min, int max) const;
 
 	int operator[] (int index) const;
 
