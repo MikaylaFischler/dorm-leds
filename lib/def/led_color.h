@@ -26,6 +26,7 @@
 
 // whites
 #define COLOR_DIM_WHITE 6579300			// (100, 100, 100)
+#define COLOR_OFF_WHITE 14780235 		// (75, 45, 25)
 #define COLOR_DIM_OFF_WHITE 4926745 	// (75, 45, 25)
 #define COLOR_LIGHT_SILVER 11120823 	// (169, 176, 183)
 
