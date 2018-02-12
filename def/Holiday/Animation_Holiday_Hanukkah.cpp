@@ -47,7 +47,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 
 	// handle top and bottom for christmas
 	// left top
-	for (uint16_t x = LEFT_TOP - 4; x < LEFT_TOP; x++) {
+	for (int16_t x = LEFT_TOP - 4; x < LEFT_TOP; x++) {
 		int rel_index = x - LEFT_TOP + 4;
 
 		if (rel_index < a % LEFT_FULL_LENGTH) {
@@ -58,7 +58,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	}
 
 	// right top
-	for (uint16_t x = RIGHT_TOP + 1; x <= RIGHT_TOP + 5; x++) {
+	for (int16_t x = RIGHT_TOP + 1; x <= RIGHT_TOP + 5; x++) {
 		int rel_index = x - 6;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
@@ -69,7 +69,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	}
 
 	// left bottom
-	for (uint16_t x = 4; x >= 0; x--) {
+	for (int16_t x = 4; x >= 0; x--) {
 		int rel_index = x + 35;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
@@ -80,7 +80,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	}
 
 	// right bottom
-	for (uint16_t x = 5; x < RIGHT_BOTTOM; x++) {
+	for (int16_t x = 5; x < RIGHT_BOTTOM; x++) {
 		int rel_index = x - 5;
 
 		if (rel_index < a % RIGHT_FULL_LENGTH) {
@@ -91,7 +91,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	}
 
 	// set each right pixel
-	for (uint16_t x = RIGHT_BOTTOM; x <= RIGHT_TOP; x++) {
+	for (int16_t x = RIGHT_BOTTOM; x <= RIGHT_TOP; x++) {
 		int rel_index = x - RIGHT_BOTTOM;
 
 		if (rel_index % right_spacing == (800 - i) % right_spacing) {
@@ -106,7 +106,7 @@ void Animation_Holiday_Hanukkah_Win2Snow::hanukkah_snow(int i, int left_spacing,
 	}
 
 	// set each left pixel
-	for (uint16_t x = LEFT_TOP; x <= LEFT_BOTTOM; x++){
+	for (int16_t x = LEFT_TOP; x <= LEFT_BOTTOM; x++){
 		int rel_index = x - LEFT_TOP;
 
 		if (rel_index % left_spacing == i % left_spacing) {
