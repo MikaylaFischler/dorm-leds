@@ -50,7 +50,7 @@ void Animation_Static_Indiv_ThirdDimAmbient_W::init() {
 	Animation_Static_Indiv::init();
 	this->name = F("Third Dim Ambient (RGBW)");
 
-	if (!npsm->isRGBW(this->id)) { abort(); }
+	if (!npsm.isRGBW(this->id)) { abort(); }
 }
 
 void Animation_Static_Indiv_ThirdDimAmbient_W::step() {

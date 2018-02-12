@@ -27,9 +27,9 @@ public:
 	ThreadHandler() {}
 	~ThreadHandler() {}
 
-	void run(Animation* anim);
-	void run(Process* proc);
-	void kill(unsigned int id);
+	void queue(Animation* anim);
+	void queue(Process* proc);
+	// void kill(unsigned int id);
 
 	void updateTimeAccumulated(unsigned long int dT);
 	void executeTick();

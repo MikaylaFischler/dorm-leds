@@ -7,7 +7,7 @@ vector<AnimationThread*> ThreadHandler::listAnimationThreads() const { return an
 vector<ProcessThread*> ThreadHandler::listProcessThreads() const { return proc_threads; }
 
 // queue an animation
-void ThreadHandler::run(Animation* anim) {
+void ThreadHandler::queue(Animation* anim) {
 	anim->init();
 
 	// queue this animation as a new thread (set current time as the update rate so it initially sets on start)
@@ -71,7 +71,7 @@ void ThreadHandler::run(Animation* anim) {
 }
 
 // queue a process
-void ThreadHandler::run(Process* proc) {
+void ThreadHandler::queue(Process* proc) {
 	proc->init();
 
 	// queue this process as a new thread (set current time as the update rate so it initially sets on start)

@@ -3,9 +3,10 @@
 
 #include "../lib/device/DeviceManager.hpp"
 #include "../lib/neopixel/NeoPixelStripManager.hpp"
+#include "../lib/ThreadHandler.hpp"
 
 DeviceManager device_manager;
 NeoPixelStripManager npsm;
-ThreadHandler thread_handler;
+// ThreadHandler thread_handler;
 
 #endif

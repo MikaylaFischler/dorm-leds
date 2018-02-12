@@ -7,4 +7,4 @@ String Executable::getName() const { return this->name; }
 unsigned long int Executable::getUpdateRate() const { return this->update_rate; }
 
 // set the thread that this executable is running under
-void Executable::setThread(unsigned int t) const { thread = t; }
+// void Executable::setThread(unsigned int t) const { thread = t; }

@@ -66,11 +66,11 @@ void mount_devices() {
 */
 void queue_sys_threads() {
 	// device processes
-	thread_handler.run(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(0)));
-	thread_handler.run(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(1)));
+	thread_handler.queue(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(0)));
+	thread_handler.queue(new MSGEQ7::UpdaterProcess(device_manager.getDevice<MSGEQ7>(1)));
 
 	// system processes
-	//thread_handler.run();
+	//thread_handler.queue();
 }
 
 /*!
@@ -80,55 +80,58 @@ void queue_sys_threads() {
 void led_man_queue() {
 	// manually queue animations for startup
 
-	// thread_handler.run(new Animation_Simple_DeskWhitePurpleFade());
-	// thread_handler.run(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
-	// thread_handler.run(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
-	thread_handler.run(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_1));
-	thread_handler.run(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_2));
-	thread_handler.run(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_3));
-	// thread_handler.run(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
-	// thread_handler.run(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
+	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
+	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_1, COLOR_OFF_WHITE));
+	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_2, COLOR_OFF_WHITE));
+	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_3, COLOR_OFF_WHITE));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_1));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_2));
+	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_3));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
 	// const int window_sill_strips[] = {ID_WINDOWSILL_1,ID_WINDOWSILL_2,ID_WINDOWSILL_3};
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseStrip(std::vector<int> (window_sill_strips, window_sill_strips + sizeof(window_sill_strips) / sizeof(window_sill_strips[0]))));
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_2));
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_3));
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseLR(ID_CEILING_LEFT, ID_CEILING_RIGHT));
-	thread_handler.run(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_LEFT, ID_CEILING_RIGHT, false));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(std::vector<int> (window_sill_strips, window_sill_strips + sizeof(window_sill_strips) / sizeof(window_sill_strips[0]))));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_2));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_3));
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseLR(ID_CEILING_LEFT, ID_CEILING_RIGHT));
+	thread_handler.queue(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_LEFT, ID_CEILING_RIGHT, false));
 
-	// thread_handler.run(new Animation_Advanced_Pulse_CeilingChart(true));
+	// thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart(true));
 
-	// thread_handler.run(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
+	// thread_handler.queue(new Animation_Holiday_Halloween_WinAllHalloweenSparkle());
 
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_1));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_2));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowSnow(ID_WINDOW_3));
 
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_1));
-	// thread_handler.run(new Animation_Simple_Indiv_CalmPurpleFade(ID_WINDOW_2));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowRain(ID_WINDOW_3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_1));
+	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(ID_WINDOW_2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowRain(ID_WINDOW_3));
 
-	// thread_handler.run(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_1));
-	// thread_handler.run(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_2));
-	// thread_handler.run(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_3));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_1));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_2));
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_3));
 
-	// thread_handler.run(new Animation_Advanced_Audio_BasePulseCircularEqWindow());
-	// thread_handler.run(new Animation_Advanced_Audio_MaxEqualizerWindow());
-	// thread_handler.run(new Animation_Advanced_Audio_BassMidPulseWindow());
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseMidHueWindow());
-	// thread_handler.run(new Animation_Advanced_Audio_BassPulseWindow());
+	// thread_handler.queue(new Animation_Advanced_Audio_BasePulseCircularEqWindow());
+	// thread_handler.queue(new Animation_Advanced_Audio_MaxEqualizerWindow());
+	// thread_handler.queue(new Animation_Advanced_Audio_BassMidPulseWindow());
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseMidHueWindow());
+	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseWindow());
 
-	// thread_handler.run(new Animation_Seasonal_Indiv_Spring_ColorWipe(ID_WINDOW_1));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Spring_WindowColors(ID_WINDOW_2));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Spring_ColorWipe(ID_WINDOW_3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Spring_ColorWipe(ID_WINDOW_1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Spring_WindowColors(ID_WINDOW_2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Spring_ColorWipe(ID_WINDOW_3));
 
-	// thread_handler.run(new Animation_Static_TransColorWindows());
-	// thread_handler.run(new Animation_Static_TransFlagStripedWindows());
+	// thread_handler.queue(new Animation_Static_TransColorWindows());
+	// thread_handler.queue(new Animation_Static_TransFlagStripedWindows());
 
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_1));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_2));
-	// thread_handler.run(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_3));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_1));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_2));
+	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowLightRain(ID_WINDOW_3));
 
-	// thread_handler.run(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_1, COLOR_BLUE));
-	// thread_handler.run(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_2, COLOR_GREEN));
-	// thread_handler.run(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_3, COLOR_BLUE));
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_1, COLOR_BLUE));
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_2, COLOR_GREEN));
+	// thread_handler.queue(new Animation_Simple_Indiv_ColorFade(ID_WINDOW_3, COLOR_BLUE));
 }
