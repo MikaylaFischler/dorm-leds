@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 
-#include "../Thread.hpp"
-#include "../ThreadHandler.hpp"
+// #include "../Thread.hpp"
+// #include "../ThreadHandler.hpp"
 
-#include "../../conf/globals.h"
+// #include "../../conf/globals.h"
 
 class Executable {
 protected:
@@ -20,7 +20,7 @@ public:
 
     String getName() const;
     unsigned long int getUpdateRate() const;
-	virtual void setThread(unsigned int t) = 0;
+	// virtual void setThread(unsigned int t);
 
     virtual void init() = 0;
     virtual void step() = 0;

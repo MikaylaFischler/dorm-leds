@@ -54,7 +54,7 @@ unsigned long int cur_time; //!< current millis() time
 
 // Core System Variables and Class Instances
 unsigned long int dT = 0; //!< elapsed time across iterations
-thread_handler = ThreadHandler(); //!< global multi-threading system
+ThreadHandler thread_handler = ThreadHandler(); //!< global multi-threading system
 
 /*!
 	@brief System Initialization
