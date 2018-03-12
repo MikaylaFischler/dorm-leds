@@ -58,8 +58,26 @@ void Animation_Static_Indiv_ThirdDimAmbient_W::step() {
 		if (i % 3 == 0) {
 			npsm[this->id]->setPixelColor(i, 0, 0, 0, 200);
 		} else {
-			npsm[this->id]->setPixelColor(i, 0, 0, 0, 200);
+			npsm[this->id]->setPixelColor(i, 0, 0, 0, 0);
 		}
+	}
+
+	npsm[this->id]->show();
+	this->current_exec++;
+}
+
+/* ~~~ Animation Static Individual: Bright White (from dedicated White LED) ~~~ */
+
+void Animation_Static_Indiv_Light_W::init() {
+	Animation_Static_Indiv::init();
+	this->name = F("Natural White Light (RGBW)");
+
+	if (!npsm.isRGBW(this->id)) { abort(); }
+}
+
+void Animation_Static_Indiv_Light_W::step() {
+	for (uint16_t i = 0; i < npsm[this->id]->numPixels(); i++) {
+		npsm[this->id]->setPixelColor(i, 0, 0, 0, 255);
 	}
 
 	npsm[this->id]->show();

@@ -89,7 +89,7 @@ public:
 
 /*!
 	@brief Displays a spaced dim lighting
-	@class Sets each third LED on a strip to a soft RGB white
+	@class Sets each third LED on a strip to a soft white
 	@remark Supports all RGBW strips
 	@warning Does not support RGB strips
 */
@@ -97,6 +97,21 @@ class Animation_Static_Indiv_ThirdDimAmbient_W : public Animation_Static_Indiv {
 public:
     Animation_Static_Indiv_ThirdDimAmbient_W(int id) : Animation_Static_Indiv(id) {}
     ~Animation_Static_Indiv_ThirdDimAmbient_W() {}
+
+	void init();
+    void step();
+};
+
+/*!
+	@brief Displays a bright natural white lighting
+	@class Sets each LED on a strip to white
+	@remark Supports all RGBW strips
+	@warning Does not support RGB strips
+*/
+class Animation_Static_Indiv_Light_W : public Animation_Static_Indiv {
+public:
+    Animation_Static_Indiv_Light_W(int id) : Animation_Static_Indiv(id) {}
+    ~Animation_Static_Indiv_Light_W() {}
 
 	void init();
     void step();
