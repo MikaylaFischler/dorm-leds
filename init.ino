@@ -26,13 +26,11 @@ void init_strips() {
 	// npsm.addStrip(F("Desk 2"), false, new Adafruit_NeoPixel(DESK2_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
 
 	// current strips
-	npsm.addStrip(F("Ceiling Left"), true, new Adafruit_NeoPixel(CEILING_LEFT_LENGTH, STRIP_PIN_CL, STRIP_TYPE_RGBW));
-	npsm.addStrip(F("Ceiling Right"), true, new Adafruit_NeoPixel(CEILING_RIGHT_LENGTH, STRIP_PIN_CR, STRIP_TYPE_RGBW));
+	npsm.addStrip(F("Ceiling (Bed)"), true, new Adafruit_NeoPixel(CEILING_RGBW_LENGTH, STRIP_PIN_CB, STRIP_TYPE_RGBW));
+	npsm.addStrip(F("Ceiling (Window)"), true, new Adafruit_NeoPixel(CEILING_RGBW_LENGTH, STRIP_PIN_CW, STRIP_TYPE_RGBW));
 
-	npsm.addStrip(F("Window 1"), false, new Adafruit_NeoPixel(WINDOW_A_LENGTH, STRIP_PIN_W1, STRIP_TYPE_RGB));
-	npsm.addStrip(F("Window 2"), false, new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W2, STRIP_TYPE_RGB));
-	npsm.addStrip(F("Window 3"), false, new Adafruit_NeoPixel(WINDOW_B_LENGTH, STRIP_PIN_W3, STRIP_TYPE_RGB));
-
+	npsm.addStrip(F("Window"), false, new Adafruit_NeoPixel(WINDOW_LENGTH, STRIP_PIN_WN, STRIP_TYPE_RGB));
+	npsm.addStrip(F("Ceiling (Desk)"), false, new Adafruit_NeoPixel(CEILING_RGB_LENGTH, STRIP_PIN_CD, STRIP_TYPE_RGB));
 	// begin() the strips
 	for (int i = 0; i < npsm.numStrips(); i++) {
 		npsm[i]->begin();
@@ -81,14 +79,10 @@ void led_man_queue() {
 	// manually queue animations for startup
 
 	// thread_handler.queue(new Animation_Simple_DeskWhitePurpleFade());
-	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_1, COLOR_OFF_WHITE));
-	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_2, COLOR_OFF_WHITE));
-	thread_handler.queue(new Animation_Static_Indiv_Color(ID_WINDOWSILL_3, COLOR_OFF_WHITE));
+	thread_handler.queue(new Animation_Static_Indiv_Color(ID_CEILING_DESK, COLOR_OFF_WHITE));
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_LEFT));
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_CEILING_RIGHT));
 	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_1));
-	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_2));
-	// thread_handler.queue(new Animation_Static_Indiv_ThirdDimAmbient(ID_WINDOWSILL_3));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_LEFT));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowWhiteTheaterChase(ID_CEILING_RIGHT));
 	// const int window_sill_strips[] = {ID_WINDOWSILL_1,ID_WINDOWSILL_2,ID_WINDOWSILL_3};
@@ -96,7 +90,7 @@ void led_man_queue() {
 	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_2));
 	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseStrip(ID_WINDOWSILL_3));
 	// thread_handler.queue(new Animation_Advanced_Audio_BassPulseLR(ID_CEILING_LEFT, ID_CEILING_RIGHT));
-	thread_handler.queue(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_LEFT, ID_CEILING_RIGHT, false));
+	thread_handler.queue(new Animation_Advanced_Audio_PulseNestedLR(ID_CEILING_BED, ID_CEILING_WINDOW, true));
 
 	// thread_handler.queue(new Animation_Advanced_Pulse_CeilingChart(true));
 
@@ -110,7 +104,10 @@ void led_man_queue() {
 	// thread_handler.queue(new Animation_Simple_Indiv_CalmPurpleFade(ID_WINDOW_2));
 	// thread_handler.queue(new Animation_Seasonal_Indiv_Weather_WindowRain(ID_WINDOW_3));
 
-	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_1));
+
+	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW));
+
+
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_2));
 	// thread_handler.queue(new Animation_Simple_Indiv_RainbowCycle(ID_WINDOW_3));
 
